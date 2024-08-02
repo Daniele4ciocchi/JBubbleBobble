@@ -12,3 +12,33 @@ progetto di metodologie del farallon
 
 #### struttura del progetto
 idk, comunque credo che useremo MVC e Observe Observble che il faralln ha fatto due scatole tante
+
+
+#### todo list (ordinata, per l'amor di DIO): 
+- profilo:
+  - profilo utente
+  - nickname
+  - avatar
+  - partite giocate (storico?)
+  - #vinte e #perse
+  - livello profilo
+- gameplay:
+  - 16+ livelli giocabili
+  - 6+ tipi di nemici (grafica+comportamento differenti)
+  - gestione del punteggio
+  - gestione delle vite
+  - 12 powerup (grafica+comportamento come nel gioco originale [https://www.crazykong.com/cabs/bubblebobble/BubbleBobbleFAQ.txt]
+  - schermata "HAI VINTO"
+  - schermata "GAME OVER"
+  - classifica
+  - 2 tipi diversi di bolle
+- per la struttura del codice, usare:
+  - MVC
+  - Observer, Observable
+  - altri design pattern adeguata
+- per la grafica, usare:
+  - Java Swing
+  - JavaFX
+  - creare animazioni ed effetti speciali (VFX)
+- per l'audio, usare: AudioManager.Java
+- usare i Java Stream
