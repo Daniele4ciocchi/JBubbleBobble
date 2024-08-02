@@ -39,6 +39,6 @@ idk, comunque credo che useremo MVC e Observe Observble che il faralln ha fatto 
 - per la grafica, usare:
   - Java Swing
   - JavaFX
-  - creare animazioni ed effetti speciali (VFX)
 - per l'audio, usare: AudioManager.Java
 - usare i Java Stream
+- creare animazioni ed effetti speciali (VFX)
