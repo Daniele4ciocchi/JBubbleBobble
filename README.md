@@ -15,14 +15,14 @@ idk, comunque credo che useremo MVC e Observe Observble che il faralln ha fatto 
 
 
 #### todo list (ordinata, per l'amor di DIO): 
-- profilo:
+- GESTIONE PROFILO:
   - profilo utente
   - nickname
   - avatar
   - partite giocate (storico?)
   - #vinte e #perse
   - livello profilo
-- gameplay:
+- GAMEPLAY:
   - 16+ livelli giocabili
   - 6+ tipi di nemici (grafica+comportamento differenti)
   - gestione del punteggio
@@ -32,13 +32,16 @@ idk, comunque credo che useremo MVC e Observe Observble che il faralln ha fatto 
   - schermata "GAME OVER"
   - classifica
   - 2 tipi diversi di bolle
-- per la struttura del codice, usare:
+  
+- STRUTTURA DEL CODICE:
   - MVC
   - Observer, Observable
   - altri design pattern adeguata
-- per la grafica, usare:
+- GRAFICA:
   - Java Swing
   - JavaFX
-- per l'audio, usare: AudioManager.Java
-- usare i Java Stream
-- creare animazioni ed effetti speciali (VFX)
+- AUDIO: AudioManager.Java
+  
+- EXTRA:
+  - usare i Java Stream
+  - creare animazioni ed effetti speciali (VFX)
