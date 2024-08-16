@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 
 public class Partita{
-    //variabile per garantire che ci sia una sola istanza di partita
-    private static Partita istanza;
-
+ 
     //giocatore principale 
     private Giocatore giocatore;
     //nemici all'interno della partita in corso 
@@ -24,17 +22,42 @@ public class Partita{
 
     //metodi
 
-    private Partita(){
-        //da inserire robe
+    private Partita(Giocatore giocatore){
+        this.giocatore = giocatore;
+        this.nemici = new ArrayList<Nemico>;
+        this.powerUp = new ArrayList<PowerUp>;
+
+        this.bolleSparate = 0;
+        this.bolleScoppiate = 0;
+        this.saltiEffettuati = 0; 
+        this.vinta = false;
     }
 
-    public static Partita getIstanza() {
-        if (istanza == null)
-            istanza = new Partita();
-        return istanza;
-    }
+    //metodi getter
     
     public Giocatore getGiocatore(){return this.giocatore;}
+    public Nemico getNemici(){return this.nemici;}
+    public PowerUp getPowerUp(){return this.powerUp;}
+    public Livello getLivello(){return this.livello;}
 
-    public getNemici
+    public int getBolleScoppiate(){return this.bolleScoppiate;}
+    public int getBolleSparate(){return this.bolleSparate;}
+    public int getSaltiEffettuati(){return this.saltiEffettuati;}
+
+    //metodi setter
+
+    public void addBolleScoppiate(){this.bolleScoppiate++;}
+    public void addBolleSparate(){this.bolleSparate++;}
+    public void addSaltiEffettuati(){this.saltiEffettuati++;}
+
+    //aggiungere e rimuovere nemici dalla partita
+    public void addNemico(Nemico nemico){this.nemici.add(nemico);}
+    public void removeNemico(Nemico nemico){this.nemici.remove(nemico);}
+
+    //aggiungere e rimuovere powerUp dalla partita
+    public void addPowerUp(PowerUp powerUp){this.powerUp.add(powerUp);}
+    public void removePowerUp(PowerUp powerUp){this.powerUp.remove(powerUp);}
+
+    public boolean isVinta(){return this.vinta;}
+
 }
