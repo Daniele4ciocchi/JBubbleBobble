@@ -22,4 +22,12 @@ class Profilo {
     public int getVinte(){
         return partite.stream().filter(x -> x.isVinta()).count();
     }
+
+    public int getPerse(){
+        return partite.stream().filter(x -> x.isVinta() == false).count();
+    }
+
+    public int getLivello(){
+        return livello;
+    }
 }
