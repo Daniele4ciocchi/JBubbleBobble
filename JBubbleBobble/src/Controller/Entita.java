@@ -22,6 +22,16 @@ abstract class Entita {
         return velocita;
     }
 
+    // getter di posX
+    public int getPosX(){
+        return posX;
+    }
+
+    // getter di posY
+    public int getPosY(){
+        return posY;
+    }
+
     // setter di velocita
     public void setVelocita(int v){
         velocita = v;
