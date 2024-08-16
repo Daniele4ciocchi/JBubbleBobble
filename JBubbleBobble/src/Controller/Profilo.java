@@ -2,10 +2,16 @@
 import java.util.ArrayList;
 
 class Profilo {
-    private String nickname;
-    // private Image avatar;
+    private String nickname; // nome utente, deciso nel costruttore
+    private Image avatar; // 
     private ArrayList<Partita> partite;
     private int livello;
+
+    public Profilo(String n, Image a){
+        nickname = n;
+        avatar = a;
+    }
+
 
     public String getNickname(){
         return nickname;
