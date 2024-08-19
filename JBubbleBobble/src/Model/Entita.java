@@ -1,7 +1,9 @@
+package Model;
+
 abstract class Entita {
     private int hp; // health points rimanenti 
     private int maxHp; // health points massimi
-    private int velocita; // velocita movimento (float?)
+    private long velocita; // velocita movimento (float?)
 
     // variabili per le coordinate
     private int posX;
@@ -18,7 +20,7 @@ abstract class Entita {
     }
 
     // getter di velocita
-    public int getVelocita(){
+    public long getVelocita(){
         return velocita;
     }
 
@@ -32,8 +34,13 @@ abstract class Entita {
         return posY;
     }
 
-    // setter di velocita
-    public void setVelocita(int v){
+    // Modifica la velocita dell'entita nel valore (long) fornito
+    public void setVelocita(long v){
         velocita = v;
+    }
+
+    // Modifica la velocita fornendo in input la differenza richiesta (es: -1 abbassa la velocita' di 1)
+    public void setVelocitaDiff(long v){
+        velocita += v;
     }
 }

@@ -1,8 +1,9 @@
+package Model;
 
 import java.awt.Image;
 import java.util.ArrayList;
 
-class Profilo {
+public class Profilo {
     private final String NICKNAME; // nome utente, immutabile e deciso nel costruttore 
     private Image avatar; // immagine profilo, decisa nel costruttore
     private ArrayList<Partita> partite; // storico partite
@@ -40,12 +41,12 @@ class Profilo {
 
     // Restituisce il numero di partite vinte
     public int getVinte(){
-        return (int)partite.stream().filter(x -> x.isVinta()).count();
+        return (int)partite.stream().filter(Partita::isVinta).count();
     }
 
     // Restituisce il numero di partite perse
     public int getPerse(){
-        return (int)partite.stream().filter(x -> x.isVinta() == false).count();
+        return (int)partite.stream().filter(x -> !x.isVinta()).count();
     }
 
     // Restituisce il livello del profilo
