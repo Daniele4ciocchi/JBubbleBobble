@@ -17,6 +17,7 @@ public class Partita{
     private int bolleSparate;
     private int bolleScoppiate;
     private int saltiEffettuati;
+    private int punteggio;
 
     //int[...](per i powerup)
 
@@ -45,6 +46,7 @@ public class Partita{
     public int getBolleScoppiate(){return this.bolleScoppiate;}
     public int getBolleSparate(){return this.bolleSparate;}
     public int getSaltiEffettuati(){return this.saltiEffettuati;}
+    public int getPunteggio(){return this.punteggio;}
 
     //metodi setter
 
