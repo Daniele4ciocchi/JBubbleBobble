@@ -9,7 +9,7 @@ public class Partita{
     //powerup presenti all'interno della partita in corso 
     private ArrayList<PowerUp> powerUp;
 
-    private Livello livelloAttuale //da rivedere meglio 
+    private Livello livelloAttuale; //da rivedere meglio 
     
     //counter per poter ottenere determinati powerUp
     private int bolleSparate;
