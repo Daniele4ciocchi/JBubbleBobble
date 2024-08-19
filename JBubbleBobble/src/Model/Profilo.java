@@ -3,7 +3,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 class Profilo {
-    private final String NICKNAME; // nome utente, deciso nel costruttore
+    private final String NICKNAME; // nome utente, immutabile e deciso nel costruttore 
     private Image avatar; // immagine profilo, decisa nel costruttore
     private ArrayList<Partita> partite; // storico partite
 
