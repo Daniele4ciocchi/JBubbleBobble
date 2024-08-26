@@ -8,6 +8,7 @@ abstract class Entita {
     // variabili per le coordinate
     private int posX;
     private int posY;
+    public int setHp;
 
     // getter di hp
     public int getHp(){
@@ -34,6 +35,12 @@ abstract class Entita {
         return posY;
     }
 
+
+    //mpdifica hp
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+
     // Modifica la velocita dell'entita nel valore (long) fornito
     public void setVelocita(long v){
         velocita = v;
@@ -42,5 +49,11 @@ abstract class Entita {
     // Modifica la velocita fornendo in input la differenza richiesta (es: -1 abbassa la velocita' di 1)
     public void setVelocitaDiff(long v){
         velocita += v;
+    }
+
+    //Modifica la posizione dell'elemento 
+    public void setPosizione(int x, int y){
+        posX = x;
+        posY = y;
     }
 }
