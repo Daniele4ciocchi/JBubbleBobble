@@ -1,5 +1,8 @@
 package Model;
 
+import java.util.ArrayList;
+
+// SINGLETON? BUILDER PATTERN?
 public class Livello {
     /*
         PLAYERSPAWN_X e PLAYERSPAWN_Y indicano rispettivamente le coordinate X, Y di dove dovrà spawnare
