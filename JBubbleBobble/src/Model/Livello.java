@@ -11,6 +11,7 @@ public class Livello {
     private final int PLAYERSPAWN_X = 0;
     private final int PLAYERSPAWN_Y = 0;
 
+    private ArrayList<Entita> entita;
     private Tile[][] grid;
     /*
         Il numero di livello è un intero che determina cose come la disposizione delle piattaforme, le coordinate
@@ -50,6 +51,10 @@ public class Livello {
 
     }
 
+    //metodo per aggiungere un'entità all'interno dell'array
+    public void addEntita(Entita entita){
+        this.entita.add(entita);
+    }
 
     /*
         Metodo chiamato dal costruttore che costruirà una grid di Tile in base al levelNum indicato.

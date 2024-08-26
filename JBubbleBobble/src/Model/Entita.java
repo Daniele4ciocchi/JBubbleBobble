@@ -56,4 +56,9 @@ abstract class Entita {
         posX = x;
         posY = y;
     }
+
+    //metodo che toglie gli hp
+    public void damage(int damage){
+        this.hp -= damage;
+    }
 }

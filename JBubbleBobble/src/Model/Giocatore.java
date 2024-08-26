@@ -1,16 +1,13 @@
 package Model;
 
+//da fare singleton
 public class Giocatore extends Entita{
     private Profilo profilo;
-    int vite;
+    private Livello livello;
 
     public Giocatore(Profilo profilo){
         this.profilo = profilo;
-        this.vite = 3;
-    }
-
-    public int getVite(){
-        return this.vite;
+        this.setHp(3);
     }
 
     public void moveLeft(){
@@ -22,10 +19,14 @@ public class Giocatore extends Entita{
     }
 
     public void sparaBolle(){
-
+        livello.addEntita(new Bolla());
     }
 
     public void salta() {
 
+    }
+    public void esplodiBolla(Bolla bolla){
+        //if giocatore tocca bolla
+        bolle.remove(bolla);
     }
 }
