@@ -21,6 +21,7 @@ public class Livello {
     // COSTRUTTORE
     public Livello(int ln){
         levelNum = ln;
+        costruisciGrid();
     }
 
     // Restituisce il valore di PLAYERSPAWN_X
@@ -49,5 +50,77 @@ public class Livello {
 
     }
 
+
+    /*
+        Metodo chiamato dal costruttore che costruirà una grid di Tile in base al levelNum indicato.
+        Tramite uno switch-case, decide la configurazione delle tile.
+     */
+    private void costruisciGrid(){
+        switch (levelNum) {
+            case 1 -> {
+                // costruzione di un livello 1
+            }
+
+            case 2 -> {
+                // costruzione di un livello 2
+            }
+
+            case 3 -> {
+                // costruzione di un livello 3
+            }
+
+            case 4 -> {
+                // costruzione di un livello 4
+            }
+
+            case 5 -> {
+                // costruzione di un livello 5
+            }
+
+            case 6 -> {
+                // costruzione di un livello 6
+            }
+
+            case 7 -> {
+                // costruzione di un livello 7
+            }
+
+            case 8 -> {
+                // costruzione di un livello 8
+            }
+
+            case 9 -> {
+                // costruzione di un livello 9
+            }
+
+            case 10 -> {
+                // costruzione di un livello 10
+            }
+
+            case 11 -> {
+                // costruzione di un livello 11
+            }
+
+            case 12 -> {
+                // costruzione di un livello 12
+            }
+
+            case 13 -> {
+                // costruzione di un livello 13
+            }
+
+            case 14 -> {
+                // costruzione di un livello 14
+            }
+
+            case 15 -> {
+                // costruzione di un livello 15
+            }
+
+            case 16 -> {
+                // costruzione di un livello 16
+            }
+        }
+    }
 
 }
