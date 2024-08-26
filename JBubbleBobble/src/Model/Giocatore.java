@@ -13,12 +13,18 @@ public class Giocatore extends Entita{
         return this.vite;
     }
 
-    public void muoviti(){
+    public void moveLeft(){
 
     }
+
+    public void moveRight(){
+
+    }
+
     public void sparaBolle(){
 
     }
+
     public void salta() {
 
     }

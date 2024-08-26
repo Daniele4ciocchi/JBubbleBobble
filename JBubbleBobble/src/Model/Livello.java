@@ -8,9 +8,10 @@ public class Livello {
         //TODO: capire se i livelli hanno diverse posizioni di spawn del giocatore (GIOCARE IL GIOCO)
         //TODO: capire se le coordinate di spawn sono FINAL o no
      */
-    public final int PLAYERSPAWN_X = 0;
-    public final int PLAYERSPAWN_Y = 0;
+    private final int PLAYERSPAWN_X = 0;
+    private final int PLAYERSPAWN_Y = 0;
 
+    private Tile[][] grid;
     /*
         Il numero di livello è un intero che determina cose come la disposizione delle piattaforme, le coordinate
         di spawn delle entità, ...
