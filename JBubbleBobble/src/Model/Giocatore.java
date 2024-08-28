@@ -3,11 +3,26 @@ package Model;
 //da fare singleton
 public class Giocatore extends Entita{
     private Profilo profilo;
-    private Livello livello;
+    private static Giocatore INSTANCE;
 
-    public Giocatore(Profilo profilo){
-        this.profilo = profilo;
-        this.setHp(3);
+
+//    public Giocatore(Profilo profilo){
+//        this.profilo = profilo;
+//        this.setHp(3);
+//    }
+
+    public Giocatore(){}
+
+    public static Giocatore getInstance(){
+        if(INSTANCE == null) {
+            INSTANCE = new Giocatore();
+        }
+        return INSTANCE;
+    }
+
+
+    public void setProfilo(Profilo p){
+        this.profilo = p;
     }
 
     public void moveLeft(){
