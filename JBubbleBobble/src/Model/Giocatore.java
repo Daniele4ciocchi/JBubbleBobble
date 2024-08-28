@@ -1,9 +1,17 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.Observer;
+
 //da fare singleton
 public class Giocatore extends Entita{
     private Profilo profilo;
+<<<<<<< Updated upstream
     private static Giocatore INSTANCE;
+=======
+    private Livello livello;
+    private ArrayList<Observer> observers;
+>>>>>>> Stashed changes
 
 
 //    public Giocatore(Profilo profilo){
@@ -41,7 +49,21 @@ public class Giocatore extends Entita{
 
     }
     public void esplodiBolla(Bolla bolla){
-        //if giocatore tocca bolla
-        bolle.remove(bolla);
+        livello.removeEntita(bolla);
     }
+
+    @Override
+    public void addObserver(Observer o){
+        observers.add(o);
+    }
+    @Override
+    public void deleteObserver(Observer o){
+        observers.remove(o);
+    }
+    @Override
+    public void notifyObservers(){
+        for (Observer o : observers){}
+    }
+
+
 }

@@ -142,6 +142,6 @@ public class Livello {
     public void addEntita(Entita entita){
         this.entita.add(entita);
     }
-
+    public void removeEntita(Entita entita) {this.entita.remove(entita);}
 
 }

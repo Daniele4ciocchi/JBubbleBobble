@@ -1,6 +1,9 @@
 package Model;
 
-abstract class Entita {
+import java.util.Observable;
+import java.util.Observer;
+
+abstract class Entita extends Observable {
     private int hp; // health points rimanenti 
     private int maxHp; // health points massimi
     private long velocita; // velocita movimento (float?)
@@ -61,4 +64,12 @@ abstract class Entita {
     public void damage(int damage){
         this.hp -= damage;
     }
+    public void restore(int restore) {this.hp += restore;}
+
+    @Override
+    public abstract void addObserver(Observer o);
+    @Override
+    public abstract void deleteObserver(Observer o);
+    @Override
+    public abstract void notifyObservers();
 }
