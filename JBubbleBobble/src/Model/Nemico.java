@@ -1,12 +1,45 @@
 package Model;
 
+import java.util.Observer;
+
 public class Nemico extends Entita{
+
+    // Enumerazione delle tipologie di nemici con le relative caratteristiche
     public enum TipologiaNemico{
-        TIZIO, CAIO, SEMPRONIO
-        //TODO: inserire le tipologie reali di nemici
+        //NOME (VELOCITÀ(1-3, 4 per la modalità arrabbiato), SALTO(1-3), MOSSE, ATTACCO)
+        ZENCHAN("zen-chan",2, 2, "", "contatto"),
+        BANEBOU("banebou",3, 2, "", "contatto"),
+        MIGHTA("mighta",2, 2, "lancia-rocce", "contatto"),
+        HIDEGONS("hidegons",3,1, "palle-di-fuoco","contatto"),
+        PULPUL("pulpul",3, 3, "", "contatto"),
+        MONSTA("monsta",3, 2, "", "contatto"),
+        ;
+        private final String nome;
+        private final int velocita;
+        private final int salto;
+        private final String mosse;
+        private final String attacco;
+
+        TipologiaNemico(String nome, int velocita, int salto, String mosse, String attacco){
+            this.nome = nome;
+            this.velocita = velocita;
+            this.salto = salto;
+            this.mosse = mosse;
+            this.attacco = attacco;
+
+
+        }
+        //getter
+        public String getNome(){return this.nome;}
+        public int getVelocita(){return this.velocita;}
+        public int getSalto(){return this.salto;}
+        public String getMosse(){return this.mosse;}
+        public String getAttacco(){return this.attacco;}
     }
 
     private final TipologiaNemico TIPOLOGIA;
+
+    //non so se può servire dato che già la bolla ha un booleano per sapere se è occupata
     private boolean bubbled;
 
     // COSTRUTTORE
@@ -30,4 +63,20 @@ public class Nemico extends Entita{
         bubbled = !bubbled;
     }
 
+
+    //Observer pattern
+    @Override
+    public void addObserver(Observer o) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
+    }
+
+    @Override
+    public void deleteObserver(Observer o) {
+
+    }
 }

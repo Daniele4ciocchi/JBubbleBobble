@@ -6,20 +6,14 @@ import java.util.Observer;
 //da fare singleton
 public class Giocatore extends Entita{
     private Profilo profilo;
-<<<<<<< Updated upstream
     private static Giocatore INSTANCE;
-=======
     private Livello livello;
     private ArrayList<Observer> observers;
->>>>>>> Stashed changes
 
 
-//    public Giocatore(Profilo profilo){
-//        this.profilo = profilo;
-//        this.setHp(3);
-//    }
+    public Giocatore(){
 
-    public Giocatore(){}
+    }
 
     public static Giocatore getInstance(){
         if(INSTANCE == null) {
@@ -33,6 +27,7 @@ public class Giocatore extends Entita{
         this.profilo = p;
     }
 
+    //azioni giocatore
     public void moveLeft(){
 
     }
@@ -41,16 +36,18 @@ public class Giocatore extends Entita{
 
     }
 
-    public void sparaBolle(){
-        livello.addEntita(new Bolla());
-    }
-
     public void salta() {
 
+    }
+
+    public void sparaBolle(){
+        livello.addEntita(new Bolla());
     }
     public void esplodiBolla(Bolla bolla){
         livello.removeEntita(bolla);
     }
+
+
 
     @Override
     public void addObserver(Observer o){
@@ -62,7 +59,9 @@ public class Giocatore extends Entita{
     }
     @Override
     public void notifyObservers(){
-        for (Observer o : observers){}
+        for (Observer o : observers){
+            o.update(this, null);
+        }
     }
 
 

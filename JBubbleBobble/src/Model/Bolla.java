@@ -1,8 +1,11 @@
 package Model;
 
+import java.util.Observer;
+
 public class Bolla extends Entita{
 
-    final int MAXHP = 20; // da definire
+    // in questo caso hp viene utilizzato per definire il tempo di vita della bolla
+    final int MAXHP = 20;
     private boolean floating = false;
     private Nemico nemico;
 
@@ -30,5 +33,22 @@ public class Bolla extends Entita{
         if(floating == false){
             this.nemico = nemico;
         }
+    }
+
+
+    //Observer pattern
+    @Override
+    public void addObserver(Observer o) {
+
+    }
+
+    @Override
+    public void deleteObserver(Observer o) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
     }
 }
