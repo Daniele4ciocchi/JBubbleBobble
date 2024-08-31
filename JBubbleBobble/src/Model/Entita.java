@@ -6,7 +6,8 @@ import java.util.Observer;
 abstract class Entita extends Observable {
     private int hp; // health points rimanenti 
     private int maxHp; // health points massimi
-    private long velocita; // velocita movimento (float?)
+    private int velocita; // velocita movimento (float?)
+    private int salto;
 
     // variabili per le coordinate
     private int posX;
@@ -24,7 +25,7 @@ abstract class Entita extends Observable {
     }
 
     // getter di velocita
-    public long getVelocita(){
+    public int getVelocita(){
         return velocita;
     }
 
@@ -38,6 +39,10 @@ abstract class Entita extends Observable {
         return posY;
     }
 
+    // getter di salto
+    public int getSalto(){return salto;}
+
+
 
     //mpdifica hp
     public void setHp(int hp){
@@ -45,12 +50,12 @@ abstract class Entita extends Observable {
     }
 
     // Modifica la velocita dell'entita nel valore (long) fornito
-    public void setVelocita(long v){
+    public void setVelocita(int v){
         velocita = v;
     }
 
     // Modifica la velocita fornendo in input la differenza richiesta (es: -1 abbassa la velocita' di 1)
-    public void setVelocitaDiff(long v){
+    public void setVelocitaDiff(int v){
         velocita += v;
     }
 
@@ -60,11 +65,14 @@ abstract class Entita extends Observable {
         posY = y;
     }
 
+    //modifica il salto
+    public void setSalto(int s){salto = s;}
+
     //metodo che toglie gli hp
     public void damage(int damage){
-        this.hp -= damage;
+        this.hp--;
     }
-    public void restore(int restore) {this.hp += restore;}
+    public void restore(int restore) {this.hp++;}
 
     @Override
     public abstract void addObserver(Observer o);

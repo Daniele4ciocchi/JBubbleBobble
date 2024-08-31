@@ -53,6 +53,13 @@ public class PowerUp extends Entita{
             this.punti = punti;
         }
         public String getTipo(){return this.tipo;}
+        public String getColore(){return this.colore;}
+        public int getA_l(){return this.a_l;}
+        public int getV_b(){return this.v_b;}
+        public int getV_l(){return this.v_l;}
+        public int getLivelli(){return this.livelli;}
+        public int getPunti(){return this.punti;}
+        
 
     }
 

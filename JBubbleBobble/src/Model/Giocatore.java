@@ -11,8 +11,11 @@ public class Giocatore extends Entita{
     private ArrayList<Observer> observers;
 
 
-    public Giocatore(){
 
+    public Giocatore(){
+        super.setHp(3);
+        super.setVelocita(1);
+        observers = new ArrayList<>();
     }
 
     public static Giocatore getInstance(){
@@ -29,15 +32,15 @@ public class Giocatore extends Entita{
 
     //azioni giocatore
     public void moveLeft(){
-
+        setPosizione(getPosX()-super.getVelocita(), getPosY());
     }
 
     public void moveRight(){
-
+        setPosizione(getPosX()+super.getVelocita(), getPosY());
     }
 
     public void salta() {
-
+        setPosizione(getPosX(), getPosY()-super.getSalto());
     }
 
     public void sparaBolle(){

@@ -48,6 +48,7 @@ public class Nemico extends Entita{
         bubbled = false;
     }
 
+    //metodi getter
     // Restituisce la Tipologia di questo nemico
     public TipologiaNemico getTipologia(){
         return TIPOLOGIA;
@@ -63,6 +64,16 @@ public class Nemico extends Entita{
         bubbled = !bubbled;
     }
 
+    //movimento del nemico
+    public void moveLeft(){
+        setPosizione(getPosX()-TIPOLOGIA.getVelocita(), getPosY());
+    }
+    public void moveRight(){
+        setPosizione(getPosX()+TIPOLOGIA.getVelocita(), getPosY());
+    }
+    public void salto(){
+        setPosizione(getPosX(), getPosY()-TIPOLOGIA.getSalto());
+    }
 
     //Observer pattern
     @Override
