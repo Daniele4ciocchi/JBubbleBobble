@@ -2,15 +2,29 @@ package Model;
 
 import java.util.Observer;
 
-public class Bolla extends Entita{
+public class Bolla extends Entita implements Runnable{
 
-    // in questo caso hp viene utilizzato per definire il tempo di vita della bolla
-    final int MAXHP = 20;
+
     private boolean floating = false;
     private Nemico nemico;
+    private Livello livello;
 
-    public Bolla(){
-        super.setHp(MAXHP);
+    //costruttore
+    public Bolla(Livello livello){
+        this.livello = livello;
+        this.setHp(20);
+    }
+
+    //metodo per far scoppiare la bolla automaticamente dopo un determinato periodo di tempo
+    @Override
+    public void run() {
+        try {
+            // Il thread "dorme" per il tempo specificato, simulando la durata della bolla
+            Thread.sleep(this.getHp());
+            scoppia();
+        } catch (InterruptedException e) {
+            System.out.println(this + " è stata interrotta.");
+        }
     }
 
     //ritorna il nemico all'interno della bolla
@@ -32,9 +46,16 @@ public class Bolla extends Entita{
     public void catturaNemico(Nemico nemico){
         if(floating == false){
             this.nemico = nemico;
+            this.nemico.setBubbled();
         }
     }
-
+    //metodo per far scoppiare la bolla
+    public void scoppia(){
+        livello.removeEntita(this);
+        if (nemico != null){
+            livello.removeEntita(nemico);
+        }
+    }
 
     //Observer pattern
     @Override

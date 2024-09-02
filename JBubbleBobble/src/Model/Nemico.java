@@ -39,7 +39,6 @@ public class Nemico extends Entita{
 
     private final TipologiaNemico TIPOLOGIA;
 
-    //non so se può servire dato che già la bolla ha un booleano per sapere se è occupata
     private boolean bubbled;
 
     // COSTRUTTORE
@@ -58,6 +57,7 @@ public class Nemico extends Entita{
     public boolean isBubbled(){
         return bubbled;
     }
+    public void setBubbled(){this.bubbled = true;}
 
     // Switcha lo stato di bubbled da true a false, o viceversa
     public void toggleBubbled(){

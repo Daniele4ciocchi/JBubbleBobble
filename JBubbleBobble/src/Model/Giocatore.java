@@ -23,6 +23,7 @@ public class Giocatore extends Entita{
 
     //costruttore privato in quanto singleton
     private Giocatore(){
+        //inizializzo i valori del giocatore
         super.setHp(3);
         super.setVelocita(1);
         super.setSalto(1);
@@ -66,10 +67,11 @@ public class Giocatore extends Entita{
     }
 
     public void sparaBolle(){
-        livello.addEntita(new Bolla());
+        livello.addEntita(new Bolla(livello));
     }
+
     public void esplodiBolla(Bolla bolla){
-        livello.removeEntita(bolla);
+        bolla.scoppia();
     }
 
 
