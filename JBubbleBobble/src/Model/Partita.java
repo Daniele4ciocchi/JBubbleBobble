@@ -22,13 +22,14 @@ public class Partita{
     //int[...](per i powerup)
 
     private boolean vinta;
+    private Livello livello;
 
     //metodi
 
     private Partita(Giocatore giocatore){
         this.giocatore = giocatore;
-        this.nemici = new ArrayList<Nemico>;
-        this.powerUp = new ArrayList<PowerUp>;
+        this.nemici = new ArrayList<Nemico>();
+        this.powerUp = new ArrayList<PowerUp>();
 
         this.bolleSparate = 0;
         this.bolleScoppiate = 0;
@@ -39,8 +40,8 @@ public class Partita{
     //metodi getter
     
     public Giocatore getGiocatore(){return this.giocatore;}
-    public Nemico getNemici(){return this.nemici;}
-    public PowerUp getPowerUp(){return this.powerUp;}
+    public ArrayList<Nemico> getNemici(){return this.nemici;}
+    public ArrayList<PowerUp> getPowerUp(){return this.powerUp;}
     public Livello getLivello(){return this.livello;}
 
     public int getBolleScoppiate(){return this.bolleScoppiate;}

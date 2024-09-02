@@ -7,10 +7,24 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GiocatoreController implements KeyListener {
+    //GiocatoreController viene istanziato dal model
 
+    //salvataggio del model e del controller
     private Giocatore model;
     private GiocatoreView view;
 
+
+
+    //costruttore del controller
+    public GiocatoreController(Giocatore model, GiocatoreView view){
+        this.model = model;
+        this.view = view;
+        this.view.initialize();
+    }
+
+
+
+    //metodi per keylistener
     @Override
     public void keyTyped(KeyEvent e) {
 
