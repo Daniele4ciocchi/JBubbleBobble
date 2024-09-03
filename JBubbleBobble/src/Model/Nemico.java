@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.NemicoController;
+
 import java.util.Observer;
 
 public class Nemico extends Entita{
@@ -40,11 +42,13 @@ public class Nemico extends Entita{
     private final TipologiaNemico TIPOLOGIA;
 
     private boolean bubbled;
+    private NemicoController controller;
 
     // COSTRUTTORE
     public Nemico(TipologiaNemico t){
         TIPOLOGIA = t;
         bubbled = false;
+        this.controller = new NemicoController(this);
     }
 
     //metodi getter

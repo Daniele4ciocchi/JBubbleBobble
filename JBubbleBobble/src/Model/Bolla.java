@@ -13,6 +13,7 @@ public class Bolla extends Entita implements Runnable{
     public Bolla(Livello livello){
         this.livello = livello;
         this.setHp(20);
+        this.run();
     }
 
     //metodo per far scoppiare la bolla automaticamente dopo un determinato periodo di tempo
