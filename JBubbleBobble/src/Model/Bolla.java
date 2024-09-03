@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Observer;
 
 public class Bolla extends Entita implements Runnable{
@@ -7,12 +8,15 @@ public class Bolla extends Entita implements Runnable{
 
     private boolean floating = false;
     private Nemico nemico;
-    private Livello livello;
+
+
+    private ArrayList<Observer> observers;
 
     //costruttore
-    public Bolla(Livello livello){
-        this.livello = livello;
+    public Bolla(){
+        super.partita.addEntita(this);
         this.setHp(20);
+        this.run();
     }
 
     //metodo per far scoppiare la bolla automaticamente dopo un determinato periodo di tempo
@@ -21,6 +25,7 @@ public class Bolla extends Entita implements Runnable{
         try {
             // Il thread "dorme" per il tempo specificato, simulando la durata della bolla
             Thread.sleep(this.getHp());
+            if (this.getHp() == this.getHp()-1)this.setFloating();
             scoppia();
         } catch (InterruptedException e) {
             System.out.println(this + " è stata interrotta.");
@@ -51,25 +56,25 @@ public class Bolla extends Entita implements Runnable{
     }
     //metodo per far scoppiare la bolla
     public void scoppia(){
-        livello.removeEntita(this);
+        partita.removeEntita(this);
         if (nemico != null){
-            livello.removeEntita(nemico);
+            partita.removeEntita(nemico);
         }
     }
 
-    //Observer pattern
+    //metodi per observer
     @Override
-    public void addObserver(Observer o) {
-
+    public void addObserver(Observer o){
+        observers.add(o);
     }
-
     @Override
-    public void deleteObserver(Observer o) {
-
+    public void deleteObserver(Observer o){
+        observers.remove(o);
     }
-
     @Override
-    public void notifyObservers() {
-
+    public void notifyObservers(){
+        for (Observer o : observers){
+            o.update(this, null);
+        }
     }
 }

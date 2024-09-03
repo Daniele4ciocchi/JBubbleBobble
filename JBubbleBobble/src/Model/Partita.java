@@ -1,35 +1,40 @@
 package Model;
 
+import Controller.PartitaController;
+import View.PartitaView;
+
 import java.util.ArrayList;
 
 public class Partita{
- 
+
+    public static Partita INSTANCE;
+
     //giocatore principale 
     private Giocatore giocatore;
-    //nemici all'interno della partita in corso 
-    private ArrayList<Nemico> nemici; 
-    //powerup presenti all'interno della partita in corso 
-    private ArrayList<PowerUp> powerUp;
+    //lista delle entità presenti nella partita
+    private ArrayList<Entita> entita;
 
-    private Livello livelloAttuale; //da rivedere meglio 
-    
+
     //counter per poter ottenere determinati powerUp
     private int bolleSparate;
     private int bolleScoppiate;
     private int saltiEffettuati;
     private int punteggio;
 
-    //int[...](per i powerup)
+    private PartitaController controller;
+    private PartitaView view;
 
     private boolean vinta;
     private Livello livello;
 
     //metodi
 
-    private Partita(Giocatore giocatore){
-        this.giocatore = giocatore;
-        this.nemici = new ArrayList<Nemico>();
-        this.powerUp = new ArrayList<PowerUp>();
+    private Partita(){
+        this.giocatore = Giocatore.getInstance();
+        this.entita = new ArrayList<>();
+
+        this.controller = new PartitaController();
+        this.view = new PartitaView();
 
         this.bolleSparate = 0;
         this.bolleScoppiate = 0;
@@ -37,12 +42,19 @@ public class Partita{
         this.vinta = false;
     }
 
+    public static Partita getInstance(){
+        if (INSTANCE == null){
+            throw new IllegalStateException("Usa la classe LivelloBuilder per instanziare un nuovo Livello!");
+        }
+        return INSTANCE;
+    }
+
     //metodi getter
-    
+
+
+
     public Giocatore getGiocatore(){return this.giocatore;}
-    public ArrayList<Nemico> getNemici(){return this.nemici;}
-    public ArrayList<PowerUp> getPowerUp(){return this.powerUp;}
-    public Livello getLivello(){return this.livello;}
+    public ArrayList<Entita> getEntita(){return this.entita;}
 
     public int getBolleScoppiate(){return this.bolleScoppiate;}
     public int getBolleSparate(){return this.bolleSparate;}
@@ -51,17 +63,15 @@ public class Partita{
 
     //metodi setter
 
-    public void addBolleScoppiate(){this.bolleScoppiate++;}
-    public void addBolleSparate(){this.bolleSparate++;}
-    public void addSaltiEffettuati(){this.saltiEffettuati++;}
+    public void addBollaScoppiata(){this.bolleScoppiate++;}
+    public void addBollaSparata(){this.bolleSparate++;}
+    public void addSaltoEffettuato(){this.saltiEffettuati++;}
 
-    //aggiungere e rimuovere nemici dalla partita
-    public void addNemico(Nemico nemico){this.nemici.add(nemico);}
-    public void removeNemico(Nemico nemico){this.nemici.remove(nemico);}
-
-    //aggiungere e rimuovere powerUp dalla partita
-    public void addPowerUp(PowerUp powerUp){this.powerUp.add(powerUp);}
-    public void removePowerUp(PowerUp powerUp){this.powerUp.remove(powerUp);}
+    // Metodo per aggiungere un'entità all'interno dell'array
+    public void addEntita(Entita entita){
+        this.entita.add(entita);
+    }
+    public void removeEntita(Entita entita) {this.entita.remove(entita);}
 
     public boolean isVinta(){return this.vinta;}
 

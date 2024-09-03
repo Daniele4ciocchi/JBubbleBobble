@@ -7,7 +7,9 @@ abstract class Entita extends Observable {
     private int hp; // health points rimanenti 
     private int maxHp; // health points massimi
     private int velocita; // velocita movimento (float?)
-    private int salto;
+    private double gravita = 0.5; // gravita
+
+    public Partita partita = Partita.getInstance();
 
     // variabili per le coordinate
     private int posX;
@@ -40,7 +42,7 @@ abstract class Entita extends Observable {
     }
 
     // getter di salto
-    public int getSalto(){return salto;}
+    public double getGravita(){return gravita;}
 
 
 
@@ -64,9 +66,6 @@ abstract class Entita extends Observable {
         posX = x;
         posY = y;
     }
-
-    //modifica il salto
-    public void setSalto(int s){salto = s;}
 
     //metodo che toglie gli hp
     public void damage(int damage){
