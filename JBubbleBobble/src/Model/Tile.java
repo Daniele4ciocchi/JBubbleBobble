@@ -1,15 +1,27 @@
 package Model;
 
 public class Tile {
+    public enum TileType {
+        EMPTY(0, 0),
+        PLATFORM(),
+        WALL();
+        private boolean solid;
+        private boolean walkable;
+
+
+        TileType(boolean solid, boolean walkable){
+            if (this==EMPTY)
+        }
+
+    }
     private TileType type;
-    private boolean solid;
-    private int x, y;
+    private boolean playerspawn;
+    private boolean enemyspawn;
+    private boolean powerupspawn;
 
     public Tile(TileType t, boolean solid, int x, int y){
         type = t;
-        this.solid = solid;
-        this.x = x;
-        this.y = y;
+
     }
 
     //getters
@@ -21,13 +33,6 @@ public class Tile {
         return solid;
     }
 
-    public int getX(){
-        return x;
-    }
-
-    public int getY(){
-        return y;
-    }
 
     //setters
     public void setType(TileType t){
@@ -38,14 +43,4 @@ public class Tile {
         solid = s;
     }
 
-    public void setX(int x){
-        this.x = x;
-    }
-
-    public void setY(int y){
-        this.y = y;
-    }
-
-
-    
 }

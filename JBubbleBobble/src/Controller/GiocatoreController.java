@@ -23,7 +23,6 @@ public class GiocatoreController implements KeyListener {
     }
 
 
-
     //metodi per keylistener
     @Override
     public void keyTyped(KeyEvent e) {

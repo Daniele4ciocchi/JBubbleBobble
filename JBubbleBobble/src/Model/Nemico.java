@@ -26,8 +26,6 @@ public class Nemico extends Entita{
             this.salto = salto;
             this.mosse = mosse;
             this.attacco = attacco;
-
-
         }
         //getter
         public String getNome(){return this.nome;}

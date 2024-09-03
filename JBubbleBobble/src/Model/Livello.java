@@ -1,6 +1,9 @@
 package Model;
 
 import java.util.ArrayList;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner; // Import the Scanner class to read text files
 
 // SINGLETON? BUILDER PATTERN?
 public class Livello {
@@ -49,17 +52,36 @@ public class Livello {
         private ArrayList<Entita> entita;
         private Tile[][] grid;
 
-        public LivelloBuilder setLevelNum(int ln){
+        private LivelloBuilder setLevelNum(int ln){
             this.levelNum = ln;
             return this;
         }
 
         public LivelloBuilder buildGrid(){
             grid = new Tile[26][36];
+            String data;
+            int i=0;
+            int j=0;
             switch (this.levelNum) {
                 case 1 -> {
-                    // costruzione di un livello 1
-                    
+                    // apertura file
+                    try{
+                        File f = new File("/data/levels.txt");
+                        Scanner myReader = new Scanner(f);
+                        while (myReader.hasNextLine()) { // lettura file
+                            //data = myReader.nextLine();
+                            if (myReader.next().equals("0")) grid[i][j]=new Tile(TileType.EMPTY, )
+                        }
+                    } catch (FileNotFoundException e) {
+                        System.out.println("file mancante");
+                    }
+
+                    // scorro data per estrarre i dati del livello
+                    for(int i=0; i<36; i++){
+                        for(int j=0; i<26; i++){
+                            if (data[i][j]==0) grid[i][j] = new Tile(TileType.WALL)
+                        }
+                    }
                 }
 
                 case 2 -> {
