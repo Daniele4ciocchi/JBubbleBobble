@@ -60,91 +60,28 @@ public class Livello {
         public LivelloBuilder buildGrid(){
             grid = new Tile[26][36];
             String data;
+
+            String pathString = Integer.toString(levelNum);
             int i=0;
             int j=0;
-            switch (this.levelNum) {
-                case 1 -> {
-                    // apertura file
-                    try{
-                        File f = new File("/data/levels.txt");
-                        Scanner myReader = new Scanner(f);
-                        while (myReader.hasNextLine()) { // lettura file
-                            //data = myReader.nextLine();
-                            if (myReader.next().equals("0")) grid[i][j]=new Tile(TileType.EMPTY, )
-                        }
-                    } catch (FileNotFoundException e) {
-                        System.out.println("file mancante");
-                    }
 
-                    // scorro data per estrarre i dati del livello
-                    for(int i=0; i<36; i++){
-                        for(int j=0; i<26; i++){
-                            if (data[i][j]==0) grid[i][j] = new Tile(TileType.WALL)
-                        }
-                    }
-                }
+            try{
 
-                case 2 -> {
-                    // costruzione di un livello 2
+                File f = new File("/data/levels/" + pathString + ".txt");
+                Scanner myReader = new Scanner(f);
+                while (myReader.hasNextLine()) { // lettura file
+                    //data = myReader.nextLine();
+                    if (myReader.next().equals("0")) grid[i][j]=new Tile(Tile.TileType.EMPTY);
+                    else if (myReader.next().equals("1")) grid[i][j]=new Tile(Tile.TileType.WALL);
+                    else if (myReader.next().equals("2")) grid[i][j]=new Tile(Tile.TileType.PLATFORM);
                 }
-
-                case 3 -> {
-                    // costruzione di un livello 3
-                }
-
-                case 4 -> {
-                    // costruzione di un livello 4
-                }
-
-                case 5 -> {
-                    // costruzione di un livello 5
-                }
-
-                case 6 -> {
-                    // costruzione di un livello 6
-                }
-
-                case 7 -> {
-                    // costruzione di un livello 7
-                }
-
-                case 8 -> {
-                    // costruzione di un livello 8
-                }
-
-                case 9 -> {
-                    // costruzione di un livello 9
-                }
-
-                case 10 -> {
-                    // costruzione di un livello 10
-                }
-
-                case 11 -> {
-                    // costruzione di un livello 11
-                }
-
-                case 12 -> {
-                    // costruzione di un livello 12
-                }
-
-                case 13 -> {
-                    // costruzione di un livello 13
-                }
-
-                case 14 -> {
-                    // costruzione di un livello 14
-                }
-
-                case 15 -> {
-                    // costruzione di un livello 15
-                }
-
-                case 16 -> {
-                    // costruzione di un livello 16
-                }
+            } catch (FileNotFoundException e) {
+                System.out.println("file mancante");
             }
+
             return this;
+
+
         }
 
         public Livello build(){
@@ -159,6 +96,9 @@ public class Livello {
     public int getLevelNum(){
         return levelNum;
     }
+    public Tile[][] getGrid(){return grid;}
+    public Tile getTile(int x, int y){return grid[x][y];}
+
 
     // Metodo per aggiungere un'entità all'interno dell'array
     public void addEntita(Entita entita){

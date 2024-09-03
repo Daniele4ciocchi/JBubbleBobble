@@ -15,6 +15,7 @@ public class Nemico extends Entita{
         HIDEGONS("hidegons",3,1, "palle-di-fuoco","contatto"),
         PULPUL("pulpul",3, 3, "", "contatto"),
         MONSTA("monsta",3, 2, "", "contatto"),
+
         ;
         private final String nome;
         private final int velocita;

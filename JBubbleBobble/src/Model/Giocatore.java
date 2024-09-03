@@ -57,27 +57,27 @@ public class Giocatore extends Entita{
 
     //azioni giocatore
     public void moveLeft(){
-        this.setPosizione(getPosX()-super.getVelocita(), getPosY());
+        this.setPosizione(getPosX()-super.getVelocitaX(), getPosY());
     }
 
     public void moveRight(){
-        this.setPosizione(getPosX()+super.getVelocita(), getPosY());
+        this.setPosizione(getPosX()+super.getVelocitaX(), getPosY());
     }
 
     public void salta() {
         this.setPosizione(getPosX(), getPosY()-super.getSalto());
     }
-    public void applyGravity(Level level) {
-        velocityY += gravity;
-        int newY = y + velocityY;
+    public void applyGravity() {
+        this.setVelocitaY(this.getVelocitaY() + this.getGravita());
+        int newY = getPosY() + getVelocitaY();
 
         // Controllo collisione con il terreno o piattaforme
-        if (level.isWalkable(x, newY + height)) {
-            y = newY;
+        if (partita.getLivello().getTile(this.getPosX(), newY + getHeight()).getType().isWalkable()) {
+            this.setPosizione(this.getPosX(),newY);
         } else {
             // Se colpisce il terreno, ferma la caduta
-            y = (newY / 32) * 32;
-            velocityY = 0;
+             setPosizione(this.getPosX(),(newY / 32) * 32);
+            this.setVelocitaY(0);
         }
     }
 

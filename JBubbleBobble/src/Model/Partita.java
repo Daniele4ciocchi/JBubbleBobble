@@ -60,6 +60,7 @@ public class Partita{
     public int getBolleSparate(){return this.bolleSparate;}
     public int getSaltiEffettuati(){return this.saltiEffettuati;}
     public int getPunteggio(){return this.punteggio;}
+    public Livello getLivello(){return this.livello;}
 
     //metodi setter
 

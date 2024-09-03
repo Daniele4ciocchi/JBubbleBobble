@@ -6,8 +6,11 @@ import java.util.Observer;
 abstract class Entita extends Observable {
     private int hp; // health points rimanenti 
     private int maxHp; // health points massimi
-    private int velocita; // velocita movimento (float?)
-    private double gravita = 0.5; // gravita
+    private int velocitaX; // velocita movimento (float?)
+    private int velocitaY;
+    private int gravita = 1; // gravita
+    private int height; // altezza
+    private int width; // larghezza
 
     public Partita partita = Partita.getInstance();
 
@@ -27,9 +30,10 @@ abstract class Entita extends Observable {
     }
 
     // getter di velocita
-    public int getVelocita(){
-        return velocita;
+    public int getVelocitaX(){
+        return velocitaX;
     }
+    public int getVelocitaY() { return velocitaY; }
 
     // getter di posX
     public int getPosX(){
@@ -42,7 +46,10 @@ abstract class Entita extends Observable {
     }
 
     // getter di salto
-    public double getGravita(){return gravita;}
+    public int getGravita(){return gravita;}
+
+    public int getHeight() { return height; }
+    public int getWidth() { return width; }
 
 
 
@@ -52,20 +59,17 @@ abstract class Entita extends Observable {
     }
 
     // Modifica la velocita dell'entita nel valore (long) fornito
-    public void setVelocita(int v){
-        velocita = v;
+    public void setVelocitaX(int v){
+        this.velocitaX = v;
     }
-
-    // Modifica la velocita fornendo in input la differenza richiesta (es: -1 abbassa la velocita' di 1)
-    public void setVelocitaDiff(int v){
-        velocita += v;
-    }
+    public void setVelocitaY(int v) { this.velocitaY = v; }
 
     //Modifica la posizione dell'elemento 
     public void setPosizione(int x, int y){
         posX = x;
         posY = y;
     }
+
 
     //metodo che toglie gli hp
     public void damage(int damage){
