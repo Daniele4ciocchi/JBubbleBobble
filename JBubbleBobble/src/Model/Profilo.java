@@ -8,6 +8,7 @@ public class Profilo {
     private Image avatar; // immagine profilo, decisa nel costruttore
     private ArrayList<Partita> partite; // storico partite
 
+
     /*
         Ogni profilo nasce livello 1.
         Il livello viene incrementato tramite levelUp() quando il giocatore

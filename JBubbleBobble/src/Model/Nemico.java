@@ -49,6 +49,7 @@ public class Nemico extends Entita{
         TIPOLOGIA = t;
         bubbled = false;
         this.controller = new NemicoController(this);
+        partita.addEntita(this);
     }
 
     //metodi getter

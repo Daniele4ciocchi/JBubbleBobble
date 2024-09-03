@@ -14,19 +14,21 @@ public class Giocatore extends Entita{
 
     //attributi
     private Profilo profilo;
-    private Livello livello;
+
     private ArrayList<Observer> observers;
 
     //controller e view
     private GiocatoreController controller;
     private GiocatoreView view;
 
+
     //costruttore privato in quanto singleton
     private Giocatore(){
         //inizializzo i valori del giocatore
         super.setHp(3);
         super.setVelocita(1);
-        super.setSalto(1);
+
+        partita.addEntita(this);
 
         //istanzio il controller e la view
         this.view = new GiocatoreView();
@@ -65,9 +67,22 @@ public class Giocatore extends Entita{
     public void salta() {
         this.setPosizione(getPosX(), getPosY()-super.getSalto());
     }
+    public void applyGravity(Level level) {
+        velocityY += gravity;
+        int newY = y + velocityY;
+
+        // Controllo collisione con il terreno o piattaforme
+        if (level.isWalkable(x, newY + height)) {
+            y = newY;
+        } else {
+            // Se colpisce il terreno, ferma la caduta
+            y = (newY / 32) * 32;
+            velocityY = 0;
+        }
+    }
 
     public void sparaBolle(){
-        livello.addEntita(new Bolla(livello));
+        new Bolla();
     }
 
     public void esplodiBolla(Bolla bolla){
