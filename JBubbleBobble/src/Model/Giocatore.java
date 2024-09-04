@@ -64,9 +64,11 @@ public class Giocatore extends Entita{
         this.setPosizione(getPosX()+super.getVelocitaX(), getPosY());
     }
 
+    //TODO: da implementare
     public void salta() {
         this.setPosizione(getPosX(), getPosY()-super.getSalto());
     }
+
     public void applyGravity() {
         this.setVelocitaY(this.getVelocitaY() + this.getGravita());
         int newY = getPosY() + getVelocitaY();
