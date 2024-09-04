@@ -1,28 +1,18 @@
 package Controller;
 
 import Model.Partita;
-
-import javax.swing.*;
+import View.PartitaView;
 
 public class PartitaController {
 
     private Partita partita = Partita.getInstance();
+    private PartitaView view = partita.getView();
 
-    public void Gioca(){
-        Timer timer = new Timer(16, e -> updateGame());
-        timer.start();
+    public PartitaController() {
+
     }
 
-    private void updateGame() {
-        //ovviamente da rivedere
-        if (leftPressed) {
-            player.move(-5);
-        } else if (rightPressed) {
-            player.move(5);
-        }
+    public void start(){
 
-        player.applyGravity(level);
-
-        view.repaint();
     }
 }

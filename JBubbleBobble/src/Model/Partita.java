@@ -10,7 +10,7 @@ public class Partita{
     public static Partita INSTANCE;
 
     //giocatore principale 
-    private Giocatore giocatore;
+    private Giocatore giocatore = Giocatore.getInstance();
     //lista delle entità presenti nella partita
     private ArrayList<Entita> entita;
 
@@ -62,6 +62,7 @@ public class Partita{
     public int getPunteggio(){return this.punteggio;}
     public Livello getLivello(){return this.livello;}
 
+    public PartitaView getView(){return this.view;}
     //metodi setter
 
     public void addBollaScoppiata(){this.bolleScoppiate++;}
@@ -73,6 +74,8 @@ public class Partita{
         this.entita.add(entita);
     }
     public void removeEntita(Entita entita) {this.entita.remove(entita);}
+
+
 
     public boolean isVinta(){return this.vinta;}
 
