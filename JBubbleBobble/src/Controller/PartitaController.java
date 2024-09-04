@@ -5,15 +5,26 @@ import View.PartitaView;
 
 public class PartitaController {
 
-    private Partita partita = Partita.getInstance();
-    private PartitaView view = partita.getView();
+    private static PartitaController INSTANCE;
+
+    private PartitaView view = PartitaView.getInstance();
+    private Partita model = Partita.getInstance();
+
+    public static PartitaController getInstance(){
+        if (INSTANCE == null){
+            INSTANCE = new PartitaController();
+        }
+        return INSTANCE;
+    }
 
     public PartitaController() {
 
     }
 
+
+    //metodi di gestione della partita
     public void start(){
-        this.gioca();
+        model.gioca();
     }
 
     public void stop(){}
@@ -25,7 +36,6 @@ public class PartitaController {
         this.start();
     }
 
-    public void gioca(){
 
     }
 }

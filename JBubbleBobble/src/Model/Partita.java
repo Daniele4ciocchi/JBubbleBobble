@@ -9,11 +9,8 @@ public class Partita{
 
     public static Partita INSTANCE;
 
-    //giocatore principale 
-    private Giocatore giocatore = Giocatore.getInstance();
-    //lista delle entità presenti nella partita
-    private ArrayList<Entita> entita;
-
+    private Giocatore giocatore; //giocatore principale
+    private ArrayList<Entita> entita; //lista delle entità presenti nella partita
 
     //counter per poter ottenere determinati powerUp
     private int bolleSparate;
@@ -21,20 +18,17 @@ public class Partita{
     private int saltiEffettuati;
     private int punteggio;
 
-    private PartitaController controller;
-    private PartitaView view;
+    //MVC
+    private PartitaController controller = PartitaController.getInstance();
 
     private boolean vinta;
     private Livello livello;
 
-    //metodi
+
 
     private Partita(){
         this.giocatore = Giocatore.getInstance();
         this.entita = new ArrayList<>();
-
-        this.controller = new PartitaController();
-        this.view = new PartitaView();
 
         this.bolleSparate = 0;
         this.bolleScoppiate = 0;
@@ -50,9 +44,6 @@ public class Partita{
     }
 
     //metodi getter
-
-
-
     public Giocatore getGiocatore(){return this.giocatore;}
     public ArrayList<Entita> getEntita(){return this.entita;}
 
@@ -62,21 +53,20 @@ public class Partita{
     public int getPunteggio(){return this.punteggio;}
     public Livello getLivello(){return this.livello;}
 
-    public PartitaView getView(){return this.view;}
     //metodi setter
-
     public void addBollaScoppiata(){this.bolleScoppiate++;}
     public void addBollaSparata(){this.bolleSparate++;}
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
 
     // Metodo per aggiungere un'entità all'interno dell'array
-    public void addEntita(Entita entita){
-        this.entita.add(entita);
-    }
+    public void addEntita(Entita entita){this.entita.add(entita);}
     public void removeEntita(Entita entita) {this.entita.remove(entita);}
-
+    public void svuotaEntita(){this.entita.clear();}
 
 
     public boolean isVinta(){return this.vinta;}
 
+    public void gioca(){
+
+    }
 }
