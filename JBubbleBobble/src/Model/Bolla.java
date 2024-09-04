@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.Observer;
 
-public class Bolla extends Entita implements Runnable{
+public class Bolla extends Entita implements Runnable {
 
 
     private boolean floating = false;
@@ -25,7 +25,7 @@ public class Bolla extends Entita implements Runnable{
         try {
             // Il thread "dorme" per il tempo specificato, simulando la durata della bolla
             Thread.sleep(this.getHp());
-            if (this.getHp() == this.getHp()-1)this.setFloating();
+            if (this.getHp() == this.getHp() - 1) this.setFloating();
             scoppia();
         } catch (InterruptedException e) {
             System.out.println(this + " è stata interrotta.");
@@ -43,19 +43,19 @@ public class Bolla extends Entita implements Runnable{
     }
 
     //imposta lo stato della bolla
-    public void setFloating(){
+    public void setFloating() {
         this.floating = true;
     }
 
     //imposta la cattura del nemico 
-    public void catturaNemico(Nemico nemico){
-        if(floating == false){
+    public void catturaNemico(Nemico nemico) {
+        if(!floating){
             this.nemico = nemico;
             this.nemico.setBubbled();
         }
     }
     //metodo per far scoppiare la bolla
-    public void scoppia(){
+    public void scoppia() {
         partita.removeEntita(this);
         if (nemico != null){
             partita.removeEntita(nemico);
