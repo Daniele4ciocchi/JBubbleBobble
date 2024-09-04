@@ -42,12 +42,12 @@ public class Profilo {
 
     // Restituisce il numero di partite vinte
     public int getVinte(){
-        return (int)partite.stream().filter(Partita::isVinta).count();
+        return (int) partite.stream().filter(Partita::isVinta).count();
     }
 
     // Restituisce il numero di partite perse
     public int getPerse(){
-        return (int)partite.stream().filter(x -> !x.isVinta()).count();
+        return (int) partite.stream().filter(x -> !x.isVinta()).count();
     }
 
     // Restituisce il livello del profilo
