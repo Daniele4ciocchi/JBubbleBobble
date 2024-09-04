@@ -52,6 +52,7 @@ public class Livello {
         private ArrayList<Entita> entita;
         private Tile[][] grid;
 
+        //TODO: solamente incremento 
         private LivelloBuilder setLevelNum(int ln){
             this.levelNum = ln;
             return this;
@@ -71,9 +72,12 @@ public class Livello {
                 Scanner myReader = new Scanner(f);
                 while (myReader.hasNextLine()) { // lettura file
                     //data = myReader.nextLine();
-                    if (myReader.next().equals("0")) grid[i][j]=new Tile(Tile.TileType.EMPTY);
-                    else if (myReader.next().equals("1")) grid[i][j]=new Tile(Tile.TileType.WALL);
-                    else if (myReader.next().equals("2")) grid[i][j]=new Tile(Tile.TileType.PLATFORM);
+                    i++;
+                    for(j=0; j<36; j++){
+                        if (myReader.next().equals("0")) grid[i][j]=new Tile(Tile.TileType.EMPTY);
+                        else if (myReader.next().equals("1")) grid[i][j]=new Tile(Tile.TileType.WALL);
+                        else if (myReader.next().equals("2")) grid[i][j]=new Tile(Tile.TileType.PLATFORM);
+                    }
                 }
             } catch (FileNotFoundException e) {
                 System.out.println("file mancante");

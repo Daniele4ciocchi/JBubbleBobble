@@ -13,6 +13,21 @@ public class PartitaController {
     }
 
     public void start(){
+        this.gioca();
+    }
+
+    public void stop(){}
+
+    public void pause(){}
+
+    public void restart(){
+        this.stop();
+        this.start();
+    }
+
+    public void gioca(){
 
     }
 }
+
+
