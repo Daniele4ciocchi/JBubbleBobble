@@ -7,7 +7,6 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 public class Livello {
     private static Livello INSTANCE;
-    private ArrayList<Entita> entita;
     private Tile[][] grid;
     private int levelNum;
 
@@ -29,17 +28,7 @@ public class Livello {
         return grid;
     }
 
-    public ArrayList<Entita> getEntita() {
-        return this.entita;
-    }
 
-    public void addEntita(Entita entita) {
-        this.entita.add(entita);
-    }
-
-    public void removeEntita(Entita entita) {
-        this.entita.remove(entita);
-    }
 
     public void costruisciGrid() {
         grid = new Tile[26][36];
@@ -59,6 +48,9 @@ public class Livello {
         } catch (FileNotFoundException e) {
             System.out.println("file mancante");
         }
+    }
+    public Tile getTile(int x, int y) {
+        return grid[x][y];
     }
 
     public void nextLevelNumber() {

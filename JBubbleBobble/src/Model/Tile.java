@@ -3,14 +3,13 @@ package Model;
 public class Tile {
     public enum TileType {
 
-        EMPTY(0, 0),
-        PLATFORM(0,0),
-        WALL(0,0),
-
+        EMPTY(false, false),
+        PLATFORM(false,false),
+        WALL(false,false)
+        ;
 
         private boolean solid;
         private boolean walkable;
-
 
         TileType(boolean solid, boolean walkable){
             this.solid = solid;

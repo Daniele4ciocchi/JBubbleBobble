@@ -19,20 +19,17 @@ public class Giocatore extends Entita{
 
     //controller e view
     private GiocatoreController controller;
-    private GiocatoreView view;
+
 
 
     //costruttore privato in quanto singleton
     private Giocatore(){
         //inizializzo i valori del giocatore
         super.setHp(3);
-        super.setVelocita(1);
+        super.setVelocitaX(1);
+        super.setVelocitaY(1);
 
-        partita.addEntita(this);
-
-        //istanzio il controller e la view
-        this.view = new GiocatoreView();
-        this.controller = new GiocatoreController(this, this.view);
+        partita.addEntita(this);;
 
         //grazie a questo metodo il controller può ricevere input dall'utente(da capire meglio)
         //this.view.addKeyListener(controller);
@@ -55,33 +52,7 @@ public class Giocatore extends Entita{
     }
 
 
-    //azioni giocatore
-    public void moveLeft(){
-        this.setPosizione(getPosX()-super.getVelocitaX(), getPosY());
-    }
 
-    public void moveRight(){
-        this.setPosizione(getPosX()+super.getVelocitaX(), getPosY());
-    }
-
-    //TODO: da implementare
-    public void salta() {
-        this.setPosizione(getPosX(), getPosY()-super.getSalto());
-    }
-
-    public void applyGravity() {
-        this.setVelocitaY(this.getVelocitaY() + this.getGravita());
-        int newY = getPosY() + getVelocitaY();
-
-        // Controllo collisione con il terreno o piattaforme
-        if (partita.getLivello().getTile(this.getPosX(), newY + getHeight()).getType().isWalkable()) {
-            this.setPosizione(this.getPosX(),newY);
-        } else {
-            // Se colpisce il terreno, ferma la caduta
-             setPosizione(this.getPosX(),(newY / 32) * 32);
-            this.setVelocitaY(0);
-        }
-    }
 
     public void sparaBolle(){
         new Bolla();

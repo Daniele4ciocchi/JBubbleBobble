@@ -8,9 +8,11 @@ abstract class Entita extends Observable {
     private int maxHp; // health points massimi
     private int velocitaX; // velocita movimento (float?)
     private int velocitaY;
-    private int gravita = 1; // gravita
-    private int height; // altezza
-    private int width; // larghezza
+
+    private final int gravita = 1; // gravita
+    private final int forzaSalto = -15; // forza salto
+    private final int height = 32; // altezza
+    private final int width = 32; // larghezza
 
     public Partita partita = Partita.getInstance();
 
@@ -51,7 +53,7 @@ abstract class Entita extends Observable {
     public int getHeight() { return height; }
     public int getWidth() { return width; }
 
-
+    public int getForzaSalto() {return forzaSalto;}
 
     //mpdifica hp
     public void setHp(int hp){
@@ -70,12 +72,42 @@ abstract class Entita extends Observable {
         posY = y;
     }
 
-
     //metodo che toglie gli hp
     public void damage(int damage){
         this.hp--;
     }
     public void restore(int restore) {this.hp++;}
+
+    //metodi che muovono l'entità
+
+    public void moveLeft(){
+        posX = posX - velocitaX;
+    }
+
+    public void moveRight(){
+        posX = posX + velocitaX;
+    }
+
+    public void salta() {
+        if (!Partita.getInstance().getLivello().getTile(this.getPosX(), this.getPosY() + getHeight() + 1).getType().isWalkable()) {
+            this.setVelocitaY(this.getForzaSalto());
+        }
+    }
+
+    public void applyGravity() {
+        this.setVelocitaY(this.getVelocitaY() + this.getGravita());
+        int newY = getPosY() + getVelocitaY();
+
+        // Controllo collisione con il terreno o piattaforme
+        if (partita.getLivello().getTile(this.getPosX(), newY + getHeight()).getType().isWalkable()) {
+            this.setPosizione(this.getPosX(),newY);
+        } else {
+            // Se colpisce il terreno, ferma la caduta
+            setPosizione(this.getPosX(),(newY / 32) * 32);
+            this.setVelocitaY(0);
+        }
+    }
+
 
     @Override
     public abstract void addObserver(Observer o);
