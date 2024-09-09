@@ -4,9 +4,22 @@ public class Tile {
     public enum TileType {
 
         EMPTY(false, false),
-        PLATFORM(false,false),
-        WALL(false,false)
+        PLATFORM(false,true),
+        WALL(true,true),
+
+        PLAYERSPAWN(false, false),
+
+        POWERUPSPAWN(false, false),
+
+        // NEMICI
+        ZENCHAN_SPAWN(false, false),
+        BANEBOU_SPAWN(false, false),
+        MIGHTA_SPAWN(false, false),
+        HIDEGON_SPAWN(false, false),
+        PULPULSPAWN(false, false),
+        MONSTA_SPAWN(false, false),
         ;
+
 
         private boolean solid;
         private boolean walkable;
