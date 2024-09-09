@@ -19,7 +19,8 @@ public class Profilo {
 
 
     // COSTRUTTORE
-    private Profilo() {}
+    private Profilo() {
+    }
 
     public static Profilo getInstance() {
         if (instance == null) {
