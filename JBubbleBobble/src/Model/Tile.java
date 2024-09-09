@@ -4,9 +4,8 @@ public class Tile {
     public enum TileType {
 
         EMPTY(false, false),
-        PLATFORM(false,false),
-        WALL(false,false)
-        ;
+        PLATFORM(false, false),
+        WALL(false, false);
 
         private boolean solid;
         private boolean walkable;
@@ -15,8 +14,14 @@ public class Tile {
             this.solid = solid;
             this.walkable = walkable;
         }
-        public boolean isSolid(){return solid;}
-        public boolean isWalkable(){return walkable;}
+
+        public boolean isSolid() {
+            return solid;
+        }
+
+        public boolean isWalkable() {
+            return walkable;
+        }
     }
 
     private TileType type;
