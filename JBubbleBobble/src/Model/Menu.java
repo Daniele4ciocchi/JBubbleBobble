@@ -1,5 +1,8 @@
 package Model;
 
+import Controller.PartitaController;
+import View.PartitaView;
+
 public class Menu {
     private Profilo profilo;
 
@@ -21,7 +24,9 @@ public class Menu {
     }
 
     public Partita nuovaPartita() {
+
         return new Partita();
+
     }
 
     /*
@@ -31,6 +36,18 @@ public class Menu {
      * una nuova partita
      */
     public Partita caricaPartita(String password) {
+        int ln;
+        switch (password) {
+            case "LIVELLO1" -> ln = 1;
+            case "LIVELLO2" -> ln = 2;
+            case "LIVELLO3" -> ln = 3;
+            case "LIVELLO4" -> ln = 4;
+            case "LIVELLO5" -> ln = 5;
 
+            default -> ln = 1;
+        }
+        Partita x = new Partita();
+        x.setLivello(ln);
+        return x;
     }
 }

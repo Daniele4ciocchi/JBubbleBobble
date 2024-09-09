@@ -10,7 +10,7 @@ import java.util.Observer;
 public class Giocatore extends Entita{
 
     //istanza singleton
-    private static Giocatore INSTANCE;
+    private static Giocatore instance;
 
     //attributi
     private Profilo profilo;
@@ -40,10 +40,10 @@ public class Giocatore extends Entita{
 
     //creare una sola istanza di Giocatore
     public static Giocatore getInstance(){
-        if(INSTANCE == null) {
-            INSTANCE = new Giocatore();
+        if(instance == null) {
+            instance = new Giocatore();
         }
-        return INSTANCE;
+        return instance;
     }
 
     //metodi set

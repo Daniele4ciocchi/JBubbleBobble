@@ -7,10 +7,9 @@ import java.util.ArrayList;
 
 public class Partita{
 
-    public static Partita INSTANCE;
-
-    private Giocatore giocatore; //giocatore principale
+    private Giocatore giocatore = Giocatore.getInstance(); //giocatore principale
     private ArrayList<Entita> entita; //lista delle entità presenti nella partita
+    private static Partita inCorso; //istanza attuale della partita attuale
 
     //counter per poter ottenere determinati powerUp
     private int bolleSparate;
@@ -22,11 +21,13 @@ public class Partita{
     private PartitaController controller = PartitaController.getInstance();
 
     private boolean vinta;
-    private Livello livello;
+    private Livello livello = Livello.getInstance();
 
 
 
-    private Partita(){
+    public Partita(){
+        inCorso = this;
+
         this.giocatore = Giocatore.getInstance();
         this.entita = new ArrayList<>();
 
@@ -36,16 +37,11 @@ public class Partita{
         this.vinta = false;
     }
 
-    public static Partita getInstance(){
-        if (INSTANCE == null){
-            throw new IllegalStateException("Usa la classe LivelloBuilder per instanziare un nuovo Livello!");
-        }
-        return INSTANCE;
-    }
 
     //metodi getter
     public Giocatore getGiocatore(){return this.giocatore;}
     public ArrayList<Entita> getEntita(){return this.entita;}
+    public static Partita getInstance(){return inCorso;}
 
     public int getBolleScoppiate(){return this.bolleScoppiate;}
     public int getBolleSparate(){return this.bolleSparate;}
@@ -63,6 +59,9 @@ public class Partita{
     public void removeEntita(Entita entita) {this.entita.remove(entita);}
     public void svuotaEntita(){this.entita.clear();}
 
+    public void setLivello(int l){
+        livello.setLevelNum(l);
+    }
 
     public boolean isVinta(){return this.vinta;}
 

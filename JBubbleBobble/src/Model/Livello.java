@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 
 public class Livello {
-    private static Livello INSTANCE;
+    private static Livello instance;
     private Tile[][] grid;
     private int levelNum;
 
@@ -14,16 +14,15 @@ public class Livello {
     private Livello() {}
 
     public static Livello getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Livello();
+        if (instance == null) {
+            instance = new Livello();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public int getLevelNum() {
         return levelNum;
     }
-
     public Tile[][] getGrid() {
         return grid;
     }
@@ -53,6 +52,7 @@ public class Livello {
         return grid[x][y];
     }
 
+    public void setLevelNum(int levelNum) {this.levelNum = levelNum;}
     public void nextLevelNumber() {
         levelNum++;
         costruisciGrid();
