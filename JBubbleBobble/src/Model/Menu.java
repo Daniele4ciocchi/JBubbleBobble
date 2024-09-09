@@ -23,9 +23,10 @@ public class Menu {
         return profilo;
     }
 
-    public Partita nuovaPartita() {
-
-        return new Partita();
+    public PartitaController nuovaPartita() {
+        PartitaView v = new PartitaView();
+        Partita m = new Partita();
+        return new PartitaController(m,v);
 
     }
 
@@ -35,7 +36,7 @@ public class Menu {
      * @param password: stringa alfanumerica di 5 caratteri che identifica uno specifico livello da cui iniziare
      * una nuova partita
      */
-    public Partita caricaPartita(String password) {
+    public PartitaController continuaPartita(String password) {
         int ln;
         switch (password) {
             case "LIVELLO1" -> ln = 1;
@@ -43,11 +44,12 @@ public class Menu {
             case "LIVELLO3" -> ln = 3;
             case "LIVELLO4" -> ln = 4;
             case "LIVELLO5" -> ln = 5;
-
             default -> ln = 1;
         }
-        Partita x = new Partita();
-        x.setLivello(ln);
+        Partita mx = new Partita();
+        PartitaView vx = new PartitaView();
+        PartitaController x = new PartitaController(mx, vx);
+        mx.setLivello(ln);
         return x;
     }
 }

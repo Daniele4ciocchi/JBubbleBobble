@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.PartitaController;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,7 +16,7 @@ abstract class Entita extends Observable {
     private final int height = 32; // altezza
     private final int width = 32; // larghezza
 
-    public Partita partita = Partita.getInstance();
+    public Partita partita = PartitaController.getInstance();
 
     // variabili per le coordinate
     private int posX;
@@ -89,7 +91,7 @@ abstract class Entita extends Observable {
     }
 
     public void salta() {
-        if (!Partita.getInstance().getLivello().getTile(this.getPosX(), this.getPosY() + getHeight() + 1).getType().isWalkable()) {
+        if (!PartitaController.getInstance().getLivello().getTile(this.getPosX(), this.getPosY() + getHeight() + 1).getType().isWalkable()) {
             this.setVelocitaY(this.getForzaSalto());
         }
     }

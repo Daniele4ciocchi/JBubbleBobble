@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class Partita{
 
+    //TODO: da rivedere
     private Giocatore giocatore = Giocatore.getInstance(); //giocatore principale
     private ArrayList<Entita> entita; //lista delle entità presenti nella partita
-    private static Partita inCorso; //istanza attuale della partita attuale
 
     //counter per poter ottenere determinati powerUp
     private int bolleSparate;
@@ -26,8 +26,6 @@ public class Partita{
 
 
     public Partita(){
-        inCorso = this;
-
         this.giocatore = Giocatore.getInstance();
         this.entita = new ArrayList<>();
 
@@ -41,8 +39,6 @@ public class Partita{
     //metodi getter
     public Giocatore getGiocatore(){return this.giocatore;}
     public ArrayList<Entita> getEntita(){return this.entita;}
-    public static Partita getInstance(){return inCorso;}
-
     public int getBolleScoppiate(){return this.bolleScoppiate;}
     public int getBolleSparate(){return this.bolleSparate;}
     public int getSaltiEffettuati(){return this.saltiEffettuati;}
@@ -65,7 +61,4 @@ public class Partita{
 
     public boolean isVinta(){return this.vinta;}
 
-    public void gioca(){
-
-    }
 }

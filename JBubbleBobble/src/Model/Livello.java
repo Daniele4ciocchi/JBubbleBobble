@@ -1,5 +1,6 @@
 package Model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
@@ -35,11 +36,26 @@ public class Livello {
         try {
             File f = new File("/data/levels/" + Integer.toString(levelNum) + ".txt");
             Scanner myReader = new Scanner(f);
-            while (myReader.hasNextLine()) { // lettura file
+            while (myReader.hasNextLine()) {
+                String nextToken = myReader.next();// lettura file
                 for (int j = 0; j < 36; j++) {
-                    if (myReader.next().equals("0")) grid[i][j] = new Tile(Tile.TileType.EMPTY);
-                    else if (myReader.next().equals("1")) grid[i][j] = new Tile(Tile.TileType.WALL);
-                    else if (myReader.next().equals("2")) grid[i][j] = new Tile(Tile.TileType.PLATFORM);
+                    grid[i][j] = new Tile(switch (nextToken) {
+                        case "0" -> Tile.TileType.EMPTY;
+                        case "1" -> Tile.TileType.WALL;
+                        case "2" -> Tile.TileType.PLATFORM;
+
+                        case "3" -> Tile.TileType.PLAYERSPAWN;
+                        case "5" -> Tile.TileType.POWERUPSPAWN;
+
+                        case "Z" -> Tile.TileType.ZENCHAN_SPAWN;
+                        case "B" -> Tile.TileType.BANEBOU_SPAWN;
+                        case "M" -> Tile.TileType.MIGHTA_SPAWN;
+                        case "H" -> Tile.TileType.HIDEGON_SPAWN;
+                        case "P" -> Tile.TileType.PULPULSPAWN;
+                        case "O" -> Tile.TileType.MONSTA_SPAWN;
+
+                        default -> throw new IllegalArgumentException("Token non valido: " + nextToken);
+                    });
                 }
                 myReader.nextLine();
                 i++;
@@ -48,11 +64,13 @@ public class Livello {
             System.out.println("file mancante");
         }
     }
+
     public Tile getTile(int x, int y) {
         return grid[x][y];
     }
 
     public void setLevelNum(int levelNum) {this.levelNum = levelNum;}
+
     public void nextLevelNumber() {
         levelNum++;
         costruisciGrid();

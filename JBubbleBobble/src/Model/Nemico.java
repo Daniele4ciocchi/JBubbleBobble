@@ -12,7 +12,7 @@ public class Nemico extends Entita{
         ZENCHAN("zen-chan",2, 2, "", "contatto"),
         BANEBOU("banebou",3, 2, "", "contatto"),
         MIGHTA("mighta",2, 2, "lancia-rocce", "contatto"),
-        HIDEGONS("hidegons",3,1, "palle-di-fuoco","contatto"),
+        HIDEGON("hidegons",3,1, "palle-di-fuoco","contatto"),
         PULPUL("pulpul",3, 3, "", "contatto"),
         MONSTA("monsta",3, 2, "", "contatto"),
 
@@ -44,11 +44,10 @@ public class Nemico extends Entita{
     private NemicoController controller;
 
     // COSTRUTTORE
-    public Nemico(TipologiaNemico t){
+    public Nemico(TipologiaNemico t, int x, int y){
         TIPOLOGIA = t;
         bubbled = false;
-        this.controller = new NemicoController(this);
-        partita.addEntita(this);
+        setPosizione(x, y);
     }
 
     //metodi getter

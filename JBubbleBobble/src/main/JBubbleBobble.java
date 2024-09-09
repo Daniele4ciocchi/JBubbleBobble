@@ -3,8 +3,10 @@ package main;
 import Model.Giocatore;
 import Model.Nemico;
 
-public class Main {
+public class JBubbleBobble {
     public static void main(String[] args) throws InterruptedException {
+
+        //TODO: implementare JavaFX nella view del gioco
         Nemico n = new Nemico(Nemico.TipologiaNemico.ZENCHAN);
         System.out.println(n.getTipologia().getNome() + n.getTipologia().getSalto());
         Giocatore giocatore = Giocatore.getInstance();

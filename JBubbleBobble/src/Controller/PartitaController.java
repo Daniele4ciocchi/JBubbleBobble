@@ -4,27 +4,36 @@ import Model.Partita;
 import View.PartitaView;
 
 public class PartitaController {
+    private Partita model;
+    private PartitaView view;
 
-    private static PartitaController INSTANCE;
+    private static PartitaController inCorso; //istanza attuale della partita attuale
 
-    private PartitaView view = PartitaView.getInstance();
-    private Partita model = Partita.getInstance();
+//    private Partita model = Partita.getInstance();
 
-    public static PartitaController getInstance(){
-        if (INSTANCE == null){
-            INSTANCE = new PartitaController();
-        }
-        return INSTANCE;
+//    public static PartitaController getInstance(){
+//        if (INSTANCE == null){
+//            INSTANCE = new PartitaController();
+//        }
+//        return INSTANCE;
+//    }
+
+    public PartitaController(Partita model, PartitaView view){
+        this.model = model;
+        this.view = view;
     }
-
-    public PartitaController() {
-
-    }
-
 
     //metodi di gestione della partita
     public void start(){
-        model.gioca();
+        model.addEntita(model.getGiocatore());
+        //TODO: aggiungere spawn nemici
+//        model.addEntita(model.getLivello().getEnemySpawn());
+
+        model.getLivello().setLevelNum(1);
+        model.getLivello().costruisciGrid();
+    }
+
+    public void update() {
     }
 
     public void stop(){}
@@ -36,7 +45,7 @@ public class PartitaController {
         this.start();
     }
 
-
+    public static PartitaController getInstance(){return inCorso;}
     }
 }
 
