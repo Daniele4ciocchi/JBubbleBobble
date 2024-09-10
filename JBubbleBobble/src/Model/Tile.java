@@ -33,11 +33,12 @@ public class Tile {
     }
 
     private TileType type;
-    private boolean playerspawn;
-    private boolean enemyspawn;
-    private boolean powerupspawn;
+    private int x;
+    private int y;
 
-    public Tile(TileType t){
+    public Tile(TileType t, int x, int y){
+        this.x = x;
+        this.y = y;
         type = t;
     }
 
@@ -45,7 +46,12 @@ public class Tile {
     public TileType getType(){
         return type;
     }
-
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
 
     //setters
     public void setType(TileType t){

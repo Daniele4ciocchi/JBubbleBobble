@@ -1,11 +1,10 @@
 package Model;
 
 import Controller.PartitaController;
-import View.PartitaView;
 
 import java.util.ArrayList;
 
-public class Partita{
+public class Partita {
 
     //TODO: da rivedere
     private Giocatore giocatore = Giocatore.getInstance(); //giocatore principale

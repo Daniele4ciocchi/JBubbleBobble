@@ -38,7 +38,7 @@ public class Nemico extends Entita{
         public String getAttacco(){return this.attacco;}
     }
 
-    private final TipologiaNemico TIPOLOGIA;
+    private TipologiaNemico TIPOLOGIA;
 
     private boolean bubbled;
     private NemicoController controller;

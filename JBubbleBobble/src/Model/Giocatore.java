@@ -12,17 +12,10 @@ public class Giocatore extends Entita{
     //istanza singleton
     private static Giocatore instance;
 
-    //attributi
     private Profilo profilo;
-
     private ArrayList<Observer> observers;
-
-    //controller e view
     private GiocatoreController controller;
 
-
-
-    //costruttore privato in quanto singleton
     private Giocatore(){
         //inizializzo i valori del giocatore
         super.setPosizione(25, 5);
@@ -30,16 +23,9 @@ public class Giocatore extends Entita{
         super.setVelocitaX(1);
         super.setVelocitaY(1);
 
-        partita.addEntita(this);;
-
-        //grazie a questo metodo il controller può ricevere input dall'utente(da capire meglio)
-        //this.view.addKeyListener(controller);
-
-        //inizializzo l'arraylist di observers
         observers = new ArrayList<>();
     }
 
-    //creare una sola istanza di Giocatore
     public static Giocatore getInstance(){
         if(instance == null) {
             instance = new Giocatore();
@@ -58,7 +44,7 @@ public class Giocatore extends Entita{
     }
 
     public void sparaBolle(){
-        new Bolla();
+        notifyObservers();
     }
 
     public void esplodiBolla(Bolla bolla){
@@ -76,9 +62,9 @@ public class Giocatore extends Entita{
         observers.remove(o);
     }
     @Override
-    public void notifyObservers(){
+    public void notifyObservers(Entita e){
         for (Observer o : observers){
-            o.update(this, null);
+            o.update(this, e);
         }
     }
 

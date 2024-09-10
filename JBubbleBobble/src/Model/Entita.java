@@ -5,7 +5,7 @@ import Controller.PartitaController;
 import java.util.Observable;
 import java.util.Observer;
 
-abstract class Entita extends Observable {
+abstract public class Entita extends Observable {
     private int hp; // health points rimanenti 
     private int maxHp; // health points massimi
     private int velocitaX; // velocita movimento (float?)
@@ -16,7 +16,7 @@ abstract class Entita extends Observable {
     private final int height = 32; // altezza
     private final int width = 32; // larghezza
 
-    public Partita partita = PartitaController.getInstance();
+    public PartitaController partita = PartitaController.getInstance();
 
     // variabili per le coordinate
     private int posX;
@@ -91,7 +91,7 @@ abstract class Entita extends Observable {
     }
 
     public void salta() {
-        if (!PartitaController.getInstance().getLivello().getTile(this.getPosX(), this.getPosY() + getHeight() + 1).getType().isWalkable()) {
+        if (!Livello.getInstance().getTile(this.getPosX(), this.getPosY() + getHeight() + 1).getType().isWalkable()) {
             this.setVelocitaY(this.getForzaSalto());
         }
     }
@@ -101,7 +101,7 @@ abstract class Entita extends Observable {
         int newY = getPosY() + getVelocitaY();
 
         // Controllo collisione con il terreno o piattaforme
-        if (partita.getLivello().getTile(this.getPosX(), newY + getHeight()).getType().isWalkable()) {
+        if (Livello.getInstance().getTile(this.getPosX(), newY + getHeight()).getType().isWalkable()) {
             this.setPosizione(this.getPosX(),newY);
         } else {
             // Se colpisce il terreno, ferma la caduta

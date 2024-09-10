@@ -1,6 +1,6 @@
 package Model;
 
-import java.lang.reflect.Array;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
@@ -9,7 +9,9 @@ import java.util.Scanner; // Import the Scanner class to read text files
 public class Livello {
     private static Livello instance;
     private Tile[][] grid;
+    private ArrayList<Tile> enemy_spawns = new ArrayList<>();
     private int levelNum;
+
 
     // COSTRUTTORE DELLA CLASSE
     private Livello() {}
@@ -28,8 +30,6 @@ public class Livello {
         return grid;
     }
 
-
-
     public void costruisciGrid() {
         grid = new Tile[26][36];
         int i = 0;
@@ -37,8 +37,9 @@ public class Livello {
             File f = new File("/data/levels/" + Integer.toString(levelNum) + ".txt");
             Scanner myReader = new Scanner(f);
             while (myReader.hasNextLine()) {
-                String nextToken = myReader.next();// lettura file
+                String nextToken = myReader.next();
                 for (int j = 0; j < 36; j++) {
+
                     grid[i][j] = new Tile(switch (nextToken) {
                         case "0" -> Tile.TileType.EMPTY;
                         case "1" -> Tile.TileType.WALL;
@@ -55,7 +56,8 @@ public class Livello {
                         case "O" -> Tile.TileType.MONSTA_SPAWN;
 
                         default -> throw new IllegalArgumentException("Token non valido: " + nextToken);
-                    });
+                    }, i, j);
+                    if (grid[i][j].getType().toString().contains("_SPAWN")) enemy_spawns.add(grid[i][j]);
                 }
                 myReader.nextLine();
                 i++;
@@ -68,6 +70,11 @@ public class Livello {
     public Tile getTile(int x, int y) {
         return grid[x][y];
     }
+
+    public ArrayList<Tile> getEnemySpawns() {
+        return enemy_spawns;
+    }
+
 
     public void setLevelNum(int levelNum) {this.levelNum = levelNum;}
 
