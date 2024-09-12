@@ -2,7 +2,6 @@ package Model;
 
 public class Tile {
     public enum TileType {
-
         EMPTY(false, false),
         PLATFORM(false,true),
         WALL(true,true),

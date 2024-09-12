@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Menu;
 import Model.Partita;
+import View.MenuView;
 import View.PartitaView;
 
 public class MenuController {
@@ -15,10 +16,22 @@ public class MenuController {
     }
 
     public PartitaController nuovaPartita() {
-//        Partita pmodel = new Partita();
-        Partita m = model.nuovaPartita();
+
+        Partita m = new Partita();
         PartitaView v = new PartitaView();
         return new PartitaController(m,v);
     }
+
+    public PartitaController continuaPartita(String password){
+        model.continuaPartita(password);
+        Partita mx = new Partita();
+        PartitaView vx = new PartitaView();
+        return new PartitaController(mx, vx);
+    }
+
+    public void getProfilo(){
+
+    }
+
 
 }

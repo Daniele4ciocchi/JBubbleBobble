@@ -1,7 +1,6 @@
 package Model;
 
 import Controller.PartitaController;
-import View.PartitaView;
 
 public class Menu {
     private Profilo profilo;
@@ -15,19 +14,16 @@ public class Menu {
         }
     }
 
-    public void setProfilo(Profilo p) {
-        profilo = p;
-    }
-
     public Profilo getProfilo() {
         return profilo;
     }
 
-    public PartitaController nuovaPartita() {
-        PartitaView v = new PartitaView();
-        Partita m = new Partita();
-        return new PartitaController(m,v);
-
+    /*
+     * Scelta del menu che inizia una nuova partita dal livello 1.
+     */
+    public Partita nuovaPartita() {
+        Livello.getInstance().setLevelNum(1);
+        return new Partita();
     }
 
     /*
@@ -36,20 +32,27 @@ public class Menu {
      * @param password: stringa alfanumerica di 5 caratteri che identifica uno specifico livello da cui iniziare
      * una nuova partita
      */
-    public PartitaController continuaPartita(String password) {
-        int ln;
-        switch (password) {
-            case "LIVELLO1" -> ln = 1;
-            case "LIVELLO2" -> ln = 2;
-            case "LIVELLO3" -> ln = 3;
-            case "LIVELLO4" -> ln = 4;
-            case "LIVELLO5" -> ln = 5;
-            default -> ln = 1;
-        }
-        Partita mx = new Partita();
-        PartitaView vx = new PartitaView();
-        PartitaController x = new PartitaController(mx, vx);
-        mx.setLivello(ln);
-        return x;
+    public Partita continuaPartita(String password) {
+        Livello.getInstance().setLevelNum(
+                switch (password) {
+                    case "LIVELLO1" -> 1;
+                    case "LIVELLO2" -> 2;
+                    case "LIVELLO3" -> 3;
+                    case "LIVELLO4" -> 4;
+                    case "LIVELLO5" -> 5;
+                    case "LIVELLO6" -> 6;
+                    case "LIVELLO7" -> 7;
+                    case "LIVELLO8" -> 8;
+                    case "LIVELLO9" -> 9;
+                    case "LIVELL10" -> 10;
+                    case "LIVELL11" -> 11;
+                    case "LIVELL12" -> 12;
+                    case "LIVELL13" -> 13;
+                    case "LIVELL14" -> 14;
+                    case "LIVELL15" -> 15;
+                    case "LIVELL16" -> 16;
+                    default -> 1;
+                });
+        return new Partita();
     }
 }

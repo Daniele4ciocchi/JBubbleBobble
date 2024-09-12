@@ -19,7 +19,7 @@ public class Profilo {
 
 
     // COSTRUTTORE
-    private Profilo() {
+    private Profilo(){
     }
 
     public static Profilo getInstance() {
@@ -29,6 +29,7 @@ public class Profilo {
         return instance;
     }
 
+    // GETTERS
     // Restituisce il nickname del profilo sottoforma di String
     public String getNickname() {
         return nickname;
@@ -59,6 +60,8 @@ public class Profilo {
         return livello;
     }
 
+
+    // SETTERS
     // Modifica l'avatar del giocatore, fornendo una nuova immagine in parametro
     public void setAvatar(Image a) {
         avatar = a;

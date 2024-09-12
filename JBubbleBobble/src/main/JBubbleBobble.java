@@ -7,14 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JBubbleBobble {
-
+    public static JFrame frame;
 
     public static void main(String[] args) {
         // Creazione del frame
-        JFrame frame = new JFrame("Esempio di JPanel");
+        frame = new JFrame("Esempio di JPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 300);
 
+        /*
         // Creazione del pannello
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -27,7 +28,7 @@ public class JBubbleBobble {
         JButton button = new JButton("Cambia testo");
         panel.add(button, BorderLayout.SOUTH);
 
-        // Aggiunta dell'ActionListener al pulsante
+        // Aggiunta dell' ActionListener al pulsante
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,5 +41,6 @@ public class JBubbleBobble {
 
         // Visualizzazione del frame
         frame.setVisible(true);
+        */
     }
 }
