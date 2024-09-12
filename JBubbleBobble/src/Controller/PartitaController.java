@@ -77,7 +77,8 @@ public class PartitaController {
     }
 
     public static PartitaController getInstance(){return inCorso;}
-
+    public Partita getModel(){return model;}
+    public PartitaView getView(){return view;}
 }
 
 

@@ -5,6 +5,7 @@ import Model.Partita;
 import View.MenuView;
 import View.PartitaView;
 import main.JBubbleBobble;
+import View.ProfiloView;
 
 public class MenuController {
 
@@ -20,15 +21,13 @@ public class MenuController {
     private void initView() {
         view.addNuovaPartitaListener(e -> nuovaPartita());
         view.addContinuaPartitaListener(e -> continuaPartita("password"));
-        view.addVisualizzaProfiloListener(e -> getProfilo());
+        view.addVisualizzaProfiloListener(e -> getProfiloStats());
     }
 
     public void nuovaPartita() {
-
         PartitaController partitaController = new PartitaController(new Partita(), new PartitaView());
         JBubbleBobble.frame.setContentPane(partitaController.getView().getPanel());
         JBubbleBobble.frame.revalidate();
-
     }
 
     public void continuaPartita(String password) {
@@ -36,11 +35,11 @@ public class MenuController {
         PartitaController partitaController = new PartitaController(new Partita(), new PartitaView());
         JBubbleBobble.frame.setContentPane(partitaController.getView().getPanel());
         JBubbleBobble.frame.revalidate();
-
     }
 
-    public void getProfilo() {
+    public void getProfiloStats() {
         // Implementa la logica per visualizzare il profilo
+
     }
 
     public MenuView getView() {return view;}

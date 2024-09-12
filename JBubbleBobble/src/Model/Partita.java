@@ -42,21 +42,22 @@ public class Partita {
     public int getSaltiEffettuati(){return this.saltiEffettuati;}
     public int getPunteggio(){return this.punteggio;}
     public Livello getLivello(){return this.livello;}
+    public boolean isVinta(){return this.vinta;}
 
     //metodi setter
     public void addBollaScoppiata(){this.bolleScoppiate++;}
     public void addBollaSparata(){this.bolleSparate++;}
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
-
+    public void setVinta() {vinta = !vinta;}
     // Metodo per aggiungere un'entità all'interno dell'array
     public void addEntita(Entita entita){this.entita.add(entita);}
     public void removeEntita(Entita entita) {this.entita.remove(entita);}
     public void svuotaEntita(){this.entita.clear();}
-
+    public void addPunteggio(int n){punteggio += n;}
     public void setLivello(int l){
         livello.setLevelNum(l);
     }
 
-    public boolean isVinta(){return this.vinta;}
+
 
 }
