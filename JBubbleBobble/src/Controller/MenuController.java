@@ -4,6 +4,7 @@ import Model.Menu;
 import Model.Partita;
 import View.MenuView;
 import View.PartitaView;
+import main.JBubbleBobble;
 
 public class MenuController {
 
@@ -12,26 +13,37 @@ public class MenuController {
 
     public MenuController() {
         this.model = new Menu();
-        this.view = new MenuView(this);
+        this.view = new MenuView();
+        initView();
     }
 
-    public PartitaController nuovaPartita() {
-
-        Partita m = new Partita();
-        PartitaView v = new PartitaView();
-        return new PartitaController(m,v);
+    private void initView() {
+        view.addNuovaPartitaListener(e -> nuovaPartita());
+        view.addContinuaPartitaListener(e -> continuaPartita("password"));
+        view.addVisualizzaProfiloListener(e -> getProfilo());
     }
 
-    public PartitaController continuaPartita(String password){
+    public void nuovaPartita() {
+
+        PartitaController partitaController = new PartitaController(new Partita(), new PartitaView());
+        JBubbleBobble.frame.setContentPane(partitaController.getView().getPanel());
+        JBubbleBobble.frame.revalidate();
+
+    }
+
+    public void continuaPartita(String password) {
         model.continuaPartita(password);
-        Partita mx = new Partita();
-        PartitaView vx = new PartitaView();
-        return new PartitaController(mx, vx);
-    }
-
-    public void getProfilo(){
+        PartitaController partitaController = new PartitaController(new Partita(), new PartitaView());
+        JBubbleBobble.frame.setContentPane(partitaController.getView().getPanel());
+        JBubbleBobble.frame.revalidate();
 
     }
 
+    public void getProfilo() {
+        // Implementa la logica per visualizzare il profilo
+    }
+
+    public MenuView getView() {return view;}
+    public Menu getModel() {return model;}
 
 }
