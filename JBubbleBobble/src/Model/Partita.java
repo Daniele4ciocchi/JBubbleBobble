@@ -23,7 +23,6 @@ public class Partita {
     private Livello livello = Livello.getInstance();
 
 
-
     public Partita(){
         this.giocatore = Giocatore.getInstance();
         this.entita = new ArrayList<>();

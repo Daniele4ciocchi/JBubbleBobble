@@ -12,8 +12,7 @@ public class GiocatoreController implements KeyListener {
     //salvataggio del model e del controller
     private Giocatore model;
     private GiocatoreView view;
-
-
+    private boolean moveUp, moveDown, moveLeft, moveRight;
 
     //costruttore del controller
     public GiocatoreController(Giocatore model, GiocatoreView view){
@@ -32,20 +31,10 @@ public class GiocatoreController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
-                model.moveLeft();
-                break;
-            case KeyEvent.VK_RIGHT:
-                model.moveRight();
-                break;
-            case KeyEvent.VK_SPACE:
-                model.salta();
-                break;
-            case KeyEvent.VK_ENTER:
-                model.sparaBolle();
-                break;
-            default:
-                break;
+            case KeyEvent.VK_LEFT -> model.moveLeft();
+            case KeyEvent.VK_RIGHT -> model.moveRight();
+            case KeyEvent.VK_SPACE -> model.salta();
+            case KeyEvent.VK_ENTER -> model.sparaBolle();
         }
     }
 
