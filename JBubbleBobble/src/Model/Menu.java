@@ -1,7 +1,5 @@
 package Model;
 
-import Controller.PartitaController;
-
 public class Menu {
     private Profilo profilo;
 
@@ -55,4 +53,5 @@ public class Menu {
                 });
         return new Partita();
     }
+
 }
