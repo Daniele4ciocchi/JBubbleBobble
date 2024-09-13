@@ -15,11 +15,9 @@ public class MenuView {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(43,51,57));
 
-        ImageIcon titleIcon = new ImageIcon("src/sprites/Bubble_Bobble_Logo.png");
-        Image originalImage = titleIcon.getImage();
-        Image resizedImage = originalImage.getScaledInstance(150, 100, Image.SCALE_SMOOTH);
-        ImageIcon resizedIcon = new ImageIcon(resizedImage);
-        JLabel label = new JLabel(resizedIcon);
+        ImageIcon titleIcon = new ImageIcon("src/resources/sprites/misc/image_21.png");
+
+        JLabel label = new JLabel(titleIcon);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
