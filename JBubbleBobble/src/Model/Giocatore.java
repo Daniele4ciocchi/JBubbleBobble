@@ -1,7 +1,6 @@
 package Model;
 
 import Controller.GiocatoreController;
-import View.GiocatoreView;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -62,9 +61,9 @@ public class Giocatore extends Entita{
         observers.remove(o);
     }
     @Override
-    public void notifyObservers(Entita e){
+    public void notifyObservers(){
         for (Observer o : observers){
-            o.update(this, e);
+            o.update(this,o);
         }
     }
 

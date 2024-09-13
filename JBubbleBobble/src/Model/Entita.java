@@ -117,4 +117,5 @@ abstract public class Entita extends Observable {
     public abstract void deleteObserver(Observer o);
     @Override
     public abstract void notifyObservers();
+
 }

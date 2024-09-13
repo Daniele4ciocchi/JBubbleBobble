@@ -15,14 +15,14 @@ public class JBubbleBobble {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 300);
 
-        /*
+
         // Creazione del controller del menu
         MenuController menuController = new MenuController();
         frame.setContentPane(menuController.getView().getPanel());
 
         // Visualizzazione del frame
         frame.setVisible(true);
-        */
+
 
         // creazione profilo di test
         test1();

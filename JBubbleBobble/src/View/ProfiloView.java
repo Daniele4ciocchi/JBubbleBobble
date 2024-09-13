@@ -19,6 +19,7 @@ public class ProfiloView extends JPanel {
     }
 
 
+    /*
     // main di test creato dall'AI
     public static void main(String[] args) {
         JFrame frame = new JFrame("Profilo Panel");
@@ -29,4 +30,6 @@ public class ProfiloView extends JPanel {
         frame.pack();
         frame.setVisible(true);
     }
+
+     */
 }

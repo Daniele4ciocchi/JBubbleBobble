@@ -14,7 +14,7 @@ public class Bolla extends Entita implements Runnable {
 
     //costruttore
     public Bolla(){
-        super.partita.addEntita(this);
+        super.partita.getModel().addEntita(this);
         this.setHp(20);
         this.run();
     }
@@ -56,9 +56,9 @@ public class Bolla extends Entita implements Runnable {
     }
     //metodo per far scoppiare la bolla
     public void scoppia() {
-        partita.removeEntita(this);
+        partita.getModel().removeEntita(this);
         if (nemico != null){
-            partita.removeEntita(nemico);
+            partita.getModel().removeEntita(nemico);
         }
     }
 
