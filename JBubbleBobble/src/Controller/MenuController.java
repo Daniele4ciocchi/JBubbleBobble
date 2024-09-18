@@ -39,8 +39,7 @@ public class MenuController {
 
     public void getProfiloStats() {
         ProfiloView profiloView = new ProfiloView(model.getProfilo());
-        JBubbleBobble.frame.setContentPane(profiloView);
-        JBubbleBobble.frame.revalidate();
+        profiloView.createProfiloFrame();
 
 
     }

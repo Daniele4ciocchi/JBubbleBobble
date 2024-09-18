@@ -18,7 +18,15 @@ public class ProfiloView extends JPanel {
         add(new JLabel("Perdite: " + profilo.getPerse()));
     }
 
-
+    public void createProfiloFrame(){
+        JFrame frame = new JFrame("Profilo Panel");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Profilo profilo = Profilo.getInstance();
+        ProfiloView panel = new ProfiloView(profilo);
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setVisible(true);
+    }
     /*
     // main di test creato dall'AI
     public static void main(String[] args) {
