@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Partita {
 
 
-    //TODO: da rivedere
+    //TODO: da rivedere il giocatore, si può mettere per primo nell'array ed eliminare il resto
 
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
     private ArrayList<Entita> entitaMorte;
@@ -51,7 +51,7 @@ public class Partita {
         this.entitaAttive.remove(entita);
         this.entitaMorte.add(entita);
     }
-    public void svuotaEntita(){this.entitaAttive.clear();}
+    public void svuotaEntita(){this.entitaAttive.clear();} // TODO: da rivedere
 
     public void addPunteggio(int n){punteggio += n;}
 
@@ -59,7 +59,7 @@ public class Partita {
     }
 
     public void posizionaEntita(){
-        Tile grid[][] = this.livello.getGrid();
+        Tile[][] grid = this.livello.getGrid();
         for (int i = 0;i<26;i++){
             for (int j = 0;j<36;j++){
                 if (grid[i][j].getType().toString().contains("_SPAWN")){
@@ -70,7 +70,7 @@ public class Partita {
                         case "HIDEGON" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.HIDEGON, i, j));
                         case "PULPUL" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.PULPUL, i, j));
                         case "MONSTA" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.MONSTA, i, j));
-                        case "PLAYER_SPAWN" -> this.addEntita(giocatore);
+                        case "PLAYER" -> this.addEntita(giocatore);
                     }
                 }
             }

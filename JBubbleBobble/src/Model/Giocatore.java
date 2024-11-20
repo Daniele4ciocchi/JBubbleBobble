@@ -1,7 +1,5 @@
 package Model;
 
-import classiTolte.GiocatoreController;
-
 import java.util.ArrayList;
 import java.util.Observer;
 
@@ -9,11 +7,13 @@ import java.util.Observer;
 public class Giocatore extends Entita{
 
     private int life;
+    private boolean direction; //true = destra, false = sinistra
     private ArrayList<Observer> observers;
 
     public Giocatore(){
         super(25, 5, 1, 1, 1);
         this.life = 3;
+        this.direction = true;
 
         //TODO: implementare Observe Observable (non so come)
         observers = new ArrayList<>();
@@ -23,12 +23,10 @@ public class Giocatore extends Entita{
 
     public void addlife(){this.life++;}
 
-    public void resetPosizione(){
-        super.setPosizione(25, 5);
-    }
+    public void resetPosizione(){super.setPosizione(25, 5);}
 
-    public void shoot(){
-
+    public Bolla shoot(){
+        return new Bolla(this.direction? this.getPosx()+1 : this.getPosx()-1, this.getPosy(), 1, 1, this.direction);
     }
 
 

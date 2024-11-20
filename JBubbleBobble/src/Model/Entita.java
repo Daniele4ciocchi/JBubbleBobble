@@ -13,25 +13,6 @@ abstract public class Entita extends Observable {
     private double velocitaY;
     private double gravita;
 
-    /* vecchio codice
-    private int hp; // health points rimanenti
-    private int maxHp; // health points massimi
-    private int velocitaX; // velocita movimento (float?)
-    private int velocitaY;
-
-    private final int gravita = 1; // gravita
-    private final int forzaSalto = -15; // forza salto
-
-    // le seguenti sono da aggiungere in fase di view
-    private final int height = 32; // altezza
-    private final int width = 32; // larghezza
-
-    // variabili per le coordinate
-    private int posX;
-    private int posY;
-    public int setHp;
-    */
-
     public Entita(double posx, double posy, double velocitaX, double velocitaY, double gravita){
         this.posx = posx;
         this.posy = posy;
@@ -68,6 +49,7 @@ abstract public class Entita extends Observable {
 
     }
 
+    //TODO: serve?
     public void dead(){this.alive = false;}
 
     /**

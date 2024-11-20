@@ -8,14 +8,15 @@ public class Bolla extends Entita implements Runnable {
 
     private boolean floating = false;
     private Nemico nemico;
-    private int countDown;
+    private int countDown = 20;
+    private boolean direction;
 
     private ArrayList<Observer> observers;
 
     //costruttore
-    public Bolla(double posx, double posy, double velocitax, double velocitay, int countDown){
+    public Bolla(double posx, double posy, double velocitax, double velocitay, boolean direction) {
         super(posx, posy, velocitax, velocitay, 0);
-        this.countDown = countDown;
+        this.direction = direction;
         this.run();
     }
 
@@ -27,6 +28,7 @@ public class Bolla extends Entita implements Runnable {
         try {
             // Il thread "dorme" per il tempo specificato, simulando la durata della bolla
             Thread.sleep(this.countDown);
+            //TODO: 2 step floating (50% del max time) e pop! controllare la direzione
             if (this.countDown == 0) this.setFloating();
 
         } catch (InterruptedException e) {

@@ -11,6 +11,10 @@ public class Livello {
     private int levelNum = 1;
     private Tile[][] grid;
 
+    public Livello(int livello){
+            this.levelNum = livello;
+            costruisciGrid();
+    }
 
     public int getLevelNum() {
         return levelNum;
@@ -19,12 +23,13 @@ public class Livello {
         return grid;
     }
 
-    public Livello(int livello){
-        this.levelNum = livello;
+
+    public void changeLevel() {
+        this.levelNum++;
         costruisciGrid();
     }
 
-    public void setLevelNum(int levelNum) {
+    public void changeLevel(int levelNum) {
         this.levelNum = levelNum;
         costruisciGrid();
     }
