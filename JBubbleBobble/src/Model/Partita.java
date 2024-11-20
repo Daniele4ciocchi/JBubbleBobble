@@ -1,6 +1,6 @@
 package Model;
 
-import classiTolte.PartitaController;
+
 import java.util.ArrayList;
 
 public class Partita {

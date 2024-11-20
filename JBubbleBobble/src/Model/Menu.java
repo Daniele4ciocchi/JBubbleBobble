@@ -1,8 +1,4 @@
-package View;
-
-import Model.Livello;
-import Model.Partita;
-import Model.Profilo;
+package Model;
 
 public class Menu {
     private Profilo profilo;
@@ -24,8 +20,7 @@ public class Menu {
      * Scelta del menu che inizia una nuova partita dal livello 1.
      */
     public Partita nuovaPartita() {
-        Livello.getInstance().setLevelNum(1);
-        return new Partita();
+        return new Partita(1);
     }
 
     /*
@@ -35,7 +30,7 @@ public class Menu {
      * una nuova partita
      */
     public Partita continuaPartita(String password) {
-        Livello.getInstance().setLevelNum(
+        return new Partita(
                 switch (password) {
                     case "LIVELLO1" -> 1;
                     case "LIVELLO2" -> 2;
@@ -55,7 +50,6 @@ public class Menu {
                     case "LIVELL16" -> 16;
                     default -> 1;
                 });
-        return new Partita();
     }
 
 }

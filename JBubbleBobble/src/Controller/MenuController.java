@@ -1,6 +1,6 @@
-package classiTolte;
+package Controller;
 
-import View.Menu;
+import Model.Menu;
 import Model.Partita;
 import View.MenuView;
 import View.PartitaView;
@@ -25,23 +25,15 @@ public class MenuController {
     }
 
     public void nuovaPartita() {
-        PartitaController partitaController = new PartitaController(new Partita(), new PartitaView());
-        JBubbleBobble.frame.setContentPane(partitaController.getView().getPanel());
-        JBubbleBobble.frame.revalidate();
+
     }
 
     public void continuaPartita(String password) {
-        model.continuaPartita(password);
-        PartitaController partitaController = new PartitaController(new Partita(), new PartitaView());
-        JBubbleBobble.frame.setContentPane(partitaController.getView().getPanel());
-        JBubbleBobble.frame.revalidate();
     }
 
     public void getProfiloStats() {
         ProfiloView profiloView = new ProfiloView(model.getProfilo());
         profiloView.createProfiloFrame();
-
-
     }
 
     public MenuView getView() {return view;}

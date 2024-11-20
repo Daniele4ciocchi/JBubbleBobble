@@ -1,7 +1,7 @@
 package main;
 
 import Model.*;
-import classiTolte.MenuController;
+import Controller.MenuController;
 
 import javax.swing.*;
 
@@ -31,11 +31,11 @@ public class JBubbleBobble {
         Profilo p = Profilo.getInstance();
         p.setNickname("test");
 
-        Partita partita1 = new Partita(); // partita vinta
+        Partita partita1 = new Partita(1); // partita vinta
         partita1.addPunteggio(24011);
         partita1.setVinta();
 
-        Partita partita2 = new Partita(); // partita persa
+        Partita partita2 = new Partita(1); // partita persa
         partita1.addPunteggio(1000);
 
         p.addPartita(partita1);
