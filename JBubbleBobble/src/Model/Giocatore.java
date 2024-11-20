@@ -1,6 +1,6 @@
 package Model;
 
-import Controller.GiocatoreController;
+import classiTolte.GiocatoreController;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -8,46 +8,27 @@ import java.util.Observer;
 //da fare singleton
 public class Giocatore extends Entita{
 
-    //istanza singleton
-    private static Giocatore instance;
-
-    private Profilo profilo;
+    private int life;
     private ArrayList<Observer> observers;
-    private GiocatoreController controller;
 
-    private Giocatore(){
-        //inizializzo i valori del giocatore
-        super.setPosizione(25, 5);
-        super.setHp(3);
-        super.setVelocitaX(1);
-        super.setVelocitaY(1);
+    public Giocatore(){
+        super(25, 5, 1, 1, 1);
+        this.life = 3;
 
+        //TODO: implementare Observe Observable (non so come)
         observers = new ArrayList<>();
     }
 
-    public static Giocatore getInstance(){
-        if(instance == null) {
-            instance = new Giocatore();
-        }
-        return instance;
-    }
+    public int getLife(){return this.life; }
 
-    //metodi set
-    public void setProfilo(Profilo p){
-        this.profilo = p;
-    }
-
+    public void addlife(){this.life++;}
 
     public void resetPosizione(){
         super.setPosizione(25, 5);
     }
 
-    public void sparaBolle(){
-        notifyObservers();
-    }
+    public void shoot(){
 
-    public void esplodiBolla(Bolla bolla){
-        bolla.scoppia();
     }
 
 

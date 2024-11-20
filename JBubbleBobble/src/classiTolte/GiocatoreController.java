@@ -1,7 +1,6 @@
-package Controller;
+package classiTolte;
 
 import Model.Giocatore;
-import View.GiocatoreView;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,6 +14,10 @@ public class GiocatoreController implements KeyListener {
         this.model = Giocatore.getInstance();
         this.view = new GiocatoreView();
     }
+
+    //model quando si aggiorna, aggiorna gli oggetti nella view tramite notifyObserver
+    //controller  inserire gli oggetti nella lista degli oggetti che devono essere aggiornati nel model
+    //view arriva l'aggiornamento
 
 
     //metodi per keylistener

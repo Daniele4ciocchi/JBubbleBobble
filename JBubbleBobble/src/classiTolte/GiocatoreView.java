@@ -1,7 +1,4 @@
-package View;
-
-import Controller.GiocatoreController;
-import Model.Giocatore;
+package classiTolte;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -29,9 +26,6 @@ public class GiocatoreView implements Observer {
     }
 
 
-    public void (){
-
-    }
 
     public BufferedImage getGiocatoreSprite(){
         return giocatoreSprite;

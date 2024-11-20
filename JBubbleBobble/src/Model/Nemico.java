@@ -1,7 +1,5 @@
 package Model;
 
-import Controller.NemicoController;
-
 import java.util.Observer;
 
 public class Nemico extends Entita{
@@ -41,13 +39,17 @@ public class Nemico extends Entita{
     private TipologiaNemico TIPOLOGIA;
 
     private boolean bubbled;
-    private NemicoController controller;
 
-    // COSTRUTTORE
+    /**
+     * Costruttore della classe Nemico
+     * @param t la tipologia del nemico
+     * @param x la posizione x del nemico
+     * @param y la posizione y del nemico
+     */
     public Nemico(TipologiaNemico t, int x, int y){
+        super( x, y, t.getVelocita(), t.getSalto(), 1);
         TIPOLOGIA = t;
         bubbled = false;
-        setPosizione(x, y);
     }
 
     //metodi getter
@@ -56,27 +58,13 @@ public class Nemico extends Entita{
         return TIPOLOGIA;
     }
 
-    // Restituisce true se il nemico è in una bolla, false altrimenti
     public boolean isBubbled(){
         return bubbled;
     }
-    public void setBubbled(){this.bubbled = true;}
+    public void setBubbled(boolean b){this.bubbled = b;}
 
-    // Switcha lo stato di bubbled da true a false, o viceversa
-    public void toggleBubbled(){
-        bubbled = !bubbled;
-    }
 
-    //movimento del nemico
-    public void moveLeft(){
-        setPosizione(getPosX()-TIPOLOGIA.getVelocita(), getPosY());
-    }
-    public void moveRight(){
-        setPosizione(getPosX()+TIPOLOGIA.getVelocita(), getPosY());
-    }
-    public void salto(){
-        setPosizione(getPosX(), getPosY()-TIPOLOGIA.getSalto());
-    }
+
 
     //Observer pattern
     @Override

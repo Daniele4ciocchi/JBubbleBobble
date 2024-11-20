@@ -1,8 +1,7 @@
 package main;
 
-import Controller.*;
 import Model.*;
-import View.*;
+import classiTolte.MenuController;
 
 import javax.swing.*;
 

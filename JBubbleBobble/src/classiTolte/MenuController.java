@@ -1,6 +1,6 @@
-package Controller;
+package classiTolte;
 
-import Model.Menu;
+import View.Menu;
 import Model.Partita;
 import View.MenuView;
 import View.PartitaView;

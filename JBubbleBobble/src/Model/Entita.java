@@ -1,101 +1,96 @@
 package Model;
 
-import Controller.PartitaController;
+import classiTolte.PartitaController;
 
 import java.util.Observable;
 import java.util.Observer;
 
 abstract public class Entita extends Observable {
-    private int hp; // health points rimanenti 
+
+    private double posx;
+    private double posy;
+    private boolean alive;
+    private double velocitaX;
+    private double velocitaY;
+    private double gravita;
+
+    /* vecchio codice
+    private int hp; // health points rimanenti
     private int maxHp; // health points massimi
     private int velocitaX; // velocita movimento (float?)
     private int velocitaY;
 
     private final int gravita = 1; // gravita
     private final int forzaSalto = -15; // forza salto
+
+    // le seguenti sono da aggiungere in fase di view
     private final int height = 32; // altezza
     private final int width = 32; // larghezza
-
-    public PartitaController partita = PartitaController.getInstance();
 
     // variabili per le coordinate
     private int posX;
     private int posY;
     public int setHp;
+    */
 
-    // getter di hp
-    public int getHp(){
-        return hp;
+    public Entita(double posx, double posy, double velocitaX, double velocitaY, double gravita){
+        this.posx = posx;
+        this.posy = posy;
+        this.alive = true;
+        this.velocitaX = velocitaX;
+        this.velocitaY = velocitaY;
+        this.gravita = gravita;
     }
 
-    // getter di maxHp
-    public int getMaxHp(){
-        return maxHp;
+    public double getPosx(){ return posx;}
+    public double getPosy(){ return posy;}
+    public boolean isAlive(){ return alive;}
+    public double getVelocitaX(){ return velocitaX;}
+    public double getVelocitaY(){ return velocitaY;}
+    public double getGravita(){ return gravita;}
+
+    /**
+     * Metodo per muovere l'entità verso sinistra
+     */
+    public void moveLeft();
+
+    /**
+     * Metodo per muovere l'entità verso destra
+     */
+    public void moveRight();
+
+    /**
+     * metodo per far saltare l'entità
+     */
+    public void jump();
+
+    //TODO: da completare
+    public void applyGravity(){
+
     }
 
-    // getter di velocita
-    public int getVelocitaX(){
-        return velocitaX;
-    }
-    public int getVelocitaY() { return velocitaY; }
+    public void dead(){this.alive = false;}
 
-    // getter di posX
-    public int getPosX(){
-        return posX;
-    }
-
-    // getter di posY
-    public int getPosY(){
-        return posY;
+    /**
+     * Setta la posizione dell'entità
+     * @param x coordinata x
+     * @param y coordinata y
+     */
+    public void setPosizione(double x, double y){
+        this.posx = x;
+        this.posy = y;
     }
 
-    // getter di salto
-    public int getGravita(){return gravita;}
-
-    public int getHeight() { return height; }
-    public int getWidth() { return width; }
-
-    public int getForzaSalto() {return forzaSalto;}
-
-    //mpdifica hp
-    public void setHp(int hp){
-        this.hp = hp;
+    /**
+     * Setta la velocità dell'entità
+     * @param x velocità x
+     * @param y velocità y
+     */
+    public void setVelocita(double x, double y) {
+        this.velocitaX = x;
+        this.velocitaY = y;
     }
-
-    // Modifica la velocita dell'entita nel valore (long) fornito
-    public void setVelocitaX(int v){
-        this.velocitaX = v;
-    }
-    public void setVelocitaY(int v) { this.velocitaY = v; }
-
-    //Modifica la posizione dell'elemento 
-    public void setPosizione(int x, int y){
-        posX = x;
-        posY = y;
-    }
-
-    //metodo che toglie gli hp
-    public void damage(int damage){
-        this.hp--;
-    }
-    public void restore(int restore) {this.hp++;}
-
-    //metodi che muovono l'entità
-
-    public void moveLeft(){
-        posX = posX - velocitaX;
-    }
-
-    public void moveRight(){
-        posX = posX + velocitaX;
-    }
-
-    public void salta() {
-        if (!Livello.getInstance().getTile(this.getPosX(), this.getPosY() + getHeight() + 1).getType().isWalkable()) {
-            this.setVelocitaY(this.getForzaSalto());
-        }
-    }
-
+    /*
     public void applyGravity() {
         this.setVelocitaY(this.getVelocitaY() + this.getGravita());
         int newY = getPosY() + getVelocitaY();
@@ -109,7 +104,7 @@ abstract public class Entita extends Observable {
             this.setVelocitaY(0);
         }
     }
-
+    */
 
     @Override
     public abstract void addObserver(Observer o);

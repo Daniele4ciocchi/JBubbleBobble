@@ -1,4 +1,8 @@
-package Model;
+package View;
+
+import Model.Livello;
+import Model.Partita;
+import Model.Profilo;
 
 public class Menu {
     private Profilo profilo;

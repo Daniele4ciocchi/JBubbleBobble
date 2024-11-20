@@ -7,21 +7,10 @@ import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 
 public class Livello {
-    private static Livello instance;
+
+    private int levelNum = 1;
     private Tile[][] grid;
-    private ArrayList<Tile> enemy_spawns = new ArrayList<>();
-    private int levelNum;
 
-
-    // COSTRUTTORE DELLA CLASSE
-    private Livello() {}
-
-    public static Livello getInstance() {
-        if (instance == null) {
-            instance = new Livello();
-        }
-        return instance;
-    }
 
     public int getLevelNum() {
         return levelNum;
@@ -30,6 +19,17 @@ public class Livello {
         return grid;
     }
 
+    public Livello(int livello){
+        this.levelNum = livello;
+        costruisciGrid();
+    }
+
+    public void setLevelNum(int levelNum) {
+        this.levelNum = levelNum;
+        costruisciGrid();
+    }
+
+    //TODO: da rivedere
     public void costruisciGrid() {
         grid = new Tile[26][36];
         int i = 0;
@@ -45,8 +45,8 @@ public class Livello {
                         case "1" -> Tile.TileType.WALL;
                         case "2" -> Tile.TileType.PLATFORM;
 
-                        case "3" -> Tile.TileType.PLAYERSPAWN;
-                        case "5" -> Tile.TileType.POWERUPSPAWN;
+                        case "3" -> Tile.TileType.PLAYER_SPAWN;
+                        case "5" -> Tile.TileType.POWERUP_SPAWN;
 
                         case "Z" -> Tile.TileType.ZENCHAN_SPAWN;
                         case "B" -> Tile.TileType.BANEBOU_SPAWN;
@@ -67,6 +67,8 @@ public class Livello {
         }
     }
 
+
+    /*
     public Tile getTile(int x, int y) {
         return grid[x][y];
     }
@@ -87,4 +89,6 @@ public class Livello {
         levelNum = 1;
         costruisciGrid();
     }
+
+    */
 }

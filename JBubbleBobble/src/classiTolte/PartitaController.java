@@ -1,4 +1,4 @@
-package Controller;
+package classiTolte;
 
 import Model.Entita;
 import Model.Nemico;

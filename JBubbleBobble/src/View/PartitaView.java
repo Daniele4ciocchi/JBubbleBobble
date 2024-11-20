@@ -1,7 +1,7 @@
 // src/View/PartitaView.java
 package View;
 
-import Controller.PartitaController;
+import classiTolte.PartitaController;
 
 import javax.swing.*;
 import java.awt.*;
