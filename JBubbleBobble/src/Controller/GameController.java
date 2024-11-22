@@ -1,34 +1,53 @@
 package Controller;
 
+import Model.Entita;
 import Model.Partita;
 import View.GameView;
 import View.MenuView;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 //TODO: qua dobbiamo decide una cosa 
 // bisogna capire se dobbiamo far partire il gioco da qua
 // bidogna strutturare la classe e capire cosa fa
 
-public class GameController implements Runnable {
+public class GameController {
 
     private Partita partita;
     private GameView view;
-    private boolean running;
+
+    private boolean leftPressed = false;
+    private boolean rightPressed = false;
 
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
         this.view = view;
-        this.running = false;
     }
 
-    public void startGame() {
-        running = true;
-        new Thread(this).start();
-    }
+    private void setupKeyBindings() {
+        view.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    leftPressed = true;
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    rightPressed = true;
+                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    partita.getEntita().getFirst().jump();
+                }
+            }
 
-    public void stopGame() {
-        running = false;
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    leftPressed = false;
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    rightPressed = false;
+                }
+            }
+        });
     }
 
     private void startGameLoop() {
@@ -37,20 +56,26 @@ public class GameController implements Runnable {
     }
 
     private void updateGame() {
+        //TODO: indice del loop di gioco
+        //  - far comparire tutte le entità
+        //  - far muovere le entità
+        //  - far sparire le entità
+
+        partita.posizionaEntita();
+        view.drawLevel(partita.getLivello().getGrid());
         if (leftPressed) {
-            player.move(-5);
+            partita.getEntita().getFirst().moveLeft();
         } else if (rightPressed) {
-            player.move(5);
+            partita.getEntita().getFirst().moveRight();
+        }
+        for (Entita entita : partita.getEntita()) {
+            partita.getLivello().applyGravity(entita);
         }
 
-        player.applyGravity(level);
+        //implementare view repaint
         view.repaint();
     }
 
-    private void updateGame() {
-        // Update game logic, e.g., move entities, check collisions
-        partita.update();
-    }
 
     private void renderGame() {
         // Render the game state to the view

@@ -86,6 +86,11 @@ public class Livello {
         }
     }
 
+    private boolean isOnGround(Entita e) {
+        // Check if the entity is on the ground
+        return grid[e.getX()][e.getY()].getType().isWalkable();
+    }
+
 
 
     /*

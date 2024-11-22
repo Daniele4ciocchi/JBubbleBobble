@@ -42,22 +42,21 @@ abstract public class Entita extends Observable {
 
 
 
-    //TODO: da implementare le seguenti funzioni
-    /**
-     * Metodo per muovere l'entità verso sinistra
-     */
-    public void moveLeft();
 
-    /**
-     * Metodo per muovere l'entità verso destra
-     */
-    public void moveRight();
+    public void moveLeft() {
+        posx -= velocitaX;
+    }
 
-    /**
-     * metodo per far saltare l'entità
-     */
-    public void jump();
+    public void moveRight() {
+        posx += velocitaX;
+    }
 
+    //TODO: controllo da fare nel controller dove se un'entità is on the floor
+    //      allora può fare il jump
+
+    public void jump() {
+        setVelocitaY(-10);
+    }
 
 
     //TODO: serve? (secondo me no)

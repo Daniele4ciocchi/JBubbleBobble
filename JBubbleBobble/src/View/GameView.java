@@ -3,23 +3,29 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 
 
 //TODO: questa in teoria è la view del gioco di per se
 //FIXME: tutta da rifare
 
-public class GameView {
-    private JPanel panel;
+public class GameView  {
+    private JFrame frame = new JFrame("Bubble Bobble MVC Game");
+    private JPanel panel = new JPanel();;
     private JLabel scoreLabel;
     private JButton pauseButton;
     private JButton exitButton;
 
 
-    public PartitaView() {
+    public GameView() {
+        // Create frame
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.setVisible(true);
 
-        panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
+        frame.add(panel);
         // Create and add components
         scoreLabel = new JLabel("Score: 0");
         pauseButton = new JButton("Pause");
@@ -39,6 +45,21 @@ public class GameView {
 
     }
 
+
+    public void drawLevel(Graphics g, int[][] layout) {
+        for (int y = 0; y < layout.length; y++) {
+            for (int x = 0; x < layout[y].length; x++) {
+                if (layout[y][x] == 1) {
+                    g.setColor(Color.DARK_GRAY);
+                    g.fillRect(x * 32, y * 32, 32, 32);
+                }
+            }
+        }
+    }
+
+    public void addKeyListener(KeyAdapter keyAdapter) {
+        frame.addKeyListener(keyAdapter);
+    }
     public void addPauseListener(ActionListener listener) {
         pauseButton.addActionListener(listener);
     }
