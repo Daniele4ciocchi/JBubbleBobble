@@ -1,12 +1,13 @@
 package Model;
 
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Partita {
 
 
-    //TODO: da rivedere il giocatore, si può mettere per primo nell'array ed eliminare il resto
+    //TODO: nothing
 
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
     private ArrayList<Entita> entitaMorte;
@@ -17,7 +18,7 @@ public class Partita {
 
     private boolean vinta;
     Livello livello;
-    Giocatore giocatore;
+
 
     /**
      * Costruttore della classe Partita
@@ -51,11 +52,36 @@ public class Partita {
         this.entitaAttive.remove(entita);
         this.entitaMorte.add(entita);
     }
-    public void svuotaEntita(){this.entitaAttive.clear();} // TODO: da rivedere
+    public void svuotaEntita(){
+        this.entitaAttive.removeIf(x -> !x.equals(entitaAttive.getFirst()));
+
+    }
 
     public void addPunteggio(int n){punteggio += n;}
 
-    public void checkCollision(){
+    public boolean checkCollision() {
+        int minDistance = 10; // Minimum distance in pixels
+
+        for (int i = 0; i < entitaAttive.size(); i++) {
+            Entita e1 = entitaAttive.get(i);
+            Rectangle rect1 = new Rectangle(e1.getX(), e1.getY(), e1.getWidth(), e1.getHeight());
+
+            for (int j = i + 1; j < entitaAttive.size(); j++) {
+                Entita e2 = entitaAttive.get(j);
+                Rectangle rect2 = new Rectangle(e2.getX(), e2.getY(), e2.getWidth(), e2.getHeight());
+
+                if (rect1.intersects(rect2)) {
+                    int dx = Math.abs(e1.getX() - e2.getX());
+                    int dy = Math.abs(e1.getY() - e2.getY());
+
+                    if (dx < minDistance && dy < minDistance) {
+                        return true;
+                    }
+                }
+            }
+
+        }
+        return false;
     }
 
     public void posizionaEntita(){
@@ -70,7 +96,7 @@ public class Partita {
                         case "HIDEGON" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.HIDEGON, i, j));
                         case "PULPUL" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.PULPUL, i, j));
                         case "MONSTA" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.MONSTA, i, j));
-                        case "PLAYER" -> this.addEntita(giocatore);
+                        case "PLAYER" -> entitaAttive.getFirst().setPosizione(i,j);
                     }
                 }
             }

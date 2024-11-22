@@ -1,20 +1,22 @@
-// src/View/PartitaView.java
 package View;
-
-import classiTolte.PartitaController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class PartitaView {
+
+//TODO: questa in teoria è la view del gioco di per se
+//FIXME: tutta da rifare
+
+public class GameView {
     private JPanel panel;
     private JLabel scoreLabel;
     private JButton pauseButton;
     private JButton exitButton;
-    private PartitaController controller;
+
 
     public PartitaView() {
-        controller = PartitaController.getInstance();
+
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
@@ -34,8 +36,14 @@ public class PartitaView {
         panel.add(bottomPanel, BorderLayout.SOUTH);
 
         // Add action listeners
-        pauseButton.addActionListener(e -> controller.pause());
-        exitButton.addActionListener(e -> controller.stop());
+
+    }
+
+    public void addPauseListener(ActionListener listener) {
+        pauseButton.addActionListener(listener);
+    }
+    public void addExitListener(ActionListener listener) {
+        exitButton.addActionListener(listener);
     }
 
     public JPanel getPanel() {

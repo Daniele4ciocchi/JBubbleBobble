@@ -26,7 +26,7 @@ public class Giocatore extends Entita{
     public void resetPosizione(){super.setPosizione(25, 5);}
 
     public Bolla shoot(){
-        return new Bolla(this.direction? this.getPosx()+1 : this.getPosx()-1, this.getPosy(), 1, 1, this.direction);
+        return new Bolla(this.direction? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, this.direction);
     }
 
 

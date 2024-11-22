@@ -6,14 +6,17 @@ import java.util.Observer;
 
 abstract public class Entita extends Observable {
 
-    private double posx;
-    private double posy;
+    private int posx;
+    private int posy;
     private boolean alive;
-    private double velocitaX;
-    private double velocitaY;
-    private double gravita;
+    private int velocitaX;
+    private int velocitaY;
+    private int gravita;
+    private int width;
+    private int height;
 
-    public Entita(double posx, double posy, double velocitaX, double velocitaY, double gravita){
+
+    public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
         this.posx = posx;
         this.posy = posy;
         this.alive = true;
@@ -22,13 +25,24 @@ abstract public class Entita extends Observable {
         this.gravita = gravita;
     }
 
-    public double getPosx(){ return posx;}
-    public double getPosy(){ return posy;}
+    public int getX(){ return posx;}
+    public int getY(){ return posy;}
     public boolean isAlive(){ return alive;}
-    public double getVelocitaX(){ return velocitaX;}
-    public double getVelocitaY(){ return velocitaY;}
-    public double getGravita(){ return gravita;}
+    public int getVelocitaX(){ return velocitaX;}
+    public int getVelocitaY(){ return velocitaY;}
+    public int getGravita(){ return gravita;}
+    public int getWidth(){ return width;}
+    public int getHeight(){ return height;}
 
+    public void setVelocitaY(int i) {this.velocitaY = i;}
+    public void setVelocitaX(int i) {this.velocitaX = i;}
+    public void setGravita(int i) {this.gravita = i;}
+    public void setWidth(int i) {this.width = i;}
+    public void setHeight(int i) {this.height = i;}
+
+
+
+    //TODO: da implementare le seguenti funzioni
     /**
      * Metodo per muovere l'entità verso sinistra
      */
@@ -44,12 +58,9 @@ abstract public class Entita extends Observable {
      */
     public void jump();
 
-    //TODO: da completare
-    public void applyGravity(){
 
-    }
 
-    //TODO: serve?
+    //TODO: serve? (secondo me no)
     public void dead(){this.alive = false;}
 
     /**
@@ -57,7 +68,7 @@ abstract public class Entita extends Observable {
      * @param x coordinata x
      * @param y coordinata y
      */
-    public void setPosizione(double x, double y){
+    public void setPosizione(int x, int y){
         this.posx = x;
         this.posy = y;
     }
@@ -67,7 +78,7 @@ abstract public class Entita extends Observable {
      * @param x velocità x
      * @param y velocità y
      */
-    public void setVelocita(double x, double y) {
+    public void setVelocita(int x, int y) {
         this.velocitaX = x;
         this.velocitaY = y;
     }
@@ -93,5 +104,6 @@ abstract public class Entita extends Observable {
     public abstract void deleteObserver(Observer o);
     @Override
     public abstract void notifyObservers();
+
 
 }

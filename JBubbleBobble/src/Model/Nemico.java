@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Observer;
 
-public class Nemico extends Entita{
+public class Nemico extends Entita implements Runnable{
 
     // Enumerazione delle tipologie di nemici con le relative caratteristiche
     public enum TipologiaNemico{
@@ -63,7 +63,17 @@ public class Nemico extends Entita{
     }
     public void setBubbled(boolean b){this.bubbled = b;}
 
-
+    @Override
+    public void run() {
+        while (!Thread.currentThread().isInterrupted()) {
+            // TODO: definire il comportamento dei nemici
+            try {
+                Thread.sleep(100); // Adjust the sleep time as needed
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
 
 
     //Observer pattern

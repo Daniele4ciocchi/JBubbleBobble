@@ -14,7 +14,7 @@ public class Bolla extends Entita implements Runnable {
     private ArrayList<Observer> observers;
 
     //costruttore
-    public Bolla(double posx, double posy, double velocitax, double velocitay, boolean direction) {
+    public Bolla(int posx, int posy, int velocitax, int velocitay, boolean direction) {
         super(posx, posy, velocitax, velocitay, 0);
         this.direction = direction;
         this.run();
