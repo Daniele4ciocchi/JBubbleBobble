@@ -21,19 +21,49 @@ public class Partita {
 
 
     /**
-     * Costruttore della classe Partita
-     * @param livello il livello della partita
+     * Costruttore della classe Partita,
+     * associato alla funzione di Nuova Partita
      */
-    public Partita(int livello){
-        this.giocatore = new Giocatore();
+    public Partita(){
+        this.livello = new Livello(1);
         this.entitaAttive = new ArrayList<>();
         this.entitaMorte = new ArrayList<>();
-        this.livello = new Livello(livello);
+        entitaAttive.add(new Giocatore());
 
-        this.saltiEffettuati = 0; 
+        this.saltiEffettuati = 0;
         this.vinta = false;
     }
 
+    /**
+     * Costruttore della classe Partita,
+     * associato alla funzione di Continua Partita
+     * @param password password relativa al livello interessato
+     */
+    public Partita(String password){
+        this.entitaAttive = new ArrayList<>();
+        this.entitaMorte = new ArrayList<>();
+        this.livello = new Livello(switch (password) {
+            case "LIVELLO01" -> 1;
+            case "LIVELLO02" -> 2;
+            case "LIVELLO03" -> 3;
+            case "LIVELLO04" -> 4;
+            case "LIVELLO05" -> 5;
+            case "LIVELLO06" -> 6;
+            case "LIVELLO07" -> 7;
+            case "LIVELLO08" -> 8;
+            case "LIVELLO09" -> 9;
+            case "LIVELLO10" -> 10;
+            case "LIVELLO11" -> 11;
+            case "LIVELLO12" -> 12;
+            case "LIVELLO13" -> 13;
+            case "LIVELLO14" -> 14;
+            case "LIVELLO15" -> 15;
+            case "LIVELLO16" -> 16;
+            default -> 1;
+        });
+        this.saltiEffettuati = 0; 
+        this.vinta = false;
+    }
 
     //metodi getter
     public ArrayList<Entita> getEntita(){return this.entitaAttive;}
