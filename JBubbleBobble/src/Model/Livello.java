@@ -11,6 +11,7 @@ public class Livello {
     private int levelNum = 1;
     private Tile[][] grid;
 
+
     public Livello(int livello){
             this.levelNum = livello;
             costruisciGrid();
@@ -39,26 +40,29 @@ public class Livello {
         grid = new Tile[26][36];
         int i = 0;
         try {
-            File f = new File("/data/levels/" + Integer.toString(levelNum) + ".txt");
+            File f = new File("/home/daniele/JBubbleBobble/JBubbleBobble/src/Model/data/levels/" + levelNum + ".txt");
             Scanner myReader = new Scanner(f);
             while (myReader.hasNextLine()) {
                 String nextToken = myReader.next();
+                if (i == 26) {
+                    break;
+                }
                 for (int j = 0; j < 36; j++) {
 
-                    grid[i][j] = new Tile(switch (nextToken) {
-                        case "0" -> Tile.TileType.EMPTY;
-                        case "1" -> Tile.TileType.WALL;
-                        case "2" -> Tile.TileType.PLATFORM;
+                    grid[i][j] = new Tile(switch (nextToken.charAt(j)) {
+                        case '0' -> Tile.TileType.EMPTY;
+                        case '1' -> Tile.TileType.WALL;
+                        case '2' -> Tile.TileType.PLATFORM;
 
-                        case "3" -> Tile.TileType.PLAYER_SPAWN;
-                        case "5" -> Tile.TileType.POWERUP_SPAWN;
+                        case '3' -> Tile.TileType.PLAYER_SPAWN;
+                        case '5' -> Tile.TileType.POWERUP_SPAWN;
 
-                        case "Z" -> Tile.TileType.ZENCHAN_SPAWN;
-                        case "B" -> Tile.TileType.BANEBOU_SPAWN;
-                        case "M" -> Tile.TileType.MIGHTA_SPAWN;
-                        case "H" -> Tile.TileType.HIDEGON_SPAWN;
-                        case "P" -> Tile.TileType.PULPULSPAWN;
-                        case "O" -> Tile.TileType.MONSTA_SPAWN;
+                        case 'Z' -> Tile.TileType.ZENCHAN_SPAWN;
+                        case 'B' -> Tile.TileType.BANEBOU_SPAWN;
+                        case 'M' -> Tile.TileType.MIGHTA_SPAWN;
+                        case 'H' -> Tile.TileType.HIDEGON_SPAWN;
+                        case 'P' -> Tile.TileType.PULPULSPAWN;
+                        case 'O' -> Tile.TileType.MONSTA_SPAWN;
 
                         default -> throw new IllegalArgumentException("Token non valido: " + nextToken);
                     }, i, j);
@@ -91,29 +95,10 @@ public class Livello {
         return grid[e.getX()][e.getY()].getType().isWalkable();
     }
 
-
-
-    /*
-    public Tile getTile(int x, int y) {
-        return grid[x][y];
-    }
-
-    public ArrayList<Tile> getEnemySpawns() {
-        return enemy_spawns;
+    public String getTilePath() {
+        String tilePath = "/home/daniele/JBubbleBobble/JBubbleBobble/src/resources/blocks/normal blocks/";
+        return tilePath + "_" + levelNum + ".png";
     }
 
 
-    public void setLevelNum(int levelNum) {this.levelNum = levelNum;}
-
-    public void nextLevelNumber() {
-        levelNum++;
-        costruisciGrid();
-    }
-
-    public void resetLevelNumber() {
-        levelNum = 1;
-        costruisciGrid();
-    }
-
-    */
 }

@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26d6e591-d479-4490-9be8-d854171805d3" name="Changes" comment="whitespaces">
-      <change afterPath="$PROJECT_DIR$/JBubbleBobble/src/View/ProfiloView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JBubbleBobble/src/Model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/JBubbleBobble/src/Model/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JBubbleBobble/src/Model/Profilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/JBubbleBobble/src/Model/Profilo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/Livello.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/Tile$TileType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/Tile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/main/JBubbleBobble$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/main/JBubbleBobble.class" beforeDir="false" />
-    </list>
+    <list default="true" id="26d6e591-d479-4490-9be8-d854171805d3" name="Changes" comment="whitespaces" />
     <list id="1863a44c-b150-46b9-a331-69b75dfd210a" name="Changes by daniele" comment="11 settembre" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +52,7 @@
     "Application.JBubbleBobble.executor": "Run",
     "Application.ProfiloView.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -116,8 +107,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -144,6 +135,7 @@
       <workItem from="1725974165079" duration="2127000" />
       <workItem from="1726061212959" duration="5699000" />
       <workItem from="1726146551870" duration="4244000" />
+      <workItem from="1732173909182" duration="275000" />
     </task>
     <task id="LOCAL-00001" summary="cazzatine">
       <option name="closed" value="true" />

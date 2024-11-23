@@ -9,9 +9,14 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-//TODO: qua dobbiamo decide una cosa 
+//TODO: qua dobbiamo decide una cosa
 // bisogna capire se dobbiamo far partire il gioco da qua
 // bidogna strutturare la classe e capire cosa fa
+
+// TODO: implementare le seguenti funzioni
+//  - loop di gioco
+//  - controller dei tasti premuti
+//  avvio della view (in realta non so se sta in una funzione
 
 public class GameController {
 
@@ -24,6 +29,7 @@ public class GameController {
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
         this.view = view;
+        startGameLoop();
     }
 
     private void setupKeyBindings() {
@@ -60,9 +66,10 @@ public class GameController {
         //  - far comparire tutte le entità
         //  - far muovere le entità
         //  - far sparire le entità
-
+        //  -
+        partita.getLivello().costruisciGrid();
+        view.drawLevel(partita.getLivello().getGrid(), partita.getLivello().getTilePath());
         partita.posizionaEntita();
-        view.drawLevel(partita.getLivello().getGrid());
         if (leftPressed) {
             partita.getEntita().getFirst().moveLeft();
         } else if (rightPressed) {
@@ -71,14 +78,12 @@ public class GameController {
         for (Entita entita : partita.getEntita()) {
             partita.getLivello().applyGravity(entita);
         }
-
-        //implementare view repaint
-        view.repaint();
+        view.getPanel().repaint();
     }
 
 
     private void renderGame() {
         // Render the game state to the view
-        view.repaint();
+        view.getPanel().repaint();
     }
 }

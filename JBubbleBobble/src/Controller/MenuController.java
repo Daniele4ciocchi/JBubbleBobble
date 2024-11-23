@@ -49,4 +49,8 @@ public class MenuController {
         // Logica per visualizzare le statistiche del profilo
     }
 
+    public MenuView getView() {
+        return view;
+    }
+
 }

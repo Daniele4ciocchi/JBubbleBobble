@@ -1,5 +1,7 @@
 package View;
 
+import Model.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -45,17 +47,59 @@ public class GameView  {
 
     }
 
-
-    public void drawLevel(Graphics g, int[][] layout) {
-        for (int y = 0; y < layout.length; y++) {
-            for (int x = 0; x < layout[y].length; x++) {
-                if (layout[y][x] == 1) {
-                    g.setColor(Color.DARK_GRAY);
-                    g.fillRect(x * 32, y * 32, 32, 32);
-                }
+    public void drawLevel(Tile[][] level, String imagePath) {
+        // Rimuoviamo la vecchia griglia dei tile senza rimuovere altri componenti
+        Component[] components = panel.getComponents();
+        for (Component comp : components) {
+            if (comp instanceof JLabel && comp.getName() != null && comp.getName().equals("TileGrid")) {
+                panel.remove(comp);
             }
         }
+
+        // Carichiamo l'immagine del tile
+        ImageIcon tileIcon = new ImageIcon(imagePath);
+        Image tileImage = tileIcon.getImage(); // Otteniamo l'immagine
+        int tileWidth = tileImage.getWidth(null); // Larghezza del singolo tile
+        int tileHeight = tileImage.getHeight(null); // Altezza del singolo tile
+
+        // Crea un JLabel per l'immagine di sfondo e configuralo con un layout Grid
+        JLabel backgroundLabel = new JLabel();
+        backgroundLabel.setName("TileGrid");
+        backgroundLabel.setLayout(new GridLayout(level.length, level[0].length));
+
+        // Cicla sulla griglia di tile e aggiungi l'immagine corretta per ogni tile
+        for (int i = 0; i < level.length; i++) {
+            for (int j = 0; j < level[i].length; j++) {
+                JLabel tileLabel = new JLabel();
+
+                // Crea una nuova immagine per ogni tile, posizionata in base al tipo
+                if (level[i][j].getType() == Tile.TileType.WALL) {
+                    tileLabel.setIcon(new ImageIcon(tileImage)); // Imposta l'immagine per il muro
+                } else if (level[i][j].getType() == Tile.TileType.PLATFORM) {
+                    tileLabel.setIcon(new ImageIcon(tileImage)); // Imposta l'immagine per la piattaforma
+                } else {
+                    tileLabel.setIcon(new ImageIcon(tileImage)); // Usa l'immagine di base per altri tipi
+                }
+
+                // Impostiamo le dimensioni per fare in modo che ogni tile occupi lo spazio giusto
+                tileLabel.setPreferredSize(new Dimension(tileWidth, tileHeight));
+                tileLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                tileLabel.setVerticalAlignment(SwingConstants.CENTER);
+
+                // Aggiungi il tile all'etichetta di sfondo
+                backgroundLabel.add(tileLabel);
+            }
+        }
+
+        // Aggiungi l'etichetta di sfondo al pannello
+        panel.add(backgroundLabel, BorderLayout.CENTER);
+
+        // Rende il pannello valido e lo ridisegna
+        panel.revalidate();
+        panel.repaint();
     }
+
+
 
     public void addKeyListener(KeyAdapter keyAdapter) {
         frame.addKeyListener(keyAdapter);
@@ -70,7 +114,6 @@ public class GameView  {
     public JPanel getPanel() {
         return panel;
     }
-
     public void updateScore(int score) {
         scoreLabel.setText("Score: " + score);
     }
