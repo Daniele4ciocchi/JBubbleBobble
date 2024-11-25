@@ -68,24 +68,31 @@ public class GameController {
         timer.start();
     }
 
-    private void updateGame() throws IOException {
-        //TODO: indice del loop di gioco
-        //  - far comparire tutte le entità
-        //  - far muovere le entità
-        //  - far sparire le entità
-        //  -
-
-        partita.getLivello().costruisciGrid();
-        view.setBackgroundImage(view.createImage(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
-        partita.posizionaEntita();
+    public void checkPlayerMovement(){
         if (leftPressed) {
             partita.getEntita().getFirst().moveLeft();
         } else if (rightPressed) {
             partita.getEntita().getFirst().moveRight();
         }
-        for (Entita entita : partita.getEntita()) {
-            partita.getLivello().applyGravity(entita);
-        }
+    }
+
+    private void updateGame() throws IOException {
+        //TODO: indice del loop di gioco
+        //  - far comparire tutte le entità
+        //  - far muovere le entità (forse questo è un compito di partita)
+        //  - far sparire le entità (e anche questo) partita.clear()
+        //  - costruire lo sfondo del livello (compito della view)
+        //  - posizionare le entità (compito della view)
+        //  -
+
+
+        //view.setBackgroundImage(view.createImage(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
+        partita.posizionaEntita();
+
+
+        //controllo movimento giocatore
+        checkPlayerMovement();
+
         view.getPanel().repaint();
     }
 
