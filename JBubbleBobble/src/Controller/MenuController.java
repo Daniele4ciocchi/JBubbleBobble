@@ -1,50 +1,56 @@
 package Controller;
 
-import Model.Menu;
 import Model.Partita;
+import View.GameView;
 import View.MenuView;
-import View.PartitaView;
-import main.JBubbleBobble;
-import View.ProfiloView;
+
+import java.util.ArrayList;
 
 public class MenuController {
 
+    private ArrayList<Partita> partite;
     private MenuView view;
-    private Menu model;
 
-    public MenuController() {
-        this.model = new Menu();
-        this.view = new MenuView();
+    public MenuController(MenuView view) {
+        this.view = view;
         initView();
     }
 
     private void initView() {
         view.addNuovaPartitaListener(e -> nuovaPartita());
-        view.addContinuaPartitaListener(e -> continuaPartita("password"));
+        view.addContinuaPartitaListener(e -> continuaPartita());
         view.addVisualizzaProfiloListener(e -> getProfiloStats());
     }
 
+    /**
+     * Questa scelta del menu permette al giocatore di iniziare una nuova partita da zero.
+     */
     public void nuovaPartita() {
-        PartitaController partitaController = new PartitaController(new Partita(), new PartitaView());
-        JBubbleBobble.frame.setContentPane(partitaController.getView().getPanel());
-        JBubbleBobble.frame.revalidate();
+        GameView  gameView = new GameView();
+        Partita partita = new Partita();
+        GameController controller = new GameController(partita, gameView);
+        // Logica per iniziare una nuova partita
     }
 
-    public void continuaPartita(String password) {
-        model.continuaPartita(password);
-        PartitaController partitaController = new PartitaController(new Partita(), new PartitaView());
-        JBubbleBobble.frame.setContentPane(partitaController.getView().getPanel());
-        JBubbleBobble.frame.revalidate();
+    /**
+     * Questa scelta del menu permette al giocatore di inserire una password che potrà conoscere solo se è già arrivato
+     * a uno specifico livello facendoci GAME OVER.
+     */
+    public void continuaPartita() {
+        String password = view.getPasswordInput(); // Assumendo che ci sia un metodo per ottenere la password dalla vista
+        Partita partita = new Partita(password);
+        // Logica per continuare la partita con la password
     }
 
+    /**
+     * Questa scelta del menu permette al giocatore di visualizzare le statistiche del proprio profilo.
+     */
     public void getProfiloStats() {
-        ProfiloView profiloView = new ProfiloView(model.getProfilo());
-        profiloView.createProfiloFrame();
-
-
+        // Logica per visualizzare le statistiche del profilo
     }
 
-    public MenuView getView() {return view;}
-    public Menu getModel() {return model;}
+    public MenuView getView() {
+        return view;
+    }
 
 }

@@ -2,13 +2,16 @@ package Model;
 
 public class Tile {
     public enum TileType {
+        // riguardanti piattaforma
         EMPTY(false, false),
         PLATFORM(false,true),
         WALL(true,true),
 
-        PLAYERSPAWN(false, false),
+        //riguardanti spawn del player
+        PLAYER_SPAWN(false, false),
 
-        POWERUPSPAWN(false, false),
+        //riguardanti spawn dei powerup
+        POWERUP_SPAWN(false, false),
 
         // NEMICI
         ZENCHAN_SPAWN(false, false),
@@ -51,6 +54,7 @@ public class Tile {
     public int getY(){
         return y;
     }
+
 
     //setters
     public void setType(TileType t){

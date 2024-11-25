@@ -8,59 +8,59 @@ public class Bolla extends Entita implements Runnable {
 
     private boolean floating = false;
     private Nemico nemico;
-
+    private int countDown = 20;
+    private boolean direction;
 
     private ArrayList<Observer> observers;
 
     //costruttore
-    public Bolla(){
-        super.partita.getModel().addEntita(this);
-        this.setHp(20);
+    public Bolla(int posx, int posy, int velocitax, int velocitay, boolean direction) {
+        super(posx, posy, velocitax, velocitay, 0);
+        this.direction = direction;
         this.run();
     }
 
-    //metodo per far scoppiare la bolla automaticamente dopo un determinato periodo di tempo
+    /**
+     * Metodo per iniziare il conto alla rovescia della bolla
+     */
     @Override
     public void run() {
         try {
             // Il thread "dorme" per il tempo specificato, simulando la durata della bolla
-            Thread.sleep(this.getHp());
-            if (this.getHp() == this.getHp() - 1) this.setFloating();
-            scoppia();
+            Thread.sleep(this.countDown);
+            //TODO: 2 step floating (50% del max time) e pop! controllare la direzione
+            if (this.countDown == 0) this.setFloating();
+
         } catch (InterruptedException e) {
             System.out.println(this + " è stata interrotta.");
         }
     }
 
-    //ritorna il nemico all'interno della bolla
-    public Nemico getNemico(){
-        return this.nemico;
-    }
+    public Nemico getNemico(){ return this.nemico;}
 
-    //ritorna lo stato della bolla
-    public boolean isFloating(){
-        return floating;
-    }
+    public boolean isFloating(){return floating;}
 
-    //imposta lo stato della bolla
-    public void setFloating() {
-        this.floating = true;
-    }
+    public void setFloating() {this.floating = true;}
 
-    //imposta la cattura del nemico 
+    /**
+     * Metodo per catturare un nemico nella bolla
+     * @param nemico il nemico da catturare
+     */
     public void catturaNemico(Nemico nemico) {
         if(!floating){
             this.nemico = nemico;
-            this.nemico.setBubbled();
+            this.nemico.setBubbled(true);
+
         }
     }
-    //metodo per far scoppiare la bolla
-    public void scoppia() {
-        partita.getModel().removeEntita(this);
-        if (nemico != null){
-            partita.getModel().removeEntita(nemico);
-        }
-    }
+
+//
+//    public void scoppia() {
+//        partita.getModel().removeEntita(this);
+//        if (nemico != null){
+//            partita.getModel().removeEntita(nemico);
+//        }
+//    }
 
     //metodi per observer
     @Override

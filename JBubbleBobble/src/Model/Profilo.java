@@ -9,12 +9,7 @@ public class Profilo {
     private ArrayList<Partita> partite = new ArrayList<Partita>();; // storico partite
     private static Profilo instance;
 
-    /*
-        Ogni profilo nasce livello 1.
-        Il livello viene incrementato tramite levelUp() quando il giocatore
-        supera determinate soglie di punti guadagnati durante le sue partite.
-        Tale controllo è effettuato durante addPartita().
-    */
+
     private int livello; // livello del profilo, 
 
 

@@ -20,7 +20,7 @@ public class ProfiloView extends JPanel {
 
     public void createProfiloFrame(){
         JFrame frame = new JFrame("Profilo Panel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Profilo profilo = Profilo.getInstance();
         ProfiloView panel = new ProfiloView(profilo);
         frame.getContentPane().add(panel);
