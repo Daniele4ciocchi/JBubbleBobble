@@ -3,6 +3,7 @@ package Controller;
 import Model.Partita;
 import View.GameView;
 import View.MenuView;
+import View.PartitaView;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,9 @@ public class MenuController {
      */
     public void continuaPartita() {
         String password = view.getPasswordInput(); // Assumendo che ci sia un metodo per ottenere la password dalla vista
+        GameView  gameView = new GameView();
         Partita partita = new Partita(password);
+        GameController controller = new GameController(partita, gameView);
         // Logica per continuare la partita con la password
     }
 

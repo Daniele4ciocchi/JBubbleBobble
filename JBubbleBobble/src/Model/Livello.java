@@ -44,12 +44,12 @@ public class Livello {
             Scanner myReader = new Scanner(f);
             while (myReader.hasNextLine()) {
                 String nextToken = myReader.next();
-                if (i == 26) {
+                if (i >= 26){
                     break;
                 }
                 for (int j = 0; j < 36; j++) {
 
-                    grid[i][j] = new Tile(switch (nextToken.charAt(j)) {
+                    grid[25-i][j] = new Tile(switch (nextToken.charAt(j)) {
                         case '0' -> Tile.TileType.EMPTY;
                         case '1' -> Tile.TileType.WALL;
                         case '2' -> Tile.TileType.PLATFORM;
@@ -67,7 +67,6 @@ public class Livello {
                         default -> throw new IllegalArgumentException("Token non valido: " + nextToken);
                     }, i, j);
                 }
-                myReader.nextLine();
                 i++;
             }
         } catch (FileNotFoundException e) {
@@ -97,7 +96,7 @@ public class Livello {
 
     public String getTilePath() {
         String tilePath = "/home/daniele/JBubbleBobble/JBubbleBobble/src/resources/blocks/normal blocks/";
-        return tilePath + "_" + levelNum + ".png";
+        return tilePath + "block_" + levelNum + ".png";
     }
 
 

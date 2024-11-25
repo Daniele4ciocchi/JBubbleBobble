@@ -4,6 +4,7 @@ import Model.Entita;
 import Model.Partita;
 import View.GameView;
 import View.MenuView;
+import View.PartitaView;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -30,7 +31,9 @@ public class GameController {
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
         this.view = view;
+        view.addPanel(new PartitaView(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
         startGameLoop();
+
     }
 
     private void setupKeyBindings() {
