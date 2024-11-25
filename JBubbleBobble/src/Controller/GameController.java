@@ -8,6 +8,7 @@ import View.MenuView;
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 //TODO: qua dobbiamo decide una cosa
 // bisogna capire se dobbiamo far partire il gioco da qua
@@ -57,18 +58,25 @@ public class GameController {
     }
 
     private void startGameLoop() {
-        Timer timer = new Timer(16, e -> updateGame());
+        Timer timer = new Timer(16, e -> {
+            try {
+                updateGame();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         timer.start();
     }
 
-    private void updateGame() {
+    private void updateGame() throws IOException {
         //TODO: indice del loop di gioco
         //  - far comparire tutte le entità
         //  - far muovere le entità
         //  - far sparire le entità
         //  -
+
         partita.getLivello().costruisciGrid();
-        view.drawLevel(partita.getLivello().getGrid(), partita.getLivello().getTilePath());
+        view.setBackgroundImage(view.createImage(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
         partita.posizionaEntita();
         if (leftPressed) {
             partita.getEntita().getFirst().moveLeft();

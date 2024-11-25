@@ -2,10 +2,14 @@ package View;
 
 import Model.Tile;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 
 //TODO: questa in teoria è la view del gioco di per se
@@ -47,56 +51,36 @@ public class GameView  {
 
     }
 
-    public void drawLevel(Tile[][] level, String imagePath) {
-        // Rimuoviamo la vecchia griglia dei tile senza rimuovere altri componenti
-        Component[] components = panel.getComponents();
-        for (Component comp : components) {
-            if (comp instanceof JLabel && comp.getName() != null && comp.getName().equals("TileGrid")) {
-                panel.remove(comp);
-            }
-        }
+    public void setBackgroundImage(BufferedImage image) {
+        JLabel background = new JLabel(new ImageIcon(image));
+        panel.add(background, BorderLayout.CENTER);
+    }
 
-        // Carichiamo l'immagine del tile
-        ImageIcon tileIcon = new ImageIcon(imagePath);
-        Image tileImage = tileIcon.getImage(); // Otteniamo l'immagine
-        int tileWidth = tileImage.getWidth(null); // Larghezza del singolo tile
-        int tileHeight = tileImage.getHeight(null); // Altezza del singolo tile
+    public static BufferedImage createImage(Tile[][] grid, String imagePath) throws IOException {
+        int tileWidth = 32; // Width of each tile
+        int tileHeight = 32; // Height of each tile
 
-        // Crea un JLabel per l'immagine di sfondo e configuralo con un layout Grid
-        JLabel backgroundLabel = new JLabel();
-        backgroundLabel.setName("TileGrid");
-        backgroundLabel.setLayout(new GridLayout(level.length, level[0].length));
+        // Create a BufferedImage with the size of the grid
+        BufferedImage finalImage = new BufferedImage(grid[0].length * tileWidth, grid.length * tileHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = finalImage.createGraphics();
 
-        // Cicla sulla griglia di tile e aggiungi l'immagine corretta per ogni tile
-        for (int i = 0; i < level.length; i++) {
-            for (int j = 0; j < level[i].length; j++) {
-                JLabel tileLabel = new JLabel();
+        // Load the input image
+        BufferedImage tileImage = ImageIO.read(new File(imagePath));
 
-                // Crea una nuova immagine per ogni tile, posizionata in base al tipo
-                if (level[i][j].getType() == Tile.TileType.WALL) {
-                    tileLabel.setIcon(new ImageIcon(tileImage)); // Imposta l'immagine per il muro
-                } else if (level[i][j].getType() == Tile.TileType.PLATFORM) {
-                    tileLabel.setIcon(new ImageIcon(tileImage)); // Imposta l'immagine per la piattaforma
+        // Iterate through the grid and draw the appropriate image
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j].getType() == Tile.TileType.WALL || grid[i][j].getType() == Tile.TileType.PLATFORM) {
+                    g2d.drawImage(tileImage, j * tileWidth, i * tileHeight, tileWidth, tileHeight, null);
                 } else {
-                    tileLabel.setIcon(new ImageIcon(tileImage)); // Usa l'immagine di base per altri tipi
+                    g2d.setColor(Color.BLACK);
+                    g2d.fillRect(j * tileWidth, i * tileHeight, tileWidth, tileHeight);
                 }
-
-                // Impostiamo le dimensioni per fare in modo che ogni tile occupi lo spazio giusto
-                tileLabel.setPreferredSize(new Dimension(tileWidth, tileHeight));
-                tileLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                tileLabel.setVerticalAlignment(SwingConstants.CENTER);
-
-                // Aggiungi il tile all'etichetta di sfondo
-                backgroundLabel.add(tileLabel);
             }
         }
 
-        // Aggiungi l'etichetta di sfondo al pannello
-        panel.add(backgroundLabel, BorderLayout.CENTER);
-
-        // Rende il pannello valido e lo ridisegna
-        panel.revalidate();
-        panel.repaint();
+        g2d.dispose();
+        return finalImage;
     }
 
 
