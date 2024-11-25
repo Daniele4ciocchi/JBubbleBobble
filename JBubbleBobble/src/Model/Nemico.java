@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Observer;
+import java.util.Random;
 
 public class Nemico extends Entita implements Runnable{
 
@@ -27,6 +28,7 @@ public class Nemico extends Entita implements Runnable{
             this.salto = salto;
             this.mosse = mosse;
             this.attacco = attacco;
+
         }
         //getter
         public String getNome(){return this.nome;}
@@ -37,6 +39,7 @@ public class Nemico extends Entita implements Runnable{
     }
 
     private TipologiaNemico TIPOLOGIA;
+    private int carattere; //intero da 1 a 10, generato nel costruttore, usato nei parametri di comportamento
 
     private boolean bubbled;
 
@@ -50,6 +53,9 @@ public class Nemico extends Entita implements Runnable{
         super( x, y, t.getVelocita(), t.getSalto(), 1);
         TIPOLOGIA = t;
         bubbled = false;
+
+        Random rand = new Random();
+        int carattere = rand.nextInt(10) + 1;
     }
 
     //metodi getter
@@ -62,7 +68,9 @@ public class Nemico extends Entita implements Runnable{
         return bubbled;
     }
     public void setBubbled(boolean b){this.bubbled = b;}
-
+    public int getCarattere() {
+        return this.carattere;
+    }
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
@@ -75,6 +83,21 @@ public class Nemico extends Entita implements Runnable{
         }
     }
 
+    // metodo che gestisce il movimento di questo nemico
+    // prende in input la posizione x e la posizione y del Giocatore
+    public void move(int gx, int gy) {
+        // controllo orizzontale di dove si trova il giocatore, si muove a dx/sx di conseguenza
+        if (this.getX() < gx) {
+            if (getCarattere() % 2 == 0) moveRight();
+        } else if (this.getX() > gx) {
+            getCarattere() % 2 == 0? moveLeft(): wait()
+        } //todo da finire sta merda
+
+        // controllo verticale di dove si trova il giocatore, salta di conseguenza
+        if (this.getY() < gy) {
+            if (getCarattere() % 2 == 0) jump();
+        }
+    }
 
     //Observer pattern
     @Override
