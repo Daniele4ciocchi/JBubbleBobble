@@ -13,9 +13,9 @@ public class MenuView {
     public MenuView() {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(new Color(43,51,57));
+        panel.setBackground(new Color(43, 51, 57));
 
-        ImageIcon titleIcon = new ImageIcon("src/resources/sprites/misc/image_21.png");
+        ImageIcon titleIcon = new ImageIcon("source/resources/sprites/misc/image_21.png");
 
         JLabel label = new JLabel(titleIcon);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);

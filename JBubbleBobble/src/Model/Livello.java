@@ -39,7 +39,6 @@ public class Livello {
             while (myReader.hasNextLine()) {
                 String nextToken = myReader.next();
                 for (int j = 0; j < 36; j++) {
-
                     grid[i][j] = new Tile(switch (nextToken) {
                         case "0" -> Tile.TileType.EMPTY;
                         case "1" -> Tile.TileType.WALL;
@@ -74,7 +73,6 @@ public class Livello {
     public ArrayList<Tile> getEnemySpawns() {
         return enemy_spawns;
     }
-
 
     public void setLevelNum(int levelNum) {this.levelNum = levelNum;}
 

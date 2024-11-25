@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26d6e591-d479-4490-9be8-d854171805d3" name="Changes" comment="whitespaces">
-      <change afterPath="$PROJECT_DIR$/JBubbleBobble/src/View/ProfiloView.java" afterDir="false" />
+    <list default="true" id="26d6e591-d479-4490-9be8-d854171805d3" name="Changes" comment="partita e partitaview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JBubbleBobble/src/Model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/JBubbleBobble/src/Model/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JBubbleBobble/src/Model/Profilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/JBubbleBobble/src/Model/Profilo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/Livello.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/Tile$TileType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/Tile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/main/JBubbleBobble$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/main/JBubbleBobble.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JBubbleBobble/src/Model/Livello.java" beforeDir="false" afterPath="$PROJECT_DIR$/JBubbleBobble/src/Model/Livello.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JBubbleBobble/src/Model/data/levels/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/JBubbleBobble/src/Model/data/levels/2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JBubbleBobble/src/Model/data/levels/3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/JBubbleBobble/src/Model/data/levels/3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JBubbleBobble/src/View/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/JBubbleBobble/src/View/MenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/data/levels/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/data/levels/2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/data/levels/3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JBubbleBobble/Model/data/levels/3.txt" afterDir="false" />
     </list>
     <list id="1863a44c-b150-46b9-a331-69b75dfd210a" name="Changes by daniele" comment="11 settembre" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,29 +55,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.JBubbleBobble.executor": "Run",
-    "Application.ProfiloView.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/daniele/JBubbleBobble/JBubbleBobble",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.excludes",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.JBubbleBobble.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProfiloView.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/daniele/JBubbleBobble/JBubbleBobble&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.excludes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.ProfiloView">
+}</component>
+  <component name="RunManager" selected="Application.JBubbleBobble">
     <configuration name="JBubbleBobble" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.JBubbleBobble" />
       <module name="JBubbleBobble" />
@@ -108,8 +106,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ProfiloView" />
         <item itemvalue="Application.JBubbleBobble" />
+        <item itemvalue="Application.ProfiloView" />
       </list>
     </recent_temporary>
   </component>
@@ -143,7 +141,13 @@
       <workItem from="1725888760755" duration="1674000" />
       <workItem from="1725974165079" duration="2127000" />
       <workItem from="1726061212959" duration="5699000" />
-      <workItem from="1726146551870" duration="4244000" />
+      <workItem from="1726146551870" duration="5299000" />
+      <workItem from="1726665328756" duration="6164000" />
+      <workItem from="1731915810679" duration="63000" />
+      <workItem from="1731915891116" duration="10032000" />
+      <workItem from="1732093208198" duration="132000" />
+      <workItem from="1732093359781" duration="7419000" />
+      <workItem from="1732267311359" duration="1908000" />
     </task>
     <task id="LOCAL-00001" summary="cazzatine">
       <option name="closed" value="true" />
@@ -193,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726146667742</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="partita e partitaview">
+      <option name="closed" value="true" />
+      <created>1726152443850</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726152443850</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +229,8 @@
     <MESSAGE value="Menu.java e altre accortezze (PARTITA NON SINGLETON ASDO;FNASKJLDFGNB)" />
     <MESSAGE value="whitespaces" />
     <MESSAGE value="11 settembre" />
-    <option name="LAST_COMMIT_MESSAGE" value="11 settembre" />
+    <MESSAGE value="partita e partitaview" />
+    <option name="LAST_COMMIT_MESSAGE" value="partita e partitaview" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
