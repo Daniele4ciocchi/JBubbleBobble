@@ -29,7 +29,14 @@ public class PowerUp extends Entita{
         ROSA, BLU, GIALLO, ARANCIONE, ROSSO
     }
     public enum Effetto{
-        SCORE, BOLLE_RANGE_UP, BOLLE_VEL_UP, BOLLE_FIRERATE_UP, BONUS_BOLLE, BONUS_SALTO, BONUS_SPARO, SKIP_LVL
+        POINTS, 
+        BOLLE_RANGE_UP, // aumento del range delle bolle
+        BOLLE_VEL_UP,   // aumento della velocità delle bolle
+        BOLLE_FIRERATE_UP, // aumento della velocità di fuoco del giocatore
+        BONUS_MOV,       // 10 punti per ogni pixel di movimento (da capire come implementarla)
+        BONUS_SALTO,    // 500 punti per salto
+        BONUS_SPARO,    // 100 punti per sparo
+        SKIP_LVL        // skip di 3/5/7 livelli
     }
 
     private Tipologia tipologia;
@@ -40,36 +47,22 @@ public class PowerUp extends Entita{
         super(posx, posy, velocitaX, velocitaY, gravita);
         this.tipologia = tipologia;
         this.colore = colore;
-        switch (this.tipologia){
-            case CARAMELLA:
-                switch (this.colore){
-                    case ROSA:
-                        this.effetto = Effetto.BONUS_BOLLE;
-                    case BLU:
-                        this.effetto = Effetto.BONUS_SPARO;
-                    case GIALLO:
-                        this.effetto = Effetto.BONUS_SALTO;
-                    default:
-                        this.effetto = Effetto.SCORE;
-                }
-            case OMBRELLO:
-                this.effetto = Effetto.SKIP_LVL;
-            case ANELLO:
-                switch (this.colore){
-                    case ROSA:
-                        this.effetto = Effetto.BONUS_BOLLE;
-                    case BLU:
-                        this.effetto = Effetto.BONUS_SPARO;
-                    case GIALLO:
-                        this.effetto = Effetto.BONUS_SALTO;
-                    default:
-                        this.effetto = Effetto.SCORE;
-                }
-            case LANTERNA:
-                
-            default:
-                this.effetto = Effetto.SCORE;
-        }
+        this.effetto = switch (this.tipologia) {
+            case CARAMELLA -> switch (this.colore) {
+                case ROSA   -> Effetto.BOLLE_RANGE_UP;
+                case BLU    -> Effetto.BOLLE_VEL_UP;
+                case GIALLO -> Effetto.BOLLE_FIRERATE_UP;
+                default     -> Effetto.POINTS;
+            };
+            case OMBRELLO -> Effetto.SKIP_LVL; // 3, 5, 7 viene deciso in GameController, controllando il colore dell'ombrello
+            case ANELLO -> switch (this.colore) {
+                case ROSA   -> Effetto.BONUS_SALTO;
+                case ROSSO  -> Effetto.BONUS_SPARO;
+                case BLU    -> Effetto.BONUS_MOV;
+                default     -> Effetto.POINTS;
+            };
+            case LANTERNA -> Effetto.POINTS;
+        };
     }
     
 

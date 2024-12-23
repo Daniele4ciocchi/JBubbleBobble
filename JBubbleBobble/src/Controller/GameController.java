@@ -103,35 +103,35 @@ public class GameController {
             return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ROSSO);
         }
         else if (nemiciUccisi == 37){
-            nemiciUccisi++;
+            nemiciUccisi = 0;
             return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ROSA);
         }
 
         // CARAMELLE
         else if (saltiEffettuati == 35){
-            saltiEffettuati++;
+            saltiEffettuati = 0;
             return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.GIALLO);
         }
         else if (bolleSparate == 35){
-            bolleSparate++;
+            bolleSparate = 0;
             return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.ROSA);
         }
         else if (bolleScoppiate == 35){
-            bolleScoppiate++;
+            bolleScoppiate = 0;
             return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.BLU);
         }
 
         // ANELLI
         else if (caramelleRosaMangiate == 3){
-            caramelleRosaMangiate++;
+            caramelleRosaMangiate = 0;
             return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.ROSA);
         }
         else if (caramelleRosseMangiate == 3){
-            caramelleRosseMangiate++;
+            caramelleRosseMangiate = 0;
             return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.ROSSO);
         }
         else if (caramelleBluMangiate == 3){
-            caramelleBluMangiate++;
+            caramelleBluMangiate = 0;
             return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.BLU);
         }
 
