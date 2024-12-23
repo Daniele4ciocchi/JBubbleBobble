@@ -41,8 +41,6 @@ abstract public class Entita extends Observable {
     public void setHeight(int i) {this.height = i;}
 
 
-
-
     public void moveLeft() {
         posx -= velocitaX;
     }
@@ -57,7 +55,6 @@ abstract public class Entita extends Observable {
     public void jump() {
         setVelocitaY(-10);
     }
-
 
     //TODO: serve? (secondo me no)
     public void dead(){this.alive = false;}

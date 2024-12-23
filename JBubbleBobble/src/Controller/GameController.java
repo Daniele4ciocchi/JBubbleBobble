@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Entita;
 import Model.Partita;
+import Model.PowerUp;
 import View.GameView;
 import View.MenuView;
 import View.PartitaView;
@@ -27,6 +28,15 @@ public class GameController {
 
     private boolean leftPressed = false;
     private boolean rightPressed = false;
+
+    private int score = 0;
+    private int nemiciUccisi = 0;
+    private int saltiEffettuati = 0;
+    private int bolleSparate = 0;
+    private int bolleScoppiate = 0;
+    private int caramelleRosaMangiate = 0;
+    private int caramelleRosseMangiate = 0;
+    private int caramelleBluMangiate = 0;
 
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
@@ -77,6 +87,62 @@ public class GameController {
         } else if (rightPressed) {
             partita.getEntita().getFirst().moveRight();
         }
+    }
+
+    
+    // funzione invocata nel game loop al raggiungimento di un requisito per un powerup
+    // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
+    private PowerUp spawnPowerUps(int sx, int sy){
+        // OMBRELLI
+        if (nemiciUccisi == 15){
+            nemiciUccisi++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ARANCIONE);
+        }
+        else if (nemiciUccisi == 26){
+            nemiciUccisi++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ROSSO);
+        }
+        else if (nemiciUccisi == 37){
+            nemiciUccisi++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ROSA);
+        }
+
+        // CARAMELLE
+        else if (saltiEffettuati == 35){
+            saltiEffettuati++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.GIALLO);
+        }
+        else if (bolleSparate == 35){
+            bolleSparate++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.ROSA);
+        }
+        else if (bolleScoppiate == 35){
+            bolleScoppiate++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.BLU);
+        }
+
+        // ANELLI
+        else if (caramelleRosaMangiate == 3){
+            caramelleRosaMangiate++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.ROSA);
+        }
+        else if (caramelleRosseMangiate == 3){
+            caramelleRosseMangiate++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.ROSSO);
+        }
+        else if (caramelleBluMangiate == 3){
+            caramelleBluMangiate++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.BLU);
+        }
+
+        else{
+            return null;
+        }
+    }
+
+    // invocata alla raccolta del powerup per applicare il suo effetto
+    private void usePowerUp(PowerUp p){
+        
     }
 
     private void updateGame() throws IOException {

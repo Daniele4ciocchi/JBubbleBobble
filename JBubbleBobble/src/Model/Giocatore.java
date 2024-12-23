@@ -10,6 +10,7 @@ public class Giocatore extends Entita{
     private boolean direction; //true = destra, false = sinistra
     private ArrayList<Observer> observers;
 
+
     public Giocatore(){
         super(25, 5, 1, 1, 1);
         this.life = 3;
@@ -29,7 +30,6 @@ public class Giocatore extends Entita{
         return new Bolla(this.direction? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, this.direction);
     }
 
-
     //metodi per observer
     @Override
     public void addObserver(Observer o){
@@ -45,6 +45,4 @@ public class Giocatore extends Entita{
             o.update(this,o);
         }
     }
-
-
 }

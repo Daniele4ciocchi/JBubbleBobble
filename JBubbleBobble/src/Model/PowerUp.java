@@ -2,84 +2,116 @@ package Model;
 
 import java.util.Observer;
 
+/*  INFO: https://strategywiki.org/wiki/Bubble_Bobble/Special_items
+        - caramelle(CANDY)(1000punti): modificano le bolle o il lancio delle bolle
+            1 - rosa: giocatore spara 35 bolle      ->  le bolle vanno più lontano
+            2 - blu:  giocatore scoppia 35 bolle    ->  le bolle vanno più veloci
+            3 - gialle: il giocatore salta 35 volte ->  le bolle vengono lanciate più velocemente
+        - ombrelli(UMBRELLA)(200punti): fanno skippare livelli
+            4 - arancione: uccidi 15 nemici   -> skippa 3 livelli
+            5 - rosso: uccidi 20 nemici       -> skippa 5 livelli
+            6 - rosa: uccidi 25 nemici        -> skippa 7 livelli
+        - anelli(RING)(1000punti): danno punti
+            7 - rosa: giocatore mangia 3 caramelle rosa   -> i salti danno 500 punti
+            8 - rosso: giocatore mangia 3 caramelle rosse -> le bolle sparate danno 100 punti
+            9 - blu: giocatore mangia 3 caramelle blu     -> spostarsi di un pixel da 10 punti
+        - lampade(LANTERN)(2000punti):
+            10 - blu:      -> effetto di tutti e 3 gli anelli
+            11 - rossa:    -> effetto di tutte e 3 le caramelle e tutti e 3 gli anelli
+            12 - rosa:     -> 6000 punti + tutti i nemici muoiono
+            13 - gialla:   -> effetto di tutte 3 le caramelle
+*/
 public class PowerUp extends Entita{
-
-    public enum TipologiaPowerUp{
-        //caramelle (bolle), ampiezza lancio(a-l), velocità bolla(v-b), velocità lancio(v-l),
-        //ombrelli (livelli), numero di livelli da skippare
-        //anelli(punti),
-        //lanterne
-        //  -blu    (tutti gli anelli),
-        //  -rossa  (tutte le caramelle e tutti gli anelli)
-        //  -rosa   (6000 punti + nemici trasformati in diamanti)
-        //  -gialla (tutte le caramelle)
-
-        //tipo, colore, a-l, v-b, v-l, livelli, punti
-
-        //caramelle
-        CROSA("caramella", "rosa", 1, 0, 0, 0, 0),
-        CBLU("caramella", "blu", 0, 1, 0, 0, 0),
-        CGiALLA("caramella", "gialla", 0, 0, 1, 0, 0),
-        //ombrelli
-        OARANCIO("ombrello", "arancione", 0, 0, 0, 3, 0),
-        OROSA("ombrello", "rosa", 0, 0, 0, 5, 0),
-        OROSSO("ombrello", "rosso", 0, 0, 0, 7, 0),
-        //anelli TODO: condizioni per i punti
-        AROSA("anello", "rosa", 0, 0, 0, 0, 100),
-        AROSSO("anello", "rosso", 0, 0, 0, 0, 100),
-        ABLU("anello", "blu", 0, 0, 0, 0, 10),
-        //lanterne TODO: LROSSA LBLU LROSA da rivedere
-        LBLU("lanterna", "blu", 0, 0, 0, 0, 0),
-        LROSSA("lanterna", "rossa", 1, 1, 1, 0, 0), //da rivedere
-        LROSA("lanterna", "rosa", 0, 0, 0, 0, 0),
-        LGIALLA("lanterna", "gialla", 1, 1, 1, 0, 0);
-
-        ;
-        private final String tipo;
-        private final String colore;
-        private final int a_l;
-        private final int v_b;
-        private final int v_l;
-        private final int livelli;
-        private final int punti;
-
-        TipologiaPowerUp (String tipo, String colore, int a_l, int v_b, int v_l, int livelli, int punti){
-            this.tipo = tipo;
-            this.colore = colore;
-            this.a_l = a_l;
-            this.v_b = v_b;
-            this.v_l = v_l;
-            this.livelli = livelli;
-            this.punti = punti;
-        }
-        public String getTipo(){return this.tipo;}
-        public String getColore(){return this.colore;}
-        public int getA_l(){return this.a_l;}
-        public int getV_b(){return this.v_b;}
-        public int getV_l(){return this.v_l;}
-        public int getLivelli(){return this.livelli;}
-        public int getPunti(){return this.punti;}
-        
-
+    public enum Tipologia{
+        CARAMELLA, OMBRELLO, ANELLO, LANTERNA
+    }
+    public enum Colore{
+        ROSA, BLU, GIALLO, ARANCIONE, ROSSO
+    }
+    public enum Effetto{
+        SCORE, BOLLE_RANGE_UP, BOLLE_VEL_UP, BOLLE_FIRERATE_UP, BONUS_BOLLE, BONUS_SALTO, BONUS_SPARO, SKIP_LVL
     }
 
-    private TipologiaPowerUp TIPOLOGIA;
+    private Tipologia tipologia;
+    private Colore colore;
+    private Effetto effetto;
 
+    public PowerUp(int posx, int posy, int velocitaX, int velocitaY, int gravita, Tipologia tipologia, Colore colore){
+        super(posx, posy, velocitaX, velocitaY, gravita);
+        this.tipologia = tipologia;
+        this.colore = colore;
+        switch (this.tipologia){
+            case CARAMELLA:
+                switch (this.colore){
+                    case ROSA:
+                        this.effetto = Effetto.BONUS_BOLLE;
+                    case BLU:
+                        this.effetto = Effetto.BONUS_SPARO;
+                    case GIALLO:
+                        this.effetto = Effetto.BONUS_SALTO;
+                    default:
+                        this.effetto = Effetto.SCORE;
+                }
+            case OMBRELLO:
+                this.effetto = Effetto.SKIP_LVL;
+            case ANELLO:
+                switch (this.colore){
+                    case ROSA:
+                        this.effetto = Effetto.BONUS_BOLLE;
+                    case BLU:
+                        this.effetto = Effetto.BONUS_SPARO;
+                    case GIALLO:
+                        this.effetto = Effetto.BONUS_SALTO;
+                    default:
+                        this.effetto = Effetto.SCORE;
+                }
+            case LANTERNA:
+                
+            default:
+                this.effetto = Effetto.SCORE;
+        }
+    }
+    
+
+    // restituisce lo score del powerup come intero
+    public int getPoints(){
+        switch (this.tipologia){
+            case CARAMELLA:
+                return 1000;
+            case OMBRELLO:
+                return 200;
+            case ANELLO:
+                return 1000;
+            case LANTERNA:
+                return 2000;
+            default:
+                return 0;
+        }
+    }
+
+    public Tipologia getTipologia(){
+        return this.tipologia;
+    }
+
+    public Colore getColore(){
+        return this.colore;
+    }
+
+    public Effetto getEffetto(){
+        return this.effetto;
+    }
 
     //Observer pattern
     @Override
     public void addObserver(Observer o) {
 
     }
-
     @Override
     public void deleteObserver(Observer o) {
 
     }
-
     @Override
     public void notifyObservers() {
 
     }
-
 }
