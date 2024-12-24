@@ -13,12 +13,27 @@ public class Partita {
     private ArrayList<Entita> entitaMorte;
 
     //counter per poter ottenere determinati powerUp
-    private int saltiEffettuati;
     private int punteggio;
 
     private boolean vinta;
     Livello livello;
 
+    private int score = 0;
+    private int nemiciUccisi = 0;
+    private int saltiEffettuati = 0;
+    private int bolleSparate = 0;
+    private int bolleScoppiate = 0;
+    private int caramelleRosaMangiate = 0;
+    private int caramelleRosseMangiate = 0;
+    private int caramelleBluMangiate = 0;
+
+    // campi dei buff dei powerup
+    private boolean BOLLE_RANGE_UP = false;
+    private boolean BOLLE_VEL_UP = false;
+    private boolean BOLLE_FIRERATE_UP = false;
+    private boolean BONUS_MOV = false;
+    private boolean BONUS_SALTO = false;
+    private boolean BONUS_SPARO = false;
 
     /**
      * Costruttore della classe Partita,
@@ -131,5 +146,60 @@ public class Partita {
                 }
             }
         }
+    }
+
+    // funzione invocata nel game loop al raggiungimento di un requisito per un powerup
+    // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
+    private PowerUp spawnPowerUps(int sx, int sy){
+        // OMBRELLI
+        if (nemiciUccisi == 15){
+            nemiciUccisi++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ARANCIONE);
+        }
+        else if (nemiciUccisi == 26){
+            nemiciUccisi++;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ROSSO);
+        }
+        else if (nemiciUccisi == 37){
+            nemiciUccisi = 0;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ROSA);
+        }
+
+        // CARAMELLE
+        else if (saltiEffettuati == 35){
+            saltiEffettuati = 0;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.GIALLO);
+        }
+        else if (bolleSparate == 35){
+            bolleSparate = 0;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.ROSA);
+        }
+        else if (bolleScoppiate == 35){
+            bolleScoppiate = 0;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.BLU);
+        }
+
+        // ANELLI
+        else if (caramelleRosaMangiate == 3){
+            caramelleRosaMangiate = 0;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.ROSA);
+        }
+        else if (caramelleRosseMangiate == 3){
+            caramelleRosseMangiate = 0;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.ROSSO);
+        }
+        else if (caramelleBluMangiate == 3){
+            caramelleBluMangiate = 0;
+            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.BLU);
+        }
+
+        else{
+            return null;
+        }
+    }
+
+    // invocata alla raccolta del powerup per applicare il suo effetto
+    private void usePowerUp(PowerUp p){
+        
     }
 }

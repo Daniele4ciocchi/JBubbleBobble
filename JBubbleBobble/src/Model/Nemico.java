@@ -90,7 +90,7 @@ public class Nemico extends Entita implements Runnable{
         if (this.getX() < gx) {
             if (getCarattere() % 2 == 0) moveRight();
         } else if (this.getX() > gx) {
-            getCarattere() % 2 == 0? moveLeft(): wait()
+            //getCarattere() % 2 == 0? moveLeft(): wait()
         } //todo da finire sta merda
 
         // controllo verticale di dove si trova il giocatore, salta di conseguenza

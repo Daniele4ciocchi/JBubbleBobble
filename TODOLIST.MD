@@ -6,4 +6,5 @@ TODOLIST
 - [ ] implementare i txt dei livelli
 - [ ] ideare il sistema dello score 
 - [ ] fare una grafica decente (the big one)
+- [ ] aggiungere un cooldown agli spari 
 - when we start?
