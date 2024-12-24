@@ -6,7 +6,7 @@ import java.util.Random;
 public class Nemico extends Entita implements Runnable{
 
     // Enumerazione delle tipologie di nemici con le relative caratteristiche
-    public enum TipologiaNemico{
+    public enum Tipologia{
         //NOME (VELOCITÀ(1-3, 4 per la modalità arrabbiato), SALTO(1-3), MOSSE, ATTACCO)
         ZENCHAN("zen-chan",2, 2, "", "contatto"),
         BANEBOU("banebou",3, 2, "", "contatto"),
@@ -22,7 +22,7 @@ public class Nemico extends Entita implements Runnable{
         private final String mosse;
         private final String attacco;
 
-        TipologiaNemico(String nome, int velocita, int salto, String mosse, String attacco){
+        Tipologia(String nome, int velocita, int salto, String mosse, String attacco){
             this.nome = nome;
             this.velocita = velocita;
             this.salto = salto;
@@ -38,7 +38,7 @@ public class Nemico extends Entita implements Runnable{
         public String getAttacco(){return this.attacco;}
     }
 
-    private TipologiaNemico TIPOLOGIA;
+    private Tipologia tipologia;
     private int carattere; //intero da 1 a 10, generato nel costruttore, usato nei parametri di comportamento
 
     private boolean bubbled;
@@ -49,9 +49,9 @@ public class Nemico extends Entita implements Runnable{
      * @param x la posizione x del nemico
      * @param y la posizione y del nemico
      */
-    public Nemico(TipologiaNemico t, int x, int y){
+    public Nemico(Tipologia t, int x, int y){
         super( x, y, t.getVelocita(), t.getSalto(), 1);
-        TIPOLOGIA = t;
+        tipologia = t;
         bubbled = false;
 
         Random rand = new Random();
@@ -60,8 +60,8 @@ public class Nemico extends Entita implements Runnable{
 
     //metodi getter
     // Restituisce la Tipologia di questo nemico
-    public TipologiaNemico getTipologia(){
-        return TIPOLOGIA;
+    public Tipologia getTipologia(){
+        return tipologia;
     }
 
     public boolean isBubbled(){

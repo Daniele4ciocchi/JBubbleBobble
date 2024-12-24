@@ -7,19 +7,20 @@ import java.util.Observer;
             1 - rosa: giocatore spara 35 bolle      ->  le bolle vanno più lontano
             2 - blu:  giocatore scoppia 35 bolle    ->  le bolle vanno più veloci
             3 - gialle: il giocatore salta 35 volte ->  le bolle vengono lanciate più velocemente
-        - ombrelli(UMBRELLA)(200punti): fanno skippare livelli
-            4 - arancione: uccidi 15 nemici   -> skippa 3 livelli
-            5 - rosso: uccidi 20 nemici       -> skippa 5 livelli
-            6 - rosa: uccidi 25 nemici        -> skippa 7 livelli
         - anelli(RING)(1000punti): danno punti
             7 - rosa: giocatore mangia 3 caramelle rosa   -> i salti danno 500 punti
             8 - rosso: giocatore mangia 3 caramelle rosse -> le bolle sparate danno 100 punti
             9 - blu: giocatore mangia 3 caramelle blu     -> spostarsi di un pixel da 10 punti
         - lampade(LANTERN)(2000punti):
-            10 - blu:      -> effetto di tutti e 3 gli anelli
-            11 - rossa:    -> effetto di tutte e 3 le caramelle e tutti e 3 gli anelli
-            12 - rosa:     -> 6000 punti + tutti i nemici muoiono
-            13 - gialla:   -> effetto di tutte 3 le caramelle
+            - blu:      -> effetto di tutti e 3 gli anelli
+            - rossa:    -> effetto di tutte e 3 le caramelle e tutti e 3 gli anelli
+            - rosa:     -> 6000 punti + tutti i nemici muoiono
+            - gialla:   -> effetto di tutte 3 le caramelle
+
+        - croci(CROSS)(3000):
+            - blu: Collect 10 / 11 / 12 / 13 special items -> skip 3 lvl
+            - gialla: Collect 10 / 12 / 14 / 16 point items -> skip 5 lvl
+        - scarpa(SNEAKER)(100): Run across the full length of the screen 15 times. -> +velocita, salto, gravita
 */
 public class PowerUp extends Entita{
     public enum Tipologia{
@@ -36,7 +37,8 @@ public class PowerUp extends Entita{
         BONUS_MOV,       // 10 punti per ogni pixel di movimento (da capire come implementarla)
         BONUS_SALTO,    // 500 punti per salto
         BONUS_SPARO,    // 100 punti per sparo
-        SKIP_LVL        // skip di 3/5/7 livelli
+        SKIP_LVL,        // skip di 3/5/7 livelli
+        SNEAKER          // +velocita, salto, gravita
     }
 
     private Tipologia tipologia;

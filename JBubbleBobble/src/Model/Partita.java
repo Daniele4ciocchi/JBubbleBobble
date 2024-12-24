@@ -135,12 +135,12 @@ public class Partita {
             for (int j = 0;j<36;j++){
                 if (grid[i][j].getType().toString().contains("_SPAWN")){
                     switch (grid[i][j].getType().toString().replace("_SPAWN", "")){
-                        case "ZENCHAN" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.ZENCHAN, i, j));
-                        case "BANEBOU" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.BANEBOU, i, j));
-                        case "MIGHTA" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.MIGHTA, i, j));
-                        case "HIDEGON" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.HIDEGON, i, j));
-                        case "PULPUL" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.PULPUL, i, j));
-                        case "MONSTA" -> this.addEntita(new Nemico(Nemico.TipologiaNemico.MONSTA, i, j));
+                        case "ZENCHAN" -> this.addEntita(new Nemico(Nemico.Tipologia.ZENCHAN, i, j));
+                        case "BANEBOU" -> this.addEntita(new Nemico(Nemico.Tipologia.BANEBOU, i, j));
+                        case "MIGHTA" -> this.addEntita(new Nemico(Nemico.Tipologia.MIGHTA, i, j));
+                        case "HIDEGON" -> this.addEntita(new Nemico(Nemico.Tipologia.HIDEGON, i, j));
+                        case "PULPUL" -> this.addEntita(new Nemico(Nemico.Tipologia.PULPUL, i, j));
+                        case "MONSTA" -> this.addEntita(new Nemico(Nemico.Tipologia.MONSTA, i, j));
                         case "PLAYER" -> entitaAttive.getFirst().setPosizione(i,j);
                     }
                 }

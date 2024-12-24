@@ -7,4 +7,7 @@ TODOLIST
 - [ ] ideare il sistema dello score 
 - [ ] fare una grafica decente (the big one)
 - [ ] aggiungere un cooldown agli spari 
+- [ ] implementazione buff powerup: es. modificatori bolle
+- [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
+- [ ] powerup ombrelli: 
 - when we start?
