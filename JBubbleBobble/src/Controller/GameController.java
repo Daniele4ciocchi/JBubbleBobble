@@ -38,6 +38,14 @@ public class GameController {
     private int caramelleRosseMangiate = 0;
     private int caramelleBluMangiate = 0;
 
+    // campi dei buff dei powerup
+    private boolean BOLLE_RANGE_UP = false;
+    private boolean BOLLE_VEL_UP = false;
+    private boolean BOLLE_FIRERATE_UP = false;
+    private boolean BONUS_MOV = false;
+    private boolean BONUS_SALTO = false;
+    private boolean BONUS_SPARO = false;
+
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
         this.view = view;
@@ -90,6 +98,32 @@ public class GameController {
     }
 
     
+    private void updateGame() throws IOException {
+        //TODO: indice del loop di gioco
+        //  - far comparire tutte le entità
+        //  - far muovere le entità (forse questo è un compito di partita)
+        //  - far sparire le entità (e anche questo) partita.clear()
+        //  - costruire lo sfondo del livello (compito della view)
+        //  - posizionare le entità (compito della view)
+        //  -
+
+
+        //view.setBackgroundImage(view.createImage(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
+        partita.posizionaEntita();
+
+
+        //controllo movimento giocatore
+        checkPlayerMovement();
+
+        view.getPanel().repaint();
+    }
+
+
+    private void renderGame() {
+        // Render the game state to the view
+        view.getPanel().repaint();
+    }
+
     // funzione invocata nel game loop al raggiungimento di un requisito per un powerup
     // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
     private PowerUp spawnPowerUps(int sx, int sy){
@@ -145,29 +179,4 @@ public class GameController {
         
     }
 
-    private void updateGame() throws IOException {
-        //TODO: indice del loop di gioco
-        //  - far comparire tutte le entità
-        //  - far muovere le entità (forse questo è un compito di partita)
-        //  - far sparire le entità (e anche questo) partita.clear()
-        //  - costruire lo sfondo del livello (compito della view)
-        //  - posizionare le entità (compito della view)
-        //  -
-
-
-        //view.setBackgroundImage(view.createImage(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
-        partita.posizionaEntita();
-
-
-        //controllo movimento giocatore
-        checkPlayerMovement();
-
-        view.getPanel().repaint();
-    }
-
-
-    private void renderGame() {
-        // Render the game state to the view
-        view.getPanel().repaint();
-    }
 }
