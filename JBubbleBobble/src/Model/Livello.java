@@ -40,7 +40,7 @@ public class Livello {
         grid = new Tile[26][36];
         int i = 0;
         try {
-            File f = new File("Model/data/levels/" + levelNum + ".txt");
+            File f = new File("JBubbleBobble" + File.separator + "src" + File.separator + "Model" + File.separator + "data" + File.separator + "levels" + File.separator + levelNum + ".txt");
             Scanner myReader = new Scanner(f);
             while (myReader.hasNextLine()) {
                 String nextToken = myReader.next();
@@ -95,7 +95,8 @@ public class Livello {
     }
 
     public String getTilePath() {
-        String tilePath = "resources/blocks/normal blocks/";
+        String tilePath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "blocks" + File.separator + "normal blocks";
+
         return tilePath + "block_" + levelNum + ".png";
     }
 
