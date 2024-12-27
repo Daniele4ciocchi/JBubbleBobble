@@ -35,6 +35,7 @@ public class Giocatore extends Entita{
     public void addObserver(Observer o){
         observers.add(o);
     }
+    
     @Override
     public void deleteObserver(Observer o){
         observers.remove(o);
