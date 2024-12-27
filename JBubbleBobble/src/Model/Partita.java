@@ -3,10 +3,8 @@ package Model;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
-public class Partita extends Observable{
+public class Partita {
 
 
     //TODO: nothing
@@ -14,7 +12,6 @@ public class Partita extends Observable{
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
     private ArrayList<Entita> entitaMorte;
 
-    
     //counter per poter ottenere determinati powerUp
     private int punteggio;
 
@@ -30,7 +27,7 @@ public class Partita extends Observable{
     private int caramelleRosseMangiate;
     private int caramelleBluMangiate;
 
-    // campi dei buff dei powerup
+    // campi dei buff dei powerup, per info guarda in PowerUp.java
     private boolean BOLLE_RANGE_UP;
     private boolean BOLLE_VEL_UP;
     private boolean BOLLE_FIRERATE_UP;
@@ -156,47 +153,48 @@ public class Partita extends Observable{
 
     // controllo dei requisiti degli spawn powerup
     // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
-    private PowerUp spawnPowerUps(int sx, int sy){
+    // NOTA: forse va usato .addEntita(), da decidere  
+    private SpecialItem spawnPowerUps(int sx, int sy){
         // OMBRELLI
         if (nemiciUccisi == 15){
             nemiciUccisi++;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ARANCIONE);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.OMBRELLO,SpecialItem.Colore.ARANCIONE);
         }
         else if (nemiciUccisi == 26){
             nemiciUccisi++;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ROSSO);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.OMBRELLO,SpecialItem.Colore.ROSSO);
         }
         else if (nemiciUccisi == 37){
             nemiciUccisi = 0;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.OMBRELLO,PowerUp.Colore.ROSA);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.OMBRELLO,SpecialItem.Colore.ROSA);
         }
 
         // CARAMELLE
         else if (saltiEffettuati == 35){
             saltiEffettuati = 0;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.GIALLO);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.GIALLO);
         }
         else if (bolleSparate == 35){
             bolleSparate = 0;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.ROSA);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.ROSA);
         }
         else if (bolleScoppiate == 35){
             bolleScoppiate = 0;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.CARAMELLA,PowerUp.Colore.BLU);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.BLU);
         }
 
         // ANELLI
         else if (caramelleRosaMangiate == 3){
             caramelleRosaMangiate = 0;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.ROSA);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.ANELLO,SpecialItem.Colore.ROSA);
         }
         else if (caramelleRosseMangiate == 3){
             caramelleRosseMangiate = 0;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.ROSSO);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.ANELLO,SpecialItem.Colore.ROSSO);
         }
         else if (caramelleBluMangiate == 3){
             caramelleBluMangiate = 0;
-            return new PowerUp(sx,sy,0,0,0,PowerUp.Tipologia.ANELLO,PowerUp.Colore.BLU);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.ANELLO,SpecialItem.Colore.BLU);
         }
 
         else{
@@ -204,8 +202,8 @@ public class Partita extends Observable{
         }
     }
 
-    // powerup raccolto!
-    private void usePowerUp(PowerUp p){
+    // powerup raccolto! metodo che si occupa di applicarne gli effetti
+    private void usePowerUp(SpecialItem p){
         
     }
 }

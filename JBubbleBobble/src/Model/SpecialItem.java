@@ -21,15 +21,14 @@ import java.util.Observer;
             5 - gialla: Collect 15 point items -> skip 5 lvl
         - 6, scarpa(SNEAKER)(100): Run across the full length of the screen 15 times. -> +velocita, salto, gravita
 */
-public class PowerUp extends Entita{
+public class SpecialItem extends Entita{
     public enum Tipologia{
-        CARAMELLA, OMBRELLO, ANELLO, LANTERNA, SNEAKER
+        CARAMELLA, OMBRELLO, ANELLO, SNEAKER, POINT
     }
     public enum Colore{
         ROSA, BLU, GIALLO, ARANCIONE, ROSSO, EMPTY
     }
     public enum Effetto{
-        POINTS, 
         BOLLE_RANGE_UP, // aumento del range delle bolle
         BOLLE_VEL_UP,   // aumento della velocità delle bolle
         BOLLE_FIRERATE_UP, // aumento della velocità di fuoco del giocatore
@@ -37,14 +36,15 @@ public class PowerUp extends Entita{
         BONUS_SALTO,    // 500 punti per salto
         BONUS_SPARO,    // 100 punti per sparo
         SKIP_LVL,        // skip di 3/5/7 livelli
-        SNEAKER_BUFF         // +velocita, salto, gravita
+        SNEAKER_BUFF,        // +velocita, salto, gravita
+        NULL
     }
 
     private Tipologia tipologia;
     private Colore colore;
     private Effetto effetto;
 
-    public PowerUp(int posx, int posy, int velocitaX, int velocitaY, int gravita, Tipologia tipologia, Colore colore){
+    public SpecialItem(int posx, int posy, int velocitaX, int velocitaY, int gravita, Tipologia tipologia, Colore colore){
         super(posx, posy, velocitaX, velocitaY, gravita);
         this.tipologia = tipologia;
         this.colore = colore;
@@ -53,17 +53,17 @@ public class PowerUp extends Entita{
                 case ROSA   -> Effetto.BOLLE_RANGE_UP;
                 case BLU    -> Effetto.BOLLE_VEL_UP;
                 case GIALLO -> Effetto.BOLLE_FIRERATE_UP;
-                default     -> Effetto.POINTS;
+                default -> Effetto.NULL;
             };
             case OMBRELLO -> Effetto.SKIP_LVL; // 3, 5, 7 viene deciso in GameController, controllando il colore dell'ombrello
             case ANELLO -> switch (this.colore) {
                 case ROSA   -> Effetto.BONUS_SALTO;
                 case ROSSO  -> Effetto.BONUS_SPARO;
                 case BLU    -> Effetto.BONUS_MOV;
-                default     -> Effetto.POINTS;
+                default     -> Effetto.NULL;
             };
-            case LANTERNA -> Effetto.POINTS;
             case SNEAKER ->  Effetto.SNEAKER_BUFF;
+            default -> Effetto.NULL;
         };
     }
     
@@ -73,7 +73,6 @@ public class PowerUp extends Entita{
             case CARAMELLA  -> 1000;
             case OMBRELLO   ->  200;
             case ANELLO     -> 1000;
-            case LANTERNA   -> 2000;
             case SNEAKER    -> 100;
             default -> 0;
         };

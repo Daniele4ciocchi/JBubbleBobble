@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Entita;
 import Model.Partita;
-import Model.PowerUp;
+import Model.SpecialItem;
 import View.GameView;
 import View.MenuView;
 import View.PartitaView;
