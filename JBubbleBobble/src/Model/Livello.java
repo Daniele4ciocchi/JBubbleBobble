@@ -41,7 +41,6 @@ public class Livello {
         int i = 0;
         try {
             File f = new File("JBubbleBobble" + File.separator + "src" + File.separator + "Model" + File.separator + "data" + File.separator + "levels" + File.separator + levelNum + ".txt");
-            File f = new File("JBubbleBobble" + File.separator + "src" + File.separator + "Model" + File.separator + "data" + File.separator + "levels" + File.separator + levelNum + ".txt");
             Scanner myReader = new Scanner(f);
             while (myReader.hasNextLine()) {
                 String nextToken = myReader.next();
