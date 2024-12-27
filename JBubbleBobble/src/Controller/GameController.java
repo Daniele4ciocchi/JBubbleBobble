@@ -36,6 +36,7 @@ public class GameController {
         this.view = view;
         view.addPanel(new PartitaView(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
         startGameLoop();
+        setupKeyBindings();
 
     }
 

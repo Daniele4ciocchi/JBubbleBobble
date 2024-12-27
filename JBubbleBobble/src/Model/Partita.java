@@ -3,8 +3,10 @@ package Model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Partita {
+public class Partita extends Observable{
 
 
     //TODO: nothing
@@ -12,6 +14,7 @@ public class Partita {
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
     private ArrayList<Entita> entitaMorte;
 
+    
     //counter per poter ottenere determinati powerUp
     private int punteggio;
 
