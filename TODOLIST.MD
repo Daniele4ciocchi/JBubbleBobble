@@ -9,5 +9,6 @@ TODOLIST
 - [ ] aggiungere un cooldown agli spari 
 - [ ] implementazione buff powerup: es. modificatori bolle
 - [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
-- [ ] powerup ombrelli: 
+- [ ] AudioManager.java: implementazione
+- [ ] importazione sound effects (SFX)
 - when we start?

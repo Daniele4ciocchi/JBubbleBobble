@@ -1,10 +1,11 @@
 package main;
 
 import Model.*;
-import Controller.MenuController;
 import View.MenuView;
 
 import javax.swing.*;
+
+import Controller.MenuController;
 
 public class JBubbleBobble {
     public static JFrame frame;

@@ -18,22 +18,23 @@ public class Partita {
     private boolean vinta;
     Livello livello;
 
-    private int score = 0;
-    private int nemiciUccisi = 0;
-    private int saltiEffettuati = 0;
-    private int bolleSparate = 0;
-    private int bolleScoppiate = 0;
-    private int caramelleRosaMangiate = 0;
-    private int caramelleRosseMangiate = 0;
-    private int caramelleBluMangiate = 0;
+    private int score;
+    private int nemiciUccisi;
+    private int saltiEffettuati;
+    private int bolleSparate;
+    private int bolleScoppiate;
+    private int caramelleRosaMangiate;
+    private int caramelleRosseMangiate;
+    private int caramelleBluMangiate;
 
     // campi dei buff dei powerup
-    private boolean BOLLE_RANGE_UP = false;
-    private boolean BOLLE_VEL_UP = false;
-    private boolean BOLLE_FIRERATE_UP = false;
-    private boolean BONUS_MOV = false;
-    private boolean BONUS_SALTO = false;
-    private boolean BONUS_SPARO = false;
+    private boolean BOLLE_RANGE_UP;
+    private boolean BOLLE_VEL_UP;
+    private boolean BOLLE_FIRERATE_UP;
+    private boolean BONUS_MOV;
+    private boolean BONUS_SALTO;
+    private boolean BONUS_SPARO;
+    private boolean SNEAKER_BUFF;
 
     /**
      * Costruttore della classe Partita,
@@ -80,7 +81,7 @@ public class Partita {
         this.vinta = false;
     }
 
-    //metodi getter
+    // getter
     public ArrayList<Entita> getEntita(){return this.entitaAttive;}
     public ArrayList<Entita> getEntitaMorte(){return this.entitaMorte;}
 
@@ -148,7 +149,9 @@ public class Partita {
         }
     }
 
-    // funzione invocata nel game loop al raggiungimento di un requisito per un powerup
+    // ======== POWERUPS ========
+
+    // controllo dei requisiti degli spawn powerup
     // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
     private PowerUp spawnPowerUps(int sx, int sy){
         // OMBRELLI
@@ -198,7 +201,7 @@ public class Partita {
         }
     }
 
-    // invocata alla raccolta del powerup per applicare il suo effetto
+    // powerup raccolto!
     private void usePowerUp(PowerUp p){
         
     }

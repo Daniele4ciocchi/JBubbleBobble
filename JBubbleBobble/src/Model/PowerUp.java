@@ -16,18 +16,17 @@ import java.util.Observer;
             - rossa:    -> effetto di tutte e 3 le caramelle e tutti e 3 gli anelli
             - rosa:     -> 6000 punti + tutti i nemici muoiono
             - gialla:   -> effetto di tutte 3 le caramelle
-
         - croci(CROSS)(3000):
-            - blu: Collect 10 / 11 / 12 / 13 special items -> skip 3 lvl
-            - gialla: Collect 10 / 12 / 14 / 16 point items -> skip 5 lvl
-        - scarpa(SNEAKER)(100): Run across the full length of the screen 15 times. -> +velocita, salto, gravita
+            4 - blu: Collect powerup -> skip 3 lvl
+            5 - gialla: Collect 15 point items -> skip 5 lvl
+        - 6, scarpa(SNEAKER)(100): Run across the full length of the screen 15 times. -> +velocita, salto, gravita
 */
 public class PowerUp extends Entita{
     public enum Tipologia{
-        CARAMELLA, OMBRELLO, ANELLO, LANTERNA
+        CARAMELLA, OMBRELLO, ANELLO, LANTERNA, SNEAKER
     }
     public enum Colore{
-        ROSA, BLU, GIALLO, ARANCIONE, ROSSO
+        ROSA, BLU, GIALLO, ARANCIONE, ROSSO, EMPTY
     }
     public enum Effetto{
         POINTS, 
@@ -38,7 +37,7 @@ public class PowerUp extends Entita{
         BONUS_SALTO,    // 500 punti per salto
         BONUS_SPARO,    // 100 punti per sparo
         SKIP_LVL,        // skip di 3/5/7 livelli
-        SNEAKER          // +velocita, salto, gravita
+        SNEAKER_BUFF         // +velocita, salto, gravita
     }
 
     private Tipologia tipologia;
@@ -64,24 +63,20 @@ public class PowerUp extends Entita{
                 default     -> Effetto.POINTS;
             };
             case LANTERNA -> Effetto.POINTS;
+            case SNEAKER ->  Effetto.SNEAKER_BUFF;
         };
     }
     
-
     // restituisce lo score del powerup come intero
-    public int getPoints(){
-        switch (this.tipologia){
-            case CARAMELLA:
-                return 1000;
-            case OMBRELLO:
-                return 200;
-            case ANELLO:
-                return 1000;
-            case LANTERNA:
-                return 2000;
-            default:
-                return 0;
-        }
+    public int getPoints(){ 
+        return switch(this.tipologia){
+            case CARAMELLA  -> 1000;
+            case OMBRELLO   ->  200;
+            case ANELLO     -> 1000;
+            case LANTERNA   -> 2000;
+            case SNEAKER    -> 100;
+            default -> 0;
+        };
     }
 
     public Tipologia getTipologia(){
