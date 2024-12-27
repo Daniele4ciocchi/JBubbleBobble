@@ -6,7 +6,7 @@ TODOLIST
 - [ ] implementare i txt dei livelli
 - [ ] ideare il sistema dello score 
 - [ ] fare una grafica decente (the big one)
-- [ ] aggiungere un cooldown agli spari 
+- [ ] aggiungere un cooldown agli spari in Partita.java
 - [ ] implementazione buff powerup: es. modificatori bolle
 - [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
 - [ ] AudioManager.java: implementazione
