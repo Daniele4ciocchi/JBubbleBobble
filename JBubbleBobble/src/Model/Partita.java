@@ -156,7 +156,7 @@ public class Partita {
     // NOTA: forse va usato .addEntita(), da decidere  
     private SpecialItem spawnPowerUps(int sx, int sy){
         // OMBRELLI
-        if (nemiciUccisi == 15){
+        /* if (nemiciUccisi == 15){
             nemiciUccisi++;
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.OMBRELLO,SpecialItem.Colore.ARANCIONE);
         }
@@ -167,16 +167,16 @@ public class Partita {
         else if (nemiciUccisi == 37){
             nemiciUccisi = 0;
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.OMBRELLO,SpecialItem.Colore.ROSA);
-        }
+        } */
 
         // CARAMELLE
-        else if (saltiEffettuati == 35){
-            saltiEffettuati = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.GIALLO);
-        }
-        else if (bolleSparate == 35){
+        if (saltiEffettuati == 35){
             bolleSparate = 0;
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.ROSA);
+        }
+        else if (bolleSparate == 35){
+            saltiEffettuati = 0;
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.GIALLO);
         }
         else if (bolleScoppiate == 35){
             bolleScoppiate = 0;
@@ -203,7 +203,20 @@ public class Partita {
     }
 
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
-    private void usePowerUp(SpecialItem p){
-        
+    private void usePowerUp(Entita p){
+        if (!(p instanceof SpecialItem || p instanceof PointItem)) return;
+        else if (p instanceof PointItem) addPunteggio(((PointItem) p).getPoints());
+        else if (p instanceof SpecialItem) {
+            switch (((SpecialItem) p).getEffetto()){
+                case BOLLE_RANGE_UP -> BOLLE_RANGE_UP = true;
+                case BOLLE_VEL_UP -> BOLLE_VEL_UP = true;
+                case BOLLE_FIRERATE_UP -> BOLLE_FIRERATE_UP = true;
+                case BONUS_MOV -> BONUS_MOV = true;
+                case BONUS_SALTO -> BONUS_SALTO = true;
+                case BONUS_SPARO -> BONUS_SPARO = true;
+                case SNEAKER_BUFF -> SNEAKER_BUFF = true;
+                case NULL -> System.out.println("Effetto non trovato!");
+            }
+        }
     }
 }
