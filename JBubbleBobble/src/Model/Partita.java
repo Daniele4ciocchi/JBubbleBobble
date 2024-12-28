@@ -110,11 +110,11 @@ public class Partita {
 
         for (int i = 0; i < entitaAttive.size(); i++) {
             Entita e1 = entitaAttive.get(i);
-            Rectangle rect1 = new Rectangle(e1.getX(), e1.getY(), e1.getWidth(), e1.getHeight());
+            Rectangle rect1 = new Rectangle(e1.getX(), e1.getY(), e1.getEntitysize(), e1.getEntitysize());
 
             for (int j = i + 1; j < entitaAttive.size(); j++) {
                 Entita e2 = entitaAttive.get(j);
-                Rectangle rect2 = new Rectangle(e2.getX(), e2.getY(), e2.getWidth(), e2.getHeight());
+                Rectangle rect2 = new Rectangle(e2.getX(), e2.getY(), e2.getEntitysize(), e2.getEntitysize());
 
                 if (rect1.intersects(rect2)) {
                     int dx = Math.abs(e1.getX() - e2.getX());
@@ -202,23 +202,20 @@ public class Partita {
     }
 
     public void applyGravity(Entita e) {
-        // Incrementa velocità verticale con un limite massimo
-        int velocitaMassima = 10;
-        e.setMovimentoY(Math.min(e.getMovimentoY() + e.getGravita(), velocitaMassima));
-    
-        // Calcola la nuova posizione
+        // Aggiorna movimento Y con gravità negativa
+        e.setMovimentoY(e.getMovimentoY() + e.getGravita());
         int newY = e.getY() + e.getMovimentoY();
-    
-        // Controlla il tipo di tile sotto l'entità
-        Tile tileBelow = livello.getTile(e.getX(), newY + e.getHeight());
-        if (tileBelow.getType().isWalkable() || tileBelow.getType().isSolid()) {
-            e.setPosizione(e.getX(), newY); // Nessuna collisione, aggiorna la posizione
+
+        // Controllo collisione con il terreno o piattaforme
+        if (livello.getTile(e.getX(), newY - e.getEntitysize()).getType().isWalkable()) {
+            e.setPosizione(e.getX(), newY);
         } else {
-            // Collisione con il suolo, ferma la caduta
+            // Se colpisce il terreno, ferma la caduta
             e.setPosizione(e.getX(), (newY / 32) * 32);
             e.setMovimentoY(0);
         }
     }
+
 
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
     private void usePowerUp(Entita p){

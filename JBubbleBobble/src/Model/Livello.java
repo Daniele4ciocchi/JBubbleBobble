@@ -10,7 +10,7 @@ public class Livello {
 
     private int levelNum = 1;
     private Tile[][] grid;
-    private int tilesize = 32;
+    private int tilesize = 16;
 
 
     public Livello(int livello){
@@ -95,7 +95,9 @@ public class Livello {
     }
     public boolean isOnGround(Entita e) {
         // Check if the entity is on the ground
-        return grid[e.getX()][e.getY()].getType().isWalkable();
+        int x = e.getX() / 32;
+        int y = e.getY() / 32;
+        return grid[x][y].getType().isWalkable();
     }
 
     

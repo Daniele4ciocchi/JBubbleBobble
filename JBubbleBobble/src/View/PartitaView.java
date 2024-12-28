@@ -26,7 +26,7 @@ public class PartitaView extends JPanel implements Observer {
         this.entita = new ArrayList<Entita>();
 
 
-        setPreferredSize(new Dimension(grid.length * tileSize, grid[0].length * tileSize));
+        setPreferredSize(new Dimension(36 * tileSize, 26 * tileSize));
         setBackground(Color.BLACK);
     }
 
@@ -71,13 +71,14 @@ public class PartitaView extends JPanel implements Observer {
 
     public void paintEntita(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        //int gridHeight = grid.length;       // Numero di righe
+        int gridHeight = grid.length ;       // Numero di righe
         //int gridWidth = grid[0].length;    // Numero di colonne
 
         // Inserimento entità
         for (Entita e : entita) {
+            int y = (((gridHeight - 1) * tileSize) - e.getY()) ;
             g2d.setColor(Color.RED);
-            g2d.fillRect(e.getX(), e.getY(), e.getEntitysize(), e.getEntitysize());
+            g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
         }
     }
 

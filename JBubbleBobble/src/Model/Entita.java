@@ -13,7 +13,7 @@ abstract public class Entita extends Observable {
     private int movimentoX;
     private int movimentoY;
 
-    private int gravita = -1; //negativa in quanto verso il basso
+    private int gravita = 1; //negativa in quanto verso il basso
     private int jumpForce = 5;
 
     private int entitysize = 16;

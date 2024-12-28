@@ -44,7 +44,7 @@ public class GameController {
 
         startGameLoop();
         setupKeyBindings();
-        System.out.println(partita.getLivello().toString());
+        
         for (Entita e : partita.getEntita()) {
             e.addObserver(view.getPanel());
         }
@@ -128,7 +128,7 @@ public class GameController {
 
         //view.getPanel().setEntita(partita.getEntita());
         //for (Entita e : partita.getEntita()) partita.applyGravity(e);
-        //partita.applyGravity(partita.getEntita().getFirst());
+        partita.applyGravity(partita.getEntita().getFirst());
 
         
         //controllo movimento giocatore

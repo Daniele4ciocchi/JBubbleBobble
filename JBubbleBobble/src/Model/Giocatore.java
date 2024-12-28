@@ -12,7 +12,7 @@ public class Giocatore extends Entita{
 
 
     public Giocatore(){
-        super(5, 1, 10, 1, -1);
+        super(5, 1, 10, 1, 1);
         this.life = 3;
         this.direction = true;
 
