@@ -202,6 +202,20 @@ public class Partita {
         }
     }
 
+    public void applyGravity(Entita e) {
+        e.setVelocitaX(e.getVelocitaY() + e.getGravita());
+        int newY = e.getY() + e.getVelocitaY();
+
+        // Controllo collisione con il terreno o piattaforme
+        if (livello.getTile(e.getX(), newY + e.getHeight()).getType().isWalkable()) {
+            e.setPosizione(e.getX(),newY);
+        } else {
+            // Se colpisce il terreno, ferma la caduta
+            e.setPosizione(e.getX(),(newY / 32) * 32);
+            e.setVelocitaY(0);
+        }
+    }
+
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
     private void usePowerUp(SpecialItem p){
         

@@ -9,14 +9,19 @@ abstract public class Entita extends Observable {
     private int posx;
     private int posy;
     private boolean alive;
+
     private int velocitaX;
-    private int velocitaY;
-    private int gravita;
+    private double velocitaY;
+
+    private double gravita;
+    private int jumpForce;
+    private boolean isJumping = false;
+
     private int width;
     private int height;
 
 
-    public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
+    public Entita(int posx, int posy, int velocitaX, int velocitaY, double gravita){
         this.posx = posx;
         this.posy = posy;
         this.alive = true;
@@ -29,13 +34,13 @@ abstract public class Entita extends Observable {
     public int getY(){ return posy;}
     public boolean isAlive(){ return alive;}
     public int getVelocitaX(){ return velocitaX;}
-    public int getVelocitaY(){ return velocitaY;}
-    public int getGravita(){ return gravita;}
+    public double getVelocitaY(){ return velocitaY;}
+    public double getGravita(){ return gravita;}
     public int getWidth(){ return width;}
     public int getHeight(){ return height;}
 
-    public void setVelocitaY(int i) {this.velocitaY = i;}
-    public void setVelocitaX(int i) {this.velocitaX = i;}
+    public void setVelocitaY(double i) {this.velocitaY = i;}
+    public void setVelocitaX(double i) {this.velocitaX = i;}
     public void setGravita(int i) {this.gravita = i;}
     public void setWidth(int i) {this.width = i;}
     public void setHeight(int i) {this.height = i;}
@@ -43,21 +48,35 @@ abstract public class Entita extends Observable {
 
     public void moveLeft() {
         posx -= velocitaX;
+        setChanged();
+        notifyObservers();
     }
 
     public void moveRight() {
         posx += velocitaX;
+        setChanged();
+        notifyObservers();
     }
 
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
     //      allora può fare il jump
 
     public void jump() {
-        setVelocitaY(-10);
+        if (!isJumping) {
+            isJumping = true;
+            velocitaY = jumpForce;
+        }
+        setChanged();
+        notifyObservers();
     }
 
+    
     //TODO: serve? (secondo me no)
-    public void dead(){this.alive = false;}
+    public void dead(){
+        this.alive = false;
+        setChanged();
+        notifyObservers();
+    }
 
     /**
      * Setta la posizione dell'entità
@@ -78,28 +97,5 @@ abstract public class Entita extends Observable {
         this.velocitaX = x;
         this.velocitaY = y;
     }
-    /*
-    public void applyGravity() {
-        this.setVelocitaY(this.getVelocitaY() + this.getGravita());
-        int newY = getPosY() + getVelocitaY();
-
-        // Controllo collisione con il terreno o piattaforme
-        if (Livello.getInstance().getTile(this.getPosX(), newY + getHeight()).getType().isWalkable()) {
-            this.setPosizione(this.getPosX(),newY);
-        } else {
-            // Se colpisce il terreno, ferma la caduta
-            setPosizione(this.getPosX(),(newY / 32) * 32);
-            this.setVelocitaY(0);
-        }
-    }
-    */
-
-    @Override
-    public abstract void addObserver(Observer o);
-    @Override
-    public abstract void deleteObserver(Observer o);
-    @Override
-    public abstract void notifyObservers();
-
-
+    
 }

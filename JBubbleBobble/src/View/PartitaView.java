@@ -10,8 +10,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class PartitaView extends JPanel implements Observable {
+public class PartitaView extends JPanel implements Observer {
     private Tile[][] grid;
     private ArrayList<Entita> entita;
     private BufferedImage image;
@@ -19,10 +21,10 @@ public class PartitaView extends JPanel implements Observable {
     private final int tileSize = 16; // Dimensione di ogni cella
     private final int entitySize = 32; // Dimensione di ogni entità
 
-    public PartitaView(Tile[][] grid, String path, ArrayList<Entita> entita) {
+    public PartitaView(Tile[][] grid, String path) {
         super();
         this.grid = grid;
-        this.entita = entita;
+        this.entita = new ArrayList<Entita>();
 
         // Caricamento delle immagini
         try {
@@ -75,5 +77,14 @@ public class PartitaView extends JPanel implements Observable {
         super.paintComponent(g);
         paintLivello(g);
         paintEntita(g);
+    }
+
+    public void setEntita(ArrayList<Entita> entita) {
+        this.entita = entita;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
     }
 }

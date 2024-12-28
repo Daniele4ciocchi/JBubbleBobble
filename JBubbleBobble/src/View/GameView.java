@@ -34,6 +34,7 @@ public class GameView  {
 
     }
     public void addPanel(PartitaView panel) {
+        this.panel = panel;
         frame.add(panel);
     }
 

@@ -12,7 +12,7 @@ public class Giocatore extends Entita{
 
 
     public Giocatore(){
-        super(25, 5, 1, 1, 1);
+        super(25, 5, 1, 1, 0.5);
         this.life = 3;
         this.direction = true;
 
@@ -30,20 +30,5 @@ public class Giocatore extends Entita{
         return new Bolla(this.direction? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, this.direction);
     }
 
-    //metodi per observer
-    @Override
-    public void addObserver(Observer o){
-        observers.add(o);
-    }
     
-    @Override
-    public void deleteObserver(Observer o){
-        observers.remove(o);
-    }
-    @Override
-    public void notifyObservers(){
-        for (Observer o : observers){
-            o.update(this,o);
-        }
-    }
 }

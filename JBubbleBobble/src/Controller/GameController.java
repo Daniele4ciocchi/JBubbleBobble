@@ -28,16 +28,21 @@ public class GameController {
 
     private boolean leftPressed = false;
     private boolean rightPressed = false;
+    private boolean jump = false;
 
     
 
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
         this.view = view;
-        view.addPanel(new PartitaView(partita.getLivello().getGrid(),partita.getLivello().getTilePath(),partita.getEntita()));
+        view.addPanel(new PartitaView(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
         startGameLoop();
         setupKeyBindings();
 
+        for (Entita e : partita.getEntita()) {
+            e.addObserver(view.getPanel());
+        }
+        
     }
 
     private void setupKeyBindings() {
@@ -49,7 +54,8 @@ public class GameController {
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     rightPressed = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    partita.getEntita().getFirst().jump();
+                    jump = true;
+                    
                 }
             }
 
@@ -59,6 +65,8 @@ public class GameController {
                     leftPressed = false;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     rightPressed = false;
+                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    jump = false;
                 }
             }
         });
@@ -69,21 +77,28 @@ public class GameController {
             partita.getEntita().getFirst().moveLeft();
         } else if (rightPressed) {
             partita.getEntita().getFirst().moveRight();
+        } else if (jump) {
+            partita.getEntita().getFirst().jump();
         }
     }
 
     private void startGameLoop() {
-        Timer timer = new Timer(16, e -> {
-            try {
-                gameLoop();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        Timer timer = new Timer(16, e -> {try {
+            gameLoop();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }});
+        
+        partita.posizionaEntita();
+        //System.out.println(view.getPanel());
+        view.getPanel().setEntita(partita.getEntita());
+        view.getPanel().repaint();
         timer.start();
     }
     
     private void gameLoop() throws IOException {
+        //System.out.println("Game loop");
         //TODO: indice del loop di gioco
         //  - far comparire tutte le entità
         //  - far muovere le entità (forse questo è un compito di partita)
@@ -92,15 +107,13 @@ public class GameController {
         //  - posizionare le entità (compito della view)
         //  -
 
-
-       
-        partita.posizionaEntita();
         //view.getPanel().setEntita(partita.getEntita());
-
+        for (Entita e : partita.getEntita()) partita.applyGravity(e);
+        
         //controllo movimento giocatore
         checkPlayerMovement();
 
-        view.getPanel().repaint();
+        //view.getPanel().setEntita(partita.getEntita());
     }
 
 }

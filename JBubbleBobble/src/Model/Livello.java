@@ -24,6 +24,10 @@ public class Livello {
         return grid;
     }
 
+    public Tile getTile(int x, int y) {
+        return grid[x][y];
+    }
+
 
     public void changeLevel() {
         this.levelNum++;
@@ -73,22 +77,6 @@ public class Livello {
             System.out.println("file mancante");
         }
     }
-
-    //TODO: da completare
-    public void applyGravity(Entita e){
-        e.setVelocitaY(e.getGravita() + e.getVelocitaY());
-        int newY = e.getY() + e.getVelocitaY();
-
-        // Controllo collisione con il terreno o piattaforme
-        if (grid[e.getX()][newY + e.getHeight()].getType().isWalkable()) {
-            e.setPosizione(e.getX(),newY);
-        } else {
-            // Se colpisce il terreno, ferma la caduta
-            e.setPosizione(e.getX(),(newY / 32) * 32);
-            e.setVelocitaY(0);
-        }
-    }
-
     private boolean isOnGround(Entita e) {
         // Check if the entity is on the ground
         return grid[e.getX()][e.getY()].getType().isWalkable();
