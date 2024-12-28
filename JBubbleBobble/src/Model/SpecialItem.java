@@ -53,7 +53,7 @@ public class SpecialItem extends Entita{
                 case ROSA   -> Effetto.BONUS_SALTO;
                 case ROSSO  -> Effetto.BONUS_SPARO;
                 case BLU    -> Effetto.BONUS_MOV;
-                default     -> Effetto.NULL;
+                default     -> Effetto.NULL;c
             };
             case SNEAKER ->  Effetto.SNEAKER_BUFF;
             default -> Effetto.NULL;
