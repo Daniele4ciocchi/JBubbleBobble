@@ -11,14 +11,9 @@ import java.util.Observer;
             7 - rosa: giocatore mangia 3 caramelle rosa   -> i salti danno 500 punti
             8 - rosso: giocatore mangia 3 caramelle rosse -> le bolle sparate danno 100 punti
             9 - blu: giocatore mangia 3 caramelle blu     -> spostarsi di un pixel da 10 punti
-        - lampade(LANTERN)(2000punti):
-            - blu:      -> effetto di tutti e 3 gli anelli
-            - rossa:    -> effetto di tutte e 3 le caramelle e tutti e 3 gli anelli
-            - rosa:     -> 6000 punti + tutti i nemici muoiono
-            - gialla:   -> effetto di tutte 3 le caramelle
         - croci(CROSS)(3000):
-            4 - blu: Collect powerup -> skip 3 lvl
-            5 - gialla: Collect 15 point items -> skip 5 lvl
+            4 - blu: Collect 15 special items -> skip 3 lvl
+            5 - gialla: Collect 25 point items -> skip 5 lvl
         - 6, scarpa(SNEAKER)(100): Run across the full length of the screen 15 times. -> +velocita, salto, gravita
 */
 public class SpecialItem extends Entita{
