@@ -50,7 +50,7 @@ public class PartitaView extends JPanel implements Observer {
 
     public void paintLivello(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        int gridHeight = grid.length;       // Numero di righe
+        int gridHeight = grid.length;      // Numero di righe
         int gridWidth = grid[0].length;    // Numero di colonne
 
         for (int row = 0; row < gridHeight; row++) {

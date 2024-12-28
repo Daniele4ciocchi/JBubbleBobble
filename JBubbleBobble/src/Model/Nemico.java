@@ -1,6 +1,8 @@
 package Model;
 
 import java.awt.Point;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Random;
 
@@ -14,9 +16,8 @@ public class Nemico extends Entita implements Runnable{
         MIGHTA("mighta",2, 2, "lancia-rocce", "contatto"),
         HIDEGON("hidegons",3,1, "palle-di-fuoco","contatto"),
         PULPUL("pulpul",3, 3, "", "contatto"),
-        MONSTA("monsta",3, 2, "", "contatto"),
+        MONSTA("monsta",3, 2, "", "contatto");
 
-        ;
         private final String nome;
         private final int velocita;
         private final int salto;
@@ -29,7 +30,6 @@ public class Nemico extends Entita implements Runnable{
             this.salto = salto;
             this.mosse = mosse;
             this.attacco = attacco;
-
         }
         //getter
         public String getNome(){return this.nome;}
@@ -61,6 +61,34 @@ public class Nemico extends Entita implements Runnable{
         int carattere = rand.nextInt(10) + 1;
 
         drop = new PointItem(x, y, 0, 0, 0);
+
+        this.spritePath = new ArrayList<>();
+        switch (t){
+            case ZENCHAN -> {
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"zen-chan"+File.separator+"image_507.png");
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"zen-chan"+File.separator+"image_508.png");
+            }
+            case BANEBOU -> {
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"banebou"+File.separator+"image_4.png");
+            }
+            case MIGHTA -> {
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"mighta"+File.separator+"image_39.png");
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"mighta"+File.separator+"image_40.png");
+            }
+            case HIDEGON -> {
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"hidegons"+File.separator+"image_40.png");
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"hidegons"+File.separator+"image_41.png");
+            }
+            case PULPUL -> {
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"pulpul"+File.separator+"image_407.png");
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"pulpul"+File.separator+"image_408.png");
+            }
+            case MONSTA -> {
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"monsta"+File.separator+"image_443.png");
+                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"monsta"+File.separator+"image_444.png");
+            }
+        }
+
     }
 
     public Tipologia getTipologia(){
@@ -78,6 +106,7 @@ public class Nemico extends Entita implements Runnable{
     public int getCarattere() {
         return this.carattere;
     }
+
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
