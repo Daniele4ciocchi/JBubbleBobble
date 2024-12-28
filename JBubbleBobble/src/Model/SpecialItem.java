@@ -23,20 +23,19 @@ import java.util.Observer;
 */
 public class SpecialItem extends Entita{
     public enum Tipologia{
-        CARAMELLA, OMBRELLO, ANELLO, SNEAKER, POINT
+        CARAMELLA, ANELLO, SNEAKER
     }
     public enum Colore{
         ROSA, BLU, GIALLO, ARANCIONE, ROSSO, EMPTY
     }
     public enum Effetto{
-        BOLLE_RANGE_UP, // aumento del range delle bolle
-        BOLLE_VEL_UP,   // aumento della velocità delle bolle
-        BOLLE_FIRERATE_UP, // aumento della velocità di fuoco del giocatore
-        BONUS_MOV,       // 10 punti per ogni pixel di movimento (da capire come implementarla)
-        BONUS_SALTO,    // 500 punti per salto
-        BONUS_SPARO,    // 100 punti per sparo
-        SKIP_LVL,        // skip di 3/5/7 livelli
-        SNEAKER_BUFF,        // +velocita, salto, gravita
+        BOLLE_RANGE_UP,     // aumento del range delle bolle
+        BOLLE_VEL_UP,       // aumento della velocità delle bolle
+        BOLLE_FIRERATE_UP,  // aumento della velocità di fuoco del giocatore
+        BONUS_MOV,          // 10 punti per ogni pixel di movimento (da capire come implementarla)
+        BONUS_SALTO,        // 500 punti per salto
+        BONUS_SPARO,        // 100 punti per sparo
+        SNEAKER_BUFF,       // +velocita, salto, gravita
         NULL
     }
 
@@ -55,7 +54,6 @@ public class SpecialItem extends Entita{
                 case GIALLO -> Effetto.BOLLE_FIRERATE_UP;
                 default -> Effetto.NULL;
             };
-            case OMBRELLO -> Effetto.SKIP_LVL; // 3, 5, 7 viene deciso in GameController, controllando il colore dell'ombrello
             case ANELLO -> switch (this.colore) {
                 case ROSA   -> Effetto.BONUS_SALTO;
                 case ROSSO  -> Effetto.BONUS_SPARO;
@@ -67,11 +65,9 @@ public class SpecialItem extends Entita{
         };
     }
     
-    // restituisce lo score del powerup come intero
     public int getPoints(){ 
         return switch(this.tipologia){
             case CARAMELLA  -> 1000;
-            case OMBRELLO   ->  200;
             case ANELLO     -> 1000;
             case SNEAKER    -> 100;
             default -> 0;
