@@ -11,17 +11,17 @@ abstract public class Entita extends Observable {
     private boolean alive;
 
     private int velocitaX;
-    private double velocitaY;
+    private int velocitaY;
 
-    private double gravita;
-    private int jumpForce;
+    private int gravita = 1;
+    private int jumpForce = -15;
     private boolean isJumping = false;
 
-    private int width;
-    private int height;
+    private int width = 16;
+    private int height = 16;
 
 
-    public Entita(int posx, int posy, int velocitaX, int velocitaY, double gravita){
+    public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
         this.posx = posx;
         this.posy = posy;
         this.alive = true;
@@ -34,20 +34,19 @@ abstract public class Entita extends Observable {
     public int getY(){ return posy;}
     public boolean isAlive(){ return alive;}
     public int getVelocitaX(){ return velocitaX;}
-    public double getVelocitaY(){ return velocitaY;}
-    public double getGravita(){ return gravita;}
+    public int getVelocitaY(){ return velocitaY;}
+    public int getGravita(){ return gravita;}
     public int getWidth(){ return width;}
     public int getHeight(){ return height;}
 
-    public void setVelocitaY(double i) {this.velocitaY = i;}
-    public void setVelocitaX(double i) {this.velocitaX = i;}
+    public void setVelocitaY(int i) {this.velocitaY = i;}
+    public void setVelocitaX(int i) {this.velocitaX = i;}
     public void setGravita(int i) {this.gravita = i;}
     public void setWidth(int i) {this.width = i;}
     public void setHeight(int i) {this.height = i;}
 
-
     public void moveLeft() {
-        posx -= velocitaX;
+        posx-=velocitaX;
         setChanged();
         notifyObservers();
     }
@@ -61,13 +60,11 @@ abstract public class Entita extends Observable {
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
     //      allora può fare il jump
 
-    public void jump() {
-        if (!isJumping) {
-            isJumping = true;
-            velocitaY = jumpForce;
+    public void jump(Livello l) {
+        // Salta solo se il giocatore è a contatto con il terreno
+        if (!l.getTile(posx, posy + height + 1).getType().isWalkable()) {
+            this.velocitaY = this.jumpForce;
         }
-        setChanged();
-        notifyObservers();
     }
 
     
@@ -96,6 +93,14 @@ abstract public class Entita extends Observable {
     public void setVelocita(int x, int y) {
         this.velocitaX = x;
         this.velocitaY = y;
+    }
+
+    public boolean isJumping() {
+        return isJumping;
+    }
+
+    public void setJumping(boolean b) {
+        isJumping = b;
     }
     
 }

@@ -25,7 +25,9 @@ public class Livello {
     }
 
     public Tile getTile(int x, int y) {
-        return grid[x][y];
+        int xx = x/32;
+        int yy = y/32;
+        return grid[xx][yy];
     }
 
 
@@ -51,7 +53,7 @@ public class Livello {
                 if (i >= 26){
                     break;
                 }
-                for (int j = 0; j < 36; j++) {
+                for (int j = 36-1; j >= 0; j--) {
 
                     grid[25-i][j] = new Tile(switch (nextToken.charAt(j)) {
                         case '0' -> Tile.TileType.EMPTY;
@@ -83,9 +85,12 @@ public class Livello {
     }
 
     public String getTilePath() {
-        String tilePath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "blocks" + File.separator + "normal blocks" + File.separator;
-
-        return tilePath + "block_" + levelNum + ".png";
+        return "JBubbleBobble" + File.separator + "src" 
+        + File.separator + "resources" 
+        + File.separator + "blocks" 
+        + File.separator + "normal blocks" 
+        + File.separator + "block_" 
+        + levelNum + ".png";
     }
 
 

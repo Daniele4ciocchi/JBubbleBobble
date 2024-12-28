@@ -78,7 +78,7 @@ public class GameController {
         } else if (rightPressed) {
             partita.getEntita().getFirst().moveRight();
         } else if (jump) {
-            partita.getEntita().getFirst().jump();
+            partita.getEntita().getFirst().jump(partita.getLivello());
         }
     }
 
@@ -108,7 +108,9 @@ public class GameController {
         //  -
 
         //view.getPanel().setEntita(partita.getEntita());
-        for (Entita e : partita.getEntita()) partita.applyGravity(e);
+        //for (Entita e : partita.getEntita()) partita.applyGravity(e);
+        //partita.applyGravity(partita.getEntita().getFirst());
+
         
         //controllo movimento giocatore
         checkPlayerMovement();

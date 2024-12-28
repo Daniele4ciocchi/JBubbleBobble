@@ -12,12 +12,10 @@ public class Giocatore extends Entita{
 
 
     public Giocatore(){
-        super(25, 5, 1, 1, 0.5);
+        super(25, 5, 1, 1, 0);
         this.life = 3;
         this.direction = true;
 
-        //TODO: implementare Observe Observable (non so come)
-        observers = new ArrayList<>();
     }
 
     public int getLife(){return this.life; }

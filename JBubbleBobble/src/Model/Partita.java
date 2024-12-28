@@ -16,7 +16,7 @@ public class Partita {
     private int punteggio;
 
     private boolean vinta;
-    Livello livello;
+    private Livello livello;
 
     private int score;
     private int nemiciUccisi;
@@ -142,7 +142,6 @@ public class Partita {
                         case "HIDEGON" -> this.addEntita(new Nemico(Nemico.Tipologia.HIDEGON, i, j));
                         case "PULPUL" -> this.addEntita(new Nemico(Nemico.Tipologia.PULPUL, i, j));
                         case "MONSTA" -> this.addEntita(new Nemico(Nemico.Tipologia.MONSTA, i, j));
-                        case "PLAYER" -> entitaAttive.getFirst().setPosizione(i,j);
                     }
                 }
             }
@@ -203,15 +202,20 @@ public class Partita {
     }
 
     public void applyGravity(Entita e) {
-        e.setVelocitaX(e.getVelocitaY() + e.getGravita());
+        // Incrementa velocità verticale con un limite massimo
+        int velocitaMassima = 10;
+        e.setVelocitaY(Math.min(e.getVelocitaY() + e.getGravita(), velocitaMassima));
+    
+        // Calcola la nuova posizione
         int newY = e.getY() + e.getVelocitaY();
-
-        // Controllo collisione con il terreno o piattaforme
-        if (livello.getTile(e.getX(), newY + e.getHeight()).getType().isWalkable()) {
-            e.setPosizione(e.getX(),newY);
+    
+        // Controlla il tipo di tile sotto l'entità
+        Tile tileBelow = livello.getTile(e.getX(), newY + e.getHeight());
+        if (tileBelow.getType().isWalkable() || tileBelow.getType().isSolid()) {
+            e.setPosizione(e.getX(), newY); // Nessuna collisione, aggiorna la posizione
         } else {
-            // Se colpisce il terreno, ferma la caduta
-            e.setPosizione(e.getX(),(newY / 32) * 32);
+            // Collisione con il suolo, ferma la caduta
+            e.setPosizione(e.getX(), (newY / 32) * 32);
             e.setVelocitaY(0);
         }
     }

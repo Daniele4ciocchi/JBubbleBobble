@@ -46,7 +46,7 @@ public class PartitaView extends JPanel implements Observer {
         for (int row = 0; row < gridHeight; row++) {
             for (int col = 0; col < gridWidth; col++) {
                 int x = col * tileSize;  // Posizione orizzontale rimane invariata
-                int y = (gridHeight - 1 - row) * tileSize; // Inverti l'asse verticale
+                int y = (gridHeight - 1 - row) * tileSize;
 
                 if (grid[row][col].getType() == Tile.TileType.WALL || grid[row][col].getType() == Tile.TileType.PLATFORM) {
                     g2d.drawImage(image, x, y, tileSize, tileSize, null);
