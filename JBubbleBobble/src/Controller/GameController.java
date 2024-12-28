@@ -34,7 +34,7 @@ public class GameController {
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
         this.view = view;
-        view.addPanel(new PartitaView(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
+        view.addPanel(new PartitaView(partita.getLivello().getGrid(),partita.getLivello().getTilePath(),partita.getEntita()));
         startGameLoop();
         setupKeyBindings();
 
@@ -64,17 +64,6 @@ public class GameController {
         });
     }
 
-    private void startGameLoop() {
-        Timer timer = new Timer(16, e -> {
-            try {
-                updateGame();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-        timer.start();
-    }
-
     public void checkPlayerMovement(){
         if (leftPressed) {
             partita.getEntita().getFirst().moveLeft();
@@ -83,8 +72,18 @@ public class GameController {
         }
     }
 
+    private void startGameLoop() {
+        Timer timer = new Timer(16, e -> {
+            try {
+                gameLoop();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        timer.start();
+    }
     
-    private void updateGame() throws IOException {
+    private void gameLoop() throws IOException {
         //TODO: indice del loop di gioco
         //  - far comparire tutte le entità
         //  - far muovere le entità (forse questo è un compito di partita)
@@ -94,22 +93,14 @@ public class GameController {
         //  -
 
 
-        //view.setBackgroundImage(view.createImage(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
+       
         partita.posizionaEntita();
-
+        //view.getPanel().setEntita(partita.getEntita());
 
         //controllo movimento giocatore
         checkPlayerMovement();
-        ((PartitaView) view.getPanel()).setEntita(this.partita.getEntita());
+
         view.getPanel().repaint();
     }
-
-
-    private void renderGame() {
-        // Render the game state to the view
-        view.getPanel().repaint();
-    }
-
-    
 
 }
