@@ -1,5 +1,6 @@
 package View;
 
+import Model.Entita;
 import Model.Tile;
 
 import javax.swing.*;
@@ -7,15 +8,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.ArrayList;
+
 
 import javax.imageio.ImageIO;
 
 
-public class PartitaView extends JPanel implements Observer{
-    private Tile[][] grid;
-    private 
+public class PartitaView extends JPanel{
+    private static Tile[][] grid;
+    private static ArrayList<Entita> entita;
     private BufferedImage image;
 
 
@@ -65,32 +66,19 @@ public class PartitaView extends JPanel implements Observer{
         }
 
         //  inserimento entità
-        for (int row = 0; row < gridHeight; row++) {
-            for (int col = 0; col < gridWidth; col++) {
-                int x = col * tileSize;  // Posizione orizzontale rimane invariata
-                int y = (gridHeight - 2 - row) * tileSize; // Inverti l'asse verticale
+        for (Entita e : entita) {
+            int x = e.getX() * tileSize;
+            int y = (gridHeight - 1 - e.getY()) * tileSize;
 
-                if (grid[row][col].getType() == Tile.TileType.PLAYER_SPAWN) {
-                    g2d.setColor(Color.RED);
-                    g2d.fillOval(x, y, entitySize, entitySize);
-                } 
-                
-                // else if (grid[row][col].getType() == Tile.TileType.) {
-                //     g2d.setColor(Color.BLUE);
-                //     g2d.fillOval(x, y, tileSize, tileSize);
-                // } else if (grid[row][col].getType() == Tile.TileType.BUBBLE) {
-                //     g2d.setColor(Color.YELLOW);
-                //     g2d.fillOval(x, y, tileSize, tileSize);
-                // }
-            }
+            g2d.setColor(Color.RED);
+            g2d.fillRect(x, y, entitySize, entitySize);
         }
         
     }
 
 
-    @Override
-    public void update(Observable o, Object arg) {
-        
+    public void setEntita(ArrayList<Entita> newEntita){
+        entita = newEntita;
     }
 
 }

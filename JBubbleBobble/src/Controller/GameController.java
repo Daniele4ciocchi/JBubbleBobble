@@ -100,7 +100,7 @@ public class GameController {
 
         //controllo movimento giocatore
         checkPlayerMovement();
-
+        ((PartitaView) view.getPanel()).setEntita(this.partita.getEntita());
         view.getPanel().repaint();
     }
 
