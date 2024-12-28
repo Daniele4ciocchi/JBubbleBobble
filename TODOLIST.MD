@@ -7,8 +7,8 @@ TODOLIST
 - [ ] ideare il sistema dello score 
 - [ ] fare una grafica decente (the big one)
 - [ ] aggiungere un cooldown agli spari in Partita.java
-- [ ] implementazione buff powerup: es. modificatori bolle
+- [x] implementazione buff powerup: es. modificatori bolle
 - [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
-- [ ] AudioManager.java: implementazione
-- [ ] importazione sound effects (SFX)
-- when we start?
+- [x] AudioManager.java: importazione dal PDF del prof
+- [ ] scelta+importazione sound effects (SFX)
+- [ ] implementare almeno 2 tipi di bolle
