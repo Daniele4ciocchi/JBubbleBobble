@@ -18,15 +18,27 @@ public class PartitaView extends JPanel implements Observer {
     private ArrayList<Entita> entita;
     private BufferedImage image;
 
-    private final int tileSize = 16; // Dimensione di ogni cella
-    private final int entitySize = 16; // Dimensione di ogni entità
+    private final int tileSize; // Dimensione di ogni cella
 
-    public PartitaView(Tile[][] grid, String path) {
+    public PartitaView(int tileSize) {
         super();
-        this.grid = grid;
+        this.tileSize = tileSize;
         this.entita = new ArrayList<Entita>();
 
-        // Caricamento delle immagini
+
+        setPreferredSize(new Dimension(grid.length * tileSize, grid[0].length * tileSize));
+        setBackground(Color.BLACK);
+    }
+
+    public void setEntita(ArrayList<Entita> entita) {
+        this.entita = entita;
+    }
+
+    public void setGrid(Tile[][] grid) {
+        this.grid = grid;
+    }
+
+    public void setPath(String path) {
         try {
             image = ImageIO.read(new File(path));
         } catch (IOException e) {
@@ -34,8 +46,6 @@ public class PartitaView extends JPanel implements Observer {
             System.err.println("Errore nel caricamento delle immagini!");
         }
 
-        setPreferredSize(new Dimension(grid.length * tileSize, grid[0].length * tileSize));
-        setBackground(Color.BLACK);
     }
 
     public void paintLivello(Graphics g) {
@@ -46,8 +56,8 @@ public class PartitaView extends JPanel implements Observer {
         for (int row = 0; row < gridHeight; row++) {
             for (int col = 0; col < gridWidth; col++) {
                 int x = col * tileSize;  // Posizione orizzontale rimane invariata
-                //int y = (gridHeight - 1 - row) * tileSize;
-                int y = row * tileSize;  
+                int y = (gridHeight - 1 - row) * tileSize;
+                //int y = row * tileSize;  
 
                 if (grid[row][col].getType() == Tile.TileType.WALL || grid[row][col].getType() == Tile.TileType.PLATFORM) {
                     g2d.drawImage(image, x, y, tileSize, tileSize, null);
@@ -61,13 +71,13 @@ public class PartitaView extends JPanel implements Observer {
 
     public void paintEntita(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        int gridHeight = grid.length;       // Numero di righe
-        int gridWidth = grid[0].length;    // Numero di colonne
+        //int gridHeight = grid.length;       // Numero di righe
+        //int gridWidth = grid[0].length;    // Numero di colonne
 
         // Inserimento entità
         for (Entita e : entita) {
             g2d.setColor(Color.RED);
-            g2d.fillRect(e.getX(), e.getY(), entitySize, entitySize);
+            g2d.fillRect(e.getX(), e.getY(), e.getEntitysize(), e.getEntitysize());
         }
     }
 
@@ -78,9 +88,7 @@ public class PartitaView extends JPanel implements Observer {
         paintEntita(g);
     }
 
-    public void setEntita(ArrayList<Entita> entita) {
-        this.entita = entita;
-    }
+    
 
     @Override
     public void update(Observable o, Object arg) {

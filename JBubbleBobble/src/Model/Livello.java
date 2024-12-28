@@ -10,6 +10,7 @@ public class Livello {
 
     private int levelNum = 1;
     private Tile[][] grid;
+    private int tilesize = 32;
 
 
     public Livello(int livello){
@@ -28,6 +29,19 @@ public class Livello {
         int xx = x/32;
         int yy = y/32;
         return grid[xx][yy];
+    }
+
+    public String getTilePath() {
+        return "JBubbleBobble" + File.separator + "src" 
+        + File.separator + "resources" 
+        + File.separator + "blocks" 
+        + File.separator + "normal blocks" 
+        + File.separator + "block_" 
+        + levelNum + ".png";
+    }
+
+    public int getTilesize() {
+        return tilesize;
     }
 
 
@@ -84,14 +98,7 @@ public class Livello {
         return grid[e.getX()][e.getY()].getType().isWalkable();
     }
 
-    public String getTilePath() {
-        return "JBubbleBobble" + File.separator + "src" 
-        + File.separator + "resources" 
-        + File.separator + "blocks" 
-        + File.separator + "normal blocks" 
-        + File.separator + "block_" 
-        + levelNum + ".png";
-    }
+    
 
     @Override
     public String toString() {

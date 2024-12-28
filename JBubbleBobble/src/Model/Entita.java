@@ -16,13 +16,12 @@ abstract public class Entita extends Observable {
     private int gravita = -1; //negativa in quanto verso il basso
     private int jumpForce = 5;
 
-    private int width = 16;
-    private int height = 16;
+    private int entitysize = 16;
 
 
     public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
-        this.posx = posx*height;
-        this.posy = posy*width;
+        this.posx = posx*entitysize;
+        this.posy = posy*entitysize;
         this.alive = true;
         this.movimentoX = velocitaX;
         this.movimentoY = velocitaY;
@@ -35,14 +34,12 @@ abstract public class Entita extends Observable {
     public int getMovimentoX(){ return movimentoX;}
     public int getMovimentoY(){ return movimentoY;}
     public int getGravita(){ return gravita;}
-    public int getWidth(){ return width;}
-    public int getHeight(){ return height;}
+    public int getEntitysize(){ return entitysize;}
 
     public void setMovimentoY(int i) {this.movimentoY = i;}
     public void setMovimentoX(int i) {this.movimentoX = i;}
     public void setGravita(int i) {this.gravita = i;}
-    public void setWidth(int i) {this.width = i;}
-    public void setHeight(int i) {this.height = i;}
+    public void setEntitysize(int i) {this.entitysize = i;}
     
     public void setPosizione(int x, int y){
         this.posx = x;
@@ -66,6 +63,8 @@ abstract public class Entita extends Observable {
 
     public void jump() {
         this.movimentoY = this.jumpForce;
+        setChanged();
+        notifyObservers();
     }
 
     public void dead(){
