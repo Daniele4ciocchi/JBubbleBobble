@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Entita;
+import Model.Giocatore;
 import Model.Partita;
 import Model.SpecialItem;
 import View.GameView;
@@ -38,7 +39,7 @@ public class GameController {
         view.addPanel(new PartitaView(partita.getLivello().getGrid(),partita.getLivello().getTilePath()));
         startGameLoop();
         setupKeyBindings();
-
+        System.out.println(partita.getLivello().toString());
         for (Entita e : partita.getEntita()) {
             e.addObserver(view.getPanel());
         }
@@ -72,13 +73,21 @@ public class GameController {
         });
     }
 
+    // forse va messo in entita oppure in livello idk
     public void checkPlayerMovement(){
+        Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
         if (leftPressed) {
-            partita.getEntita().getFirst().moveLeft();
+            if(giocatore.getX() - giocatore.getMovimentoX() > 16) giocatore.moveLeft();
+            else {
+                giocatore.setPosizione(16, giocatore.getY());
+            }
         } else if (rightPressed) {
-            partita.getEntita().getFirst().moveRight();
+            if(giocatore.getX() + giocatore.getMovimentoX() < 16*34) giocatore.moveRight();
+            else {
+                giocatore.setPosizione(16*34, giocatore.getY());
+            }
         } else if (jump) {
-            partita.getEntita().getFirst().jump(partita.getLivello());
+            if (partita.getLivello().isOnGround(giocatore))giocatore.jump();
         }
     }
 
@@ -91,13 +100,18 @@ public class GameController {
         }});
         
         partita.posizionaEntita();
-        //System.out.println(view.getPanel());
+        for (Entita e : partita.getEntita()) {
+            System.out.println(e);
+        }
+            //System.out.println(view.getPanel());
         view.getPanel().setEntita(partita.getEntita());
         view.getPanel().repaint();
         timer.start();
     }
     
     private void gameLoop() throws IOException {
+
+        //impostare timer 0,016 secondi
         //System.out.println("Game loop");
         //TODO: indice del loop di gioco
         //  - far comparire tutte le entità

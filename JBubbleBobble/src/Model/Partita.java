@@ -204,10 +204,10 @@ public class Partita {
     public void applyGravity(Entita e) {
         // Incrementa velocità verticale con un limite massimo
         int velocitaMassima = 10;
-        e.setVelocitaY(Math.min(e.getVelocitaY() + e.getGravita(), velocitaMassima));
+        e.setMovimentoY(Math.min(e.getMovimentoY() + e.getGravita(), velocitaMassima));
     
         // Calcola la nuova posizione
-        int newY = e.getY() + e.getVelocitaY();
+        int newY = e.getY() + e.getMovimentoY();
     
         // Controlla il tipo di tile sotto l'entità
         Tile tileBelow = livello.getTile(e.getX(), newY + e.getHeight());
@@ -216,7 +216,7 @@ public class Partita {
         } else {
             // Collisione con il suolo, ferma la caduta
             e.setPosizione(e.getX(), (newY / 32) * 32);
-            e.setVelocitaY(0);
+            e.setMovimentoY(0);
         }
     }
 

@@ -79,7 +79,7 @@ public class Livello {
             System.out.println("file mancante");
         }
     }
-    private boolean isOnGround(Entita e) {
+    public boolean isOnGround(Entita e) {
         // Check if the entity is on the ground
         return grid[e.getX()][e.getY()].getType().isWalkable();
     }
@@ -93,5 +93,16 @@ public class Livello {
         + levelNum + ".png";
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < 36; j++) {
+                s += grid[i][j].getType().toString();
+            }
+            s += "\n";
+        }
+        return s;
+    }
 
 }

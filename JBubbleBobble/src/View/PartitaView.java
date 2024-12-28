@@ -19,7 +19,7 @@ public class PartitaView extends JPanel implements Observer {
     private BufferedImage image;
 
     private final int tileSize = 16; // Dimensione di ogni cella
-    private final int entitySize = 32; // Dimensione di ogni entità
+    private final int entitySize = 16; // Dimensione di ogni entità
 
     public PartitaView(Tile[][] grid, String path) {
         super();
@@ -46,7 +46,8 @@ public class PartitaView extends JPanel implements Observer {
         for (int row = 0; row < gridHeight; row++) {
             for (int col = 0; col < gridWidth; col++) {
                 int x = col * tileSize;  // Posizione orizzontale rimane invariata
-                int y = (gridHeight - 1 - row) * tileSize;
+                //int y = (gridHeight - 1 - row) * tileSize;
+                int y = row * tileSize;  
 
                 if (grid[row][col].getType() == Tile.TileType.WALL || grid[row][col].getType() == Tile.TileType.PLATFORM) {
                     g2d.drawImage(image, x, y, tileSize, tileSize, null);
@@ -65,10 +66,8 @@ public class PartitaView extends JPanel implements Observer {
 
         // Inserimento entità
         for (Entita e : entita) {
-            int x = e.getX() * tileSize;
-            int y = (gridHeight - 2 - e.getY()) * tileSize;
             g2d.setColor(Color.RED);
-            g2d.fillRect(x, y, entitySize, entitySize);
+            g2d.fillRect(e.getX(), e.getY(), entitySize, entitySize);
         }
     }
 
