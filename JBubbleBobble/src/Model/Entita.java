@@ -14,19 +14,19 @@ abstract public class Entita extends Observable {
     private int movimentoX;
     private int movimentoY;
 
-    private int gravita = 1; //negativa in quanto verso il basso
-    private int jumpForce = 5;
+    private int gravita; //negativa in quanto verso il basso
+    private int jumpForce;
 
     private int entitysize = 16;
 
     protected ArrayList<String> spritePath;
 
-    public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
+    public Entita(int posx, int posy, int velocitaX, int jumpForce, int gravita){
         this.posx = posx*entitysize;
         this.posy = posy*entitysize;
         this.alive = true;
         this.movimentoX = velocitaX;
-        this.movimentoY = velocitaY;
+        this.jumpForce = jumpForce;
         this.gravita = gravita;
     }
 
@@ -46,6 +46,8 @@ abstract public class Entita extends Observable {
     public void setPosizione(int x, int y){
         this.posx = x;
         this.posy = y;
+        setChanged();
+        notifyObservers();
     }
 
     public void moveLeft() {

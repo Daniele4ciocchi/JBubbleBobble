@@ -202,17 +202,12 @@ public class Partita {
     }
 
     public void applyGravity(Entita e) {
-        // Aggiorna movimento Y con gravità negativa
-        e.setMovimentoY(e.getMovimentoY() + e.getGravita());
-        int newY = e.getY() + e.getMovimentoY();
-
-        // Controllo collisione con il terreno o piattaforme
-        if (livello.getTile(e.getX(), newY + e.getEntitysize()).getType().isWalkable()) {
-            e.setPosizione(e.getX(), newY);
-        } else {
-            // Se colpisce il terreno, ferma la caduta
-            e.setPosizione(e.getX(), (newY / 32) * 32);
-            e.setMovimentoY(0);
+        if (!livello.isWalkable(e.getX(), e.getY() - 1)){
+            e.setPosizione(e.getX(),e.getY() + e.getGravita());
+        }
+        if (e.getMovimentoY()>0){
+            e.setPosizione(e.getX(),e.getY() + e.getMovimentoY());
+            e.setMovimentoY(e.getMovimentoY()-1);
         }
     }
 

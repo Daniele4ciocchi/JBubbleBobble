@@ -48,6 +48,7 @@ public class GameController {
         for (Entita e : partita.getEntita()) {
             e.addObserver(view.getPanel());
         }
+        System.out.println(partita.getLivello().toString());
         
     }
 
@@ -82,23 +83,32 @@ public class GameController {
     public void checkPlayerMovement(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
         if (leftPressed) {
-            if(giocatore.getX() - giocatore.getMovimentoX() > 16) giocatore.moveLeft();
-            else {
-                giocatore.setPosizione(16, giocatore.getY());
+
+            System.out.println(giocatore.getX() - giocatore.getMovimentoX());
+            
+            if (!partita.getLivello().isSolid(giocatore.getX() - giocatore.getMovimentoX(), giocatore.getY())) {
+                giocatore.moveLeft();
             }
+            
+
         } else if (rightPressed) {
-            if(giocatore.getX() + giocatore.getMovimentoX() < 16*34) giocatore.moveRight();
-            else {
-                giocatore.setPosizione(16*34, giocatore.getY());
+
+            System.out.println(giocatore.getX() + giocatore.getMovimentoX());
+
+            if (!partita.getLivello().isSolid(giocatore.getX() + giocatore.getMovimentoX(), giocatore.getY())) {
+                giocatore.moveRight();
             }
+            
         } else if (jump) {
-            if (partita.getLivello().isOnGround(giocatore))giocatore.jump();
+            if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
+                giocatore.jump();
+            }
         }
     }
 
     private void startGameLoop() {
         Timer timer = new Timer(16, e -> {try {
-            gameLoop();
+            gameLoop();            
         } catch (IOException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
@@ -106,6 +116,7 @@ public class GameController {
         
         partita.posizionaEntita();
         for (Entita e : partita.getEntita()) {
+            System.out.println(e.getClass());
             System.out.println(e);
         }
             //System.out.println(view.getPanel());

@@ -12,7 +12,7 @@ public class Giocatore extends Entita{
 
 
     public Giocatore(){
-        super(5, 1, 10, 0, 1);
+        super(6, 5, 10, 15, -5);
         this.life = 3;
         this.direction = true;
 
@@ -22,7 +22,7 @@ public class Giocatore extends Entita{
 
     public void addlife(){this.life++;}
 
-    public void resetPosizione(){super.setPosizione(25, 5);}
+    public void resetPosizione(){super.setPosizione(5, 1);}
 
     public Bolla shoot(){
         return new Bolla(this.direction? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, this.direction);

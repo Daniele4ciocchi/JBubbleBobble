@@ -9,8 +9,8 @@ import java.util.Scanner; // Import the Scanner class to read text files
 public class Livello {
 
     private int levelNum = 1;
-    private Tile[][] grid;
     private int tilesize = 16;
+    private Tile[][] grid;
 
 
     public Livello(int livello){
@@ -25,11 +25,6 @@ public class Livello {
         return grid;
     }
 
-    public Tile getTile(int x, int y) {
-        int xx = x/32;
-        int yy = y/32;
-        return grid[xx][yy];
-    }
 
     public String getTilePath() {
         return "JBubbleBobble" + File.separator + "src" 
@@ -68,8 +63,8 @@ public class Livello {
                     break;
                 }
                 for (int j = 0; j < 36; j++) {
-
-                    grid[i][j] = new Tile(switch (nextToken.charAt(j)) {
+                    
+                    grid[25-i][j] = new Tile(switch (nextToken.charAt(j)) {
                         case '0' -> Tile.TileType.EMPTY;
                         case '1' -> Tile.TileType.WALL;
                         case '2' -> Tile.TileType.PLATFORM;
@@ -93,21 +88,38 @@ public class Livello {
             System.out.println("file mancante");
         }
     }
-    public boolean isOnGround(Entita e) {
+
+
+    public boolean isWalkable(int x, int y) {
         // Check if the entity is on the ground
-        int x = e.getX() / 32;
-        int y = e.getY() / 32;
-        return grid[x][y].getType().isWalkable();
+        int tileX = x / tilesize;
+        int tileY = y / tilesize;
+
+        //tileY-=1;
+
+        System.out.println("Checking walkable at: (" + tileX + ", " + tileY + ") " + grid[tileY][tileX].getType());
+
+        return grid[tileY][tileX].getType().isWalkable();
     }
 
+    public boolean isSolid(int x, int y) {
+        // Check if the entity is on the ground
+        int tileX = x / tilesize;
+        int tileY = y / tilesize;
+
+        System.out.println("Checking solid at: (" + tileX + ", " + tileY + ") " + grid[tileY][tileX].getType());
+
+        return grid[tileY][tileX].getType().isSolid();
+    }
     
 
     @Override
     public String toString() {
         String s = "";
         for (int i = 0; i < 26; i++) {
+            s += i + " ";
             for (int j = 0; j < 36; j++) {
-                s += grid[i][j].getType().toString();
+                s += grid[i][j].getType().toString() + " ";
             }
             s += "\n";
         }
