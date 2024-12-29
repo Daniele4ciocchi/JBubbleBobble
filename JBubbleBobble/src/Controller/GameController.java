@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 //TODO: qua dobbiamo decide una cosa
 // bisogna capire se dobbiamo far partire il gioco da qua
@@ -48,21 +49,28 @@ public class GameController {
         for (Entita e : partita.getEntita()) {
             e.addObserver(view.getPanel());
         }
-        System.out.println(partita.getLivello().toString());
         
     }
 
     private void setupKeyBindings() {
+        Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
         view.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_SPACE) {
+                    if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
+                
+                        giocatore.jump();
+                    }
+                }
+            }
+
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     leftPressed = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     rightPressed = true;
-                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    jump = true;
-                    
                 }
             }
 
@@ -72,9 +80,7 @@ public class GameController {
                     leftPressed = false;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     rightPressed = false;
-                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    jump = false;
-                }
+                } 
             }
         });
     }
@@ -83,28 +89,17 @@ public class GameController {
     public void checkPlayerMovement(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
         if (leftPressed) {
-
-            System.out.println(giocatore.getX() - giocatore.getMovimentoX());
-            
             if (!partita.getLivello().isSolid(giocatore.getX() - giocatore.getMovimentoX(), giocatore.getY())) {
                 giocatore.moveLeft();
             }
             
 
         } else if (rightPressed) {
-
-            System.out.println(giocatore.getX() + giocatore.getMovimentoX());
-
             if (!partita.getLivello().isSolid(giocatore.getX() + giocatore.getMovimentoX(), giocatore.getY())) {
                 giocatore.moveRight();
             }
             
-        } else if (jump) {
-            if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
-                
-                giocatore.jump();
-            }
-        }
+        } 
     }
 
     private void startGameLoop() {
@@ -129,7 +124,13 @@ public class GameController {
     private void gameLoop() throws IOException {
 
         //impostare timer 0,016 secondi
-        //System.out.println("Game loop");
+        try {
+            TimeUnit.MILLISECONDS.sleep(16);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        ///System.out.println("Game loop");
         //TODO: indice del loop di gioco
         //  - far comparire tutte le entità
         //  - far muovere le entità (forse questo è un compito di partita)

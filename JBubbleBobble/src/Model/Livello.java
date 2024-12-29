@@ -91,24 +91,15 @@ public class Livello {
 
 
     public boolean isWalkable(int x, int y) {
-        // Check if the entity is on the ground
         int tileX = x / tilesize;
         int tileY = y / tilesize;
-
-        //tileY-=1;
-
-        System.out.println("Checking walkable at: (" + tileX + ", " + tileY + ") " + grid[tileY][tileX].getType());
-
         return grid[tileY][tileX].getType().isWalkable();
     }
 
     public boolean isSolid(int x, int y) {
-        // Check if the entity is on the ground
+
         int tileX = x / tilesize;
         int tileY = y / tilesize;
-
-        System.out.println("Checking solid at: (" + tileX + ", " + tileY + ") " + grid[tileY][tileX].getType());
-
         return grid[tileY][tileX].getType().isSolid();
     }
     
