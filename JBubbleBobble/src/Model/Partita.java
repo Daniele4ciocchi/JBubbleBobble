@@ -58,6 +58,7 @@ public class Partita {
     public Partita(String password){
         this.entitaAttive = new ArrayList<>();
         this.entitaMorte = new ArrayList<>();
+        entitaAttive.add(new Giocatore());
         this.livello = new Livello(switch (password) {
             case "LIVELLO01" -> 1;
             case "LIVELLO02" -> 2;
@@ -202,8 +203,13 @@ public class Partita {
     }
 
     public void applyGravity(Entita e) {
-        if (!livello.isWalkable(e.getX(), e.getY() - 1)){
-            e.setPosizione(e.getX(),e.getY() + e.getGravita());
+        if (!livello.isWalkable(e.getX(), e.getY() - 1 )){
+
+            if(!livello.isWalkable(e.getX(), e.getY() + e.getGravita())){
+                e.setPosizione(e.getX(),e.getY() + e.getGravita());
+            }else {
+                e.setPosizione(e.getX(),e.getY() - 1 );
+            }
         }
         if (e.getMovimentoY()>0){
             e.setPosizione(e.getX(),e.getY() + e.getMovimentoY());
