@@ -101,6 +101,7 @@ public class GameController {
             
         } else if (jump) {
             if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
+                
                 giocatore.jump();
             }
         }
