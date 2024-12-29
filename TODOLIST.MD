@@ -10,5 +10,9 @@ TODOLIST
 - [x] implementazione buff powerup: es. modificatori bolle
 - [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
 - [x] AudioManager.java: importazione dal PDF del prof
+- [ ] AudioManager.java: fixare i problemi con la libreria sun
 - [ ] scelta+importazione sound effects (SFX)
 - [ ] implementare almeno 2 tipi di bolle
+- [ ] livelli profilo, implementare 
+- [ ] importazione e/o creazione di 16 livelli "testuali"
+- [ ] attribuire i diversi tipi di sprite per ognuno dei 16 livelli
