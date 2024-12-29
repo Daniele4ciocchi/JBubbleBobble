@@ -56,7 +56,7 @@ public class PartitaView extends JPanel implements Observer {
         for (int row = 0; row < gridHeight; row++) {
             for (int col = 0; col < gridWidth; col++) {
                 int x = col * tileSize;  // Posizione orizzontale rimane invariata
-                int y = (gridHeight - 1 - row) * tileSize;
+                int y = row * tileSize;
                 //int y = row * tileSize;  
 
                 if (grid[row][col].getType() == Tile.TileType.WALL || grid[row][col].getType() == Tile.TileType.PLATFORM) {

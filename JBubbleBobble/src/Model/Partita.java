@@ -207,7 +207,7 @@ public class Partita {
         int newY = e.getY() + e.getMovimentoY();
 
         // Controllo collisione con il terreno o piattaforme
-        if (livello.getTile(e.getX(), newY - e.getEntitysize()).getType().isWalkable()) {
+        if (livello.getTile(e.getX(), newY + e.getEntitysize()).getType().isWalkable()) {
             e.setPosizione(e.getX(), newY);
         } else {
             // Se colpisce il terreno, ferma la caduta

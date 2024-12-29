@@ -67,9 +67,9 @@ public class Livello {
                 if (i >= 26){
                     break;
                 }
-                for (int j = 36-1; j >= 0; j--) {
+                for (int j = 0; j < 36; j++) {
 
-                    grid[25-i][j] = new Tile(switch (nextToken.charAt(j)) {
+                    grid[i][j] = new Tile(switch (nextToken.charAt(j)) {
                         case '0' -> Tile.TileType.EMPTY;
                         case '1' -> Tile.TileType.WALL;
                         case '2' -> Tile.TileType.PLATFORM;
