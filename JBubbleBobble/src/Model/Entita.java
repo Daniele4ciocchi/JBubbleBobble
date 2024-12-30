@@ -23,6 +23,9 @@ abstract public class Entita extends Observable {
     protected String idleSpritePath; // lo sprite da usare da fermo
     protected ArrayList<String> walkingSpritePath; // gli sprite da usare per l'animazione di camminata
 
+    private int animationTimer = 10;
+    private int currentAnimationTimer = 0;
+
     public Entita(int posx, int posy, int velocitaX, int jumpForce, int gravita){
         this.posx = posx*entitysize;
         this.posy = posy*entitysize;
@@ -67,6 +70,17 @@ abstract public class Entita extends Observable {
         setChanged();
         notifyObservers();
         goingRight = true;
+    }
+
+    // fatto da copilot, correttezza da verificare
+    public String getSpritePath(){
+        if (currentAnimationTimer == 0){
+            currentAnimationTimer = animationTimer;
+            return idleSpritePath;
+        }else{
+            currentAnimationTimer--;
+            return walkingSpritePath.get(currentAnimationTimer % walkingSpritePath.size());
+        }
     }
 
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
