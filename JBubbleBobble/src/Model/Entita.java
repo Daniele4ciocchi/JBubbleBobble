@@ -58,18 +58,22 @@ abstract public class Entita extends Observable {
         notifyObservers();
     }
 
-    public void moveLeft() {
-        posx-=movimentoX;
-        setChanged();
-        notifyObservers();
-        goingRight = false;
+    public void moveLeft(Livello l) {
+        if (l.isEmpty(posx-movimentoX, posy)){
+            posx-=movimentoX;
+            setChanged();
+            notifyObservers();
+            goingRight = false;
+        }
     }
 
-    public void moveRight() {
-        posx += movimentoX;
-        setChanged();
-        notifyObservers();
-        goingRight = true;
+    public void moveRight(Livello l) {
+        if (l.isEmpty(posx+movimentoX, posy)){
+            posx += movimentoX;
+            setChanged();
+            notifyObservers();
+            goingRight = true;
+        }
     }
 
     // fatto da copilot, correttezza da verificare

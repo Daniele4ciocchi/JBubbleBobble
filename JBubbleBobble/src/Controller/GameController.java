@@ -89,22 +89,11 @@ public class GameController {
     // forse va messo in entita oppure in livello idk
     public void checkPlayerMovement(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
-        if (leftPressed) {
-            if (!partita.getLivello().isSolid(giocatore.getX() - giocatore.getMovimentoX(), giocatore.getY()) &&
-                !partita.getLivello().isWalkable(giocatore.getX() - giocatore.getMovimentoX(), giocatore.getY())) {
-                giocatore.moveLeft();
-            }
-            
-
-        } else if (rightPressed) {
-            if (!partita.getLivello().isSolid(giocatore.getX() + giocatore.getMovimentoX(), giocatore.getY()) &&
-                !partita.getLivello().isWalkable(giocatore.getX() + giocatore.getMovimentoX(), giocatore.getY())) {
-                giocatore.moveRight();
-            }
-            
-        } 
+        if (leftPressed) giocatore.moveLeft(partita.getLivello());
+        else if (rightPressed) giocatore.moveRight(partita.getLivello());
     }
 
+    
     private void startGameLoop() {
         Timer timer = new Timer(16, e -> {try {
             gameLoop();            
@@ -147,7 +136,7 @@ public class GameController {
             //System.out.println(e);
             partita.applyGravity(e);
             if (e instanceof Nemico){
-                ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY());
+                ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
             }
         } 
         
