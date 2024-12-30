@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Random;
 
+
 public class Nemico extends Entita implements Runnable{
 
     // Enumerazione delle tipologie di nemici con le relative caratteristiche
     public enum Tipologia{
         //NOME (VELOCITÀ(1-3, 4 per la modalità arrabbiato), SALTO(1-3), MOSSE, ATTACCO)
-        ZENCHAN("zen-chan",2, 2, "", "contatto"),
+        ZENCHAN("zen-chan",2, 10, "", "contatto"),
         BANEBOU("banebou",3, 2, "", "contatto"),
         MIGHTA("mighta",2, 2, "lancia-rocce", "contatto"),
         HIDEGON("hidegons",3,1, "palle-di-fuoco","contatto"),
@@ -42,8 +43,8 @@ public class Nemico extends Entita implements Runnable{
     private Tipologia tipologia;
     private PointItem drop;
     private int carattere; //intero da 1 a 10, generato nel costruttore, usato nei parametri di comportamento
-
     private boolean bubbled;
+    
 
     /**
      * Costruttore della classe Nemico
@@ -52,13 +53,15 @@ public class Nemico extends Entita implements Runnable{
      * @param y la posizione y del nemico
      */
     public Nemico(Tipologia t, int x, int y){
-        super( x, y, t.getVelocita(), t.getSalto(), 1);
+        super( x, y, t.getVelocita(), t.getSalto(), -7);
         tipologia = t;
         bubbled = false;
 
         // generazione random del carattere del nemico
+       
         Random rand = new Random();
-        int carattere = rand.nextInt(10) + 1;
+
+        carattere = (int)Math.random() * 10 + 1;
 
         drop = new PointItem(x, y, 0, 0, 0);
 
@@ -106,7 +109,7 @@ public class Nemico extends Entita implements Runnable{
     public int getCarattere() {
         return this.carattere;
     }
-
+    
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
@@ -117,6 +120,8 @@ public class Nemico extends Entita implements Runnable{
                 Thread.currentThread().interrupt();
             }
         }
+        super.setChanged();
+        super.notifyObservers();
     }
 
     // metodo che gestisce il movimento di questo nemico
@@ -128,7 +133,7 @@ public class Nemico extends Entita implements Runnable{
                 moveRight();
             } else {
                 try {
-                    Thread.sleep(50); // Leggero ritardo
+                    Thread.sleep(getCarattere()); // Leggero ritardo
                     moveRight();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
@@ -139,7 +144,7 @@ public class Nemico extends Entita implements Runnable{
                 moveLeft();
             } else {
                 try {
-                    Thread.sleep(50); // Leggero ritardo
+                    Thread.sleep(getCarattere()); // Leggero ritardo
                     moveLeft();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
@@ -153,28 +158,14 @@ public class Nemico extends Entita implements Runnable{
                 jump();
             } else {
                 try {
-                    Thread.sleep(50); // Leggero ritardo
+                    Thread.sleep(getCarattere()); // Leggero ritardo
                     jump();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
             }
         }
+        
     }
 
-    //Observer pattern
-    @Override
-    public void addObserver(Observer o) {
-
-    }
-
-    @Override
-    public void notifyObservers() {
-
-    }
-
-    @Override
-    public void deleteObserver(Observer o) {
-
-    }
 }

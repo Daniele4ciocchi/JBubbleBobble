@@ -137,7 +137,7 @@ public class Partita {
             for (int j = 0;j<36;j++){
                 if (grid[i][j].getType().toString().contains("_SPAWN")){
                     switch (grid[i][j].getType().toString().replace("_SPAWN", "")){
-                        case "ZENCHAN" -> this.addEntita(new Nemico(Nemico.Tipologia.ZENCHAN, i, j));
+                        case "ZENCHAN" -> this.addEntita(new Nemico(Nemico.Tipologia.ZENCHAN, j, i));
                         case "BANEBOU" -> this.addEntita(new Nemico(Nemico.Tipologia.BANEBOU, i, j));
                         case "MIGHTA" -> this.addEntita(new Nemico(Nemico.Tipologia.MIGHTA, i, j));
                         case "HIDEGON" -> this.addEntita(new Nemico(Nemico.Tipologia.HIDEGON, i, j));

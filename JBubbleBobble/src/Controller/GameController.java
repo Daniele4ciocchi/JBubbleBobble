@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Entita;
 import Model.Giocatore;
+import Model.Nemico;
 import Model.Partita;
 import Model.SpecialItem;
 import View.GameView;
@@ -108,18 +109,18 @@ public class GameController {
         Timer timer = new Timer(16, e -> {try {
             gameLoop();            
         } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            e1.printStackTrace(); 
         }});
         
         partita.posizionaEntita();
-        for (Entita e : partita.getEntita()) {
-            System.out.println(e.getClass());
-            System.out.println(e);
-        }
-            //System.out.println(view.getPanel());
+        
+        // for (Entita e : partita.getEntita()) {
+        //     System.out.println(e);
+        // }
+
         view.getPanel().setEntita(partita.getEntita());
         view.getPanel().repaint();
+
         timer.start();
     }
     
@@ -142,8 +143,13 @@ public class GameController {
         //  -
 
         //view.getPanel().setEntita(partita.getEntita());
-        //for (Entita e : partita.getEntita()) partita.applyGravity(e);
-        partita.applyGravity(partita.getEntita().getFirst());
+        for (Entita e : partita.getEntita()){
+            partita.applyGravity(e);
+            if (e instanceof Nemico){
+                ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY());
+            }
+        } 
+        //partita.applyGravity(partita.getEntita().getFirst());
 
         
         //controllo movimento giocatore

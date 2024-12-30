@@ -85,6 +85,6 @@ abstract public class Entita extends Observable {
 
     @Override
     public String toString(){
-        return "Entita: x = " + posx + " y = " + posy;
+        return this.getClass() + ": x = " + posx + " y = " + posy;
     }
 }
