@@ -18,9 +18,10 @@ abstract public class Entita extends Observable {
     private int jumpForce;
 
     private int entitysize = 16;
-    private boolean direction; //true = destra, false = sinistra
+    private boolean goingRight; // "devo flippare lo sprite?"
 
-    protected ArrayList<String> spritePath;
+    protected String idleSpritePath; // lo sprite da usare da fermo
+    protected ArrayList<String> walkingSpritePath; // gli sprite da usare per l'animazione di camminata
 
     public Entita(int posx, int posy, int velocitaX, int jumpForce, int gravita){
         this.posx = posx*entitysize;
@@ -29,7 +30,7 @@ abstract public class Entita extends Observable {
         this.movimentoX = velocitaX;
         this.jumpForce = jumpForce;
         this.gravita = gravita;
-        this.direction = true;
+        this.goingRight = true;
     }
 
     public int getX(){ return posx;}
@@ -39,13 +40,13 @@ abstract public class Entita extends Observable {
     public int getMovimentoY(){ return movimentoY;}
     public int getGravita(){ return gravita;}
     public int getEntitysize(){ return entitysize;}
-    public boolean getDirection(){ return direction;}
+    public boolean getGoingRight(){ return goingRight;}
 
     public void setMovimentoY(int i) {this.movimentoY = i;}
     public void setMovimentoX(int i) {this.movimentoX = i;}
     public void setGravita(int i) {this.gravita = i;}
     public void setEntitysize(int i) {this.entitysize = i;}
-    public void setDirection(boolean b) {this.direction = b;}
+    public void setGoingRight(boolean b) {this.goingRight = b;}
     
     public void setPosizione(int x, int y){
         this.posx = x;
@@ -58,14 +59,14 @@ abstract public class Entita extends Observable {
         posx-=movimentoX;
         setChanged();
         notifyObservers();
-        direction = false;
+        goingRight = false;
     }
 
     public void moveRight() {
         posx += movimentoX;
         setChanged();
         notifyObservers();
-        direction = true;
+        goingRight = true;
     }
 
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
