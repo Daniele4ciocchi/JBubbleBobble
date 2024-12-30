@@ -137,7 +137,7 @@ public class Nemico extends Entita implements Runnable{
                     moveRight();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
-                }
+                } 
             }
         } else if (this.getX() > gx) {
             if (getCarattere() % 2 == 0) {
@@ -151,7 +151,6 @@ public class Nemico extends Entita implements Runnable{
                 }
             }
         }
-    
         // controllo verticale di dove si trova il giocatore, salta di conseguenza
         if (this.getY() < gy) {
             if (getCarattere() % 2 == 0) {
