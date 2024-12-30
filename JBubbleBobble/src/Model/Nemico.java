@@ -2,6 +2,7 @@ package Model;
 
 import java.awt.Point;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Random;
@@ -45,6 +46,8 @@ public class Nemico extends Entita implements Runnable{
 
     private boolean bubbled;
 
+    private ArrayList<String> bubbledSpritePath;
+
     /**
      * Costruttore della classe Nemico
      * @param t la tipologia del nemico
@@ -62,30 +65,30 @@ public class Nemico extends Entita implements Runnable{
 
         drop = new PointItem(x, y, 0, 0, 0);
 
-        this.spritePath = new ArrayList<>();
+        this.walkingSpritePath = new ArrayList<>();
         switch (t){
             case ZENCHAN -> {
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"zen-chan"+File.separator+"image_507.png");
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"zen-chan"+File.separator+"image_508.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"zen-chan"+File.separator+"image_507.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"zen-chan"+File.separator+"image_508.png");
             }
             case BANEBOU -> {
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"banebou"+File.separator+"image_4.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"banebou"+File.separator+"image_4.png");
             }
             case MIGHTA -> {
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"mighta"+File.separator+"image_39.png");
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"mighta"+File.separator+"image_40.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"mighta"+File.separator+"image_39.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"mighta"+File.separator+"image_40.png");
             }
             case HIDEGON -> {
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"hidegons"+File.separator+"image_40.png");
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"hidegons"+File.separator+"image_41.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"hidegons"+File.separator+"image_40.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"hidegons"+File.separator+"image_41.png");
             }
             case PULPUL -> {
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"pulpul"+File.separator+"image_407.png");
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"pulpul"+File.separator+"image_408.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"pulpul"+File.separator+"image_407.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"pulpul"+File.separator+"image_408.png");
             }
             case MONSTA -> {
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"monsta"+File.separator+"image_443.png");
-                this.spritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"monsta"+File.separator+"image_444.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"monsta"+File.separator+"image_443.png");
+                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"monsta"+File.separator+"image_444.png");
             }
         }
 
