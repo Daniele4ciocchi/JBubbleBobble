@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.File;
 import java.util.Observer;
 import java.util.Random;
 
@@ -38,6 +39,23 @@ public class PointItem extends Entita {
         return tipologia.PUNTI;
     }
 
+    public void setSpritePath() {
+        this.idleSpritePath = "JBubbleBobble" + File.separator
+                                + "src" + File.separator 
+                                + "resources" + File.separator 
+                                + "sprites" + File.separator 
+                                + "items" + File.separator 
+                                + switch (tipologia) {
+                                    case BANANA     -> "image_68.png";
+                                    case PERSIMMON  -> "image_71.png";
+                                    case PEACH      -> "image_59.png";
+                                    case WATERMELON -> "image_70.png";
+                                    case GRAPE      -> "";
+                                    case DIAMOND    -> "";
+                                    case PINEAPPLE  -> "";
+                                    // case default -> "SPRITE VUOTO DA DECIDERE";
+                                };
+    }
 
     @Override
     public void addObserver(Observer o) {

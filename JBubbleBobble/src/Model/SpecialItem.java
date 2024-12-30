@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.File;
 import java.util.Observer;
 
 /*  INFO: https://strategywiki.org/wiki/Bubble_Bobble/Special_items
@@ -53,7 +54,7 @@ public class SpecialItem extends Entita{
                 case ROSA   -> Effetto.BONUS_SALTO;
                 case ROSSO  -> Effetto.BONUS_SPARO;
                 case BLU    -> Effetto.BONUS_MOV;
-                default     -> Effetto.NULL;c
+                default     -> Effetto.NULL;
             };
             case SNEAKER ->  Effetto.SNEAKER_BUFF;
             default -> Effetto.NULL;
@@ -65,7 +66,6 @@ public class SpecialItem extends Entita{
             case CARAMELLA  -> 1000;
             case ANELLO     -> 1000;
             case SNEAKER    -> 100;
-            default -> 0;
         };
     }
 
@@ -79,6 +79,30 @@ public class SpecialItem extends Entita{
 
     public Effetto getEffetto(){
         return this.effetto;
+    }
+
+    public void setSpritePath() {
+        this.idleSpritePath = "JBubbleBobble" + File.separator
+                                + "src" + File.separator 
+                                + "resources" + File.separator 
+                                + "sprites" + File.separator 
+                                + "items" + File.separator 
+                                + switch (tipologia) {
+                                    case CARAMELLA     -> switch(colore){
+                                        case ROSA   -> "image_68.png";
+                                        case BLU    -> "image_71.png";
+                                        case GIALLO -> "image_59.png";
+                                        default     -> "";
+                                    };
+                                    case ANELLO  -> switch(colore){
+                                        case ROSA   -> "image_68.png";
+                                        case ROSSO  -> "image_71.png";
+                                        case BLU    -> "image_59.png";
+                                        default     -> "";
+                                    };
+                                    case SNEAKER      -> "";
+                                    // case default -> "SPRITE VUOTO DA DECIDERE";
+                                };
     }
 
     //Observer pattern
