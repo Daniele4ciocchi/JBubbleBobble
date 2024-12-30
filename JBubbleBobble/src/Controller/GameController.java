@@ -144,12 +144,13 @@ public class GameController {
 
         //view.getPanel().setEntita(partita.getEntita());
         for (Entita e : partita.getEntita()){
+            //System.out.println(e);
             partita.applyGravity(e);
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY());
             }
         } 
-        //partita.applyGravity(partita.getEntita().getFirst());
+        
 
         
         //controllo movimento giocatore

@@ -76,11 +76,13 @@ public class PartitaView extends JPanel implements Observer {
 
         // Inserimento entità
         for (Entita e : entita) {
-
-            System.out.println(e.toString());
-
             int y = (((gridHeight - 1) * tileSize) - e.getY()) ;
-            g2d.setColor(Color.RED);
+            if (e instanceof Model.Giocatore) {
+                g2d.setColor(Color.BLUE);
+            }else{
+                g2d.setColor(Color.RED);
+            }
+
             g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
         }
     }

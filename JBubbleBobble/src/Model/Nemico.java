@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 public class Nemico extends Entita implements Runnable{
@@ -12,7 +13,7 @@ public class Nemico extends Entita implements Runnable{
     // Enumerazione delle tipologie di nemici con le relative caratteristiche
     public enum Tipologia{
         //NOME (VELOCITÀ(1-3, 4 per la modalità arrabbiato), SALTO(1-3), MOSSE, ATTACCO)
-        ZENCHAN("zen-chan",2, 10, "", "contatto"),
+        ZENCHAN("zen-chan",15, 10, "", "contatto"),
         BANEBOU("banebou",3, 2, "", "contatto"),
         MIGHTA("mighta",2, 2, "lancia-rocce", "contatto"),
         HIDEGON("hidegons",3,1, "palle-di-fuoco","contatto"),
@@ -42,7 +43,8 @@ public class Nemico extends Entita implements Runnable{
 
     private Tipologia tipologia;
     private PointItem drop;
-    private int carattere; //intero da 1 a 10, generato nel costruttore, usato nei parametri di comportamento
+    private int waitTime; //intero da 1 a 10, generato nel costruttore, usato nei parametri di comportamento
+    private int currentWaitTime;
     private boolean bubbled;
     
 
@@ -61,7 +63,8 @@ public class Nemico extends Entita implements Runnable{
        
         Random rand = new Random();
 
-        carattere = (int)Math.random() * 10 + 1;
+        waitTime = rand.nextInt(5) + 1;
+        System.out.println("waitTime: " + waitTime);
 
         drop = new PointItem(x, y, 0, 0, 0);
 
@@ -106,8 +109,8 @@ public class Nemico extends Entita implements Runnable{
         return bubbled;
     }
     public void setBubbled(boolean b){this.bubbled = b;}
-    public int getCarattere() {
-        return this.carattere;
+    public int getWaitTime() {
+        return this.waitTime;
     }
     
     @Override
@@ -129,42 +132,63 @@ public class Nemico extends Entita implements Runnable{
     public void move(int gx, int gy) {
         // controllo orizzontale di dove si trova il giocatore, si muove a dx/sx di conseguenza
         if (this.getX() < gx) {
-            if (getCarattere() % 2 == 0) {
+            if (currentWaitTime == 0){
                 moveRight();
-            } else {
-                try {
-                    Thread.sleep(getCarattere()); // Leggero ritardo
-                    moveRight();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                } 
+                currentWaitTime = waitTime;
+            }else {
+                currentWaitTime--;
             }
-        } else if (this.getX() > gx) {
-            if (getCarattere() % 2 == 0) {
+        }
+        if (this.getX() > gx) {
+            if (currentWaitTime == 0){
                 moveLeft();
-            } else {
-                try {
-                    Thread.sleep(getCarattere()); // Leggero ritardo
-                    moveLeft();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+                currentWaitTime = waitTime;
+            }else {
+                currentWaitTime--;
             }
         }
-        // controllo verticale di dove si trova il giocatore, salta di conseguenza
         if (this.getY() < gy) {
-            if (getCarattere() % 2 == 0) {
-                jump();
-            } else {
-                try {
-                    Thread.sleep(getCarattere()); // Leggero ritardo
-                    jump();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
+            jump();
         }
+
+
+        //     if (getCarattere() % 2 == 0) {
+        //         moveRight();
+        //     } else {
+        //         try {
+        //             Thread.sleep(getCarattere()); // Leggero ritardo
+        //             moveRight();
+        //         } catch (InterruptedException e) {
+        //             Thread.currentThread().interrupt();
+        //         } 
+        //     }
+        // } else if (this.getX() > gx) {
+        //     if (getCarattere() % 2 == 0) {
+        //         moveLeft();
+        //     } else {
+        //         try {
+        //             Thread.sleep(getCarattere()); // Leggero ritardo
+        //             moveLeft();
+        //         } catch (InterruptedException e) {
+        //             Thread.currentThread().interrupt();
+        //         }
+        //     }
+        // }
+        // // controllo verticale di dove si trova il giocatore, salta di conseguenza
+        // if (this.getY() < gy) {
+        //     if (getCarattere() % 2 == 0) {
+        //         jump();
+        //     } else {
+        //         try {
+        //             Thread.sleep(getCarattere()); // Leggero ritardo
+        //             jump();
+        //         } catch (InterruptedException e) {
+        //             Thread.currentThread().interrupt();
+        //         }
+        //     }
+        // }
         
     }
 
 }
+
