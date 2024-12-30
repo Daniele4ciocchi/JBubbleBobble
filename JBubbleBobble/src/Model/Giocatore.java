@@ -7,15 +7,10 @@ import java.util.Observer;
 public class Giocatore extends Entita{
 
     private int life;
-    private boolean direction; //true = destra, false = sinistra
-    private ArrayList<Observer> observers;
-
 
     public Giocatore(){
-        super(6, 5, 10, 20, -5);
+        super(5, 1, 10, 20, -7);
         this.life = 3;
-        this.direction = true;
-
     }
               
     public int getLife(){return this.life; }
@@ -25,7 +20,7 @@ public class Giocatore extends Entita{
     public void resetPosizione(){super.setPosizione(5, 1);}
 
     public Bolla shoot(){
-        return new Bolla(this.direction? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, this.direction);
+        return new Bolla(super.getDirection()? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, super.getDirection());
     }
 
     

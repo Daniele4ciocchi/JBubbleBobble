@@ -89,13 +89,15 @@ public class GameController {
     public void checkPlayerMovement(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
         if (leftPressed) {
-            if (!partita.getLivello().isSolid(giocatore.getX() - giocatore.getMovimentoX(), giocatore.getY())) {
+            if (!partita.getLivello().isSolid(giocatore.getX() - giocatore.getMovimentoX(), giocatore.getY()) &&
+                !partita.getLivello().isWalkable(giocatore.getX() - giocatore.getMovimentoX(), giocatore.getY())) {
                 giocatore.moveLeft();
             }
             
 
         } else if (rightPressed) {
-            if (!partita.getLivello().isSolid(giocatore.getX() + giocatore.getMovimentoX(), giocatore.getY())) {
+            if (!partita.getLivello().isSolid(giocatore.getX() + giocatore.getMovimentoX(), giocatore.getY()) &&
+                !partita.getLivello().isWalkable(giocatore.getX() + giocatore.getMovimentoX(), giocatore.getY())) {
                 giocatore.moveRight();
             }
             
