@@ -1,9 +1,8 @@
 TODOLIST  
-- [ ] aggiungere il giocatore e i nemici alla grafica (Daniele)
-- [ ] implementare il gameloop 
+- [x] aggiungere il giocatore e i nemici alla grafica (Daniele)
+- [ ] implementare il gameloop (in corso) 
 - [x] powerup (da fare completamente da capo)
 - [x] finire il move dei nemici 
-- [ ] implementare i txt dei livelli
 - [ ] ideare il sistema dello score 
 - [ ] fare una grafica decente (the big one)
 - [ ] aggiungere un cooldown agli spari in Partita.java
@@ -15,4 +14,5 @@ TODOLIST
 - [ ] implementare almeno 2 tipi di bolle
 - [ ] livelli profilo, implementare 
 - [ ] importazione e/o creazione di 16 livelli "testuali"
-- [ ] attribuire i diversi tipi di sprite per ognuno dei 16 livelli
+- [x] attribuire i diversi tipi di sprite per ognuno dei 16 livelli
+- [ ] ricordiamoci di usare gli stream

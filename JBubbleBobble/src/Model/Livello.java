@@ -102,6 +102,12 @@ public class Livello {
         int tileY = y / tilesize;
         return grid[tileY][tileX].getType().isSolid();
     }
+
+    public boolean isEmpty(int x, int y) {
+        int tileX = x / tilesize;
+        int tileY = y / tilesize;
+        return !(grid[tileY][tileX].getType().isSolid() || grid[tileY][tileX].getType().isWalkable());
+    }
     
 
     @Override

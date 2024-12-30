@@ -14,7 +14,7 @@ public class Nemico extends Entita implements Runnable{
     // Enumerazione delle tipologie di nemici con le relative caratteristiche
     public enum Tipologia{
         //NOME (VELOCITÀ(1-3, 4 per la modalità arrabbiato), SALTO(1-3), MOSSE, ATTACCO)
-        ZENCHAN("zen-chan",15, 10, "", "contatto"),
+        ZENCHAN("zen-chan",5, 5, "", "contatto"),
         BANEBOU("banebou",3, 2, "", "contatto"),
         MIGHTA("mighta",2, 2, "lancia-rocce", "contatto"),
         HIDEGON("hidegons",3,1, "palle-di-fuoco","contatto"),
@@ -132,11 +132,11 @@ public class Nemico extends Entita implements Runnable{
 
     // metodo che gestisce il movimento di questo nemico
     // prende in input la posizione x e la posizione y del Giocatore
-    public void move(int gx, int gy) {
+    public void move(int gx, int gy, Livello l) {
         // controllo orizzontale di dove si trova il giocatore, si muove a dx/sx di conseguenza
         if (this.getX() < gx) {
             if (currentWaitTime == 0){
-                moveRight();
+                moveRight(l);
                 currentWaitTime = waitTime;
             }else {
                 currentWaitTime--;
@@ -144,7 +144,7 @@ public class Nemico extends Entita implements Runnable{
         }
         if (this.getX() > gx) {
             if (currentWaitTime == 0){
-                moveLeft();
+                moveLeft(l);
                 currentWaitTime = waitTime;
             }else {
                 currentWaitTime--;

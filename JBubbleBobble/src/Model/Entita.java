@@ -55,18 +55,22 @@ abstract public class Entita extends Observable {
         notifyObservers();
     }
 
-    public void moveLeft() {
-        posx-=movimentoX;
-        setChanged();
-        notifyObservers();
-        goingRight = false;
+    public void moveLeft(Livello l) {
+        if (l.isEmpty(posx-movimentoX, posy)){
+            posx-=movimentoX;
+            setChanged();
+            notifyObservers();
+            goingRight = false;
+        }
     }
 
-    public void moveRight() {
-        posx += movimentoX;
-        setChanged();
-        notifyObservers();
-        goingRight = true;
+    public void moveRight(Livello l) {
+        if (l.isEmpty(posx+movimentoX, posy)){
+            posx += movimentoX;
+            setChanged();
+            notifyObservers();
+            goingRight = true;
+        }
     }
 
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
