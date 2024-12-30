@@ -17,7 +17,8 @@ import java.io.IOException;
 
 public class GameView  {
     private JFrame frame = new JFrame("Bubble Bobble MVC Game");
-    private PartitaView panel ;
+    private PartitaView gioco ;
+    private PannelloSuperiore topPanel;
     private JLabel scoreLabel;
     private JButton pauseButton;
     private JButton exitButton;
@@ -34,10 +35,14 @@ public class GameView  {
 
     }
     public void addPanel(PartitaView panel) {
-        this.panel = panel;
+        this.gioco = panel;
         frame.add(panel);
     }
-
+    public void addTopPanel(PannelloSuperiore panel) {
+        this.topPanel = panel;
+        frame.add(panel);
+    }
+    
     public void addKeyListener(KeyAdapter keyAdapter) {
         frame.addKeyListener(keyAdapter);
     }
@@ -49,8 +54,12 @@ public class GameView  {
     }
 
     public PartitaView getPanel() {
-        return panel;
+        return gioco;
     }
+    public PannelloSuperiore getTopPanel() {
+        return topPanel;
+    }
+    
     public void updateScore(int score) {
         scoreLabel.setText("Score: " + score);
     }

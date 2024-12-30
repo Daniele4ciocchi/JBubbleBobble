@@ -48,6 +48,7 @@ public class PartitaView extends JPanel implements Observer {
 
     }
 
+
     public void paintLivello(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         int gridHeight = grid.length;      // Numero di righe
@@ -78,7 +79,8 @@ public class PartitaView extends JPanel implements Observer {
         for (Entita e : entita) {
             int y = (((gridHeight - 1) * tileSize) - e.getY()) ;
             if (e instanceof Model.Giocatore) {
-                g2d.setColor(Color.BLUE);
+                try {
+                    image = ImageIO.read(e.get
             }else{
                 g2d.setColor(Color.RED);
             }

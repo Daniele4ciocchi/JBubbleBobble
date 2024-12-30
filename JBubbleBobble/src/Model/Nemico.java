@@ -63,11 +63,8 @@ public class Nemico extends Entita implements Runnable{
         bubbled = false;
 
         // generazione random del carattere del nemico
-       
         Random rand = new Random();
-
         waitTime = rand.nextInt(5) + 1;
-        System.out.println("waitTime: " + waitTime);
 
         drop = new PointItem(x, y, 0, 0, 0);
 

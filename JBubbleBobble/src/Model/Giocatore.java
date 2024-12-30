@@ -15,9 +15,11 @@ public class Giocatore extends Entita{
               
     public int getLife(){return this.life; }
 
-    public void addlife(){this.life++;}
+    public void addLife(){this.life++;}
 
-    public void resetPosizione(){super.setPosizione(5, 1);}
+    public void removeLife(){this.life--;}
+
+    public void resetPosizione(){super.setPosizione(5*getEntitysize(), 1*getEntitysize());}
 
     public Bolla shoot(){
         return new Bolla(super.getGoingRight()? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, super.getGoingRight());

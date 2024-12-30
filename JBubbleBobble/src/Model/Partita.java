@@ -106,29 +106,17 @@ public class Partita {
 
     public void addPunteggio(int n){punteggio += n;}
 
-    public boolean checkCollision() {
-        int minDistance = 10; // Minimum distance in pixels
 
-        for (int i = 0; i < entitaAttive.size(); i++) {
-            Entita e1 = entitaAttive.get(i);
-            Rectangle rect1 = new Rectangle(e1.getX(), e1.getY(), e1.getEntitysize(), e1.getEntitysize());
-
-            for (int j = i + 1; j < entitaAttive.size(); j++) {
-                Entita e2 = entitaAttive.get(j);
-                Rectangle rect2 = new Rectangle(e2.getX(), e2.getY(), e2.getEntitysize(), e2.getEntitysize());
-
-                if (rect1.intersects(rect2)) {
-                    int dx = Math.abs(e1.getX() - e2.getX());
-                    int dy = Math.abs(e1.getY() - e2.getY());
-
-                    if (dx < minDistance && dy < minDistance) {
-                        return true;
-                    }
-                }
+    public Entita checkCollision(Entita e1) {
+        Rectangle rect1 = new Rectangle(e1.getX(), e1.getY(), e1.getEntitysize(), e1.getEntitysize());
+        for (Entita e2 : entitaAttive) {
+            if (e1.equals(e2)) continue;
+            Rectangle rect2 = new Rectangle(e2.getX(), e2.getY(), e2.getEntitysize(), e2.getEntitysize());
+            if (rect1.intersects(rect2)) {
+                return e2;
             }
-
         }
-        return false;
+        return (Entita)null;
     }
 
     public void posizionaEntita(){

@@ -38,7 +38,7 @@ public class GameController {
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
         this.view = view;
-
+        
         view.addPanel(new PartitaView(partita.getLivello().getTilesize()));
         view.getPanel().setGrid(partita.getLivello().getGrid());
         view.getPanel().setPath(partita.getLivello().getTilePath());
@@ -93,7 +93,7 @@ public class GameController {
         else if (rightPressed) giocatore.moveRight(partita.getLivello());
     }
 
-    
+
     private void startGameLoop() {
         Timer timer = new Timer(16, e -> {try {
             gameLoop();            
@@ -132,8 +132,14 @@ public class GameController {
         //  -
 
         //view.getPanel().setEntita(partita.getEntita());
+
+        if (partita.checkCollision(partita.getEntita().getFirst()) instanceof Nemico){
+            ((Giocatore) (partita.getEntita().getFirst())).removeLife();
+            ((Giocatore) (partita.getEntita().getFirst())).resetPosizione();
+        }
+    
         for (Entita e : partita.getEntita()){
-            //System.out.println(e);
+            
             partita.applyGravity(e);
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
@@ -145,7 +151,6 @@ public class GameController {
         //controllo movimento giocatore
         checkPlayerMovement();
 
-        //view.getPanel().setEntita(partita.getEntita());
     }
 
 }
