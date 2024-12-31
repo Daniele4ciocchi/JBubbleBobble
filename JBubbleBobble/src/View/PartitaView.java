@@ -1,6 +1,7 @@
 package View;
 
 import Model.Entita;
+import Model.Giocatore;
 import Model.Tile;
 
 import javax.imageio.ImageIO;
@@ -78,14 +79,25 @@ public class PartitaView extends JPanel implements Observer {
         // Inserimento entità
         for (Entita e : entita) {
             int y = (((gridHeight - 1) * tileSize) - e.getY()) ;
+            BufferedImage gio;
             if (e instanceof Model.Giocatore) {
                 try {
-                    image = ImageIO.read(e.get
+                    gio = ImageIO.read(new File(((Giocatore)(e)).getSpritePath()));
+                    if (!((Giocatore)(e)).getGoingRight()) {
+                        g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                    } else {
+                        g2d.drawImage(gio, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                    }
+                    //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }else{
                 g2d.setColor(Color.RED);
+                g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
             }
 
-            g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
+            
         }
     }
 
