@@ -39,6 +39,9 @@ public class SpecialItem extends Entita{
     private Colore colore;
     private Effetto effetto;
 
+    // sprites
+    private String idleSpritePath;
+
     public SpecialItem(int posx, int posy, int velocitaX, int velocitaY, int gravita, Tipologia tipologia, Colore colore){
         super(posx, posy, velocitaX, velocitaY, gravita);
         this.tipologia = tipologia;

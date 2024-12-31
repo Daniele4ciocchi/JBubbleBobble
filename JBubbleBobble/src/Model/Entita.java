@@ -5,6 +5,36 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+/*
+ ======================= GUIDA SPRITE =======================
+  ENTITA
+	Giocatore
+		idleSprite
+		fallingSprite
+		jumpingSprite
+		shootingSprite
+		walkingSprites[]
+		deathSprite
+		
+	Nemico
+		idleSprite
+		walkingSprites[]
+		bubbledSprites[]
+		deathSprite (punti)
+		
+	SpecialItem
+		idleSprite
+		deathSprite? (punti)
+		
+	PointItem
+		idleSprite
+		deathSprite? (punti)
+		
+	Bolla
+		idleSprites[] (da bolla piccola a bolla grande)
+		[ DA DECIDERE GLI ALTRI ]
+ */
+
 abstract public class Entita extends Observable {
 
     private int posx;
@@ -18,13 +48,15 @@ abstract public class Entita extends Observable {
     private int jumpForce;
 
     private int entitysize = 16;
-    private boolean goingRight; // "devo flippare lo sprite?"
 
-    protected String idleSpritePath; // lo sprite da usare da fermo
-    protected ArrayList<String> walkingSpritePath; // gli sprite da usare per l'animazione di camminata
+    // campi per gli SPRITE
+    private boolean goingRight; // "devo flippare lo sprite?"
+    //protected String idleSpritePath; // lo sprite da usare da fermo
+    //protected String deathSpritePath;
 
     private int animationTimer = 10;
     private int currentAnimationTimer = 0;
+    
 
     public Entita(int posx, int posy, int velocitaX, int jumpForce, int gravita){
         this.posx = posx*entitysize;
@@ -76,16 +108,6 @@ abstract public class Entita extends Observable {
         }
     }
 
-    // fatto da copilot, correttezza da verificare
-    public String getSpritePath(){
-        if (currentAnimationTimer == 0){
-            currentAnimationTimer = animationTimer;
-            return idleSpritePath;
-        }else{
-            currentAnimationTimer--;
-            return walkingSpritePath.get(currentAnimationTimer % walkingSpritePath.size());
-        }
-    }
 
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
     //      allora può fare il jump

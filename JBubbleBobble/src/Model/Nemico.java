@@ -48,7 +48,7 @@ public class Nemico extends Entita implements Runnable{
     private int currentWaitTime;
     private boolean bubbled;
     
-
+    protected ArrayList<String> walkingSpritePath; // gli sprite da usare per l'animazione di camminata
     private ArrayList<String> bubbledSpritePath;
 
     /**
