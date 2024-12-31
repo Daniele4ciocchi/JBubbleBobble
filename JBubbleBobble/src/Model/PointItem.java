@@ -20,6 +20,8 @@ public class PointItem extends Entita {
         public int getDropRate(){return this.DROP_RATE;}
     }
     private Tipologia tipologia;
+    private String idleSpritePath;
+    private String deathSpritePath; // SCORE dell'oggetto (TODO: da implementare un piccolo movimento verso l'alto come piccola animazione)
 
     public PointItem(int posx, int posy, int velocitaX, int velocitaY, int gravita) {
         super(posx, posy, velocitaX, velocitaY, gravita);
@@ -33,6 +35,9 @@ public class PointItem extends Entita {
                 break;
             }
         }
+
+        // settaggio sprite
+        
     }
 
     public int getPoints() {
@@ -40,11 +45,7 @@ public class PointItem extends Entita {
     }
 
     public void setSpritePath() {
-        this.idleSpritePath = "JBubbleBobble" + File.separator
-                                + "src" + File.separator 
-                                + "resources" + File.separator 
-                                + "sprites" + File.separator 
-                                + "items" + File.separator 
+        this.idleSpritePath = baseSpritePath + "items" + File.separator 
                                 + switch (tipologia) {
                                     case BANANA     -> "image_68.png";
                                     case PERSIMMON  -> "image_71.png";

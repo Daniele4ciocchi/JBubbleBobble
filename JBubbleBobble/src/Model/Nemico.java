@@ -34,6 +34,7 @@ public class Nemico extends Entita implements Runnable{
             this.mosse = mosse;
             this.attacco = attacco;
         }
+        
         //getter
         public String getNome(){return this.nome;}
         public int getVelocita(){return this.velocita;}
@@ -44,12 +45,15 @@ public class Nemico extends Entita implements Runnable{
 
     private Tipologia tipologia;
     private PointItem drop;
-    private int waitTime; //intero da 1 a 10, generato nel costruttore, usato nei parametri di comportamento
+
+    // campi per movimento diversificato dei nemici
+    private int waitTime; // intero da 1 a 10, generato nel costruttore, usato come "ritardo"
     private int currentWaitTime;
+
     private boolean bubbled;
     
-    protected ArrayList<String> walkingSpritePath; // gli sprite da usare per l'animazione di camminata
-    private ArrayList<String> bubbledSpritePath;
+    private ArrayList<String> walkingSpritePath; // gli sprite da usare per l'animazione di camminata
+    private ArrayList<String> bubbledSpritePath; // sprite su cui ciclare quando il nemico è stato "bollato"
 
     /**
      * Costruttore della classe Nemico
@@ -133,61 +137,19 @@ public class Nemico extends Entita implements Runnable{
         // controllo orizzontale di dove si trova il giocatore, si muove a dx/sx di conseguenza
         if (this.getX() < gx) {
             if (currentWaitTime == 0){
+                goingRight = true;
                 moveRight(l);
                 currentWaitTime = waitTime;
-            }else {
-                currentWaitTime--;
-            }
+            } else currentWaitTime--;
         }
         if (this.getX() > gx) {
             if (currentWaitTime == 0){
+                goingRight = false;
                 moveLeft(l);
                 currentWaitTime = waitTime;
-            }else {
-                currentWaitTime--;
-            }
+            }else currentWaitTime--;
         }
-        if (this.getY() < gy) {
-            jump();
-        }
-
-
-        //     if (getCarattere() % 2 == 0) {
-        //         moveRight();
-        //     } else {
-        //         try {
-        //             Thread.sleep(getCarattere()); // Leggero ritardo
-        //             moveRight();
-        //         } catch (InterruptedException e) {
-        //             Thread.currentThread().interrupt();
-        //         } 
-        //     }
-        // } else if (this.getX() > gx) {
-        //     if (getCarattere() % 2 == 0) {
-        //         moveLeft();
-        //     } else {
-        //         try {
-        //             Thread.sleep(getCarattere()); // Leggero ritardo
-        //             moveLeft();
-        //         } catch (InterruptedException e) {
-        //             Thread.currentThread().interrupt();
-        //         }
-        //     }
-        // }
-        // // controllo verticale di dove si trova il giocatore, salta di conseguenza
-        // if (this.getY() < gy) {
-        //     if (getCarattere() % 2 == 0) {
-        //         jump();
-        //     } else {
-        //         try {
-        //             Thread.sleep(getCarattere()); // Leggero ritardo
-        //             jump();
-        //         } catch (InterruptedException e) {
-        //             Thread.currentThread().interrupt();
-        //         }
-        //     }
-        // }
-        
+        if (this.getY() < gy) jump();
     }
 
 }

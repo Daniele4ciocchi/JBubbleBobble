@@ -1,6 +1,7 @@
 package Model;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -39,7 +40,7 @@ abstract public class Entita extends Observable {
 
     private int posx;
     private int posy;
-    private boolean alive;
+    private boolean dead; // se l'entità è morta
 
     private int movimentoX;
     private int movimentoY;
@@ -50,7 +51,8 @@ abstract public class Entita extends Observable {
     private int entitysize = 16;
 
     // campi per gli SPRITE
-    private boolean goingRight; // "devo flippare lo sprite?"
+    protected boolean goingRight; // "devo flippare lo sprite?"
+    protected String baseSpritePath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator;
     //protected String idleSpritePath; // lo sprite da usare da fermo
     //protected String deathSpritePath;
 
@@ -61,7 +63,7 @@ abstract public class Entita extends Observable {
     public Entita(int posx, int posy, int velocitaX, int jumpForce, int gravita){
         this.posx = posx*entitysize;
         this.posy = posy*entitysize;
-        this.alive = true;
+        this.dead = true;
         this.movimentoX = velocitaX;
         this.jumpForce = jumpForce;
         this.gravita = gravita;
@@ -70,7 +72,7 @@ abstract public class Entita extends Observable {
 
     public int getX(){ return posx;}
     public int getY(){ return posy;}
-    public boolean isAlive(){ return alive;}
+    public boolean isDead(){ return dead;}
     public int getMovimentoX(){ return movimentoX;}
     public int getMovimentoY(){ return movimentoY;}
     public int getGravita(){ return gravita;}
@@ -108,18 +110,16 @@ abstract public class Entita extends Observable {
         }
     }
 
-
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
     //      allora può fare il jump
-
     public void jump() {
         this.movimentoY = this.jumpForce;
         setChanged();
         notifyObservers();
     }
 
-    public void dead(){
-        this.alive = false;
+    public void die(){
+        this.dead = true;
         setChanged();
         notifyObservers();
     }

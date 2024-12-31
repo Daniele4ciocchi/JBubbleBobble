@@ -40,12 +40,14 @@ public class SpecialItem extends Entita{
     private Effetto effetto;
 
     // sprites
-    private String idleSpritePath;
+    private String idleSpritePath;  // sprite (statico) dell'item
+    private String deathSpritePath; // SCORE dell'oggetto (TODO: da implementare un piccolo movimento verso l'alto come piccola animazione)
 
     public SpecialItem(int posx, int posy, int velocitaX, int velocitaY, int gravita, Tipologia tipologia, Colore colore){
         super(posx, posy, velocitaX, velocitaY, gravita);
         this.tipologia = tipologia;
         this.colore = colore;
+
         this.effetto = switch (this.tipologia) {
             case CARAMELLA -> switch (this.colore) {
                 case ROSA   -> Effetto.BOLLE_RANGE_UP;
@@ -62,6 +64,28 @@ public class SpecialItem extends Entita{
             case SNEAKER ->  Effetto.SNEAKER_BUFF;
             default -> Effetto.NULL;
         };
+
+        this.idleSpritePath = "JBubbleBobble" + File.separator
+            + "src" + File.separator 
+            + "resources" + File.separator 
+            + "sprites" + File.separator 
+            + "items" + File.separator 
+            + switch (tipologia) {
+                case CARAMELLA     -> switch(colore){
+                    case ROSA   -> "image_68.png";
+                    case BLU    -> "image_71.png";
+                    case GIALLO -> "image_59.png";
+                    default     -> "";
+                };
+                case ANELLO  -> switch(colore){
+                    case ROSA   -> "image_68.png";
+                    case ROSSO  -> "image_71.png";
+                    case BLU    -> "image_59.png";
+                    default     -> "";
+                };
+                case SNEAKER      -> "";
+                // case default -> "SPRITE VUOTO DA DECIDERE";
+            };
     }
     
     public int getPoints(){ 
@@ -84,28 +108,9 @@ public class SpecialItem extends Entita{
         return this.effetto;
     }
 
-    public void setSpritePath() {
-        this.idleSpritePath = "JBubbleBobble" + File.separator
-                                + "src" + File.separator 
-                                + "resources" + File.separator 
-                                + "sprites" + File.separator 
-                                + "items" + File.separator 
-                                + switch (tipologia) {
-                                    case CARAMELLA     -> switch(colore){
-                                        case ROSA   -> "image_68.png";
-                                        case BLU    -> "image_71.png";
-                                        case GIALLO -> "image_59.png";
-                                        default     -> "";
-                                    };
-                                    case ANELLO  -> switch(colore){
-                                        case ROSA   -> "image_68.png";
-                                        case ROSSO  -> "image_71.png";
-                                        case BLU    -> "image_59.png";
-                                        default     -> "";
-                                    };
-                                    case SNEAKER      -> "";
-                                    // case default -> "SPRITE VUOTO DA DECIDERE";
-                                };
+    public String getSprite(){
+        if (this.isDead()) return this.idleSpritePath;
+        else return this.deathSpritePath;
     }
 
     //Observer pattern
