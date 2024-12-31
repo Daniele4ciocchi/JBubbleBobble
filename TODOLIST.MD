@@ -16,3 +16,5 @@ TODOLIST
 - [ ] importazione e/o creazione di 16 livelli "testuali"
 - [x] attribuire i diversi tipi di sprite per ognuno dei 16 livelli
 - [ ] ricordiamoci di usare gli stream
+- [ ] implementare effetto pacman dal pavimento al soffitto (ora è facile da fare)
+- [ ] decidere se implementare o meno l'acqua
