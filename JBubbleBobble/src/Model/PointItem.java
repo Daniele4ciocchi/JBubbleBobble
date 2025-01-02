@@ -1,10 +1,9 @@
 package Model;
 
-import java.io.File;
 import java.util.Observer;
 import java.util.Random;
 
-public class PointItem extends Entita {
+public class PointItem extends Item {
     public enum Tipologia{
         BANANA(500, 50), PERSIMMON(1000, 40), PEACH(2000, 30), WATERMELON(4000,20), GRAPE(8000,10), PINEAPPLE(16000,5), DIAMOND(32000,1);
 
@@ -19,10 +18,9 @@ public class PointItem extends Entita {
         public int getPunti(){return this.PUNTI;}
         public int getDropRate(){return this.DROP_RATE;}
     }
-    private Tipologia tipologia;
-    private String idleSpritePath;
-    private String deathSpritePath; // SCORE dell'oggetto (TODO: da implementare un piccolo movimento verso l'alto come piccola animazione)
 
+    private Tipologia tipologia;
+    
     public PointItem(int posx, int posy, int velocitaX, int velocitaY, int gravita) {
         super(posx, posy, velocitaX, velocitaY, gravita);
 
@@ -36,17 +34,11 @@ public class PointItem extends Entita {
             }
         }
 
+        // attribuzione punti
+        this.points = tipologia.getPunti();
+
         // settaggio sprite
-        
-    }
-
-    public int getPoints() {
-        return tipologia.PUNTI;
-    }
-
-    public void setSpritePath() {
-        this.idleSpritePath = baseSpritePath + "items" + File.separator 
-                                + switch (tipologia) {
+        this.idleSpritePath = baseSpritePath + switch (tipologia) {
                                     case BANANA     -> "image_68.png";
                                     case PERSIMMON  -> "image_71.png";
                                     case PEACH      -> "image_59.png";
@@ -56,24 +48,6 @@ public class PointItem extends Entita {
                                     case PINEAPPLE  -> "";
                                     // case default -> "SPRITE VUOTO DA DECIDERE";
                                 };
-    }
-
-    @Override
-    public void addObserver(Observer o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addObserver'");
-    }
-
-    @Override
-    public void deleteObserver(Observer o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteObserver'");
-    }
-
-    @Override
-    public void notifyObservers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'notifyObservers'");
     }
 
 }

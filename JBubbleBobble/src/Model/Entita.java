@@ -53,8 +53,8 @@ abstract public class Entita extends Observable {
     // campi per gli SPRITE
     protected boolean goingRight; // "devo flippare lo sprite?"
     protected String baseSpritePath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator;
-    //protected String idleSpritePath; // lo sprite da usare da fermo
-    //protected String deathSpritePath;
+    protected String idleSpritePath = baseSpritePath; // lo sprite da usare da fermo
+    protected String deathSpritePath = baseSpritePath; // lo sprite da usare quando l'entità muore
 
     private int animationTimer = 10;
     private int currentAnimationTimer = 0;
@@ -70,14 +70,14 @@ abstract public class Entita extends Observable {
         this.goingRight = true;
     }
 
-    public int getX(){ return posx;}
-    public int getY(){ return posy;}
-    public boolean isDead(){ return dead;}
-    public int getMovimentoX(){ return movimentoX;}
-    public int getMovimentoY(){ return movimentoY;}
-    public int getGravita(){ return gravita;}
-    public int getEntitysize(){ return entitysize;}
-    public boolean getGoingRight(){ return goingRight;}
+    public int getX(){return posx;}
+    public int getY(){return posy;}
+    public boolean isDead(){return dead;}
+    public int getMovimentoX(){return movimentoX;}
+    public int getMovimentoY(){return movimentoY;}
+    public int getGravita(){return gravita;}
+    public int getEntitysize(){return entitysize;}
+    public boolean getGoingRight(){return goingRight;}
 
     public void setMovimentoY(int i) {this.movimentoY = i;}
     public void setMovimentoX(int i) {this.movimentoX = i;}

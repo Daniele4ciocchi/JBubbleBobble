@@ -17,9 +17,16 @@ import java.util.Observer;
             5 - gialla: Collect 25 point items -> skip 5 lvl
         - 6, scarpa(SNEAKER)(100): Run across the full length of the screen 15 times. -> +velocita, salto, gravita
 */
-public class SpecialItem extends Entita{
+public class SpecialItem extends Item{
     public enum Tipologia{
-        CARAMELLA, ANELLO, SNEAKER
+        CARAMELLA(1000), ANELLO(1000), SNEAKER(100);
+
+        private final int PUNTI;
+
+        Tipologia(int p){
+            this.PUNTI = p;
+        }
+
     }
     public enum Colore{
         ROSA, BLU, GIALLO, ARANCIONE, ROSSO, EMPTY
@@ -38,10 +45,6 @@ public class SpecialItem extends Entita{
     private Tipologia tipologia;
     private Colore colore;
     private Effetto effetto;
-
-    // sprites
-    private String idleSpritePath;  // sprite (statico) dell'item
-    private String deathSpritePath; // SCORE dell'oggetto (TODO: da implementare un piccolo movimento verso l'alto come piccola animazione)
 
     public SpecialItem(int posx, int posy, int velocitaX, int velocitaY, int gravita, Tipologia tipologia, Colore colore){
         super(posx, posy, velocitaX, velocitaY, gravita);
@@ -65,7 +68,7 @@ public class SpecialItem extends Entita{
             default -> Effetto.NULL;
         };
 
-        this.idleSpritePath = "JBubbleBobble" + File.separator
+        super.idleSpritePath = "JBubbleBobble" + File.separator
             + "src" + File.separator 
             + "resources" + File.separator 
             + "sprites" + File.separator 
@@ -86,16 +89,10 @@ public class SpecialItem extends Entita{
                 case SNEAKER      -> "";
                 // case default -> "SPRITE VUOTO DA DECIDERE";
             };
+
+            this.points = tipologia.PUNTI;
     }
     
-    public int getPoints(){ 
-        return switch(this.tipologia){
-            case CARAMELLA  -> 1000;
-            case ANELLO     -> 1000;
-            case SNEAKER    -> 100;
-        };
-    }
-
     public Tipologia getTipologia(){
         return this.tipologia;
     }
@@ -106,24 +103,5 @@ public class SpecialItem extends Entita{
 
     public Effetto getEffetto(){
         return this.effetto;
-    }
-
-    public String getSprite(){
-        if (this.isDead()) return this.idleSpritePath;
-        else return this.deathSpritePath;
-    }
-
-    //Observer pattern
-    @Override
-    public void addObserver(Observer o) {
-
-    }
-    @Override
-    public void deleteObserver(Observer o) {
-
-    }
-    @Override
-    public void notifyObservers() {
-
     }
 }

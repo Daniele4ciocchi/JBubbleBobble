@@ -2,33 +2,28 @@ package Model;
 
 import java.awt.Point;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-
-public class Nemico extends Entita implements Runnable{
+public class Nemico extends Personaggio implements Runnable{
 
     // Enumerazione delle tipologie di nemici con le relative caratteristiche
     public enum Tipologia{
         //NOME (VELOCITÀ(1-3, 4 per la modalità arrabbiato), SALTO(1-3), MOSSE, ATTACCO)
-        ZENCHAN("zen-chan",5, 5, "", "contatto"),
-        BANEBOU("banebou",3, 2, "", "contatto"),
-        MIGHTA("mighta",2, 2, "lancia-rocce", "contatto"),
-        HIDEGON("hidegons",3,1, "palle-di-fuoco","contatto"),
-        PULPUL("pulpul",3, 3, "", "contatto"),
-        MONSTA("monsta",3, 2, "", "contatto");
+        ZENCHAN(5, 5, "", "contatto"),
+        BANEBOU(3, 2, "", "contatto"),
+        MIGHTA(2, 2, "lancia-rocce", "contatto"),
+        HIDEGON(3,1, "palle-di-fuoco","contatto"),
+        PULPUL(3, 3, "", "contatto"),
+        MONSTA(3, 2, "", "contatto");
 
-        private final String nome;
         private final int velocita;
         private final int salto;
         private final String mosse;
         private final String attacco;
 
-        Tipologia(String nome, int velocita, int salto, String mosse, String attacco){
-            this.nome = nome;
+        Tipologia(int velocita, int salto, String mosse, String attacco){
             this.velocita = velocita;
             this.salto = salto;
             this.mosse = mosse;
@@ -36,7 +31,6 @@ public class Nemico extends Entita implements Runnable{
         }
         
         //getter
-        public String getNome(){return this.nome;}
         public int getVelocita(){return this.velocita;}
         public int getSalto(){return this.salto;}
         public String getMosse(){return this.mosse;}
@@ -52,8 +46,7 @@ public class Nemico extends Entita implements Runnable{
 
     private boolean bubbled;
     
-    private ArrayList<String> walkingSpritePath; // gli sprite da usare per l'animazione di camminata
-    private ArrayList<String> bubbledSpritePath; // sprite su cui ciclare quando il nemico è stato "bollato"
+    private String[] bubbledSpritesPath; // animazione quando catturato in una bolla //TODO: vedere quanti sprite servono
 
     /**
      * Costruttore della classe Nemico
@@ -62,7 +55,7 @@ public class Nemico extends Entita implements Runnable{
      * @param y la posizione y del nemico
      */
     public Nemico(Tipologia t, int x, int y){
-        super( x, y, t.getVelocita(), t.getSalto(), -7);
+        super(x, y, t.getVelocita(), t.getSalto(), -7);
         tipologia = t;
         bubbled = false;
 
@@ -70,52 +63,43 @@ public class Nemico extends Entita implements Runnable{
         Random rand = new Random();
         waitTime = rand.nextInt(5) + 1;
 
-        drop = new PointItem(x, y, 0, 0, 0);
+        drop = new PointItem(x, y, 0, 0, -5);
 
-        this.walkingSpritePath = new ArrayList<>();
+        // attribuzione walking sprite 
+        // TODO: inserire anche gli altri sprite qui, e pensare di isolare lo switch in un metodo
         switch (t){
             case ZENCHAN -> {
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"zen-chan"+File.separator+"image_507.png");
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"zen-chan"+File.separator+"image_508.png");
+                walkingSpritesPath[0] = "zen-chan"+File.separator+"image_507.png";
+                walkingSpritesPath[1] = "zen-chan"+File.separator+"image_508.png";
             }
             case BANEBOU -> {
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"banebou"+File.separator+"image_4.png");
+                walkingSpritesPath[0] = "banebou"+File.separator+"image_4.png";
+                walkingSpritesPath[1] = "banebou"+File.separator+"image_4.png";
             }
             case MIGHTA -> {
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"mighta"+File.separator+"image_39.png");
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"mighta"+File.separator+"image_40.png");
+                walkingSpritesPath[0] = "mighta"+File.separator+"image_39.png";
+                walkingSpritesPath[1] = "banebou"+File.separator+"image_40.png";
             }
             case HIDEGON -> {
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"hidegons"+File.separator+"image_40.png");
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"hidegons"+File.separator+"image_41.png");
+                walkingSpritesPath[0] = "hidegons"+File.separator+"image_40.png";
+                walkingSpritesPath[1] = "banebou"+File.separator+"image_41.png";
             }
             case PULPUL -> {
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"pulpul"+File.separator+"image_407.png");
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"pulpul"+File.separator+"image_408.png");
+                walkingSpritesPath[0] = "pulpul"+File.separator+"image_407.png";
+                walkingSpritesPath[1] = "pulpul"+File.separator+"image_408.png";
             }
             case MONSTA -> {
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"monsta"+File.separator+"image_443.png");
-                this.walkingSpritePath.add("JBubbleBobble"+File.separator+"src"+File.separator+"resources"+File.separator+"sprites"+File.separator+"monsta"+File.separator+"image_444.png");
+                walkingSpritesPath[0] = "monsta"+File.separator+"image_443.png";
+                walkingSpritesPath[1] = "monsta"+File.separator+"image_444.png";
             }
         }
-
     }
 
-    public Tipologia getTipologia(){
-        return tipologia;
-    }
-    
-    public PointItem getPointItem(){
-        return drop;
-    }
-
-    public boolean isBubbled(){
-        return bubbled;
-    }
+    public Tipologia getTipologia(){return tipologia;}
+    public PointItem getPointItem(){return drop;}
+    public boolean isBubbled(){return bubbled;}
     public void setBubbled(boolean b){this.bubbled = b;}
-    public int getWaitTime() {
-        return this.waitTime;
-    }
+    public int getWaitTime() {return this.waitTime;}
     
     @Override
     public void run() {
@@ -131,10 +115,8 @@ public class Nemico extends Entita implements Runnable{
         super.notifyObservers();
     }
 
-    // metodo che gestisce il movimento di questo nemico
-    // prende in input la posizione x e la posizione y del Giocatore
+    // osserva le coordinate di Giocatore, si muove di conseguenza con dei piccoli ostacoli mentali
     public void move(int gx, int gy, Livello l) {
-        // controllo orizzontale di dove si trova il giocatore, si muove a dx/sx di conseguenza
         if (this.getX() < gx) {
             if (currentWaitTime == 0){
                 goingRight = true;
@@ -151,6 +133,5 @@ public class Nemico extends Entita implements Runnable{
         }
         if (this.getY() < gy) jump();
     }
-
 }
 
