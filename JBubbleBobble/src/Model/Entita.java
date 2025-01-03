@@ -61,7 +61,7 @@ abstract public class Entita extends Observable {
     public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
         this.posx = posx*entitysize;
         this.posy = posy*entitysize;
-        this.dead = true;
+        this.dead = false;
         this.movimentoX = velocitaX;
         this.gravita = gravita;
         this.goingRight = true;
