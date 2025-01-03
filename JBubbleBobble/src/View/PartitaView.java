@@ -2,7 +2,7 @@ package View;
 
 import Model.Entita;
 import Model.Giocatore;
-import Model.Livello;
+import Model.Nemico;
 import Model.Partita;
 import Model.Tile;
 
@@ -12,34 +12,29 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Optional;
 
 public class PartitaView extends JPanel implements Observer {
 
     private Partita partita;
-    
-    BufferedImage image;
+    private BufferedImage image;
 
     public PartitaView() {
         super();
     }
 
     public void setParameters() {
-        setPreferredSize(new Dimension(36 * partita.getLivello().getTilesize(), 26 * partita.getLivello().getTilesize()));
+        int doubleTileSize = partita.getLivello().getTilesize() * 2; // Raddoppia il tileSize
+        setPreferredSize(new Dimension(36 * doubleTileSize, 26 * doubleTileSize));
         setBackground(Color.BLACK);
     }
-        
-
 
     public void paintLivello(Graphics g) {
-
-
         Graphics2D g2d = (Graphics2D) g;
-        int gridHeight = partita.getLivello().getGrid().length;      // Numero di righe
-        int gridWidth = partita.getLivello().getGrid()[0].length;    // Numero di colonne
+        int gridHeight = partita.getLivello().getGrid().length;
+        int gridWidth = partita.getLivello().getGrid()[0].length;
+         // Raddoppia il tileSize
 
         try {
             image = ImageIO.read(new File(partita.getLivello().getTilePath()));
@@ -50,48 +45,66 @@ public class PartitaView extends JPanel implements Observer {
 
         for (int row = 0; row < gridHeight; row++) {
             for (int col = 0; col < gridWidth; col++) {
-                int x = col * partita.getLivello().getTilesize();  // Posizione orizzontale rimane invariata
-                int y = (gridHeight - 1 - row) * partita.getLivello().getTilesize();
-                //int y = row * l.getTilesize();  
+                int x = col * partita.getLivello().getTilesize() ;
+                int y = (gridHeight - 1 - row) * partita.getLivello().getTilesize() ;
 
                 if (partita.getLivello().getGrid()[row][col].getType() == Tile.TileType.WALL || partita.getLivello().getGrid()[row][col].getType() == Tile.TileType.PLATFORM) {
-                    g2d.drawImage(image, x, y, partita.getLivello().getTilesize(), partita.getLivello().getTilesize(), null);
+                    g2d.drawImage(image, x, y, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() , null);
                 } else {
                     g2d.setColor(Color.BLACK);
-                    g2d.fillRect(x, y, partita.getLivello().getTilesize(), partita.getLivello().getTilesize());
+                    g2d.fillRect(x, y, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() );
                 }
             }
         }
     }
 
     public void paintEntita(Graphics g) {
-        
         Graphics2D g2d = (Graphics2D) g;
-        int gridHeight = partita.getLivello().getGrid().length ;       // Numero di righe
-        //int gridWidth = grid[0].length;           // Numero di colonne
+        int gridHeight = partita.getLivello().getGrid().length;
+        int doubleEntitySize = Entita.getEntitySize() * 2;
+        BufferedImage giocatore;
+        BufferedImage bolla;
+        BufferedImage nemico;
 
-        // Inserimento entità
         for (Entita e : partita.getEntita()) {
-            int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY()) ;
-            BufferedImage gio;
+            int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
             if (e instanceof Model.Giocatore) {
                 try {
-                    gio = ImageIO.read(new File(((Giocatore)(e)).getSpritePath()));
-                    if (!((Giocatore)(e)).getGoingRight()) {
-                        g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                    giocatore = ImageIO.read(new File(((Giocatore) (e)).getSpritePath()));
+                    if (!((Giocatore) (e)).getGoingRight()) {
+                        g2d.drawImage(giocatore, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
                     } else {
-                        g2d.drawImage(gio, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                        g2d.drawImage(giocatore, e.getX() + doubleEntitySize, y, - doubleEntitySize, doubleEntitySize, null);
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            } else if(e instanceof Model.Bolla){
+                // try {
+                //     bolla = ImageIO.read(new File(((Bolla)(e)).getSpritePath()));
+                //     if (!((Bolla)(e)).getGoingRight()) {
+                //         g2d.drawImage(bolla, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                //     } else {
+                //         g2d.drawImage(bolla, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                //     }
+                //     //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                // } catch (IOException ioException) {
+                //     ioException.printStackTrace();
+                // }
+                g2d.setColor(Color.GREEN);
+                g2d.fillOval(e.getX(), y, e.getEntitysize(), e.getEntitysize());
+            } else{
+                try {
+                    nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
+                    if (!((Nemico)(e)).getGoingRight()) {
+                        g2d.drawImage(nemico, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                    } else {
+                        g2d.drawImage(nemico, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
                     }
                     //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-            }else{
-                g2d.setColor(Color.RED);
-                g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
-            }
-
-            
         }
     }
 
@@ -108,7 +121,6 @@ public class PartitaView extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        this.repaint();
+        repaint();
     }
-
 }
