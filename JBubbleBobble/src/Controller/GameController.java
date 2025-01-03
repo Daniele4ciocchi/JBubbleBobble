@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Bolla;
 import Model.Entita;
 import Model.Giocatore;
 import Model.Nemico;
@@ -63,6 +64,9 @@ public class GameController {
                 
                         giocatore.jump();
                     }
+                } else if (e.getKeyChar() == KeyEvent.VK_j) {
+                    System.out.println("bolla sparata");
+                    partita.addEntita(giocatore.shoot());
                 }
             }
 
@@ -72,7 +76,7 @@ public class GameController {
                     leftPressed = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     rightPressed = true;
-                }
+                } 
             }
 
             @Override
@@ -134,6 +138,9 @@ public class GameController {
             partita.applyGravity(e);
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
+            }
+            if (e instanceof Bolla){
+                ((Bolla)e).move();
             }
         } 
         

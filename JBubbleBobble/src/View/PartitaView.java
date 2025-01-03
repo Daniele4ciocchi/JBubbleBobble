@@ -92,7 +92,10 @@ public class PartitaView extends JPanel implements Observer {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-            }else{
+            } else if(e instanceof Model.Bolla){
+                g2d.setColor(Color.GREEN);
+                g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
+            } else{
                 g2d.setColor(Color.RED);
                 g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
             }

@@ -22,7 +22,7 @@ public class Giocatore extends Personaggio{
     private boolean falling;
 
     public Giocatore(){
-        super(5, 1, 10, 20, -7, 10);
+        super(5, 1, 10, 20, -7, 18);
         
         this.life = 3;
 
@@ -36,7 +36,7 @@ public class Giocatore extends Personaggio{
     public void resetPosizione(){super.setPosizione(5*getEntitysize(), 1*getEntitysize());}
 
     public Bolla shoot(){
-        return new Bolla(getGoingRight()? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, getGoingRight());
+        return new BollaSemplice(getGoingRight()? this.getX()+1 : this.getX()-1, this.getY(), 1, 1, getGoingRight());
     }
     
     public void setFalling(boolean b){this.falling = b;}

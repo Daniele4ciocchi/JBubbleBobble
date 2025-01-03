@@ -2,37 +2,26 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Observer;
+import java.util.concurrent.TimeUnit;
 
-abstract public class Bolla extends Entita implements Runnable {
+import javax.swing.Timer;
+
+abstract public class Bolla extends Entita {
 
 
     private boolean floating = false;
     private Nemico nemico;
-    private int countDown = 20;
+    protected int countDown = 20;
 
     //costruttore
     public Bolla(int posx, int posy, int velocitax, int velocitay, boolean goingRight) {
         super(posx, posy, velocitax, velocitay, 0);
         setGoingRight(goingRight);
+        Timer timer = new Timer(1000, e -> {move();});
     }
 
-    @Override
-    public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
-            // TODO: definire il comportamento dei nemici
-            try {
-                Thread.sleep(100); // Adjust the sleep time as needed
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-        super.setChanged();
-        super.notifyObservers();
-    }
 
-    public void move(){
-        
-    }
+    public abstract void move();
 
     public Nemico getNemico(){ return this.nemico;}
 

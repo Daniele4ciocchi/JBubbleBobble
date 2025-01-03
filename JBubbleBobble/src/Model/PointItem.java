@@ -33,21 +33,21 @@ public class PointItem extends Item {
                 break;
             }
         }
+        
+    //     // attribuzione punti
+    //     this.points = tipologia.getPunti();
 
-        // attribuzione punti
-        this.points = tipologia.getPunti();
-
-        // settaggio sprite
-        this.idleSpritePath = baseSpritePath + switch (tipologia) {
-                                    case BANANA     -> "image_68.png";
-                                    case PERSIMMON  -> "image_71.png";
-                                    case PEACH      -> "image_59.png";
-                                    case WATERMELON -> "image_70.png";
-                                    case GRAPE      -> "";
-                                    case DIAMOND    -> "";
-                                    case PINEAPPLE  -> "";
-                                    // case default -> "SPRITE VUOTO DA DECIDERE";
-                                };
+    //     // settaggio sprite
+    //     this.idleSpritePath = baseSpritePath + switch (tipologia) {
+    //                                 case BANANA     -> "image_68.png";
+    //                                 case PERSIMMON  -> "image_71.png";
+    //                                 case PEACH      -> "image_59.png";
+    //                                 case WATERMELON -> "image_70.png";
+    //                                 case GRAPE      -> "";
+    //                                 case DIAMOND    -> "";
+    //                                 case PINEAPPLE  -> "";
+    //                                 // case default -> "SPRITE VUOTO DA DECIDERE";
+    //                             };
     }
 
 }
