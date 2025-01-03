@@ -8,18 +8,32 @@ public class BollaSemplice extends Bolla {
     }
 
     @Override
-    public void move() {
-        if (this.range !=0){
-            if (this.getGoingRight()) {
-                this.setPosizione(this.getX() + this.getMovimentoX(), this.getY());
+    public void move(Livello l) {
+        if (range !=0){
+            if (getGoingRight()) {
+                if (l.isEmpty(getX() + getMovimentoX(), getY())) {
+                    setPosizione(getX() + getMovimentoX(), getY());
+                } 
             } else {
-                this.setPosizione(this.getX() - this.getMovimentoX(), this.getY());
+                if (l.isEmpty(getX() - getMovimentoX(), getY())) {
+                    setPosizione(getX() - getMovimentoX(), getY());
+                }
             }
-            this.range--;
-        }else{
-            this.setPosizione(this.getX(), this.getY() + this.getMovimentoY());
+            range--;
+        }else if (range == 0){
+            if (!l.isEmpty(getX(), getY() + getEntitysize())) {
+                if (getGoingRight() && l.isEmpty(getX() + getMovimentoX(), getY())) {
+                    setPosizione(getX() + getMovimentoX(), getY());
+                } else if (!getGoingRight() && l.isEmpty(getX() - getMovimentoX(), getY())) {
+                    setPosizione(getX() - getMovimentoX(), getY());
+                }
+            }
+            if (l.isEmpty(getX(), getY() + getEntitysize())) {
+                setPosizione(getX(), getY() + 1);
+            }
         }
-        System.out.println(range);
+        System.out.println("range" + range);
+        System.out.println("y" + getY());
     }
     
 }

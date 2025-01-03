@@ -65,7 +65,6 @@ public class GameController {
                         giocatore.jump();
                     }
                 } else if (e.getKeyChar() == 'j') {
-                    System.out.println("bolla sparata");
                     partita.addEntita(giocatore.shoot());
                 }
             }
@@ -139,7 +138,9 @@ public class GameController {
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
             }
-
+            if (e instanceof Bolla){
+                ((Bolla)e).move(partita.getLivello());
+            }
         } 
         
 

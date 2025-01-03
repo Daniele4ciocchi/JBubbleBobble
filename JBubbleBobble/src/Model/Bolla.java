@@ -18,12 +18,10 @@ abstract public class Bolla extends Entita {
         super(posx/16, posy/16, movimentoX, movimentoY, 0);
         this.range = 50;
         setGoingRight(goingRight);
-        Timer timer = new Timer(32, e -> {move();});
-        timer.start();
     }
 
 
-    public abstract void move();
+    public abstract void move(Livello l);
 
     public Nemico getNemico(){ return this.nemico;}
 

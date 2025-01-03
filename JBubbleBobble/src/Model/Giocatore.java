@@ -18,7 +18,6 @@ public class Giocatore extends Personaggio{
          baseSpritePath + "bubblun" + File.separator + "image_89.png"
     }; // camminata (da alternare)
 
-    private int walkingSpriteIndex; // serve ad alternare i due sprite di camminata
     private boolean falling;
 
     public Giocatore(){

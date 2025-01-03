@@ -70,28 +70,28 @@ public class Nemico extends Personaggio implements Runnable{
         // TODO: inserire anche gli altri sprite qui, e pensare di isolare lo switch in un metodo
         switch (t){
             case ZENCHAN -> {
-                walkingSpritesPath[0] = "zen-chan"+File.separator+"image_507.png";
-                walkingSpritesPath[1] = "zen-chan"+File.separator+"image_508.png";
+                walkingSpritesPath[0] += "zen-chan"+File.separator+"image_507.png";
+                walkingSpritesPath[1] += "zen-chan"+File.separator+"image_508.png";
             }
             case BANEBOU -> {
-                walkingSpritesPath[0] = "banebou"+File.separator+"image_4.png";
-                walkingSpritesPath[1] = "banebou"+File.separator+"image_4.png";
+                walkingSpritesPath[0] += "banebou"+File.separator+"image_4.png";
+                walkingSpritesPath[1] += "banebou"+File.separator+"image_4.png";
             }
             case MIGHTA -> {
-                walkingSpritesPath[0] = "mighta"+File.separator+"image_39.png";
-                walkingSpritesPath[1] = "banebou"+File.separator+"image_40.png";
+                walkingSpritesPath[0] += "mighta"+File.separator+"image_39.png";
+                walkingSpritesPath[1] += "banebou"+File.separator+"image_40.png";
             }
             case HIDEGON -> {
-                walkingSpritesPath[0] = "hidegons"+File.separator+"image_40.png";
-                walkingSpritesPath[1] = "banebou"+File.separator+"image_41.png";
+                walkingSpritesPath[0] += "hidegons"+File.separator+"image_40.png";
+                walkingSpritesPath[1] += "banebou"+File.separator+"image_41.png";
             }
             case PULPUL -> {
-                walkingSpritesPath[0] = "pulpul"+File.separator+"image_407.png";
-                walkingSpritesPath[1] = "pulpul"+File.separator+"image_408.png";
+                walkingSpritesPath[0] += "pulpul"+File.separator+"image_407.png";
+                walkingSpritesPath[1] += "pulpul"+File.separator+"image_408.png";
             }
             case MONSTA -> {
-                walkingSpritesPath[0] = "monsta"+File.separator+"image_443.png";
-                walkingSpritesPath[1] = "monsta"+File.separator+"image_444.png";
+                walkingSpritesPath[0] += "monsta"+File.separator+"image_443.png";
+                walkingSpritesPath[1] += "monsta"+File.separator+"image_444.png";
             }
         }
 
@@ -134,6 +134,21 @@ public class Nemico extends Personaggio implements Runnable{
             }else currentWaitTime--;
         }
         if (this.getY() < gy) jump();
+    }
+
+    public String getSpritePath(){
+        if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath;
+
+        else {
+            if (walkingSpriteIndex == 0) {
+                walkingSpriteIndex = 1;
+                return walkingSpritesPath[0];
+            }
+            else {
+                walkingSpriteIndex = 0;
+                return walkingSpritesPath[1];
+            }
+        }
     }
 }
 

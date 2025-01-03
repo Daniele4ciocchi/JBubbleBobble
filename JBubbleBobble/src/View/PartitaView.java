@@ -1,7 +1,9 @@
 package View;
 
+import Model.Bolla;
 import Model.Entita;
 import Model.Giocatore;
+import Model.Nemico;
 import Model.Tile;
 
 import javax.imageio.ImageIO;
@@ -79,25 +81,47 @@ public class PartitaView extends JPanel implements Observer {
         // Inserimento entità
         for (Entita e : entita) {
             int y = (((gridHeight - 1) * tileSize) - e.getY()) ;
-            BufferedImage gio;
+            BufferedImage giocatore;
+            BufferedImage bolla;
+            BufferedImage nemico;
             if (e instanceof Model.Giocatore) {
                 try {
-                    gio = ImageIO.read(new File(((Giocatore)(e)).getSpritePath()));
+                    giocatore = ImageIO.read(new File(((Giocatore)(e)).getSpritePath()));
                     if (!((Giocatore)(e)).getGoingRight()) {
-                        g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                        g2d.drawImage(giocatore, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
                     } else {
-                        g2d.drawImage(gio, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                        g2d.drawImage(giocatore, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
                     }
                     //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
             } else if(e instanceof Model.Bolla){
+                // try {
+                //     bolla = ImageIO.read(new File(((Bolla)(e)).getSpritePath()));
+                //     if (!((Bolla)(e)).getGoingRight()) {
+                //         g2d.drawImage(bolla, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                //     } else {
+                //         g2d.drawImage(bolla, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                //     }
+                //     //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                // } catch (IOException ioException) {
+                //     ioException.printStackTrace();
+                // }
                 g2d.setColor(Color.GREEN);
-                g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
+                g2d.fillOval(e.getX(), y, e.getEntitysize(), e.getEntitysize());
             } else{
-                g2d.setColor(Color.RED);
-                g2d.fillRect(e.getX(), y, e.getEntitysize(), e.getEntitysize());
+                try {
+                    nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
+                    if (!((Nemico)(e)).getGoingRight()) {
+                        g2d.drawImage(nemico, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                    } else {
+                        g2d.drawImage(nemico, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                    }
+                    //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
 
             
