@@ -20,6 +20,7 @@ import java.util.Optional;
 public class PartitaView extends JPanel implements Observer {
 
     private Partita partita;
+    
     BufferedImage image;
 
     public PartitaView() {
