@@ -9,16 +9,17 @@ public class BollaSemplice extends Bolla {
 
     @Override
     public void move() {
-        if (this.countDown !=0){
+        if (this.range !=0){
             if (this.getGoingRight()) {
                 this.setPosizione(this.getX() + this.getMovimentoX(), this.getY());
             } else {
                 this.setPosizione(this.getX() - this.getMovimentoX(), this.getY());
             }
-            this.countDown--;
+            this.range--;
         }else{
             this.setPosizione(this.getX(), this.getY() + this.getMovimentoY());
         }
+        System.out.println(range);
     }
     
 }

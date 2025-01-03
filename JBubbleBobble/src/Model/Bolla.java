@@ -11,13 +11,15 @@ abstract public class Bolla extends Entita {
 
     private boolean floating = false;
     private Nemico nemico;
-    protected int countDown = 20;
+    protected int range;
 
     //costruttore
-    public Bolla(int posx, int posy, int velocitax, int velocitay, boolean goingRight) {
-        super(posx, posy, velocitax, velocitay, 0);
+    public Bolla(int posx, int posy, int movimentoX, int movimentoY, boolean goingRight) {
+        super(posx/16, posy/16, movimentoX, movimentoY, 0);
+        this.range = 50;
         setGoingRight(goingRight);
-        Timer timer = new Timer(1000, e -> {move();});
+        Timer timer = new Timer(32, e -> {move();});
+        timer.start();
     }
 
 
@@ -26,8 +28,10 @@ abstract public class Bolla extends Entita {
     public Nemico getNemico(){ return this.nemico;}
 
     public boolean isFloating(){return floating;}
+    public int getRange() {return range;}
 
     public void setFloating() {this.floating = true;}
+    public void setRange(int range) {this.range = range;}
 
     /**
      * Metodo per catturare un nemico nella bolla

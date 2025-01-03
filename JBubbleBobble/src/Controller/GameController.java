@@ -64,7 +64,7 @@ public class GameController {
                 
                         giocatore.jump();
                     }
-                } else if (e.getKeyChar() == KeyEvent.VK_j) {
+                } else if (e.getKeyChar() == 'j') {
                     System.out.println("bolla sparata");
                     partita.addEntita(giocatore.shoot());
                 }
@@ -72,18 +72,18 @@ public class GameController {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyChar() == 'a') {
                     leftPressed = true;
-                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyChar() == 'd') {
                     rightPressed = true;
                 } 
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyChar() == 'a') {
                     leftPressed = false;
-                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyChar() == 'd') {
                     rightPressed = false;
                 } 
             }
@@ -139,9 +139,7 @@ public class GameController {
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
             }
-            if (e instanceof Bolla){
-                ((Bolla)e).move();
-            }
+
         } 
         
 
