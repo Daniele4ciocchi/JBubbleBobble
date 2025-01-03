@@ -40,6 +40,7 @@ public class GameController {
         this.view = view;
         
         view.addPanel(new PartitaView());
+        view.getPanel().setPartita(partita);
         view.getPanel().setParameters();
         
 

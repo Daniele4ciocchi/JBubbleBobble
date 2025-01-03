@@ -92,7 +92,10 @@ public class PartitaView extends JPanel implements Observer {
 
             
         }
-        this.paintComponent(g2d);
+    }
+
+    public void setPartita(Partita partita) {
+        this.partita = partita;
     }
 
     @Override
