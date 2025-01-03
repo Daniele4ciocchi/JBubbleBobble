@@ -47,7 +47,7 @@ abstract public class Entita extends Observable {
 
     private int gravita; //negativa in quanto verso il basso
 
-    private int entitysize = 16;
+    private static int entitysize = 16;
 
     // campi per gli SPRITE
     protected boolean goingRight; // "devo flippare lo sprite?"
@@ -73,7 +73,7 @@ abstract public class Entita extends Observable {
     public int getMovimentoX(){return movimentoX;}
     public int getMovimentoY(){return movimentoY;}
     public int getGravita(){return gravita;}
-    public int getEntitysize(){return entitysize;}
+    public static int getEntitysize(){return entitysize;}
     public boolean getGoingRight(){return goingRight;}
 
     public void setMovimentoY(int i) {this.movimentoY = i;}
