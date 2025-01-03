@@ -36,7 +36,7 @@ public abstract class Personaggio extends Entita{
     }
 
     public void moveRight(Livello l) {
-        if (l.isEmpty(posx+movimentoX, posy)){
+        if (l.isEmpty(posx+movimentoX+getEntitysize(), posy)){
             posx += movimentoX;
             setChanged();
             notifyObservers();

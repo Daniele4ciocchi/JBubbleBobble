@@ -92,14 +92,14 @@ public class PartitaView extends JPanel implements Observer {
                 //     ioException.printStackTrace();
                 // }
                 g2d.setColor(Color.GREEN);
-                g2d.fillOval(e.getX(), y, e.getEntitysize(), e.getEntitysize());
+                g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
             } else{
                 try {
                     nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
                     if (!((Nemico)(e)).getGoingRight()) {
-                        g2d.drawImage(nemico, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                        g2d.drawImage(nemico, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
                     } else {
-                        g2d.drawImage(nemico, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                        g2d.drawImage(nemico, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
                     }
                     //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
                 } catch (IOException ioException) {
