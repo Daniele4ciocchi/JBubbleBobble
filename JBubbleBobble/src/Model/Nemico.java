@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Random;
+import java.util.Timer;
 
 public class Nemico extends Personaggio implements Runnable{
 
@@ -93,6 +94,7 @@ public class Nemico extends Personaggio implements Runnable{
                 walkingSpritesPath[1] = "monsta"+File.separator+"image_444.png";
             }
         }
+
     }
 
     public Tipologia getTipologia(){return tipologia;}

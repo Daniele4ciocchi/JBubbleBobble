@@ -3,37 +3,35 @@ package Model;
 import java.util.ArrayList;
 import java.util.Observer;
 
-public class Bolla extends Entita implements Runnable {
+abstract public class Bolla extends Entita implements Runnable {
 
 
     private boolean floating = false;
     private Nemico nemico;
     private int countDown = 20;
-    private boolean direction;
-
-    private ArrayList<Observer> observers;
 
     //costruttore
-    public Bolla(int posx, int posy, int velocitax, int velocitay, boolean direction) {
+    public Bolla(int posx, int posy, int velocitax, int velocitay, boolean goingRight) {
         super(posx, posy, velocitax, velocitay, 0);
-        this.direction = direction;
-        this.run();
+        setGoingRight(goingRight);
     }
 
-    /**
-     * Metodo per iniziare il conto alla rovescia della bolla
-     */
     @Override
     public void run() {
-        try {
-            // Il thread "dorme" per il tempo specificato, simulando la durata della bolla
-            Thread.sleep(this.countDown);
-            //TODO: 2 step floating (50% del max time) e pop! controllare la direzione
-            if (this.countDown == 0) this.setFloating();
-
-        } catch (InterruptedException e) {
-            System.out.println(this + " è stata interrotta.");
+        while (!Thread.currentThread().isInterrupted()) {
+            // TODO: definire il comportamento dei nemici
+            try {
+                Thread.sleep(100); // Adjust the sleep time as needed
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
+        super.setChanged();
+        super.notifyObservers();
+    }
+
+    public void move(){
+        
     }
 
     public Nemico getNemico(){ return this.nemico;}
@@ -62,19 +60,5 @@ public class Bolla extends Entita implements Runnable {
 //        }
 //    }
 
-    //metodi per observer
-    @Override
-    public void addObserver(Observer o){
-        observers.add(o);
-    }
-    @Override
-    public void deleteObserver(Observer o){
-        observers.remove(o);
-    }
-    @Override
-    public void notifyObservers(){
-        for (Observer o : observers){
-            o.update(this, null);
-        }
-    }
+
 }

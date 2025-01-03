@@ -95,11 +95,7 @@ public class GameController {
 
 
     private void startGameLoop() {
-        Timer timer = new Timer(16, e -> {try {
-            gameLoop();            
-        } catch (IOException e1) {
-            e1.printStackTrace(); 
-        }});
+        Timer timer = new Timer(32, e -> {gameLoop();});
         
         partita.posizionaEntita();
         
@@ -113,15 +109,10 @@ public class GameController {
         timer.start();
     }
     
-    private void gameLoop() throws IOException {
+    private void gameLoop(){
 
         //impostare timer 0,016 secondi
-        try {
-            TimeUnit.MILLISECONDS.sleep(16);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        
         ///System.out.println("Game loop");
         //TODO: indice del loop di gioco
         //  - far comparire tutte le entità
