@@ -39,10 +39,10 @@ public class GameController {
         this.partita = partita;
         this.view = view;
         
-        view.addPanel(new PartitaView(partita.getLivello().getTilesize()));
-        view.getPanel().setGrid(partita.getLivello().getGrid());
-        view.getPanel().setPath(partita.getLivello().getTilePath());
-        view.getPanel().setEntita(partita.getEntita());
+        view.addPanel(new PartitaView());
+        view.getPanel().setParameters();
+        
+
 
         startGameLoop();
         setupKeyBindings();
@@ -107,7 +107,6 @@ public class GameController {
         //     System.out.println(e);
         // }
 
-        view.getPanel().setEntita(partita.getEntita());
         view.getPanel().repaint();
 
         timer.start();

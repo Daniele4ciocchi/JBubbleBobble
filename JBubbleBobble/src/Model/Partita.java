@@ -3,8 +3,9 @@ package Model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Partita {
+public class Partita extends Observable{
 
 
     //TODO: nothing

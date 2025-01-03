@@ -2,6 +2,8 @@ package View;
 
 import Model.Entita;
 import Model.Giocatore;
+import Model.Livello;
+import Model.Partita;
 import Model.Tile;
 
 import javax.imageio.ImageIO;
@@ -13,72 +15,63 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Optional;
 
 public class PartitaView extends JPanel implements Observer {
-    private Tile[][] grid;
-    private ArrayList<Entita> entita;
-    private BufferedImage image;
 
-    private final int tileSize; // Dimensione di ogni cella
+    private Partita partita;
+    BufferedImage image;
 
-    public PartitaView(int tileSize) {
+    public PartitaView() {
         super();
-        this.tileSize = tileSize;
-        this.entita = new ArrayList<Entita>();
+    }
 
-
-        setPreferredSize(new Dimension(36 * tileSize, 26 * tileSize));
+    public void setParameters() {
+        setPreferredSize(new Dimension(36 * partita.getLivello().getTilesize(), 26 * partita.getLivello().getTilesize()));
         setBackground(Color.BLACK);
     }
+        
 
-    public void setEntita(ArrayList<Entita> entita) {
-        this.entita = entita;
-    }
 
-    public void setGrid(Tile[][] grid) {
-        this.grid = grid;
-    }
+    public void paintLivello(Graphics g) {
 
-    public void setPath(String path) {
+
+        Graphics2D g2d = (Graphics2D) g;
+        int gridHeight = partita.getLivello().getGrid().length;      // Numero di righe
+        int gridWidth = partita.getLivello().getGrid()[0].length;    // Numero di colonne
+
         try {
-            image = ImageIO.read(new File(path));
+            image = ImageIO.read(new File(partita.getLivello().getTilePath()));
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Errore nel caricamento delle immagini!");
         }
 
-    }
-
-
-    public void paintLivello(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        int gridHeight = grid.length;      // Numero di righe
-        int gridWidth = grid[0].length;    // Numero di colonne
-
         for (int row = 0; row < gridHeight; row++) {
             for (int col = 0; col < gridWidth; col++) {
-                int x = col * tileSize;  // Posizione orizzontale rimane invariata
-                int y = (gridHeight - 1 - row) * tileSize;
-                //int y = row * tileSize;  
+                int x = col * partita.getLivello().getTilesize();  // Posizione orizzontale rimane invariata
+                int y = (gridHeight - 1 - row) * partita.getLivello().getTilesize();
+                //int y = row * l.getTilesize();  
 
-                if (grid[row][col].getType() == Tile.TileType.WALL || grid[row][col].getType() == Tile.TileType.PLATFORM) {
-                    g2d.drawImage(image, x, y, tileSize, tileSize, null);
+                if (partita.getLivello().getGrid()[row][col].getType() == Tile.TileType.WALL || partita.getLivello().getGrid()[row][col].getType() == Tile.TileType.PLATFORM) {
+                    g2d.drawImage(image, x, y, partita.getLivello().getTilesize(), partita.getLivello().getTilesize(), null);
                 } else {
                     g2d.setColor(Color.BLACK);
-                    g2d.fillRect(x, y, tileSize, tileSize);
+                    g2d.fillRect(x, y, partita.getLivello().getTilesize(), partita.getLivello().getTilesize());
                 }
             }
         }
     }
 
     public void paintEntita(Graphics g) {
+        
         Graphics2D g2d = (Graphics2D) g;
-        int gridHeight = grid.length ;       // Numero di righe
-        //int gridWidth = grid[0].length;    // Numero di colonne
+        int gridHeight = partita.getLivello().getGrid().length ;       // Numero di righe
+        //int gridWidth = grid[0].length;           // Numero di colonne
 
         // Inserimento entità
-        for (Entita e : entita) {
-            int y = (((gridHeight - 1) * tileSize) - e.getY()) ;
+        for (Entita e : partita.getEntita()) {
+            int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY()) ;
             BufferedImage gio;
             if (e instanceof Model.Giocatore) {
                 try {
@@ -99,6 +92,7 @@ public class PartitaView extends JPanel implements Observer {
 
             
         }
+        this.paintComponent(g2d);
     }
 
     @Override
@@ -108,10 +102,9 @@ public class PartitaView extends JPanel implements Observer {
         paintEntita(g);
     }
 
-    
-
     @Override
     public void update(Observable o, Object arg) {
-        repaint();
+        this.repaint();
     }
+
 }

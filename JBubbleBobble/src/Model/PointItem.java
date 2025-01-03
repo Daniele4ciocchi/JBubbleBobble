@@ -34,6 +34,7 @@ public class PointItem extends Item {
             }
         }
 
+        /* 
         // attribuzione punti
         this.points = tipologia.getPunti();
 
@@ -48,6 +49,7 @@ public class PointItem extends Item {
                                     case PINEAPPLE  -> "";
                                     // case default -> "SPRITE VUOTO DA DECIDERE";
                                 };
+    */
     }
 
 }
