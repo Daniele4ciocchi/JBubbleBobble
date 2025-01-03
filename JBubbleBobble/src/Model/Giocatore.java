@@ -22,7 +22,7 @@ public class Giocatore extends Personaggio{
     private boolean falling;
 
     public Giocatore(){
-        super(5, 1, 10, 20, -7);
+        super(5, 1, 10, 20, -7, 10);
         
         this.life = 3;
 

@@ -38,15 +38,14 @@ import java.util.Observer;
 
 abstract public class Entita extends Observable {
 
-    private int posx;
-    private int posy;
-    private boolean dead; // se l'entità è morta
+    protected int posx;
+    protected int posy;
+    protected boolean dead; // se l'entità è morta
 
-    private int movimentoX;
-    private int movimentoY;
+    protected int movimentoX;
+    protected int movimentoY;
 
     private int gravita; //negativa in quanto verso il basso
-    private int jumpForce;
 
     private int entitysize = 16;
 
@@ -58,14 +57,12 @@ abstract public class Entita extends Observable {
 
     private int animationTimer = 10;
     private int currentAnimationTimer = 0;
-    
 
-    public Entita(int posx, int posy, int velocitaX, int jumpForce, int gravita){
+    public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
         this.posx = posx*entitysize;
         this.posy = posy*entitysize;
         this.dead = true;
         this.movimentoX = velocitaX;
-        this.jumpForce = jumpForce;
         this.gravita = gravita;
         this.goingRight = true;
     }
@@ -88,38 +85,6 @@ abstract public class Entita extends Observable {
     public void setPosizione(int x, int y){
         this.posx = x;
         this.posy = y;
-        setChanged();
-        notifyObservers();
-    }
-
-    public void moveLeft(Livello l) {
-        if (l.isEmpty(posx-movimentoX, posy)){
-            posx-=movimentoX;
-            setChanged();
-            notifyObservers();
-            goingRight = false;
-        }
-    }
-
-    public void moveRight(Livello l) {
-        if (l.isEmpty(posx+movimentoX, posy)){
-            posx += movimentoX;
-            setChanged();
-            notifyObservers();
-            goingRight = true;
-        }
-    }
-
-    //TODO: controllo da fare nel controller dove se un'entità is on the floor
-    //      allora può fare il jump
-    public void jump() {
-        this.movimentoY = this.jumpForce;
-        setChanged();
-        notifyObservers();
-    }
-
-    public void die(){
-        this.dead = true;
         setChanged();
         notifyObservers();
     }
