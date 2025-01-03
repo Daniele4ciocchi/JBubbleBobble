@@ -3,7 +3,7 @@ package Model;
 public abstract class Personaggio extends Entita{
     protected String[] walkingSpritesPath = { baseSpritePath, baseSpritePath };
     protected int jumpForce;
-    protected int walkingSpriteIndex; // serve ad alternare i due sprite di camminata
+    protected int spriteIndex; // serve ad alternare i due sprite di camminata
 
 
 

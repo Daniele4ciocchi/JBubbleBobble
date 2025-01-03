@@ -47,12 +47,12 @@ public class Giocatore extends Personaggio{
         else if (this.isFalling()) return fallingSpritePath;
         else if (super.getMovimentoY() > 0) return jumpingSpritePath;
         else {
-            if (walkingSpriteIndex == 0) {
-                walkingSpriteIndex = 1;
+            if (spriteIndex == 0) {
+                spriteIndex = 1;
                 return walkingSpritePath[0];
             }
             else {
-                walkingSpriteIndex = 0;
+                spriteIndex = 0;
                 return walkingSpritePath[1];
             }
         }

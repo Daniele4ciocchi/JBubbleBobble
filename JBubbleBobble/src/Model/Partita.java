@@ -201,7 +201,7 @@ public class Partita {
             e.setMovimentoY(e.getMovimentoY()-1);
             if (livello.isSolid(e.getX(),e.getY() + e.getMovimentoY())) e.setMovimentoY(0);
         }
-        if (e instanceof Giocatore && livello.isSolid(e.getX(), e.getY()-1)) ((Giocatore)e).setFalling(false); // per lo sprite
+        if (e instanceof Giocatore && (livello.isSolid(e.getX(), e.getY()-1)||livello.isWalkable(e.getX(), e.getY()-1))) ((Giocatore)e).setFalling(false); // per lo sprite
     }
 
 

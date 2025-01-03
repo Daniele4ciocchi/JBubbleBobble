@@ -1,11 +1,11 @@
 TODOLIST  
 - [x] aggiungere il giocatore e i nemici alla grafica (Daniele)
-- [ ] implementare il gameloop (in corso) 
+- [x] implementare il gameloop (in corso) 
 - [x] powerup (da fare completamente da capo)
 - [x] finire il move dei nemici 
 - [ ] ideare il sistema dello score 
-- [ ] fare una grafica decente (the big one)
-- [ ] aggiungere un cooldown agli spari in Partita.java
+- [x] fare una grafica decente (the big one)
+- [ ] aggiungere un cooldown agli spari delle bolle
 - [x] implementazione buff powerup: es. modificatori bolle
 - [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
 - [x] AudioManager.java: importazione dal PDF del prof
@@ -15,7 +15,8 @@ TODOLIST
 - [ ] livelli profilo, implementare 
 - [ ] importazione e/o creazione di 16 livelli "testuali"
 - [x] attribuire i diversi tipi di sprite per ognuno dei 16 livelli
-- [ ] ricordiamoci di usare gli stream
+- [x] ricordiamoci di usare gli stream
 - [ ] implementare effetto pacman dal pavimento al soffitto (ora è facile da fare):
         idea: due nuovi tipi di tile, uno sta sotto e uno sta sopra
 - [ ] decidere se implementare o meno l'acqua
+- [ ] schermata di GAMEOVER

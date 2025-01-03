@@ -137,17 +137,19 @@ public class Nemico extends Personaggio implements Runnable{
     }
 
     public String getSpritePath(){
+        if (dead) return deathSpritePath;
+        if (bubbled) {
+            spriteIndex++;
+            if (spriteIndex == 8) spriteIndex = 0;
+            if (spriteIndex < 4) return bubbledSpritesPath[0];
+            else return bubbledSpritesPath[1];
+        }
         if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath;
-
         else {
-            if (walkingSpriteIndex == 0) {
-                walkingSpriteIndex = 1;
-                return walkingSpritesPath[0];
-            }
-            else {
-                walkingSpriteIndex = 0;
-                return walkingSpritesPath[1];
-            }
+            spriteIndex++;
+            if (spriteIndex == 8) spriteIndex = 0;
+            if (spriteIndex < 4) return walkingSpritesPath[0];
+            else return walkingSpritesPath[1];
         }
     }
 }
