@@ -55,7 +55,7 @@ public class Nemico extends Personaggio implements Runnable{
      * @param y la posizione y del nemico
      */
     public Nemico(Tipologia t, int x, int y){
-        super(x, y, t.getVelocita(), t.getSalto(), -7);
+        super(x, y, t.getVelocita(), t.getSalto(), -7, 10);
         tipologia = t;
         bubbled = false;
 
