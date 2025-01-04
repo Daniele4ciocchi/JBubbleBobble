@@ -35,7 +35,9 @@ public class GameController {
     private boolean leftPressed = false;
     private boolean rightPressed = false;
     private boolean jump = false;
-    private int nextLevelCounter = 100;
+    private int nextLevelCounter = 250;
+    private int counter = 0;
+    private int bubblecounter = 0;
     
 
     public GameController(Partita partita, GameView view) {
@@ -64,10 +66,13 @@ public class GameController {
                 
                         giocatore.jump();
                     }
-                } else if (e.getKeyChar() == 'j') {
-                    Bolla b = giocatore.shoot();
-                    partita.addEntita(b);
-                    b.addObserver(view.getPanel());
+                } else if (e.getKeyChar() == 'j' || e.getKeyChar() == 'J') {
+                    if(Math.abs(counter - bubblecounter) > 10){
+                        Bolla b = giocatore.shoot();
+                        partita.addEntita(b);
+                        b.addObserver(view.getPanel());
+                        bubblecounter = counter;
+                    }
                 }
             }
 
@@ -110,6 +115,8 @@ public class GameController {
     }
     
     private void gameLoop(){
+        counter++;
+        if(counter == 1000000000) counter = 0;
 
         //impostare timer 0,016 secondi
         
@@ -170,11 +177,12 @@ public class GameController {
             if (nextLevelCounter == 0){
                 partita.getLivello().changeLevel();
                 partita.posizionaEntita();
-                nextLevelCounter = 100;
+                ((Giocatore)partita.getEntita().getFirst()).resetPosizione();
+                nextLevelCounter = 250;
                 for (Entita e : partita.getEntita()){
                     e.addObserver(view.getPanel());
                 }
-                
+                counter = 0;
             }
         }
 

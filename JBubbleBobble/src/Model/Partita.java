@@ -191,6 +191,7 @@ public class Partita {
     }
 
     public void applyGravity(Entita e) {
+        if (livello.isTPEntry(e.getX(),e.getY())) e.setPosizione(e.getX(),25*Entita.getEntitysize());
         if (!livello.isWalkable(e.getX(), e.getY() - 1 )){
             if(!livello.isWalkable(e.getX(), e.getY() + e.getGravita()))e.setPosizione(e.getX(),e.getY() + e.getGravita());
             else e.setPosizione(e.getX(),e.getY() - 1 );
@@ -200,6 +201,7 @@ public class Partita {
             e.setPosizione(e.getX(),e.getY() + e.getMovimentoY());
             e.setMovimentoY(e.getMovimentoY()-1);
             if (livello.isSolid(e.getX(),e.getY() + e.getMovimentoY())) e.setMovimentoY(0);
+            
         }
         if (e instanceof Giocatore && (livello.isSolid(e.getX(), e.getY()-1)||livello.isWalkable(e.getX(), e.getY()-1))) ((Giocatore)e).setFalling(false); // per lo sprite
     }

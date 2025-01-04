@@ -16,7 +16,7 @@ TODOLIST
 - [ ] importazione e/o creazione di 16 livelli "testuali"
 - [x] attribuire i diversi tipi di sprite per ognuno dei 16 livelli
 - [x] ricordiamoci di usare gli stream
-- [ ] implementare effetto pacman dal pavimento al soffitto (ora è facile da fare):
+- [x] implementare effetto pacman dal pavimento al soffitto (ora è facile da fare):
         idea: due nuovi tipi di tile, uno sta sotto e uno sta sopra
 - [ ] decidere se implementare o meno l'acqua
 - [ ] schermata di GAMEOVER

@@ -73,6 +73,8 @@ public class AudioManager {
                     playMusic(filename);
                 }
             });
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volumeControl.setValue(-50.0f);
             clip.start();
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
             e1.printStackTrace();

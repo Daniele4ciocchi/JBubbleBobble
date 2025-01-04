@@ -68,9 +68,9 @@ public class Livello {
                         case '0' -> Tile.TileType.EMPTY;
                         case '1' -> Tile.TileType.WALL;
                         case '2' -> Tile.TileType.PLATFORM;
+                        case '3' -> Tile.TileType.TP_ENTRY;
 
-                        case '3' -> Tile.TileType.PLAYER_SPAWN;
-                        case '5' -> Tile.TileType.POWERUP_SPAWN;
+                        case '4' -> Tile.TileType.POWERUP_SPAWN;
 
                         case 'Z' -> Tile.TileType.ZENCHAN_SPAWN;
                         case 'B' -> Tile.TileType.BANEBOU_SPAWN;
@@ -107,6 +107,12 @@ public class Livello {
         int tileX = x / tilesize;
         int tileY = y / tilesize;
         return !(grid[tileY][tileX].getType().isSolid() || grid[tileY][tileX].getType().isWalkable());
+    }
+
+    public boolean isTPEntry(int x, int y) {
+        int tileX = x / tilesize;
+        int tileY = y / tilesize;
+        return grid[tileY][tileX].getType() == Tile.TileType.TP_ENTRY;
     }
     
 
