@@ -32,8 +32,8 @@ public class BollaSemplice extends Bolla {
                 setPosizione(getX(), getY() + 1);
             }
         }
-        System.out.println("range" + range);
-        System.out.println("y" + getY());
+        setChanged();
+        notifyObservers();
     }
     
 }

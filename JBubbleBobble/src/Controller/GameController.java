@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Bolla;
+import Model.BollaSemplice;
 import Model.Entita;
 import Model.Giocatore;
 import Model.Nemico;
@@ -14,6 +15,7 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 //TODO: qua dobbiamo decide una cosa
@@ -63,7 +65,9 @@ public class GameController {
                         giocatore.jump();
                     }
                 } else if (e.getKeyChar() == 'j') {
-                    partita.addEntita(giocatore.shoot());
+                    Bolla b = giocatore.shoot();
+                    partita.addEntita(b);
+                    b.addObserver(view.getPanel());
                 }
             }
 
@@ -129,7 +133,8 @@ public class GameController {
             ((Giocatore) (partita.getEntita().getFirst())).removeLife();
             ((Giocatore) (partita.getEntita().getFirst())).resetPosizione();
         }
-    
+         
+        ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
         for (Entita e : partita.getEntita()){
             
             partita.applyGravity(e);
@@ -138,8 +143,18 @@ public class GameController {
             }
             if (e instanceof Bolla){
                 ((Bolla)e).move(partita.getLivello());
+                if (((Bolla)e).getNemico() == null){
+                    
+                    Entita e2 = partita.checkCollision(e);
+                    if (e2 instanceof Nemico){
+                        ((BollaSemplice)e).catturaNemico(((Nemico)e2));
+                        EntitaDaRimuovere.add(e2);
+                    }
+                }
             }
         } 
+
+        for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         
 
         
