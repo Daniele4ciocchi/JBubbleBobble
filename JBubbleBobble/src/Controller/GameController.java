@@ -35,7 +35,7 @@ public class GameController {
     private boolean leftPressed = false;
     private boolean rightPressed = false;
     private boolean jump = false;
-
+    private int nextLevelCounter = 100;
     
 
     public GameController(Partita partita, GameView view) {
@@ -101,15 +101,9 @@ public class GameController {
 
     private void startGameLoop() {
         Timer timer = new Timer(32, e -> {gameLoop();});
-        AudioManager.getInstance();
+        //AudioManager.getInstance();
         
         partita.posizionaEntita();
-        
-        // for (Entita e : partita.getEntita()) {
-        //     System.out.println(e);
-        // }
-
-
         view.getPanel().repaint();
 
         timer.start();
@@ -130,12 +124,20 @@ public class GameController {
 
         //view.getPanel().setEntita(partita.getEntita());
 
-        if (partita.checkCollision(partita.getEntita().getFirst()) instanceof Nemico){
+        Entita collision = partita.checkCollision(partita.getEntita().getFirst());
+
+        if (collision instanceof Nemico){
             ((Giocatore) (partita.getEntita().getFirst())).removeLife();
             ((Giocatore) (partita.getEntita().getFirst())).resetPosizione();
         }
+        if (collision instanceof Bolla){
+            partita.removeEntita(collision);
+            
+        }
+
          
         ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
+        ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
         for (Entita e : partita.getEntita()){
             
             partita.applyGravity(e);
@@ -145,10 +147,14 @@ public class GameController {
             if (e instanceof Bolla){
                 Entita e2 = partita.checkCollision(e);
                 ((Bolla)e).move(partita.getLivello());
-
+                if (((Bolla)e).getPopTime() == 0){
+                    EntitaDaRimuovere.add(e);
+                    if (((Bolla)e).getNemico() != null){
+                        EntitaDaAggiungere.add(e);
+                        EntitaDaRimuovere.add(e);
+                    }
+                }
                 if (((Bolla)e).getNemico() == null){
-                    
-                    
                     if (e2 instanceof Nemico){
                         ((BollaSemplice)e).catturaNemico(((Nemico)e2));
                         EntitaDaRimuovere.add(e2);
@@ -158,7 +164,16 @@ public class GameController {
         } 
 
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
+        for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
         
+        if (partita.getEntita().stream().filter(e ->( e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0){
+            nextLevelCounter--;
+            if (nextLevelCounter == 0){
+                partita.getLivello().changeLevel();
+                partita.posizionaEntita();
+                nextLevelCounter = 100;
+            }
+        }
 
         
         //controllo movimento giocatore

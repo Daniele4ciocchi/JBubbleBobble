@@ -35,7 +35,7 @@ public class Giocatore extends Personaggio{
     public void resetPosizione(){super.setPosizione(5*getEntitysize(), 1*getEntitysize());}
 
     public Bolla shoot(){
-        return new BollaSemplice(getGoingRight()? this.getX()+getEntitysize() : this.getX()-getEntitysize(), this.getY(), 3, 1, getGoingRight());
+        return new BollaSemplice(getGoingRight()? this.getX()+getEntitysize()+5 : this.getX()-getEntitysize()-5, this.getY(), 6, 1, getGoingRight(), 20);
     }
     
     public void setFalling(boolean b){this.falling = b;}

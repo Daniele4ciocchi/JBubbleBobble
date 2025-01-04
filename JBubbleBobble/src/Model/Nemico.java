@@ -47,7 +47,7 @@ public class Nemico extends Personaggio implements Runnable{
 
     private boolean bubbled;
     
-    private String[] bubbledSpritesPath; // 3 sprite
+    private String[] bubbledSpritesPath = {baseSpritePath, baseSpritePath, baseSpritePath }; // 3 sprite
 
     /**
      * Costruttore della classe Nemico
@@ -169,9 +169,9 @@ public class Nemico extends Personaggio implements Runnable{
             // else return bubbledSpritesPath[1];
             if (spriteIndex >= spriteChangeRate) {
                 spriteCounter = 0;
-                spriteIndex = (spriteIndex) % 3;
+                spriteIndex = (spriteIndex+1) % 3;
             }
-            return bubbledSpritesPath[spriteIndex];
+            return bubbledSpritesPath[spriteIndex%3];
         }
         if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
         else { // WALKING
@@ -183,9 +183,9 @@ public class Nemico extends Personaggio implements Runnable{
 
             if (spriteIndex >= spriteChangeRate) {
                 spriteCounter = 0;
-                spriteIndex = (spriteIndex) % 2;
+                spriteIndex = (spriteIndex+1) % 2;
             }
-            return walkingSpritesPath[spriteIndex];
+            return walkingSpritesPath[spriteIndex%2];
         }
     }
 }

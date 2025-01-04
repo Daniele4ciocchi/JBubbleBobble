@@ -2,12 +2,12 @@ package Model;
 
 public class BollaSemplice extends Bolla {
 
-    public BollaSemplice(int posx, int posy, int velocitax, int velocitay, boolean goingRight) {
+    public BollaSemplice(int posx, int posy, int velocitax, int velocitay, boolean goingRight, int range) {
         super(posx, posy, velocitax, velocitay, goingRight);
-        
+        this.setRange(range);
     }
 
-    @Override
+    @Override 
     public void move(Livello l) {
         if (range !=0){
             if (getGoingRight()) {
@@ -21,6 +21,7 @@ public class BollaSemplice extends Bolla {
             }
             range--;
         }else if (range == 0){
+            popTime--;
             if (!l.isEmpty(getX(), getY() + getEntitysize())) {
                 if (getGoingRight() && l.isEmpty(getX() + getMovimentoX(), getY())) {
                     setPosizione(getX() + getMovimentoX(), getY());
@@ -32,6 +33,7 @@ public class BollaSemplice extends Bolla {
                 setPosizione(getX(), getY() + 1);
             }
         }
+
         setChanged();
         notifyObservers();
     }

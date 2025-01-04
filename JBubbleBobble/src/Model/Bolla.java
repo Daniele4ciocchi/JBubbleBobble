@@ -12,11 +12,11 @@ abstract public class Bolla extends Entita {
     private boolean floating = false;
     private Nemico nemico;
     protected int range;
+    protected int popTime = 100;
 
     //costruttore
     public Bolla(int posx, int posy, int movimentoX, int movimentoY, boolean goingRight) {
         super(posx/16, posy/16, movimentoX, movimentoY, 0);
-        this.range = 50;
         setGoingRight(goingRight);
     }
 
@@ -30,6 +30,7 @@ abstract public class Bolla extends Entita {
 
     public void setFloating() {this.floating = true;}
     public void setRange(int range) {this.range = range;}
+    public int getPopTime() {return popTime;}
 
     /**
      * Metodo per catturare un nemico nella bolla
@@ -43,13 +44,11 @@ abstract public class Bolla extends Entita {
         }
     }
 
-//
-//    public void scoppia() {
-//        partita.getModel().removeEntita(this);
-//        if (nemico != null){
-//            partita.getModel().removeEntita(nemico);
-//        }
-//    }
+
+    public Nemico scoppia(Partita partita) {
+        return nemico;
+    }
+
 
 
 }
