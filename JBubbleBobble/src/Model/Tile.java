@@ -2,10 +2,12 @@ package Model;
 
 public class Tile {
     public enum TileType {
-        // riguardanti piattaforma
+        // riguardanti il terreno
         EMPTY(false, false),
         PLATFORM(false,true),
         WALL(true,true),
+        TP_ENTRY(false, false), // quelle nei buchi
+        TP_EXIT(false, false), // quelle in alto
 
         //riguardanti spawn del player
         PLAYER_SPAWN(false, false),
@@ -19,9 +21,7 @@ public class Tile {
         MIGHTA_SPAWN(false, false),
         HIDEGON_SPAWN(false, false),
         PULPULSPAWN(false, false),
-        MONSTA_SPAWN(false, false),
-        ;
-
+        MONSTA_SPAWN(false, false);
 
         private boolean solid;
         private boolean walkable;
