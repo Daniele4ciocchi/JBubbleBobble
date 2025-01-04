@@ -1,5 +1,6 @@
 package View;
 
+import Model.Bolla;
 import Model.Entita;
 import Model.Giocatore;
 import Model.Nemico;
@@ -91,8 +92,15 @@ public class PartitaView extends JPanel implements Observer {
                 // } catch (IOException ioException) {
                 //     ioException.printStackTrace();
                 // }
-                g2d.setColor(Color.GREEN);
-                g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
+                if (((Bolla)(e)).getNemico() != null){
+                    g2d.setColor(Color.GRAY);
+                    g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
+                } else{
+                    g2d.setColor(Color.GREEN);
+                    g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
+                }
+                //g2d.setColor(Color.GREEN);
+                //g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
             } else{
                 try {
                     nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));

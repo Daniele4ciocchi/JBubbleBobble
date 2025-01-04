@@ -142,10 +142,12 @@ public class GameController {
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
             }
             if (e instanceof Bolla){
+                Entita e2 = partita.checkCollision(e);
                 ((Bolla)e).move(partita.getLivello());
+
                 if (((Bolla)e).getNemico() == null){
                     
-                    Entita e2 = partita.checkCollision(e);
+                    
                     if (e2 instanceof Nemico){
                         ((BollaSemplice)e).catturaNemico(((Nemico)e2));
                         EntitaDaRimuovere.add(e2);
