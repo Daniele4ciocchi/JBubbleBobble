@@ -9,7 +9,7 @@ TODOLIST
 - [x] implementazione buff powerup: es. modificatori bolle
 - [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
 - [x] AudioManager.java: importazione dal PDF del prof
-- [ ] AudioManager.java: fixare i problemi con la libreria sun
+- [x] AudioManager.java: fixare i problemi con la libreria sun
 - [ ] scelta+importazione sound effects (SFX)
 - [ ] implementare almeno 2 tipi di bolle
 - [ ] livelli profilo, implementare 
@@ -20,3 +20,4 @@ TODOLIST
         idea: due nuovi tipi di tile, uno sta sotto e uno sta sopra
 - [ ] decidere se implementare o meno l'acqua
 - [ ] schermata di GAMEOVER
+- [ ] dare un calmante a tutti gli sprite

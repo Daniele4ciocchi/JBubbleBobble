@@ -54,6 +54,9 @@ abstract public class Entita extends Observable {
     protected String baseSpritePath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator;
     protected String idleSpritePath = baseSpritePath; // lo sprite da usare da fermo
     protected String deathSpritePath = baseSpritePath; // lo sprite da usare quando l'entità muore
+    protected int spriteIndex;
+    protected int spriteCounter;
+    protected final int spriteChangeRate = 10;
 
     private int animationTimer = 10;
     private int currentAnimationTimer = 0;

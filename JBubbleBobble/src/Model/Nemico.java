@@ -47,7 +47,7 @@ public class Nemico extends Personaggio implements Runnable{
 
     private boolean bubbled;
     
-    private String[] bubbledSpritesPath; // animazione quando catturato in una bolla //TODO: vedere quanti sprite servono
+    private String[] bubbledSpritesPath; // 3 sprite
 
     /**
      * Costruttore della classe Nemico
@@ -72,26 +72,50 @@ public class Nemico extends Personaggio implements Runnable{
             case ZENCHAN -> {
                 walkingSpritesPath[0] += "zen-chan"+File.separator+"image_507.png";
                 walkingSpritesPath[1] += "zen-chan"+File.separator+"image_508.png";
+
+                bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png";
+                bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png";
+                bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png";
             }
             case BANEBOU -> {
                 walkingSpritesPath[0] += "banebou"+File.separator+"image_4.png";
                 walkingSpritesPath[1] += "banebou"+File.separator+"image_4.png";
+
+                bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png";
+                bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png";
+                bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png";
             }
             case MIGHTA -> {
                 walkingSpritesPath[0] += "mighta"+File.separator+"image_39.png";
                 walkingSpritesPath[1] += "banebou"+File.separator+"image_40.png";
+
+                bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png";
+                bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png";
+                bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png";
             }
             case HIDEGON -> {
                 walkingSpritesPath[0] += "hidegons"+File.separator+"image_40.png";
                 walkingSpritesPath[1] += "banebou"+File.separator+"image_41.png";
+
+                bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png";
+                bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png";
+                bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png";
             }
             case PULPUL -> {
                 walkingSpritesPath[0] += "pulpul"+File.separator+"image_407.png";
                 walkingSpritesPath[1] += "pulpul"+File.separator+"image_408.png";
+
+                bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png";
+                bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png";
+                bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png";
             }
             case MONSTA -> {
                 walkingSpritesPath[0] += "monsta"+File.separator+"image_443.png";
                 walkingSpritesPath[1] += "monsta"+File.separator+"image_444.png";
+
+                bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png";
+                bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png";
+                bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png";
             }
         }
 
@@ -137,19 +161,31 @@ public class Nemico extends Personaggio implements Runnable{
     }
 
     public String getSpritePath(){
-        if (dead) return deathSpritePath;
-        if (bubbled) {
+        if (dead) return deathSpritePath; // MORTE (score ottenuto, es: 500!)
+        if (bubbled) { // BUBBLED
             spriteIndex++;
-            if (spriteIndex == 8) spriteIndex = 0;
-            if (spriteIndex < 4) return bubbledSpritesPath[0];
-            else return bubbledSpritesPath[1];
+            // if (spriteIndex == 8) spriteIndex = 0;
+            // if (spriteIndex < 4) return bubbledSpritesPath[0];
+            // else return bubbledSpritesPath[1];
+            if (spriteIndex >= spriteChangeRate) {
+                spriteCounter = 0;
+                spriteIndex = (spriteIndex) % 3;
+            }
+            return bubbledSpritesPath[spriteIndex];
         }
-        if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath;
-        else {
-            spriteIndex++;
-            if (spriteIndex == 8) spriteIndex = 0;
-            if (spriteIndex < 4) return walkingSpritesPath[0];
-            else return walkingSpritesPath[1];
+        if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
+        else { // WALKING
+            spriteCounter++;
+
+            // if (spriteIndex == 8) spriteIndex = 0;
+            // if (spriteIndex < 4) return walkingSpritesPath[0];
+            // else return walkingSpritesPath[1];
+
+            if (spriteIndex >= spriteChangeRate) {
+                spriteCounter = 0;
+                spriteIndex = (spriteIndex) % 2;
+            }
+            return walkingSpritesPath[spriteIndex];
         }
     }
 }
