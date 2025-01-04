@@ -101,6 +101,7 @@ public class GameController {
 
     private void startGameLoop() {
         Timer timer = new Timer(32, e -> {gameLoop();});
+        AudioManager.getInstance();
         
         partita.posizionaEntita();
         

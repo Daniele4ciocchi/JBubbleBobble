@@ -3,7 +3,12 @@ package View;
 import Model.Tile;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+
+import Controller.AudioManager;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -22,6 +27,7 @@ public class GameView  {
     private JLabel scoreLabel;
     private JButton pauseButton;
     private JButton exitButton;
+    //AudioManager audioManager = new AudioManager();
 
 
     public GameView() {
@@ -31,6 +37,7 @@ public class GameView  {
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.requestFocusInWindow();
+        //audioManager.loadAudio("JBubbleBobble/src/Model/data/Super Mario Bros. medley.mp3");
 
 
     }
