@@ -45,7 +45,9 @@ abstract public class Bolla extends Entita {
     }
 
 
-    public Nemico scoppia(Partita partita) {
+    public Nemico scoppia() {
+        this.nemico.setBubbled(false);
+        this.nemico.setPosizione(this.getX(), this.getY());
         return nemico;
     }
 

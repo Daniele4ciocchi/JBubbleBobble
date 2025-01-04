@@ -101,7 +101,7 @@ public class GameController {
 
     private void startGameLoop() {
         Timer timer = new Timer(32, e -> {gameLoop();});
-        //AudioManager.getInstance();
+        AudioManager.getInstance();
         
         partita.posizionaEntita();
         view.getPanel().repaint();
@@ -148,11 +148,10 @@ public class GameController {
                 Entita e2 = partita.checkCollision(e);
                 ((Bolla)e).move(partita.getLivello());
                 if (((Bolla)e).getPopTime() == 0){
-                    EntitaDaRimuovere.add(e);
                     if (((Bolla)e).getNemico() != null){
-                        EntitaDaAggiungere.add(e);
-                        EntitaDaRimuovere.add(e);
+                        EntitaDaAggiungere.add(((Bolla)e).scoppia());
                     }
+                    EntitaDaRimuovere.add(e);
                 }
                 if (((Bolla)e).getNemico() == null){
                     if (e2 instanceof Nemico){
@@ -172,6 +171,10 @@ public class GameController {
                 partita.getLivello().changeLevel();
                 partita.posizionaEntita();
                 nextLevelCounter = 100;
+                for (Entita e : partita.getEntita()){
+                    e.addObserver(view.getPanel());
+                }
+                
             }
         }
 
