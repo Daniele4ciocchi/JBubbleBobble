@@ -31,6 +31,7 @@ public class GameController {
 
     private Partita partita;
     private GameView view;
+    private Timer timer;
 
     private boolean leftPressed = false;
     private boolean rightPressed = false;
@@ -107,7 +108,7 @@ public class GameController {
 
 
     private void startGameLoop() {
-        Timer timer = new Timer(32, e -> {gameLoop();});
+        timer = new Timer(32, e -> {gameLoop();});
         AudioManager.getInstance();
         
         partita.posizionaEntita();
@@ -183,6 +184,10 @@ public class GameController {
         if (partita.getEntita().stream().filter(e ->( e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0){
             nextLevelCounter--;
             if (nextLevelCounter == 0){
+                if (partita.getLivello().getLevelNum() == 104){
+                    view.getFrame().dispose();
+                    timer.stop();
+                }
                 partita.svuotaEntita();
                 partita.getLivello().changeLevel();
                 partita.posizionaEntita();
@@ -192,10 +197,15 @@ public class GameController {
                     e.addObserver(view.getPanel());
                 }
                 counter = 0;
+                
             }
         }
 
-        
+        if (((Giocatore)partita.getEntita().getFirst()).getLife() == 0){   
+            partita.getLivello().changeLevel(104);
+            partita.svuotaEntita();
+            view.getPanel().repaint();
+        }
         //controllo movimento giocatore
         checkPlayerMovement();
 

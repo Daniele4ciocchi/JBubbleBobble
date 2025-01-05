@@ -66,6 +66,10 @@ public class GameView  {
     public PannelloSuperiore getTopPanel() {
         return topPanel;
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
     
     public void updateScore(int score) {
         scoreLabel.setText("Score: " + score);
