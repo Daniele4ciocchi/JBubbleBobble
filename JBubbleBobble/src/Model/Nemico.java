@@ -118,7 +118,6 @@ public class Nemico extends Personaggio implements Runnable{
                 bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png";
             }
         }
-
     }
 
     public Tipologia getTipologia(){return tipologia;}
@@ -155,7 +154,7 @@ public class Nemico extends Personaggio implements Runnable{
                 goingRight = false;
                 moveLeft(l);
                 currentWaitTime = waitTime;
-            }else currentWaitTime--;
+            } else currentWaitTime--;
         }
         if (this.getY() < gy) jump();
     }
@@ -163,29 +162,21 @@ public class Nemico extends Personaggio implements Runnable{
     public String getSpritePath(){
         if (dead) return deathSpritePath; // MORTE (score ottenuto, es: 500!)
         if (bubbled) { // BUBBLED
-            spriteIndex++;
-            // if (spriteIndex == 8) spriteIndex = 0;
-            // if (spriteIndex < 4) return bubbledSpritesPath[0];
-            // else return bubbledSpritesPath[1];
-            if (spriteIndex >= spriteChangeRate) {
-                spriteCounter = 0;
+            spriteCounter++;
+            if (spriteCounter == spriteChangeRate) {
+                spriteCounter = 0; 
                 spriteIndex = (spriteIndex+1) % 3;
             }
-            return bubbledSpritesPath[spriteIndex%3];
+            return bubbledSpritesPath[spriteIndex];
         }
         if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
         else { // WALKING
             spriteCounter++;
-
-            // if (spriteIndex == 8) spriteIndex = 0;
-            // if (spriteIndex < 4) return walkingSpritesPath[0];
-            // else return walkingSpritesPath[1];
-
-            if (spriteIndex >= spriteChangeRate) {
-                spriteCounter = 0;
+            if (spriteCounter == spriteChangeRate) {
+                spriteCounter = 0; 
                 spriteIndex = (spriteIndex+1) % 2;
             }
-            return walkingSpritesPath[spriteIndex%2];
+            return walkingSpritesPath[spriteIndex];
         }
     }
 }

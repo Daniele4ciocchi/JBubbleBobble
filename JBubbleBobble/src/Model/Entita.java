@@ -56,7 +56,7 @@ abstract public class Entita extends Observable {
     protected String deathSpritePath = baseSpritePath; // lo sprite da usare quando l'entità muore
     protected int spriteIndex;
     protected int spriteCounter;
-    protected final int spriteChangeRate = 50;
+    protected final int spriteChangeRate = 3;
 
     private int animationTimer = 10;
     private int currentAnimationTimer = 0;

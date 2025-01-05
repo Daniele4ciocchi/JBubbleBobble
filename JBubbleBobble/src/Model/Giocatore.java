@@ -13,7 +13,7 @@ public class Giocatore extends Personaggio{
     private final String fallingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_84.png";              // caduta
     private final String jumpingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_70.png";               // salto
     private final String shootingSpritesPath = baseSpritePath + "bubblun" + File.separator + "image_79.png";              // sparo bolla
-    private  String[] walkingSpritePath = {
+    private  String[] walkingSpritesPath = {
          baseSpritePath + "bubblun" + File.separator + "image_87.png",
          baseSpritePath + "bubblun" + File.separator + "image_89.png"
     }; // camminata (da alternare)
@@ -43,20 +43,17 @@ public class Giocatore extends Personaggio{
 
     // ritorna il PATH dello sprite, in base allo stato del giocatore in gioco
     public String getSpritePath(){
-        if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath;
-        else if (this.isFalling()) return fallingSpritePath;
-        else if (super.getMovimentoY() > 0) return jumpingSpritePath;
-        else {
-            if (spriteIndex == 0) {
-                spriteIndex = 1;
-                return walkingSpritePath[0];
+        if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
+        else if (this.isFalling()) return fallingSpritePath; // CADENDO
+        else if (super.getMovimentoY() > 0) return jumpingSpritePath; // SALTANDO
+        else { // CAMMINANDO
+            spriteCounter++;
+            if (spriteCounter == spriteChangeRate) {
+                spriteCounter = 0; 
+                spriteIndex = (spriteIndex+1) % 2;
             }
-            else {
-                spriteIndex = 0;
-                return walkingSpritePath[1];
-            }
+            return walkingSpritesPath[spriteIndex];
         }
     }
-
     // TODO: implementare override di .die() che decrementa vite e resetta posizione, e se life == 0, game over
 }

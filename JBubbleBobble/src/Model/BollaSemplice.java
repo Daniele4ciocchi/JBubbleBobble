@@ -33,9 +33,9 @@ public class BollaSemplice extends Bolla {
                 setPosizione(getX(), getY() + 1);
             }
         }
-
         setChanged();
         notifyObservers();
     }
     
+
 }
