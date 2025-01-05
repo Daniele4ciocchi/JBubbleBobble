@@ -1,6 +1,22 @@
 package Model;
 
+import java.io.File;
+
 public class BollaSemplice extends Bolla {
+
+    private int spriteChangeRate = 2;
+    private String[] sprites = {
+        baseSpritePath + "bubbles" + File.separator + "b1.png",
+        baseSpritePath + "bubbles" + File.separator + "b2.png",
+        baseSpritePath + "bubbles" + File.separator + "b3.png",
+        baseSpritePath + "bubbles" + File.separator + "b4.png",
+        baseSpritePath + "bubbles" + File.separator + "b5.png",
+        baseSpritePath + "bubbles" + File.separator + "b6.png",
+
+        baseSpritePath + "bubbles" + File.separator + "b7.png",
+        baseSpritePath + "bubbles" + File.separator + "b8.png",
+        baseSpritePath + "bubbles" + File.separator + "b9.png" // arrivato qui, torno a b7
+    };
 
     public BollaSemplice(int posx, int posy, int velocitax, int velocitay, boolean goingRight, int range) {
         super(posx, posy, velocitax, velocitay, goingRight);
@@ -37,5 +53,18 @@ public class BollaSemplice extends Bolla {
         notifyObservers();
     }
     
+    public String getSpritePath(){
+        spriteCounter++;
+        if (spriteCounter == spriteChangeRate) {
+            spriteCounter = 0;
+            // spriteIndex = (spriteIndex+1) % 9;
+            if ((spriteIndex+1) % 9 == 8) {
+                spriteIndex = 6;
+            } else {
+                spriteIndex = (spriteIndex+1) % 9;
+            }
+        }
+        return sprites[spriteIndex];
+    }
 
 }

@@ -1,6 +1,7 @@
 package View;
 
 import Model.Bolla;
+import Model.BollaSemplice;
 import Model.Entita;
 import Model.Giocatore;
 import Model.Nemico;
@@ -119,7 +120,7 @@ public class PartitaView extends JPanel implements Observer {
                     // g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
                 } else{
                     try {
-                        bolla = ImageIO.read(new File(((Bolla)(e)).getSpritePath()));
+                        bolla = ImageIO.read(new File(((BollaSemplice)(e)).getSpritePath()));
                         if (!((Bolla)(e)).getGoingRight()) {
                             g2d.drawImage(bolla, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
                         } else {
