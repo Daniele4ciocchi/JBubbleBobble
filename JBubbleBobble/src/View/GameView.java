@@ -22,32 +22,41 @@ import java.io.IOException;
 
 public class GameView  {
     private JFrame frame = new JFrame("Bubble Bobble MVC Game");
-    private PartitaView gioco ;
-    private PannelloSuperiore topPanel;
+    private PartitaView partita ;
+    private TopPanel topPanel;
     private JLabel scoreLabel;
     private JButton pauseButton;
     private JButton exitButton;
     //AudioManager audioManager = new AudioManager();
 
+    private static Font customFont;
+
 
     public GameView() {
         // Create frame
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(586, 464);
+        frame.setSize(586, 485);
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.requestFocusInWindow();
-        //audioManager.loadAudio("JBubbleBobble/src/Model/data/Super Mario Bros. medley.mp3");
 
+        
+        try {
+            customFont = Font.createFont(Font.PLAIN, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "BubbleBobble.ttf"));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+            customFont = new Font("Serif", Font.PLAIN, 24); // Fallback font
+        }
+        
 
     }
-    public void addPanel(PartitaView panel) {
-        this.gioco = panel;
-        frame.add(panel);
+    public void addPartitaPanel(PartitaView partita) {
+        this.partita = partita;
+        frame.add(partita);
     }
-    public void addTopPanel(PannelloSuperiore panel) {
-        this.topPanel = panel;
-        frame.add(panel);
+    public void addTopPanel(TopPanel TopPanel) {
+        this.topPanel = TopPanel;
+        frame.add(TopPanel, BorderLayout.NORTH);
     }
     
     public void addKeyListener(KeyAdapter keyAdapter) {
@@ -61,14 +70,18 @@ public class GameView  {
     }
 
     public PartitaView getPanel() {
-        return gioco;
+        return partita;
     }
-    public PannelloSuperiore getTopPanel() {
+    public TopPanel getTopPanel() {
         return topPanel;
     }
 
     public JFrame getFrame() {
         return frame;
+    }
+
+    public static Font getFont() {
+        return customFont;
     }
     
     public void updateScore(int score) {

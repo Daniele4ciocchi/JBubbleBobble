@@ -4,20 +4,26 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class PannelloSuperiore extends JPanel {
+public class TopPanel extends JPanel {
     private JLabel scoreLabel;
     private JButton pauseMenuButton;
 
-    public PannelloSuperiore() {
+    public TopPanel() {
         // Set layout for the panel
         setLayout(new BorderLayout());
+        setBackground(Color.BLACK);
 
         // Initialize the score label
         scoreLabel = new JLabel("Score: 0");
         scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
+        scoreLabel.setForeground(Color.WHITE);
+        Font font = GameView.getFont().deriveFont(15f);
+        
+        scoreLabel.setFont(font);
         // Initialize the pause menu button
-        pauseMenuButton = new JButton("Pause Menu");
+        pauseMenuButton = new JButton("||");
+        pauseMenuButton.setFont(font);
+        pauseMenuButton.setBackground(Color.BLACK);
 
         // Add components to the panel
         add(scoreLabel, BorderLayout.CENTER);

@@ -10,6 +10,7 @@ import Model.SpecialItem;
 import View.GameView;
 import View.MenuView;
 import View.PartitaView;
+import View.TopPanel;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -46,7 +47,8 @@ public class GameController {
         this.partita = partita;
         this.view = view;
         
-        view.addPanel(new PartitaView());
+        view.addTopPanel(new TopPanel());
+        view.addPartitaPanel(new PartitaView());
         view.getPanel().setPartita(partita);
 
         startGameLoop();

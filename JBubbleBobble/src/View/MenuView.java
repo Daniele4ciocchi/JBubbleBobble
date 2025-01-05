@@ -14,6 +14,7 @@ public class MenuView {
     public MenuView() {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setFont(GameView.getFont());
 
         JLabel label = new JLabel("Menu");
         label.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -22,16 +22,7 @@ public class PartitaView extends JPanel implements Observer {
     private Partita partita;
     private BufferedImage image;
 
-    private Font customFont;
-
-    {
-        try {
-            customFont = Font.createFont(Font.PLAIN, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "BubbleBobble.ttf"));
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
-            customFont = new Font("Serif", Font.PLAIN, 24); // Fallback font
-        }
-    }
+    
 
     public PartitaView() {
         super();
@@ -78,22 +69,6 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage giocatore;
         BufferedImage bolla;
         BufferedImage nemico;
-        BufferedImage vite;
-
-        g2d.setFont(customFont);
-        customFont = customFont.deriveFont(30f);
-        g2d.setColor(Color.YELLOW);
-        g2d.drawString("" + partita.getLivello().getLevelNum(), 10, 2*partita.getLivello().getTilesize());
-
-        for (int i = 0; i < ((Giocatore)partita.getEntita().getFirst()).getLife(); i++) {
-            try {
-                vite = ImageIO.read(new File(("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator + "items" + File.separator + "image_life.png")));
-                g2d.drawImage(vite, i * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        }
-
 
         for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
@@ -166,6 +141,26 @@ public class PartitaView extends JPanel implements Observer {
         }
     }
 
+    public void paintElement(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+        BufferedImage vite;
+
+        
+        Font f = GameView.getFont().deriveFont(30f);
+        g2d.setFont(f);
+        g2d.setColor(Color.YELLOW);
+        g2d.drawString("" + partita.getLivello().getLevelNum(), 10, 2*partita.getLivello().getTilesize());
+
+        for (int i = 0; i < ((Giocatore)partita.getEntita().getFirst()).getLife(); i++) {
+            try {
+                vite = ImageIO.read(new File(("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator + "items" + File.separator + "image_life.png")));
+                g2d.drawImage(vite, i * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+    }
+
     public void setPartita(Partita partita) {
         this.partita = partita;
     }
@@ -175,6 +170,7 @@ public class PartitaView extends JPanel implements Observer {
         super.paintComponent(g);
         paintLivello(g);
         paintEntita(g);
+        paintElement(g);
     }
 
     @Override
