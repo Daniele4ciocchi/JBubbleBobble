@@ -28,7 +28,7 @@ public class Giocatore extends Personaggio{
 
     private boolean falling;
     private boolean shooting;
-
+    
     public Giocatore(){
         super(5, 1, 10, 20, -7, 18);
     }
