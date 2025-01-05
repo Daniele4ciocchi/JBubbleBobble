@@ -156,7 +156,7 @@ public class Nemico extends Personaggio implements Runnable{
                 currentWaitTime = waitTime;
             } else currentWaitTime--;
         }
-        if (this.getY() < gy) jump();
+        if (this.getY() < gy && l.isWalkable(this.getX(), this.getY()-1)) jump();
     }
 
     public String getSpritePath(){
