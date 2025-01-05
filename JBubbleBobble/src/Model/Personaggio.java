@@ -17,12 +17,6 @@ public abstract class Personaggio extends Entita{
         setChanged();
         notifyObservers();
     }
-
-    public void die(){
-        this.dead = true;
-        setChanged();
-        notifyObservers();
-    }
     
     public void moveLeft(Livello l) {
         if (l.isEmpty(posx-movimentoX, posy)){
