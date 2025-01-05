@@ -74,7 +74,6 @@ public class Giocatore extends Personaggio{
 
     public void die(){
         this.dead = true;
-        this.removeLife();
         setChanged();
         notifyObservers();
     }
@@ -82,6 +81,7 @@ public class Giocatore extends Personaggio{
     public void respawn(){
         if (this.life != 0){
             this.dead = false;
+            this.removeLife();
             this.resetPosizione();
         } else return; // TODO: GAME OVER
         
