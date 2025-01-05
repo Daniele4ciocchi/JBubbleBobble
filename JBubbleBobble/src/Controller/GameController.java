@@ -118,19 +118,9 @@ public class GameController {
     }
     
     private void gameLoop(){
-        counter++;
-        if(counter == 1000000000) counter = 0;
-
-        //impostare timer 0,016 secondi
         
-        ///System.out.println("Game loop");
-        //TODO: indice del loop di gioco
-        //  - far comparire tutte le entità
-        //  - far muovere le entità (forse questo è un compito di partita)
-        //  - far sparire le entità (e anche questo) partita.clear()
-        //  - costruire lo sfondo del livello (compito della view)
-        //  - posizionare le entità (compito della view)
-        //  -
+        counter = (counter == 1000000000) ? 0 : ++counter;
+
 
         //view.getPanel().setEntita(partita.getEntita());
 
