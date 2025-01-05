@@ -22,6 +22,17 @@ public class PartitaView extends JPanel implements Observer {
     private Partita partita;
     private BufferedImage image;
 
+    private Font customFont;
+
+    {
+        try {
+            customFont = Font.createFont(Font.PLAIN, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "BubbleBobble.ttf"));
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+            customFont = new Font("Serif", Font.PLAIN, 24); // Fallback font
+        }
+    }
+
     public PartitaView() {
         super();
     }
@@ -69,7 +80,8 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage nemico;
         BufferedImage vite;
 
-        g2d.setFont(new Font("TimesRoman", Font.BOLD, 30));
+        g2d.setFont(customFont);
+        customFont = customFont.deriveFont(30f);
         g2d.setColor(Color.YELLOW);
         g2d.drawString("" + partita.getLivello().getLevelNum(), 10, 2*partita.getLivello().getTilesize());
 
