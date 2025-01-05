@@ -38,6 +38,7 @@ public class GameController {
     private int nextLevelCounter = 250;
     private int counter = 0;
     private int bubblecounter = 0;
+    private int giocatorecounter = 0;
     
 
     public GameController(Partita partita, GameView view) {
@@ -134,15 +135,21 @@ public class GameController {
         Entita collision = partita.checkCollision(partita.getEntita().getFirst());
 
         if (collision instanceof Nemico){
-            ((Giocatore) (partita.getEntita().getFirst())).removeLife();
-            ((Giocatore) (partita.getEntita().getFirst())).resetPosizione();
+            ((Giocatore) (partita.getEntita().getFirst())).die();
         }
         if (collision instanceof Bolla){
             partita.removeEntita(collision);
             
         }
 
-         
+        if (partita.getEntita().getFirst().isDead()){
+            giocatorecounter++;
+            if (giocatorecounter == 100){
+                partita.getEntita().getFirst().respawn();
+                giocatorecounter = 0;
+            }
+
+        }
         ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
         ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
         for (Entita e : partita.getEntita()){
@@ -188,7 +195,7 @@ public class GameController {
 
         
         //controllo movimento giocatore
-        checkPlayerMovement();
+        if (!partita.getEntita().getFirst().isDead()) checkPlayerMovement();
 
     }
 
