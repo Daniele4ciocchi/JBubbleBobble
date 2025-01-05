@@ -69,6 +69,10 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage nemico;
         BufferedImage vite;
 
+        g2d.setFont(new Font("TimesRoman", Font.BOLD, 30));
+        g2d.setColor(Color.YELLOW);
+        g2d.drawString("" + partita.getLivello().getLevelNum(), 10, 2*partita.getLivello().getTilesize());
+
         for (int i = 0; i < ((Giocatore)partita.getEntita().getFirst()).getLife(); i++) {
             try {
                 vite = ImageIO.read(new File(("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator + "items" + File.separator + "image_life.png")));
@@ -77,6 +81,7 @@ public class PartitaView extends JPanel implements Observer {
                 ioException.printStackTrace();
             }
         }
+
 
         for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
