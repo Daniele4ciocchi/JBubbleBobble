@@ -22,7 +22,7 @@ public class AudioManager {
      * Clip audio
      */
     private Clip clip;
-
+    FloatControl gainControl;
     /**
      * Nome del file audio per distinguere i vari effetti
      */
@@ -53,6 +53,7 @@ public class AudioManager {
      * Costruttore privato
      */
     private AudioManager() {
+        //gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         playMusic(music);
     }
 
@@ -73,14 +74,32 @@ public class AudioManager {
                     playMusic(filename);
                 }
             });
-            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            //volumeControl.setValue(-50.0f);
+            
             clip.start();
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
             e1.printStackTrace();
         }
+        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
     }
 
+    public void play(){
+        clip.start();
+    }
+
+    /**
+     * Metodo che ferma la musica di sottofondo
+     */
+    public void stop() {
+        clip.stop();
+    }
+
+    public void setVolume(float volume){
+        gainControl.setValue(volume);
+    }
+
+    public double getVolume(){
+        return gainControl.getValue();
+    }
 
 //     /**
 //      * Metodo che riproduce gli effetti sonori

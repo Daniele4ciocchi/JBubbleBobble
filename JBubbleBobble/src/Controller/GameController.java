@@ -109,7 +109,7 @@ public class GameController {
 
     private void startGameLoop() {
         timer = new Timer(32, e -> {gameLoop();});
-        AudioManager.getInstance();
+        //AudioManager.getInstance();
         
         partita.posizionaEntita();
         view.getPanel().repaint();
@@ -120,7 +120,6 @@ public class GameController {
     private void gameLoop(){
         
         counter = (counter == 1000000000) ? 0 : ++counter;
-
 
         //view.getPanel().setEntita(partita.getEntita());
 
@@ -195,6 +194,7 @@ public class GameController {
             partita.getLivello().changeLevel(104);
             partita.svuotaEntita();
             view.getPanel().repaint();
+            
         }
         //controllo movimento giocatore
         checkPlayerMovement();
