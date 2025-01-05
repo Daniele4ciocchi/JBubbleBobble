@@ -31,12 +31,12 @@ public class AudioManager {
     /**
      * Percorso della cartella contenente i file audio
      */
-    private final String path = "JBubbleBobble" + File.separator + "src" + File.separator + "Model" + File.separator + "data" + File.separator;
+    private final String path = "JBubbleBobble" + File.separator + "src" + File.separator + "Model" + File.separator + "data" + File.separator + "songs" + File.separator;
 
     /**
      * Percorso del file audio per la musica di sottofondo
      */
-    private final String music = path + "SuperMarioBros.medley.wav";
+    private final String music = path + "MainTheme.wav";
 
     /**
      * Metodo che restituisce l'istanza della classe
@@ -74,7 +74,7 @@ public class AudioManager {
                 }
             });
             FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            volumeControl.setValue(-50.0f);
+            //volumeControl.setValue(-50.0f);
             clip.start();
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
             e1.printStackTrace();
