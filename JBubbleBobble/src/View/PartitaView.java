@@ -66,6 +66,16 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage giocatore;
         BufferedImage bolla;
         BufferedImage nemico;
+        BufferedImage vite;
+
+        for (int i = 0; i < ((Giocatore)partita.getEntita().getFirst()).getLife(); i++) {
+            try {
+                vite = ImageIO.read(new File(("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator + "items" + File.separator + "image_life.png")));
+                g2d.drawImage(vite, i * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
 
         for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
