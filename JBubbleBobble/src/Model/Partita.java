@@ -76,6 +76,7 @@ public class Partita {
             case "LIVELLO14" -> 14;
             case "LIVELLO15" -> 15;
             case "LIVELLO16" -> 16;
+            case "GAMEOVER"  -> 104;
             default -> 1;
         });
         this.saltiEffettuati = 0; 

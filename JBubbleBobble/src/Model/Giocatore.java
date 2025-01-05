@@ -81,7 +81,7 @@ public class Giocatore extends Personaggio{
         if(!isDead()) {
             super.moveRight(l);
             this.setShooting(false);
-         }
+        }
     }
 
     @Override
