@@ -67,7 +67,7 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage bolla;
         BufferedImage nemico;
 
-        for (Entita e : partita.getEntita()) {
+        for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
             if (e instanceof Model.Giocatore) {
                 try {

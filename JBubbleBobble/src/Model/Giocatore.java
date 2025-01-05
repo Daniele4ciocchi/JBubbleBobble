@@ -60,6 +60,18 @@ public class Giocatore extends Personaggio{
     }
     // TODO: implementare override di .die() che decrementa vite e resetta posizione, e se life == 0, game over
 
+    @Override
+    public void moveLeft(Livello l){ if(!isDead()) super.moveLeft(l);}
+
+    @Override
+    public void moveRight(Livello l){ if(!isDead()) super.moveRight(l);}
+
+    @Override
+    public void jump(){ if(!isDead()) super.jump();}
+
+            
+
+
     public void die(){
         this.dead = true;
         this.removeLife();

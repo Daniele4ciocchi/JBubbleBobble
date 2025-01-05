@@ -68,7 +68,8 @@ public class GameController {
                         giocatore.jump();
                     }
                 } else if (e.getKeyChar() == 'j' || e.getKeyChar() == 'J') {
-                    if(Math.abs(counter - bubblecounter) > 10){
+                    if(Math.abs(counter - bubblecounter) > 10 && !giocatore.isDead()){
+
                         Bolla b = giocatore.shoot();
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
@@ -100,8 +101,10 @@ public class GameController {
     // forse va messo in entita oppure in livello idk
     public void checkPlayerMovement(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
+
         if (leftPressed) giocatore.moveLeft(partita.getLivello());
         else if (rightPressed) giocatore.moveRight(partita.getLivello());
+        
     }
 
 
@@ -145,7 +148,7 @@ public class GameController {
         if (partita.getEntita().getFirst().isDead()){
             giocatorecounter++;
             if (giocatorecounter == 100){
-                partita.getEntita().getFirst().respawn();
+                ((Giocatore)partita.getEntita().getFirst()).respawn();
                 giocatorecounter = 0;
             }
 
@@ -182,6 +185,7 @@ public class GameController {
         if (partita.getEntita().stream().filter(e ->( e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0){
             nextLevelCounter--;
             if (nextLevelCounter == 0){
+                partita.svuotaEntita();
                 partita.getLivello().changeLevel();
                 partita.posizionaEntita();
                 ((Giocatore)partita.getEntita().getFirst()).resetPosizione();
@@ -195,7 +199,7 @@ public class GameController {
 
         
         //controllo movimento giocatore
-        if (!partita.getEntita().getFirst().isDead()) checkPlayerMovement();
+        checkPlayerMovement();
 
     }
 
