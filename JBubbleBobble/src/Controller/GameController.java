@@ -64,12 +64,10 @@ public class GameController {
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_SPACE) {
                     if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
-                
                         giocatore.jump();
                     }
                 } else if (e.getKeyChar() == 'j' || e.getKeyChar() == 'J') {
                     if(Math.abs(counter - bubblecounter) > 10 && !giocatore.isDead()){
-
                         Bolla b = giocatore.shoot();
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());

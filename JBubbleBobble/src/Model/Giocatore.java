@@ -9,24 +9,25 @@ public class Giocatore extends Personaggio{
     private int life = 3;
 
     // sprites
-    private final String idleSpritePath = baseSpritePath + "bubblun" + File.separator + "image_90.png";
-    private final String fallingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_84.png";              // caduta
-    private final String jumpingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_70.png";               // salto
-    private final String shootingSpritesPath = baseSpritePath + "bubblun" + File.separator + "image_79.png";              // sparo bolla
+    private final String idleSpritePath = baseSpritePath + "bubblun" + File.separator + "image_90.png";         // fermo
+    private final String fallingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_84.png";      // caduta
+    private final String jumpingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_70.png";      // salto
+    private final String shootingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_79.png";    // sparo
     private  String[] walkingSpritesPath = {
         baseSpritePath + "bubblun" + File.separator + "image_87.png",
         baseSpritePath + "bubblun" + File.separator + "image_89.png"
-    }; // camminata (da alternare)
+    };                                                                                                          // camminata
     
     //TODO: scegliere i 4 sprite di morte (rotolamento)
     private final String[] deathSpritesPaths = {
-        baseSpritePath + "bubblun" + File.separator + "",
-        baseSpritePath + "bubblun" + File.separator + "",
-        baseSpritePath + "bubblun" + File.separator + "",
-        baseSpritePath + "bubblun" + File.separator + "",
+        baseSpritePath + "bubblun" + File.separator + "image_58.png",
+        baseSpritePath + "bubblun" + File.separator + "image_57.png",
+        baseSpritePath + "bubblun" + File.separator + "image_64.png",
+        baseSpritePath + "bubblun" + File.separator + "image_65.png",
     };
 
     private boolean falling;
+    private boolean shooting;
 
     public Giocatore(){
         super(5, 1, 10, 20, -7, 18);
@@ -37,18 +38,25 @@ public class Giocatore extends Personaggio{
     public void removeLife(){this.life--;}
     public void resetPosizione(){super.setPosizione(5*getEntitysize(), 1*getEntitysize());}
 
-    public Bolla shoot(){
-        return new BollaSemplice(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 6, 1, getGoingRight(), 20);
-    }
-    
     public void setFalling(boolean b){this.falling = b;}
     public boolean isFalling(){return this.falling;}
+    public void setShooting(boolean b){this.shooting = b;}
+    public boolean isShooting(){return this.shooting;} 
 
-    // ritorna il PATH dello sprite, in base allo stato del giocatore in gioco
+    // ritorna il PATH dello sprite, in base allo stato del giocatore
     public String getSpritePath(){
         if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
         else if (this.isFalling()) return fallingSpritePath; // CADENDO
         else if (super.getMovimentoY() > 0) return jumpingSpritePath; // SALTANDO
+        else if (this.isShooting()) return shootingSpritePath; // SPARANDO
+        else if (this.isDead()) {
+            spriteCounter++;
+            if (spriteCounter == spriteChangeRate) {
+                spriteCounter = 0; 
+                spriteIndex = (spriteIndex+1) % 4;
+            }
+            return deathSpritesPaths[spriteIndex];
+        }
         else { // CAMMINANDO
             spriteCounter++;
             if (spriteCounter == spriteChangeRate) {
@@ -61,15 +69,28 @@ public class Giocatore extends Personaggio{
     // TODO: implementare override di .die() che decrementa vite e resetta posizione, e se life == 0, game over
 
     @Override
-    public void moveLeft(Livello l){ if(!isDead()) super.moveLeft(l);}
+    public void moveLeft(Livello l){
+         if(!isDead()) {
+            super.moveLeft(l);
+            this.setShooting(false);
+         }
+    }
 
     @Override
-    public void moveRight(Livello l){ if(!isDead()) super.moveRight(l);}
+    public void moveRight(Livello l){ 
+        if(!isDead()) {
+            super.moveRight(l);
+            this.setShooting(false);
+         }
+    }
 
     @Override
     public void jump(){ if(!isDead()) super.jump();}
 
-            
+    public Bolla shoot(){
+        this.setShooting(true);
+        return new BollaSemplice(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 6, 1, getGoingRight(), 20);
+    }
 
 
     public void die(){
@@ -83,7 +104,7 @@ public class Giocatore extends Personaggio{
         if (this.life != 0){
             this.dead = false;
             this.resetPosizione();
-        } else return; // TODO: GAME OVER
+        } else return; // TODO: GAME OVER (idea: lvl17?)
         
         setChanged();
         notifyObservers();
