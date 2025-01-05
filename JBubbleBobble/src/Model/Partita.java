@@ -191,7 +191,9 @@ public class Partita {
     }
 
     public void applyGravity(Entita e) {
-        if (livello.isTPEntry(e.getX(),e.getY())) e.setPosizione(e.getX(),25*Entita.getEntitysize());
+        if (livello.isTPEntry(e.getX(),e.getY())) e.setPosizione(e.getX(),24*Entita.getEntitysize());
+        //if (livello.isTPExit(e.getX(),e.getY())) e.setPosizione(e.getX(),1*Entita.getEntitysize());
+
         if (!livello.isWalkable(e.getX(), e.getY() - 1 )){
             if(!livello.isWalkable(e.getX(), e.getY() + e.getGravita()))e.setPosizione(e.getX(),e.getY() + e.getGravita());
             else e.setPosizione(e.getX(),e.getY() - 1 );
