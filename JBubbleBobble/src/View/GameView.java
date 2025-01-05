@@ -39,6 +39,7 @@ public class GameView  {
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.requestFocusInWindow();
+        frame.setLocationRelativeTo(null);
 
         
         try {

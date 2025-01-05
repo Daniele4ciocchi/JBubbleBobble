@@ -14,7 +14,8 @@ public class JBubbleBobble {
         // Creazione del frame
         frame = new JFrame("Esempio di JPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
+        frame.setSize(400, 350);
+        frame.setLocationRelativeTo(null);
 
         // Creazione del controller del menu
         MenuView menuView = new MenuView();
