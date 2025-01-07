@@ -125,10 +125,14 @@ public class GameController {
             partita.removeEntita(collision);
             if (((Bolla)collision).getNemico() != null){
                 partita.addPunteggio(500);
-                view.getTopPanel().updateScore(partita.getPunteggio());
-                ((Bolla)collision).getNemico().die();
+                ((Entita)((Bolla)collision).getNemico()).die();
             }
         }
+        if (collision instanceof PointItem){
+            partita.addPunteggio(((PointItem)collision).getTipologia().getPunti());
+            partita.removeEntita(collision);
+        }
+        view.getTopPanel().updateScore(partita.getPunteggio());
     }
 
     public void checkPlayerDead(){
@@ -219,8 +223,11 @@ public class GameController {
             if (e instanceof Nemico){
                 if (e.isDead() == true){
                     PointItem drop = ((Nemico)e).dying();
+                    
                     if (drop != null){
                         partita.addEntita(drop);
+                        drop.addObserver(view.getPanel());
+                        
                     }
                 }
             }

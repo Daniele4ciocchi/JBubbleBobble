@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.File;
 import java.util.Observer;
 import java.util.Random;
 
@@ -26,34 +27,45 @@ public class PointItem extends Item {
     }
 
     private Tipologia tipologia;
+
     
     public PointItem(int posx, int posy) {
-        super(posx, posy, 0, 0, 0);
+        super(posx, posy, 0, 0, -7);
         
         //generazione tipologia
         Random rand = new Random();
-        int randomValue = rand.nextInt(100) + 1; // Genera un numero tra 1 e 100
+        int randomValue = rand.nextInt(50) + 1; // Genera un numero tra 1 e 100
         for (Tipologia t : Tipologia.values()) {
             if (randomValue <= t.getDropRate()) {
                 tipologia = t;
                 break;
             }
         }
+        this.dead = false;
         
         // attribuzione punti, in base alla tipologia estratta randomicamente
         this.points = tipologia.getPunti();
 
         // settaggio sprite 
-        this.idleSpritePath = baseSpritePath + switch (tipologia) {
+        this.idleSpritePath +=  switch (tipologia) {
                                     case BANANA     -> "image_68.png";
                                     case PERSIMMON  -> "image_71.png";
                                     case PEACH      -> "image_59.png";
                                     case WATERMELON -> "image_70.png";
-                                    case GRAPE      -> "";
-                                    case DIAMOND    -> "";
-                                    case PINEAPPLE  -> "";
+                                    case GRAPE      -> "image_69.png"; // da cambiare
+                                    case DIAMOND    -> "image_1.png"; // da cambiare
+                                    case PINEAPPLE  -> "image_2.png"; // da cambiare
                                     // case default -> "SPRITE VUOTO DA DECIDERE";
                                 };
+    }
+
+    public Tipologia getTipologia(){
+        return this.tipologia;
+    }
+
+    @Override
+    public String getSpritePath(){
+        return this.idleSpritePath;
     }
 
 }

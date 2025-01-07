@@ -50,6 +50,8 @@ public class BollaSemplice extends Bolla {
                 setPosizione(getX(), getY() + 1);
             }
         }
+        if (getNemico() != null) { getNemico().setPosizione(getX(), getY()); }
+        
         setChanged();
         notifyObservers();
     }

@@ -4,6 +4,7 @@ import Model.Bolla;
 import Model.BollaSemplice;
 import Model.Entita;
 import Model.Giocatore;
+import Model.Item;
 import Model.Nemico;
 import Model.Partita;
 import Model.Tile;
@@ -142,13 +143,10 @@ public class PartitaView extends JPanel implements Observer {
                 }
             } else if(e instanceof Model.PointItem){
                 try {
-                    drop = ImageIO.read(new File(((PointItem)(e)).getSpritePath()));
-                    if (!((Nemico)(e)).getGoingRight()) {
-                        g2d.drawImage(drop, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
-                    } else {
-                        g2d.drawImage(drop, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
-                    }
-                    //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                    //System.out.println(((PointItem)(e)).getSpritePath());
+                    drop = ImageIO.read(new File(((Item)(e)).getSpritePath()));
+                    //drop = ImageIO.read(new File("JBubbleBobble/src/resources/sprites/items/image_68.png"));
+                    g2d.drawImage(drop, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }

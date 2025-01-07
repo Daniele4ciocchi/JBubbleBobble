@@ -12,7 +12,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
     protected int waitTime; // intero da 1 a 10, generato nel costruttore, usato come "ritardo"
     protected int currentWaitTime;
 
-    protected int deathCounter;
+    protected int deathCounter = 50;
 
     private boolean bubbled;
     protected String[] bubbledSpritesPath = {baseSpritePath, baseSpritePath, baseSpritePath }; // 3 sprite
@@ -66,7 +66,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
     public PointItem dying(){
         deathCounter--;
         dead = true;
-        return deathCounter == 0?  new PointItem(posx,posy):null;
+        return deathCounter == 0?  new PointItem(posx/16,posy/16):null;
     }
 
 }
