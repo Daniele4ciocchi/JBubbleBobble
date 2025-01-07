@@ -16,6 +16,8 @@ public class Mighta extends Nemico{
         bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png"; //
         bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png"; // mettere quelli giusti
         bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png"; //
+
+        deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
     // movimento unico di Mighta, TODO: da fare!

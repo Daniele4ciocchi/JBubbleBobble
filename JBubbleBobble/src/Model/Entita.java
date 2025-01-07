@@ -53,7 +53,8 @@ abstract public class Entita extends Observable {
     protected boolean goingRight; // "devo flippare lo sprite?"
     protected String baseSpritePath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator;
     protected String idleSpritePath = baseSpritePath; // lo sprite da usare da fermo
-    protected String deathSpritePath = baseSpritePath; // lo sprite da usare quando l'entità muore
+    protected String deathSpritePath = baseSpritePath; // lo sprite da usare quando l'entità muore (= animazione di morte)
+    
     protected int spriteIndex;
     protected int spriteCounter;
     protected final int spriteChangeRate = 3;
