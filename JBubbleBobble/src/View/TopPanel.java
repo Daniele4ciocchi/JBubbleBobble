@@ -17,7 +17,8 @@ public class TopPanel extends JPanel {
         scoreLabel = new JLabel("Score: 0");
         scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
         scoreLabel.setForeground(Color.WHITE);
-        Font font = GameView.getFont().deriveFont(15f);
+        Font font = GameView.getFont().deriveFont(30f);
+        //Font newFont = new Font("Arial", Font.BOLD, 20);
         
         scoreLabel.setFont(font);
         // Initialize the pause menu button

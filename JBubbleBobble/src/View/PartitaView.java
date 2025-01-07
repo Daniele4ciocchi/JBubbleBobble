@@ -30,6 +30,7 @@ public class PartitaView extends JPanel implements Observer {
 
     public void setParameters() {
         int doubleTileSize = partita.getLivello().getTilesize() * 2; // Raddoppia il tileSize
+        setLayout(new BorderLayout());
         setPreferredSize(new Dimension(36 * doubleTileSize, 26 * doubleTileSize));
         setBackground(Color.BLACK);
     }

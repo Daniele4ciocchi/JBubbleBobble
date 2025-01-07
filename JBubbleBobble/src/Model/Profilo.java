@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Profilo {
     private String nickname; // nome utente, immutabile e deciso nel costruttore
     private Image avatar; // immagine profilo, decisa nel costruttore
-    private ArrayList<Partita> partite = new ArrayList<Partita>();; // storico partite
+    private ArrayList<Partita> partite = new ArrayList<Partita>(); // storico partite
     private static Profilo instance;
 
 
