@@ -5,6 +5,7 @@ public abstract class Personaggio extends Entita{
     protected int jumpForce;
     protected int spriteIndex; // serve ad alternare i due sprite di camminata
 
+
     public Personaggio(int posx, int posy, int velocitaX, int velocitaY, int gravita, int jumpforce) {
         super(posx, posy, velocitaX, velocitaY, gravita);
         this.jumpForce = jumpforce;

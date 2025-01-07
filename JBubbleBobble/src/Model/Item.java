@@ -11,7 +11,7 @@ public abstract class Item extends Entita {
         deathSpritePath += "items" + File.separator;
     }
     
-    public String getSprite(){
+    public String getSpritePath(){
         if (this.isDead()) return this.idleSpritePath;
         else return this.deathSpritePath;
     }

@@ -59,12 +59,11 @@ abstract public class Entita extends Observable {
     protected final int spriteChangeRate = 3;
 
     private int animationTimer = 10;
-    private int currentAnimationTimer = 0;
+    private int currentAnimationTimer;
 
     public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
         this.posx = posx*entitysize;
         this.posy = posy*entitysize;
-        this.dead = false;
         this.movimentoX = velocitaX;
         this.gravita = gravita;
         this.goingRight = true;
@@ -90,6 +89,10 @@ abstract public class Entita extends Observable {
         this.posy = y;
         setChanged();
         notifyObservers();
+    }
+
+    public void die(){
+        this.dead = true;
     }
 
     @Override

@@ -6,6 +6,7 @@ import Model.Entita;
 import Model.Giocatore;
 import Model.Nemico;
 import Model.Partita;
+import Model.PointItem;
 import Model.SpecialItem;
 import View.GameView;
 import View.MenuView;
@@ -125,6 +126,7 @@ public class GameController {
             if (((Bolla)collision).getNemico() != null){
                 partita.addPunteggio(500);
                 view.getTopPanel().updateScore(partita.getPunteggio());
+                ((Bolla)collision).getNemico().die();
             }
         }
     }
@@ -135,6 +137,7 @@ public class GameController {
             if (morteGiocatoreCounter == 100){
                 ((Giocatore)partita.getEntita().getFirst()).respawn();
                 morteGiocatoreCounter = 0;
+
             }
 
         }
@@ -211,6 +214,18 @@ public class GameController {
         }
     }
         
+    public void checkDyingEnemies(){
+        for (Entita e : partita.getEntitaMorte()){
+            if (e instanceof Nemico){
+                if (e.isDead() == true){
+                    PointItem drop = ((Nemico)e).dying();
+                    if (drop != null){
+                        partita.addEntita(drop);
+                    }
+                }
+            }
+        }
+    }
 
     private void startGameLoop() {
         timer = new Timer(32, e -> {gameLoop();});
@@ -221,6 +236,7 @@ public class GameController {
 
         timer.start();
     }
+
     
     private void gameLoop(){
 
@@ -231,6 +247,7 @@ public class GameController {
         checkPlayerDead();
         moveEnemies();
         moveBubbles();
+        checkDyingEnemies();
         
         if (checkEntityPresence())goToNextLevel();
 

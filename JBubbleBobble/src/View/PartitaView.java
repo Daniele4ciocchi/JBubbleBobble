@@ -7,6 +7,7 @@ import Model.Giocatore;
 import Model.Nemico;
 import Model.Partita;
 import Model.Tile;
+import Model.PointItem;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -70,6 +71,7 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage giocatore;
         BufferedImage bolla;
         BufferedImage nemico;
+        BufferedImage drop;
 
         for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
@@ -126,13 +128,25 @@ public class PartitaView extends JPanel implements Observer {
                 }
                 //g2d.setColor(Color.GREEN);
                 //g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
-            } else{
+            } else if(e instanceof Model.Nemico){
                 try {
                     nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
                     if (!((Nemico)(e)).getGoingRight()) {
                         g2d.drawImage(nemico, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
                     } else {
                         g2d.drawImage(nemico, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
+                    }
+                    //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            } else if(e instanceof Model.PointItem){
+                try {
+                    drop = ImageIO.read(new File(((PointItem)(e)).getSpritePath()));
+                    if (!((Nemico)(e)).getGoingRight()) {
+                        g2d.drawImage(drop, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                    } else {
+                        g2d.drawImage(drop, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
                     }
                     //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
                 } catch (IOException ioException) {

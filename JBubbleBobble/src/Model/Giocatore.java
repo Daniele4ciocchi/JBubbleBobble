@@ -72,7 +72,7 @@ public class Giocatore extends Personaggio{
     public void moveLeft(Livello l){
          if(!isDead()) {
             super.moveLeft(l);
-            this.setShooting(false);
+            setShooting(false);
          }
     }
 
@@ -80,12 +80,17 @@ public class Giocatore extends Personaggio{
     public void moveRight(Livello l){ 
         if(!isDead()) {
             super.moveRight(l);
-            this.setShooting(false);
+            setShooting(false);
         }
     }
 
     @Override
-    public void jump(){ if(!isDead()) super.jump();}
+    public void jump(){ 
+        if(!isDead()) {
+            super.jump();
+            setShooting(false);
+        }
+    }
 
     public Bolla shoot(){
         this.setShooting(true);
@@ -94,6 +99,7 @@ public class Giocatore extends Personaggio{
 
 
     public void die(){
+        setShooting(false);
         this.dead = true;
         setChanged();
         notifyObservers();
