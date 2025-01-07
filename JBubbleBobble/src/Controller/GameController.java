@@ -39,8 +39,9 @@ public class GameController {
     private boolean jump = false;
     private int nextLevelCounter = 250;
     private int counter = 0;
-    private int bubblecounter = 0;
-    private int giocatorecounter = 0;
+    private int bubbleCounter = 0;
+    private int morteGiocatoreCounter = 0;
+    private int invincibilitaGiocatoreCounter = 0;
     
 
     public GameController(Partita partita, GameView view) {
@@ -70,11 +71,11 @@ public class GameController {
                         giocatore.jump();
                     }
                 } else if (e.getKeyChar() == 'j' || e.getKeyChar() == 'J') {
-                    if(Math.abs(counter - bubblecounter) > 10 && !giocatore.isDead()){
+                    if(Math.abs(counter - bubbleCounter) > 10 && !giocatore.isDead()){
                         Bolla b = giocatore.shoot();
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
-                        bubblecounter = counter;
+                        bubbleCounter = counter;
                     }
                 }
             }
@@ -132,17 +133,21 @@ public class GameController {
         }
         if (collision instanceof Bolla){
             partita.removeEntita(collision);
-            
+            if (((Bolla)collision).getNemico() != null){
+                partita.addPunteggio(500);
+                view.getTopPanel().updateScore(partita.getPunteggio());
+            }
         }
 
         if (partita.getEntita().getFirst().isDead()){
-            giocatorecounter++;
-            if (giocatorecounter == 100){
+            morteGiocatoreCounter++;
+            if (morteGiocatoreCounter == 100){
                 ((Giocatore)partita.getEntita().getFirst()).respawn();
-                giocatorecounter = 0;
+                morteGiocatoreCounter = 0;
             }
 
         }
+
         ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
         ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
         for (Entita e : partita.getEntita()){

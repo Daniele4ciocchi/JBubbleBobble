@@ -40,10 +40,10 @@ public class GameView  {
         frame.setFocusable(true);
         frame.requestFocusInWindow();
         frame.setLocationRelativeTo(null);
-
+        
         
         try {
-            customFont = Font.createFont(Font.PLAIN, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "BubbleBobble.ttf"));
+            customFont = Font.createFont(Font.PLAIN, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "ARCADECLASSIC.TTF"));
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
             customFont = new Font("Serif", Font.PLAIN, 24); // Fallback font
@@ -53,7 +53,7 @@ public class GameView  {
     }
     public void addPartitaPanel(PartitaView partita) {
         this.partita = partita;
-        frame.add(partita);
+        frame.add(partita, BorderLayout.CENTER);
     }
     public void addTopPanel(TopPanel TopPanel) {
         this.topPanel = TopPanel;
