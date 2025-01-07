@@ -191,7 +191,7 @@ public class Partita {
         }
     }
 
-    public void applyGravity(Entita e) {        
+    public void gravita(Entita e) {        
         if (livello.isTPEntry(e.getX(),e.getY())) e.setPosizione(e.getX(),24*Entita.getEntitysize());
 
         if (!livello.isWalkable(e.getX(), e.getY() - 1 )){

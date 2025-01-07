@@ -110,22 +110,11 @@ public class GameController {
     }
 
 
-    private void startGameLoop() {
-        timer = new Timer(32, e -> {gameLoop();});
-        //AudioManager.getInstance();
-        
-        partita.posizionaEntita();
-        view.getPanel().repaint();
+    public void counter(){ counter = (counter == 1000000000) ? 0 : ++counter; }
 
-        timer.start();
-    }
-    
-    private void gameLoop(){
-        
-        counter = (counter == 1000000000) ? 0 : ++counter;
+    public void applyGravity(){ partita.getEntita().forEach(e -> partita.gravita(e)); }
 
-        //view.getPanel().setEntita(partita.getEntita());
-
+    public void checkPlayerCollision(){
         Entita collision = partita.checkCollision(partita.getEntita().getFirst());
 
         if (collision instanceof Nemico){
@@ -138,7 +127,9 @@ public class GameController {
                 view.getTopPanel().updateScore(partita.getPunteggio());
             }
         }
+    }
 
+    public void checkPlayerDead(){
         if (partita.getEntita().getFirst().isDead()){
             morteGiocatoreCounter++;
             if (morteGiocatoreCounter == 100){
@@ -147,15 +138,26 @@ public class GameController {
             }
 
         }
+    }
 
+    public void moveEnemies(){
+        ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
+        ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
+        for (Entita e : partita.getEntita()){
+        
+            if (e instanceof Nemico){
+                ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
+            }
+        }
+        for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
+        for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
+    }
+
+    public void moveBubbles(){
         ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
         ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
         for (Entita e : partita.getEntita()){
             
-            partita.applyGravity(e);
-            if (e instanceof Nemico){
-                ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
-            }
             if (e instanceof Bolla){
                 Entita e2 = partita.checkCollision(e);
                 ((Bolla)e).move(partita.getLivello());
@@ -173,12 +175,15 @@ public class GameController {
                 }
             }
         } 
-
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
+
+    }
+
+    public boolean checkEntityPresence() { return partita.getEntita().stream().filter(e ->( e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0;}
         
-        if (partita.getEntita().stream().filter(e ->( e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0){
-            nextLevelCounter--;
+    public void goToNextLevel() {
+        nextLevelCounter--;
             if (nextLevelCounter == 0){
                 if (partita.getLivello().getLevelNum() == 104){
                     view.getFrame().dispose();
@@ -195,15 +200,41 @@ public class GameController {
                 counter = 0;
                 
             }
-        }
+    }
 
+    public void checkGameOver(){
         if (((Giocatore)partita.getEntita().getFirst()).getLife() == 0){   
             partita.getLivello().changeLevel(104);
             partita.svuotaEntita();
             view.getPanel().repaint();
             
         }
-        //controllo movimento giocatore
+    }
+        
+
+    private void startGameLoop() {
+        timer = new Timer(32, e -> {gameLoop();});
+        //AudioManager.getInstance();
+        
+        partita.posizionaEntita();
+        view.getPanel().repaint();
+
+        timer.start();
+    }
+    
+    private void gameLoop(){
+
+        //lista funzioni 
+        counter();
+        applyGravity();
+        checkPlayerCollision();
+        checkPlayerDead();
+        moveEnemies();
+        moveBubbles();
+        
+        if (checkEntityPresence())goToNextLevel();
+
+        checkGameOver();
         checkPlayerMovement();
 
     }
