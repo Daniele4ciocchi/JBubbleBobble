@@ -21,3 +21,10 @@ TODOLIST
 - [ ] schermata di GAMEOVER
 - [x] sprite del giocatore prende un calmante 
 - [x] sprite dei nemici tornano a muoversi
+
+
+I BIG 4
+- [ ] implementazione completa di tutti e 6 i nemici (comportamento e sprite)
+- [ ] implementazione completa di tutti e 12 i powerup e i 6 point items
+- [ ] SFX (audio)
+- [ ] score system
