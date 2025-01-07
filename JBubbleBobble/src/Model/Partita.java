@@ -125,21 +125,21 @@ public class Partita {
         for (int i = 0;i<26;i++){
             for (int j = 0;j<36;j++){
                 if (grid[i][j].getType().toString().contains("_SPAWN")){
-                    switch (grid[i][j].getType().toString().replace("_SPAWN", "")){
-                        case "ZENCHAN" -> this.addEntita(new Nemico(Nemico.Tipologia.ZENCHAN, j, i));
-                        case "BANEBOU" -> this.addEntita(new Nemico(Nemico.Tipologia.BANEBOU, i, j));
-                        case "MIGHTA" -> this.addEntita(new Nemico(Nemico.Tipologia.MIGHTA, i, j));
-                        case "HIDEGON" -> this.addEntita(new Nemico(Nemico.Tipologia.HIDEGON, i, j));
-                        case "PULPUL" -> this.addEntita(new Nemico(Nemico.Tipologia.PULPUL, i, j));
-                        case "MONSTA" -> this.addEntita(new Nemico(Nemico.Tipologia.MONSTA, i, j));
-                    }
+                    this.addEntita(switch (grid[i][j].getType().toString().replace("_SPAWN", "")){
+                        case "ZENCHAN" -> new ZenChan(j, i);
+                        case "BANEBOU" -> new Banebou(i, j);
+                        case "MIGHTA" -> new Mighta(i, j);
+                        case "HIDEGON" -> new Hidegon(i, j);
+                        case "PULPUL" -> new Pulpul(i, j);
+                        case "MONSTA" -> new Monsta(i, j);
+                        default -> null;
+                    });
                 }
             }
         }
     }
 
-    // ======== POWERUPS ========
-
+    // ======================= POWERUPS =======================
     // controllo dei requisiti degli spawn powerup
     // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
     // NOTA: forse va usato .addEntita(), da decidere  
