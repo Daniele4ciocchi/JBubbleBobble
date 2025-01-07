@@ -22,12 +22,13 @@ public class TopPanel extends JPanel {
 
         textPanel = new JPanel();
         textPanel.setBackground(getBackground());
+        textPanel.setLayout(new BorderLayout());
 
         textScoreLabel = new JLabel("Score: ");
         textHighScoreLabel = new JLabel("High Score: ");
 
-        textScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        textHighScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        textScoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        textHighScoreLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         
         textScoreLabel.setForeground(Color.GREEN);
         textHighScoreLabel.setForeground(Color.RED);
@@ -46,12 +47,13 @@ public class TopPanel extends JPanel {
 
         scorePanel = new JPanel();
         scorePanel.setBackground(getBackground());
+        scorePanel.setLayout(new BorderLayout());
 
-        scoreLabel = new JLabel("Score: ");
-        highScoreLabel = new JLabel("High Score: ");
+        scoreLabel = new JLabel("0");
+        highScoreLabel = new JLabel("0");
 
-        scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        highScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        scoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        highScoreLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         
         scoreLabel.setForeground(Color.WHITE);
         highScoreLabel.setForeground(Color.WHITE);
@@ -62,7 +64,7 @@ public class TopPanel extends JPanel {
         scorePanel.add(scoreLabel, BorderLayout.WEST);
         scorePanel.add(highScoreLabel, BorderLayout.EAST);
 
-        add(scorePanel, BorderLayout.NORTH);
+        add(scorePanel, BorderLayout.CENTER);
 
 
 
@@ -73,12 +75,12 @@ public class TopPanel extends JPanel {
         pauseMenuButton.setBackground(Color.BLACK);
 
 
-        add(pauseMenuButton, BorderLayout.EAST);
+        //add(pauseMenuButton, BorderLayout.EAST);
     }
 
     // Method to update the score
     public void updateScore(int score) {
-        scoreLabel.setText("Score: \n" + score);
+        scoreLabel.setText(Integer.toString(score));
     }
 
     // Getter for the pause menu button
