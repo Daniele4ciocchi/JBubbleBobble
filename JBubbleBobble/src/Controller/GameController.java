@@ -117,8 +117,10 @@ public class GameController {
     public void counter(){ counter = (counter == 1000000000) ? 0 : ++counter; }
 
     public void spownBubbles(){
-        if (counter % 200 == 0){
-            partita.addEntita(new BollaAcqua(16*16,23*16));
+        if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaAcqua).count() < 3){
+            BollaAcqua bolla = new BollaAcqua(16*16,23*16);
+            partita.addEntita(bolla);
+            bolla.addObserver(view.getPanel());
         }
     }
 

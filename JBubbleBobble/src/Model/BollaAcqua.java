@@ -4,6 +4,9 @@ import java.io.File;
 
 public class BollaAcqua extends Bolla {
 
+    int direction;
+    int counterDirection = 0;
+
     private String[] sprites = {
         baseSpritePath + "misc" + File.separator + "image_238.png",
         baseSpritePath + "misc" + File.separator + "image_239.png",
@@ -12,18 +15,25 @@ public class BollaAcqua extends Bolla {
     };
 
     public BollaAcqua(int x, int y) {
-        super(x, y, 3, 4, -1);
+        super(x, y, 1, 0, -1);
     }
 
     @Override
     public void move(Livello l) {
         
         
-        int direction = (int) (Math.random() * 3);
+        if (counterDirection <= 0){
+            direction = (int) (Math.random() * 3);
+            counterDirection = (int) (Math.random() * 20);
+            System.out.println("Direction: " + direction);
+        }
         switch (direction) {
             case 0:
-                if (l.isEmpty(this.getX(), this.getY() + getMovimentoY())) {
+                if (l.isEmpty(this.getX(), this.getY() + getMovimentoY()) && l.isEmpty(this.getX(), this.getY() + 1)) {
+                    this.setMovimentoY(1);
                     this.setPosizione(this.getX(),this.getY() + this.getMovimentoY());
+                }else {
+                    counterDirection = 0;
                 }
                 break;
             case 1:
@@ -37,6 +47,10 @@ public class BollaAcqua extends Bolla {
                 }
                 break;
         }
+        if (l.isWalkable(getX(), getY() -1)) {
+            this.setPosizione(this.getX(), this.getY() + getMovimentoY());
+        }
+        counterDirection--;
         setChanged();
         notifyObservers();
     }
