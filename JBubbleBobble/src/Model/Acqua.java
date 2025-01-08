@@ -9,14 +9,14 @@ public class Acqua extends Entita{
     public class Goccia extends Entita{
         
         public Goccia(int x, int y) {
-            super(x, y, 1, 0, 0);
+            super(x, y, 10, 0, 0);
         }
     }
 
     private ArrayList<Goccia> gocce = new ArrayList<Goccia>();
-    private boolean goingRight;
+    private boolean goingRight = true;
 
-    private int lunghezza = 7;
+    private int lunghezza = 20;
 
     public Acqua(int x, int y) {
         super(x/16, y/16, 1, 0, 0);
@@ -34,18 +34,19 @@ public class Acqua extends Entita{
     
     public void move(Livello l) {
         Goccia testa = gocce.get(0);
-        if (l.isEmpty(testa.getX(), testa.getY() - 1)) {
-            testa.setPosizione(testa.getX(), testa.getY() - 1);
+        
+        if (l.isEmpty(testa.getX(), testa.getY() - 5)) {
+            testa.setPosizione(testa.getX(), testa.getY() - 5);
 
-        }else if (l.isEmpty(testa.getX() + 1, testa.getY()) && goingRight) {
-            testa.setPosizione(testa.getX() + 1, testa.getY());
-            goingRight = true;
+        }else if (l.isEmpty(testa.getX() + testa.getMovimentoX(), testa.getY()) && goingRight) {
+            testa.setPosizione(testa.getX() + testa.getMovimentoX(), testa.getY());
+            
 
-        }else if (l.isEmpty(testa.getX() - 1, testa.getY())) {
-            testa.setPosizione(testa.getX() - 1, testa.getY());
+        }else if (l.isEmpty(testa.getX() - testa.getMovimentoX(), testa.getY()) && !goingRight) { 
+            testa.setPosizione(testa.getX() - testa.getMovimentoX(), testa.getY());
             goingRight = false;
-
         }
+        moveBody();
     }
 
     public ArrayList<Goccia> getGocce() {

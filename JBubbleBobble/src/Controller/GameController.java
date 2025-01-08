@@ -103,14 +103,19 @@ public class GameController {
         
     }
 
-
     public void counter(){ counter = (counter == 1000000000) ? 0 : ++counter; }
 
     public void spawnBubbles(){
         if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaAcqua).count() < 3){
-            BollaAcqua bolla = new BollaAcqua(16*16,23*16);
-            partita.addEntita(bolla);
-            bolla.addObserver(view.getPanel());
+            for (int i = 0; i < partita.getLivello().getGrid().length; i++){
+                for (int j = 0; j < partita.getLivello().getGrid()[0].length; j++){
+                    if (partita.getLivello().getGrid()[i][j].getType() == Model.Tile.TileType.WATER_SPAWN){
+                        BollaAcqua b = new BollaAcqua(j*16, i*16);
+                        partita.addEntita(b);
+                        b.addObserver(view.getPanel());
+                    }
+                }
+            }
         }
     }
 

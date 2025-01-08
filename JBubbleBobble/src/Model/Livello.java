@@ -70,6 +70,7 @@ public class Livello {
                         case '2' -> Tile.TileType.PLATFORM;
                         case '3' -> Tile.TileType.TP_ENTRY;
                         case '4' -> Tile.TileType.TP_EXIT;
+                        case '5' -> Tile.TileType.WATER_SPAWN;
 
                         case 'Z' -> Tile.TileType.ZENCHAN_SPAWN;
                         case 'B' -> Tile.TileType.BANEBOU_SPAWN;
@@ -118,7 +119,7 @@ public class Livello {
         int tileY = y / tilesize;
         return grid[tileY][tileX].getType() == Tile.TileType.TP_EXIT;
     }
-    
+
 
     @Override
     public String toString() {

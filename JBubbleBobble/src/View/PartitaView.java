@@ -166,11 +166,17 @@ public class PartitaView extends JPanel implements Observer {
                 }
             } else if(e instanceof Model.Acqua){
                 try {
-                    acqua = ImageIO.read(new File(((Acqua)(e)).getSpritePath()));
-                    g2d.drawImage(acqua, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                    acqua = ImageIO.read(new File(((Acqua)e).getSpritePath()));
+                    for (Acqua.Goccia goccia : ((Acqua)(e)).getGocce()){
+                        y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - goccia.getY() - partita.getLivello().getTilesize() );
+                        g2d.drawImage(acqua, goccia.getX(), y+20, 10, 10, null);
+                    }
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
                 }
+                
+                
             }
         }
         for (Entita e : partita.getEntitaMorte()){
