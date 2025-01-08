@@ -17,28 +17,39 @@ import java.util.Observer;
             5 - gialla: Collect 25 point items -> skip 5 lvl
         - 6, scarpa(SNEAKER)(100): Run across the full length of the screen 15 times. -> +velocita, salto, gravita
 */
-public class SpecialItem extends Item{
+public class SpecialItem extends Item {
     public enum Tipologia{
-        CARAMELLA(1000), ANELLO(1000), SNEAKER(100);
+        CANDY(1000),
+        RING(1000), 
+        SNEAKER(100),
+        UMBRELLA(200);
 
         private final int PUNTI;
 
         Tipologia(int p){
             this.PUNTI = p;
         }
+    }
 
-    }
     public enum Colore{
-        ROSA, BLU, GIALLO, ARANCIONE, ROSSO, EMPTY
+        PINK, BLUE, YELLOW, ORANGE, RED, EMPTY
     }
+
     public enum Effetto{
         BOLLE_RANGE_UP,     // aumento del range delle bolle
         BOLLE_VEL_UP,       // aumento della velocità delle bolle
         BOLLE_FIRERATE_UP,  // aumento della velocità di fuoco del giocatore
+
         BONUS_MOV,          // 10 punti per ogni pixel di movimento (da capire come implementarla)
         BONUS_SALTO,        // 500 punti per salto
         BONUS_SPARO,        // 100 punti per sparo
+
         SNEAKER_BUFF,       // +velocita, salto, gravita
+
+        SKIP_LVL3,          // skippa 3 livelli
+        SKIP_LVL5,          // skippa 5 livelli
+        SKIP_LVL7,          // skippa 7 livelli
+
         NULL
     }
 
@@ -49,45 +60,52 @@ public class SpecialItem extends Item{
     public SpecialItem(int posx, int posy, int velocitaX, int velocitaY, int gravita, Tipologia tipologia, Colore colore){
         super(posx, posy, velocitaX, velocitaY, gravita);
         this.tipologia = tipologia;
-        this.colore = colore;
+        this.colore = colore; //NB: EMPTY se voglio sneaker!
 
         this.effetto = switch (this.tipologia) {
-            case CARAMELLA -> switch (this.colore) {
-                case ROSA   -> Effetto.BOLLE_RANGE_UP;
-                case BLU    -> Effetto.BOLLE_VEL_UP;
-                case GIALLO -> Effetto.BOLLE_FIRERATE_UP;
+            case CANDY -> switch (this.colore) {
+                case PINK   -> Effetto.BOLLE_RANGE_UP;      // 1
+                case BLUE    -> Effetto.BOLLE_VEL_UP;       // 2
+                case YELLOW -> Effetto.BOLLE_FIRERATE_UP;   // 3
                 default -> Effetto.NULL;
             };
-            case ANELLO -> switch (this.colore) {
-                case ROSA   -> Effetto.BONUS_SALTO;
-                case ROSSO  -> Effetto.BONUS_SPARO;
-                case BLU    -> Effetto.BONUS_MOV;
+            case RING -> switch (this.colore) {
+                case PINK   -> Effetto.BONUS_SALTO;         // 4
+                case RED  -> Effetto.BONUS_SPARO;           // 5
+                case BLUE    -> Effetto.BONUS_MOV;          // 6
                 default     -> Effetto.NULL;
             };
-            case SNEAKER ->  Effetto.SNEAKER_BUFF;
+            case SNEAKER ->  Effetto.SNEAKER_BUFF;          // 7
+            case UMBRELLA -> switch (this.colore) {
+                case ORANGE -> Effetto.SKIP_LVL3;           // 8
+                case RED     -> Effetto.SKIP_LVL5;          // 9
+                case PINK    -> Effetto.SKIP_LVL7;          // 10
+                default -> Effetto.NULL;
+            };
             default -> Effetto.NULL;
         };
 
-        super.idleSpritePath = "JBubbleBobble" + File.separator
-            + "src" + File.separator 
-            + "resources" + File.separator 
-            + "sprites" + File.separator 
-            + "items" + File.separator 
+        super.idleSpritePath = baseSpritePath + "items" + File.separator 
             + switch (tipologia) {
-                case CARAMELLA     -> switch(colore){
-                    case ROSA   -> "image_68.png";
-                    case BLU    -> "image_71.png";
-                    case GIALLO -> "image_59.png";
+                case CANDY     -> switch(colore){
+                    case PINK   -> "image_68.png";      // PINK CANDY
+                    case BLUE    -> "image_71.png";     // BLUE CANDY
+                    case YELLOW -> "image_59.png";      // YELLOW CANDY
                     default     -> "";
                 };
-                case ANELLO  -> switch(colore){
-                    case ROSA   -> "image_68.png";
-                    case ROSSO  -> "image_71.png";
-                    case BLU    -> "image_59.png";
+                case RING  -> switch(colore){
+                    case PINK   -> "image_68.png";      // PINK RING
+                    case RED  -> "image_71.png";        // RED RING
+                    case BLUE    -> "image_59.png";     // BLUE RING
                     default     -> "";
                 };
-                case SNEAKER      -> "";
-                // case default -> "SPRITE VUOTO DA DECIDERE";
+                case SNEAKER      -> "sneaker.png";    // SNEAKER
+                case UMBRELLA     -> switch(colore){
+                    case ORANGE -> "image_48.png";      // ORANGE UMBRELLA
+                    case RED     -> "image_47.png";     // RED UMBRELLA
+                    case PINK      -> "image_46.png";   // PINK UMBRELLA
+                    default     -> "";
+                };
             };
 
             this.points = tipologia.PUNTI;

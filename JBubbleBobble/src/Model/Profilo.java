@@ -1,9 +1,17 @@
 package Model;
 
 import java.awt.Image;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Profilo {
+public class Profilo implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     private String nickname; // nome utente, immutabile e deciso nel costruttore
     private Image avatar; // immagine profilo, decisa nel costruttore
     private ArrayList<Partita> partite = new ArrayList<Partita>(); // storico partite
@@ -79,5 +87,19 @@ public class Profilo {
 
     public String getPuntiTotali() {
         return Integer.toString(partite.stream().mapToInt(Partita::getPunteggio).sum());
+    }
+
+    // Salva il profilo in un file
+    public void saveProfilo(String filePath) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(this);
+        }
+    }
+
+    // Carica un profilo da un file
+    public static Profilo loadProfilo(String filePath) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            return (Profilo) ois.readObject();
+        }
     }
 }
