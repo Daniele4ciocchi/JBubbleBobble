@@ -12,8 +12,6 @@ public class Partita {
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
     private ArrayList<Entita> entitaMorte;
 
-    //counter per poter ottenere determinati powerUp
-    private int punteggio;
 
     private boolean vinta;
     private Livello livello;
@@ -88,11 +86,15 @@ public class Partita {
     public ArrayList<Entita> getEntitaMorte(){return this.entitaMorte;}
 
     public int getSaltiEffettuati(){return this.saltiEffettuati;}
-    public int getPunteggio(){return this.punteggio;}
+    public int getScore(){return this.score;}
     public Livello getLivello(){return this.livello;}
     public boolean isVinta(){return this.vinta;}
 
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
+    public void addNemiciUccisi(){this.nemiciUccisi++;}
+    public void addBollaSparata(){this.bolleSparate++;}
+    public void addBollaScoppiata(){this.bolleScoppiate++;}
+
     public void setVinta() {vinta = true;}
 
     public void addEntita(Entita entita){this.entitaAttive.add(entita);}
@@ -105,7 +107,7 @@ public class Partita {
 
     }
 
-    public void addPunteggio(int n){punteggio += n;}
+    public void addScore(int n){score += n;}
 
 
     public Entita checkCollision(Entita e1) {
@@ -215,7 +217,7 @@ public class Partita {
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
     private void usePowerUp(Entita p){
         if (!(p instanceof SpecialItem || p instanceof PointItem)) return;
-        else if (p instanceof PointItem) addPunteggio(((PointItem) p).getPoints());
+        else if (p instanceof PointItem) addScore(((PointItem) p).getPoints());
         else if (p instanceof SpecialItem) {
             switch (((SpecialItem) p).getEffetto()){
                 case BOLLE_RANGE_UP -> BOLLE_RANGE_UP = true;

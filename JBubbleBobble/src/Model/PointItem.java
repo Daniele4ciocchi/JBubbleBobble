@@ -38,7 +38,6 @@ public class PointItem extends Item {
         for (Tipologia t : Tipologia.values()) {
             if (randomValue <= t.getDropRate()) {
                 tipologia = t;
-                break;
             }
         }
         this.dead = false;

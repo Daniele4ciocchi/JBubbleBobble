@@ -74,10 +74,10 @@ public class Profilo {
     // Aggiunge una nuova partita allo storico del profilo + controlla la somma dei punteggi dell'utente per eventuale level-up
     public void addPartita(Partita p) {
         partite.add(p);
-        if (p.getPunteggio() > 1000 * livello) levelUp();
+        if (p.getScore() > 1000 * livello) levelUp();
     }
 
     public String getPuntiTotali() {
-        return Integer.toString(partite.stream().mapToInt(Partita::getPunteggio).sum());
+        return Integer.toString(partite.stream().mapToInt(Partita::getScore).sum());
     }
 }

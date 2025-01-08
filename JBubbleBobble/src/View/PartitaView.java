@@ -1,6 +1,7 @@
 package View;
 
 import Model.Bolla;
+import Model.BollaAcqua;
 import Model.BollaSemplice;
 import Model.Entita;
 import Model.Giocatore;
@@ -117,7 +118,7 @@ public class PartitaView extends JPanel implements Observer {
                         }
                     //g2d.setColor(Color.GRAY);
                     // g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
-                } else{
+                } else if (e instanceof BollaSemplice){
                     try {
                         bolla = ImageIO.read(new File(((BollaSemplice)(e)).getSpritePath()));
                         if (!((Bolla)(e)).getGoingRight()) {
@@ -125,10 +126,18 @@ public class PartitaView extends JPanel implements Observer {
                         } else {
                             g2d.drawImage(bolla, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
                         }
-                        //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                        
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
+                } else if( e instanceof Model.BollaAcqua){
+                    try {
+                        bolla = ImageIO.read(new File(((BollaAcqua)(e)).getSpritePath()));
+                        g2d.drawImage(bolla, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                   
                 }
                 //g2d.setColor(Color.GREEN);
                 //g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
@@ -157,16 +166,12 @@ public class PartitaView extends JPanel implements Observer {
         }
         for (Entita e : partita.getEntitaMorte()){
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
-            if (e instanceof Model.Nemico){
-                if (((Nemico)(e)).isDead() && ((Nemico)(e)).getDeathCounter() > 0){
+            if (e instanceof Model.Bolla && ((Bolla)(e)).getNemico() != null){
+                if (((Bolla)(e)).getNemico().isDead() && ((Bolla)(e)).getNemico().getDeathCounter() > 0){
                     try {
-                        nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
-                        if (!((Nemico)(e)).getGoingRight()) {
-                            g2d.drawImage(nemico, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
-                        } else {
-                            g2d.drawImage(nemico, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
-                        }
-                        //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                        nemico = ImageIO.read(new File(((Bolla)(e)).getNemico().getSpritePath()));
+                        g2d.drawImage(nemico, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }

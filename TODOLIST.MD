@@ -5,7 +5,7 @@ TODOLIST
 - [x] finire il move dei nemici 
 - [ ] ideare il sistema dello score 
 - [x] fare una grafica decente (the big one)
-- [ ] aggiungere un cooldown agli spari delle bolle
+- [x] aggiungere un cooldown agli spari delle bolle
 - [x] implementazione buff powerup: es. modificatori bolle
 - [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
 - [x] AudioManager.java: importazione dal PDF del prof
@@ -18,7 +18,7 @@ TODOLIST
 - [x] ricordiamoci di usare gli stream
 - [x] implementare effetto pacman dal pavimento al soffitto
 - [ ] decidere se implementare o meno l'acqua
-- [ ] schermata di GAMEOVER
+- [x] schermata di GAMEOVER
 - [x] sprite del giocatore prende un calmante 
 - [x] sprite dei nemici tornano a muoversi
 

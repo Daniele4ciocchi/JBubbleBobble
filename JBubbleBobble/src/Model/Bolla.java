@@ -20,6 +20,11 @@ abstract public class Bolla extends Entita {
         setGoingRight(goingRight);
     }
 
+    public Bolla(int posx, int posy, int movimentoX, int movimentoY, int gravita) {
+        super(posx/16, posy/16, movimentoX, movimentoY, gravita);
+        setGoingRight(true);
+    }
+
 
     public abstract void move(Livello l);
 
@@ -33,7 +38,7 @@ abstract public class Bolla extends Entita {
     public int getPopTime() {return popTime;}
 
     /**
-     * Metodo per catturare un nemico nella bolla
+     * Metodo per catturare un nemico nella bolla 
      * @param nemico il nemico da catturare
      */
     public void catturaNemico(Nemico nemico) {

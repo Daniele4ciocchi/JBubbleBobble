@@ -35,7 +35,7 @@ public class GameView  {
     public GameView() {
         // Create frame
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(586, 485);
+        frame.setSize(586, 500);
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.requestFocusInWindow();

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Bolla;
 import Model.BollaSemplice;
+import Model.BollaAcqua;
 import Model.Entita;
 import Model.Giocatore;
 import Model.Nemico;
@@ -70,6 +71,7 @@ public class GameController {
                 if (e.getKeyChar() == KeyEvent.VK_SPACE) {
                     if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
                         giocatore.jump();
+                        partita.addSaltoEffettuato();
                     }
                 } else if (e.getKeyChar() == 'j' || e.getKeyChar() == 'J') {
                     if(Math.abs(counter - bubbleCounter) > 10 && !giocatore.isDead()){
@@ -77,6 +79,7 @@ public class GameController {
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
                         bubbleCounter = counter;
+                        partita.addBollaSparata();
                     }
                 }
             }
@@ -113,6 +116,12 @@ public class GameController {
 
     public void counter(){ counter = (counter == 1000000000) ? 0 : ++counter; }
 
+    public void spownBubbles(){
+        if (counter % 200 == 0){
+            partita.addEntita(new BollaAcqua(16*16,23*16));
+        }
+    }
+
     public void applyGravity(){ partita.getEntita().forEach(e -> partita.gravita(e)); }
 
     public void checkPlayerCollision(){
@@ -120,19 +129,21 @@ public class GameController {
 
         if (collision instanceof Nemico){
             ((Giocatore) (partita.getEntita().getFirst())).die();
+            partita.addNemiciUccisi();
         }
-        if (collision instanceof Bolla){
+        if (collision instanceof BollaSemplice){
+            partita.addBollaScoppiata();
             partita.removeEntita(collision);
             if (((Bolla)collision).getNemico() != null){
-                partita.addPunteggio(500);
+                partita.addScore(500);
                 ((Entita)((Bolla)collision).getNemico()).die();
             }
         }
         if (collision instanceof PointItem){
-            partita.addPunteggio(((PointItem)collision).getTipologia().getPunti());
+            partita.addScore(((PointItem)collision).getTipologia().getPunti());
             partita.removeEntita(collision);
         }
-        view.getTopPanel().updateScore(partita.getPunteggio());
+        view.getTopPanel().updateScore(partita.getScore());
     }
 
     public void checkPlayerDead(){
@@ -165,22 +176,25 @@ public class GameController {
         ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
         for (Entita e : partita.getEntita()){
             
-            if (e instanceof Bolla){
+            if (e instanceof BollaSemplice){
                 Entita e2 = partita.checkCollision(e);
                 ((Bolla)e).move(partita.getLivello());
-                if (((Bolla)e).getPopTime() == 0){
-                    if (((Bolla)e).getNemico() != null){
+
+                if (((BollaSemplice)e).getPopTime() == 0){
+                    if (((BollaSemplice)e).getNemico() != null){
                         EntitaDaAggiungere.add(((Bolla)e).scoppia());
                     }
                     EntitaDaRimuovere.add(e);
                 }
-                if (((Bolla)e).getNemico() == null){
+                if (((BollaSemplice)e).getNemico() == null){
                     if (e2 instanceof Nemico){
                         ((BollaSemplice)e).catturaNemico(((Nemico)e2));
                         EntitaDaRimuovere.add(e2);
                     }
                 }
-            }
+            }else if (e instanceof BollaAcqua){
+                ((Bolla)e).move(partita.getLivello());
+            }                
         } 
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
@@ -249,6 +263,7 @@ public class GameController {
 
         //lista funzioni 
         counter();
+        spownBubbles();
         applyGravity();
         checkPlayerCollision();
         checkPlayerDead();
