@@ -35,7 +35,7 @@ public class Partita implements Serializable{
     private boolean SNEAKER_BUFF;
 
     /**
-     * Costruttore della classe Partita,
+     * Costruttore 1 della classe Partita,
      * associato alla funzione di Nuova Partita
      */
     public Partita(){
@@ -49,7 +49,7 @@ public class Partita implements Serializable{
     }
 
     /**
-     * Costruttore della classe Partita,
+     * Costruttore 2 della classe Partita,
      * associato alla funzione di Continua Partita
      * @param password password relativa al livello interessato
      */
@@ -81,19 +81,20 @@ public class Partita implements Serializable{
         this.vinta = false;
     }
 
-    // getter
+    // getters
     public ArrayList<Entita> getEntita(){return this.entitaAttive;}
     public ArrayList<Entita> getEntitaMorte(){return this.entitaMorte;}
-
     public int getSaltiEffettuati(){return this.saltiEffettuati;}
     public int getScore(){return this.score;}
     public Livello getLivello(){return this.livello;}
     public boolean isVinta(){return this.vinta;}
 
+    // metodi per le variabili di statistica per gli specialItem
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
     public void addNemiciUccisi(){this.nemiciUccisi++;}
     public void addBollaSparata(){this.bolleSparate++;}
     public void addBollaScoppiata(){this.bolleScoppiate++;}
+    public void addBollaAcquaScoppiata(){this.bolleAcquaScoppiate++;}
 
     public void setVinta() {vinta = true;}
 
@@ -144,23 +145,22 @@ public class Partita implements Serializable{
     // ======================= SPECIALITEMS (powerups) =======================
     // qui controllo i requisiti di spawn
     // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
-    // NOTA: forse va usato .addEntita(), da decidere  
     private SpecialItem spawnSpecialItem(int sx, int sy){
-        // OMBRELLI
-         if (nemiciUccisi == 15){
+        // UMBRELLA
+         if (bolleAcquaScoppiate == 15){
             nemiciUccisi++;
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
         }
-        else if (nemiciUccisi == 26){
+        else if (bolleAcquaScoppiate == 21){
             nemiciUccisi++;
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.RED);
         }
-        else if (nemiciUccisi == 37){
+        else if (bolleAcquaScoppiate == 36){
             nemiciUccisi = 0;
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
             }
 
-        // CARAMELLE
+        // CANDY
         if (saltiEffettuati == 35){
             bolleSparate = 0;
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.PINK);
@@ -174,7 +174,7 @@ public class Partita implements Serializable{
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.BLUE);
         }
 
-        // ANELLI
+        // RING
         else if (caramelleRosaMangiate == 3){
             caramelleRosaMangiate = 0;
             return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.RING,SpecialItem.Colore.PINK);
@@ -227,7 +227,10 @@ public class Partita implements Serializable{
                 case BONUS_SALTO -> BONUS_SALTO = true;
                 case BONUS_SPARO -> BONUS_SPARO = true;
                 case SNEAKER_BUFF -> SNEAKER_BUFF = true;
-                case NULL -> System.out.println("Effetto non trovato!");
+                case SKIP_LVL3 -> livello.changeLevel(livello.getLevelNum()+3); //
+                case SKIP_LVL5 -> livello.changeLevel(livello.getLevelNum()+5); // TODO: controllare che vada bene perchè non lo so :)
+                case SKIP_LVL7 -> livello.changeLevel(livello.getLevelNum()+7); // 
+                case NULL -> System.out.println("ERRORE: Effetto SpecialItem non trovato!");
             }
         }
     }

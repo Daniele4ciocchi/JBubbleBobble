@@ -66,4 +66,5 @@ public class PointItem extends Item {
         return this.idleSpritePath;
     }
 
+    // TODO: vogliamo implementare anche qui il dying() come per le entita, per mostrare il punteggio? (+500)
 }
