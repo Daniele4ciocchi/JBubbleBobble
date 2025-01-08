@@ -19,13 +19,12 @@ public class TopPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
 
-
         textPanel = new JPanel();
         textPanel.setBackground(getBackground());
         textPanel.setLayout(new BorderLayout());
 
-        textScoreLabel = new JLabel("Score: ");
-        textHighScoreLabel = new JLabel("High Score: ");
+        textScoreLabel = new JLabel("SCORE");
+        textHighScoreLabel = new JLabel("HIGH SCORE");
 
         textScoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
         textHighScoreLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -42,8 +41,6 @@ public class TopPanel extends JPanel {
         textPanel.add(textHighScoreLabel, BorderLayout.EAST);
 
         add(textPanel, BorderLayout.NORTH);
-
-
 
         scorePanel = new JPanel();
         scorePanel.setBackground(getBackground());
@@ -65,9 +62,6 @@ public class TopPanel extends JPanel {
         scorePanel.add(highScoreLabel, BorderLayout.EAST);
 
         add(scorePanel, BorderLayout.CENTER);
-
-
-
 
         // Initialize the pause menu button
         pauseMenuButton = new JButton("||");

@@ -141,24 +141,24 @@ public class Partita implements Serializable{
         }
     }
 
-    // ======================= POWERUPS =======================
-    // controllo dei requisiti degli spawn powerup
+    // ======================= SPECIALITEMS (powerups) =======================
+    // qui controllo i requisiti di spawn
     // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
     // NOTA: forse va usato .addEntita(), da decidere  
-    private SpecialItem spawnPowerUps(int sx, int sy){
+    private SpecialItem spawnSpecialItem(int sx, int sy){
         // OMBRELLI
-        /* if (nemiciUccisi == 15){
+         if (nemiciUccisi == 15){
             nemiciUccisi++;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.OMBRELLO,SpecialItem.Colore.ARANCIONE);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
         }
         else if (nemiciUccisi == 26){
             nemiciUccisi++;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.OMBRELLO,SpecialItem.Colore.ROSSO);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.RED);
         }
         else if (nemiciUccisi == 37){
             nemiciUccisi = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.OMBRELLO,SpecialItem.Colore.ROSA);
-        } */
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
+            }
 
         // CARAMELLE
         if (saltiEffettuati == 35){
