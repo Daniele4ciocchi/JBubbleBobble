@@ -74,8 +74,11 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage nemico;
         BufferedImage drop;
 
+        
+
         for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
+
             if (e instanceof Model.Giocatore) {
                 try {
                     giocatore = ImageIO.read(new File(((Giocatore) (e)).getSpritePath()));
@@ -149,6 +152,24 @@ public class PartitaView extends JPanel implements Observer {
                     g2d.drawImage(drop, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
+                }
+            }
+        }
+        for (Entita e : partita.getEntitaMorte()){
+            int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
+            if (e instanceof Model.Nemico){
+                if (((Nemico)(e)).isDead() && ((Nemico)(e)).getDeathCounter() > 0){
+                    try {
+                        nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
+                        if (!((Nemico)(e)).getGoingRight()) {
+                            g2d.drawImage(nemico, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                        } else {
+                            g2d.drawImage(nemico, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
+                        }
+                        //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }
             }
         }

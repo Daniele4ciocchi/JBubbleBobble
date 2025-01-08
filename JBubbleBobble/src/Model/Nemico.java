@@ -28,6 +28,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
     public boolean isBubbled(){return bubbled;}
     public void setBubbled(boolean b){this.bubbled = b;}
     public int getWaitTime() {return this.waitTime;}
+    public int getDeathCounter() {return this.deathCounter;}
     
     @Override
     public void run() {
