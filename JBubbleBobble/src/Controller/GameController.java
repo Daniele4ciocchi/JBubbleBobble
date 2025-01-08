@@ -22,15 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-//TODO: qua dobbiamo decide una cosa
-// bisogna capire se dobbiamo far partire il gioco da qua
-// bidogna strutturare la classe e capire cosa fa
-
-// TODO: implementare le seguenti funzioni
-//  - loop di gioco
-//  - controller dei tasti premuti
-//  avvio della view (in realta non so se sta in una funzione
-
 public class GameController {
 
     private Partita partita;
@@ -46,7 +37,6 @@ public class GameController {
     private int morteGiocatoreCounter = 0;
     private int invincibilitaGiocatoreCounter = 0;
     
-
     public GameController(Partita partita, GameView view) {
         this.partita = partita;
         this.view = view;
@@ -100,12 +90,11 @@ public class GameController {
                     leftPressed = false;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyChar() == 'd') {
                     rightPressed = false;
-                } 
+                }
             }
         });
     }
 
-    // forse va messo in entita oppure in livello idk
     public void checkPlayerMovement(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
 
@@ -117,7 +106,7 @@ public class GameController {
 
     public void counter(){ counter = (counter == 1000000000) ? 0 : ++counter; }
 
-    public void spownBubbles(){
+    public void spawnBubbles(){
         if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaAcqua).count() < 3){
             BollaAcqua bolla = new BollaAcqua(16*16,23*16);
             partita.addEntita(bolla);
@@ -274,7 +263,7 @@ public class GameController {
 
         //lista funzioni 
         counter();
-        spownBubbles();
+        spawnBubbles();
         applyGravity();
         checkPlayerCollision();
         checkPlayerDead();

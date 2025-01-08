@@ -48,7 +48,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         if (bubbled) {                    // BUBBLED
             spriteCounter++;
             if (spriteCounter == spriteChangeRate) {
-                spriteCounter = 0; 
+                spriteCounter = 0;
                 spriteIndex = (spriteIndex+1) % 3;
             }
             return bubbledSpritesPath[spriteIndex];
