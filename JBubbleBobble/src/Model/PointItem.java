@@ -10,8 +10,8 @@ public class PointItem extends Item {
         PERSIMMON(1000, 40), 
         PEACH(2000, 30), 
         WATERMELON(4000,20), 
-        GRAPE(8000,10), 
-        PINEAPPLE(16000,5), 
+        EGGPLANT(8000,10), 
+        TURNIP(16000,5), 
         DIAMOND(32000,1);
 
         private final int PUNTI;
@@ -51,10 +51,9 @@ public class PointItem extends Item {
                                     case PERSIMMON  -> "image_71.png";
                                     case PEACH      -> "image_59.png";
                                     case WATERMELON -> "image_70.png";
-                                    case GRAPE      -> "image_69.png"; // da cambiare
-                                    case DIAMOND    -> "image_1.png"; // da cambiare
-                                    case PINEAPPLE  -> "image_2.png"; // da cambiare
-                                    // case default -> "SPRITE VUOTO DA DECIDERE";
+                                    case EGGPLANT      -> "image_64.png";
+                                    case TURNIP  -> "image_62.png";
+                                    case DIAMOND    -> "image_11.png";
                                 };
     }
 

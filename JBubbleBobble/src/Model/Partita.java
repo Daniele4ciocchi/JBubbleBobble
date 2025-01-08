@@ -2,12 +2,11 @@ package Model;
 
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Partita {
-
-
-    //TODO: nothing
+public class Partita implements Serializable{
+    private static final long serialVersionUID = 1L; // serve per il Serializable
 
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
     private ArrayList<Entita> entitaMorte;
@@ -21,6 +20,7 @@ public class Partita {
     private int saltiEffettuati;
     private int bolleSparate;
     private int bolleScoppiate;
+    private int bolleAcquaScoppiate;
     private int caramelleRosaMangiate;
     private int caramelleRosseMangiate;
     private int caramelleBluMangiate;
@@ -163,29 +163,29 @@ public class Partita {
         // CARAMELLE
         if (saltiEffettuati == 35){
             bolleSparate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.ROSA);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.PINK);
         }
         else if (bolleSparate == 35){
             saltiEffettuati = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.GIALLO);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.YELLOW);
         }
         else if (bolleScoppiate == 35){
             bolleScoppiate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CARAMELLA,SpecialItem.Colore.BLU);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.BLUE);
         }
 
         // ANELLI
         else if (caramelleRosaMangiate == 3){
             caramelleRosaMangiate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.ANELLO,SpecialItem.Colore.ROSA);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.RING,SpecialItem.Colore.PINK);
         }
         else if (caramelleRosseMangiate == 3){
             caramelleRosseMangiate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.ANELLO,SpecialItem.Colore.ROSSO);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.RING,SpecialItem.Colore.RED);
         }
         else if (caramelleBluMangiate == 3){
             caramelleBluMangiate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.ANELLO,SpecialItem.Colore.BLU);
+            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.RING,SpecialItem.Colore.BLUE);
         }
 
         else{

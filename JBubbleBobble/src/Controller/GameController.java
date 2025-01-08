@@ -90,7 +90,7 @@ public class GameController {
                     leftPressed = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyChar() == 'd') {
                     rightPressed = true;
-                } 
+                }
             }
 
             @Override
