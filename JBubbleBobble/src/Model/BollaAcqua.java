@@ -25,7 +25,7 @@ public class BollaAcqua extends Bolla {
         if (counterDirection <= 0){
             direction = (int) (Math.random() * 3);
             counterDirection = (int) (Math.random() * 20);
-            System.out.println("Direction: " + direction);
+            
         }
         switch (direction) {
             case 0:

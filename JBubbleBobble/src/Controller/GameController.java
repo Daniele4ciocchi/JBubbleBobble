@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Acqua;
 import Model.Bolla;
 import Model.BollaSemplice;
 import Model.BollaAcqua;
@@ -141,6 +142,12 @@ public class GameController {
                 ((Entita)((Bolla)collision).getNemico()).die();
             }
         }
+        if (collision instanceof BollaAcqua){
+            partita.addBollaScoppiata();
+            partita.removeEntita(collision);
+            partita.addEntita(new Acqua(collision.getX(), collision.getY()));
+        }
+        
         if (collision instanceof PointItem){
             partita.addScore(((PointItem)collision).getTipologia().getPunti());
             partita.removeEntita(collision);
@@ -196,8 +203,10 @@ public class GameController {
                 }
             }else if (e instanceof BollaAcqua){
                 ((Bolla)e).move(partita.getLivello());
-            }                
-        } 
+            }else if (e instanceof Acqua){
+                ((Acqua)e).move(partita.getLivello());
+            } 
+        }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
 

@@ -1,5 +1,6 @@
 package View;
 
+import Model.Acqua;
 import Model.Bolla;
 import Model.BollaAcqua;
 import Model.BollaSemplice;
@@ -74,6 +75,7 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage bolla;
         BufferedImage nemico;
         BufferedImage drop;
+        BufferedImage acqua;
 
         
 
@@ -162,6 +164,13 @@ public class PartitaView extends JPanel implements Observer {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
+            } else if(e instanceof Model.Acqua){
+                try {
+                    acqua = ImageIO.read(new File(((Acqua)(e)).getSpritePath()));
+                    g2d.drawImage(acqua, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         }
         for (Entita e : partita.getEntitaMorte()){
@@ -178,6 +187,7 @@ public class PartitaView extends JPanel implements Observer {
                 }
             }
         }
+
     }
 
     public void paintElement(Graphics g){
