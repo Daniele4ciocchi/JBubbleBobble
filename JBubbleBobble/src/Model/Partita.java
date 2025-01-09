@@ -12,7 +12,7 @@ public class Partita implements Serializable{
     private ArrayList<Entita> entitaMorte;
 
 
-    private boolean vinta;
+    private boolean vinta; // di default inizializzata a false (partita persa)
     private Livello livello;
 
     private int score;
@@ -109,7 +109,6 @@ public class Partita implements Serializable{
     }
 
     public void addScore(int n){score += n;}
-
 
     public Entita checkCollision(Entita e1) {
         Rectangle rect1 = new Rectangle(e1.getX(), e1.getY(), e1.getEntitysize(), e1.getEntitysize());
@@ -217,7 +216,7 @@ public class Partita implements Serializable{
 
 
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
-    private void usePowerUp(Entita p){
+    public void usePowerUp(Entita p){
         if (!(p instanceof SpecialItem || p instanceof PointItem)) return;
         else if (p instanceof PointItem) addScore(((PointItem) p).getPoints());
         else if (p instanceof SpecialItem) {
@@ -235,5 +234,11 @@ public class Partita implements Serializable{
                 case NULL -> System.out.println("ERRORE: Effetto SpecialItem non trovato!");
             }
         }
+    }
+
+    // aggiunge questa partita allo storico partite del giocatore
+    public void end(boolean vinta){
+        if (vinta) this.setVinta();
+        Profilo.getProfilo().addPartita(this);
     }
 }
