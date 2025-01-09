@@ -17,7 +17,7 @@ TODOLIST
 - [x] attribuire i diversi tipi di sprite per ognuno dei 16 livelli
 - [x] ricordiamoci di usare gli stream
 - [x] implementare effetto pacman dal pavimento al soffitto
-- [ ] decidere se implementare o meno l'acqua
+- [x] decidere se implementare o meno l'acqua
 - [x] schermata di GAMEOVER
 - [x] sprite del giocatore prende un calmante 
 - [x] sprite dei nemici tornano a muoversi

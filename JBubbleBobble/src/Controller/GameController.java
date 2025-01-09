@@ -137,7 +137,7 @@ public class GameController {
             }
         }
         if (collision instanceof BollaAcqua){
-            partita.addBollaScoppiata();
+            partita.addBollaAcquaScoppiata();
             partita.removeEntita(collision);
             partita.addEntita(new Acqua(collision.getX(), collision.getY()));
         }
