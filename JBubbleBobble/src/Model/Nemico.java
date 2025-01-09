@@ -7,6 +7,8 @@ import java.util.Observer;
 import java.util.Random;
 import java.util.Timer;
 
+import Model.Acqua.Goccia;
+
 public abstract class Nemico extends Personaggio implements Runnable{
     // campi per movimento diversificato dei nemici
     protected int waitTime; // intero da 1 a 10, generato nel costruttore, usato come "ritardo"
@@ -15,6 +17,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
     protected int deathCounter = 50;
 
     private boolean bubbled;
+    protected boolean water;
     protected String[] bubbledSpritesPath = {baseSpritePath, baseSpritePath, baseSpritePath }; // 3 sprite
 
     public Nemico(int x, int y, int velocita, int salto){
@@ -41,6 +44,8 @@ public abstract class Nemico extends Personaggio implements Runnable{
     }
 
     public abstract void move(int gx, int gy, Livello l);
+
+    public abstract void move(Goccia g);
 
     // ritorna lo sprite adatto relativamente allo stato di questo nemico
     public String getSpritePath(){

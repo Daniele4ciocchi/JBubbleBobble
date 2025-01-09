@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Acqua;
+import Model.Acqua.Goccia;
 import Model.Bolla;
 import Model.BollaSemplice;
 import Model.BollaAcqua;
@@ -149,6 +150,21 @@ public class GameController {
         view.getTopPanel().updateScore(partita.getScore());
     }
 
+    public void checkEntityCollision(){
+        //water
+        for (Entita e : partita.getEntita()){
+            if (e instanceof Acqua){
+                for (Goccia g : ((Acqua)e).getGocce()){
+                    Entita collision = partita.checkCollision(g);
+                    if (collision instanceof Nemico){
+                        ((Nemico)collision).move(g);
+                        partita.removeEntita(collision);
+                    }
+                }
+            }
+        }
+    }
+
     public void checkPlayerDead(){
         if (partita.getEntita().getFirst().isDead()){
             morteGiocatoreCounter++;
@@ -200,7 +216,7 @@ public class GameController {
             }else if (e instanceof Acqua){
                 ((Acqua)e).move(partita.getLivello());
                 if (partita.getLivello().isTPEntry(e.getX(), e.getY())){
-                    System.out.println("acqua in TPEntry");
+                    
                     EntitaDaRimuovere.add(e);
                 }
             } 
@@ -275,6 +291,7 @@ public class GameController {
         spawnBubbles();
         applyGravity();
         checkPlayerCollision();
+        checkEntityCollision();
         checkPlayerDead();
         moveEnemies();
         moveBubbles();

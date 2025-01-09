@@ -35,7 +35,8 @@ public class PartitaView extends JPanel implements Observer {
     public void setParameters() {
         int doubleTileSize = partita.getLivello().getTilesize() * 2; // Raddoppia il tileSize
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(36 * doubleTileSize, 26 * doubleTileSize));
+        setPreferredSize(new Dimension(36 * doubleTileSize , 26 * doubleTileSize));
+        revalidate();
         setBackground(Color.BLACK);
     }
 
@@ -80,15 +81,16 @@ public class PartitaView extends JPanel implements Observer {
         
 
         for (Entita e : partita.getEntita().reversed()) {
-            int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
+            int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() ) + 3;
+            int x = e.getX()-13;
 
             if (e instanceof Model.Giocatore) {
                 try {
                     giocatore = ImageIO.read(new File(((Giocatore) (e)).getSpritePath()));
                     if (!((Giocatore) (e)).getGoingRight()) {
-                        g2d.drawImage(giocatore, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                        g2d.drawImage(giocatore, x, y, doubleEntitySize, doubleEntitySize, null);
                     } else {
-                        g2d.drawImage(giocatore, e.getX() + doubleEntitySize, y, - doubleEntitySize, doubleEntitySize, null);
+                        g2d.drawImage(giocatore, x + doubleEntitySize, y, - doubleEntitySize, doubleEntitySize, null);
                     }
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
@@ -97,11 +99,11 @@ public class PartitaView extends JPanel implements Observer {
                 // try {
                 //     bolla = ImageIO.read(new File(((Bolla)(e)).getSpritePath()));
                 //     if (!((Bolla)(e)).getGoingRight()) {
-                //         g2d.drawImage(bolla, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                //         g2d.drawImage(bolla, x, y, e.getEntitysize(), e.getEntitysize(), null);
                 //     } else {
-                //         g2d.drawImage(bolla, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                //         g2d.drawImage(bolla, x + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
                 //     }
-                //     //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                //     //g2d.drawImage(gio, x, y, e.getEntitysize(), e.getEntitysize(), null);
                 // } catch (IOException ioException) {
                 //     ioException.printStackTrace();
                 // }
@@ -110,23 +112,23 @@ public class PartitaView extends JPanel implements Observer {
                     try {
                         bolla = ImageIO.read(new File(((Bolla)(e)).getNemico().getSpritePath()));
                         if (!((Bolla)(e)).getGoingRight()) {
-                            g2d.drawImage(bolla, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                            g2d.drawImage(bolla, x, y, e.getEntitysize(), e.getEntitysize(), null);
                         } else {
-                            g2d.drawImage(bolla, e.getX() + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
+                            g2d.drawImage(bolla, x + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
                         }
-                        g2d.drawImage(bolla, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                        g2d.drawImage(bolla, x, y, doubleEntitySize, doubleEntitySize, null);
                         } catch (IOException ioException) {
                             ioException.printStackTrace();
                         }
                     //g2d.setColor(Color.GRAY);
-                    // g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
+                    // g2d.fillOval(x, y,doubleEntitySize, doubleEntitySize);
                 } else if (e instanceof BollaSemplice){
                     try {
                         bolla = ImageIO.read(new File(((BollaSemplice)(e)).getSpritePath()));
                         if (!((Bolla)(e)).getGoingRight()) {
-                            g2d.drawImage(bolla, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                            g2d.drawImage(bolla, x, y, doubleEntitySize, doubleEntitySize, null);
                         } else {
-                            g2d.drawImage(bolla, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
+                            g2d.drawImage(bolla, x + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
                         }
                         
                     } catch (IOException ioException) {
@@ -135,23 +137,23 @@ public class PartitaView extends JPanel implements Observer {
                 } else if( e instanceof Model.BollaAcqua){
                     try {
                         bolla = ImageIO.read(new File(((BollaAcqua)(e)).getSpritePath()));
-                        g2d.drawImage(bolla, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                        g2d.drawImage(bolla, x, y, doubleEntitySize, doubleEntitySize, null);
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
                    
                 }
                 //g2d.setColor(Color.GREEN);
-                //g2d.fillOval(e.getX(), y,doubleEntitySize, doubleEntitySize);
+                //g2d.fillOval(x, y,doubleEntitySize, doubleEntitySize);
             } else if(e instanceof Model.Nemico){
                 try {
                     nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
                     if (!((Nemico)(e)).getGoingRight()) {
-                        g2d.drawImage(nemico, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                        g2d.drawImage(nemico, x, y, doubleEntitySize, doubleEntitySize, null);
                     } else {
-                        g2d.drawImage(nemico, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
+                        g2d.drawImage(nemico, x + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
                     }
-                    //g2d.drawImage(gio, e.getX(), y, e.getEntitysize(), e.getEntitysize(), null);
+                    //g2d.drawImage(gio, x, y, e.getEntitysize(), e.getEntitysize(), null);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
@@ -160,7 +162,7 @@ public class PartitaView extends JPanel implements Observer {
                     //System.out.println(((PointItem)(e)).getSpritePath());
                     drop = ImageIO.read(new File(((Item)(e)).getSpritePath()));
                     //drop = ImageIO.read(new File("JBubbleBobble/src/resources/sprites/items/image_68.png"));
-                    g2d.drawImage(drop, e.getX() + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
+                    g2d.drawImage(drop, x + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
@@ -181,11 +183,12 @@ public class PartitaView extends JPanel implements Observer {
         }
         for (Entita e : partita.getEntitaMorte()){
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
+            int x = e.getX()-10;
             if (e instanceof Model.Bolla && ((Bolla)(e)).getNemico() != null){
                 if (((Bolla)(e)).getNemico().isDead() && ((Bolla)(e)).getNemico().getDeathCounter() > 0){
                     try {
                         nemico = ImageIO.read(new File(((Bolla)(e)).getNemico().getSpritePath()));
-                        g2d.drawImage(nemico, e.getX(), y, doubleEntitySize, doubleEntitySize, null);
+                        g2d.drawImage(nemico, x, y, doubleEntitySize, doubleEntitySize, null);
 
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
@@ -226,6 +229,7 @@ public class PartitaView extends JPanel implements Observer {
         paintLivello(g);
         paintEntita(g);
         paintElement(g);
+
     }
 
     @Override

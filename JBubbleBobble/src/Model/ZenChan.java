@@ -2,6 +2,8 @@ package Model;
 
 import java.io.File;
 
+import Model.Acqua.Goccia;
+
 public class ZenChan extends Nemico{
     public ZenChan(int x, int y){
         super(x, y, 5, 5);
@@ -22,20 +24,29 @@ public class ZenChan extends Nemico{
 
     // movimento unico di Zen-Chan
     public void move(int gx, int gy, Livello l) {
-        if (this.getX() < gx) {
-            if (currentWaitTime == 0){
-                goingRight = true;
-                moveRight(l);
-                currentWaitTime = waitTime;
-            } else currentWaitTime--;
+        if (!water){
+            if (this.getX() < gx) {
+                if (currentWaitTime == 0){
+                    goingRight = true;
+                    moveRight(l);
+                    currentWaitTime = waitTime;
+                } else currentWaitTime--;
+            }
+            if (this.getX() > gx) {
+                if (currentWaitTime == 0){
+                    goingRight = false;
+                    moveLeft(l);
+                    currentWaitTime = waitTime;
+                } else currentWaitTime--;
+            }
+            if (this.getY() < gy && l.isWalkable(this.getX(), this.getY()-1)) jump();
         }
-        if (this.getX() > gx) {
-            if (currentWaitTime == 0){
-                goingRight = false;
-                moveLeft(l);
-                currentWaitTime = waitTime;
-            } else currentWaitTime--;
-        }
-        if (this.getY() < gy && l.isWalkable(this.getX(), this.getY()-1)) jump();
+    }
+
+    public void move(Goccia g) {
+        water = true;
+        setPosizione(g.getX(), g.getY());
+        if (deathCounter == 0) die();
+            
     }
 }
