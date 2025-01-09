@@ -1,20 +1,8 @@
 package Controller;
 
-import Model.Acqua;
+import Model.*;
 import Model.Acqua.Goccia;
-import Model.Bolla;
-import Model.BollaSemplice;
-import Model.BollaAcqua;
-import Model.Entita;
-import Model.Giocatore;
-import Model.Nemico;
-import Model.Partita;
-import Model.PointItem;
-import Model.SpecialItem;
-import View.GameView;
-import View.MenuView;
-import View.PartitaView;
-import View.TopPanel;
+import View.*;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -225,7 +213,6 @@ public class GameController {
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
-
     }
 
     public boolean checkEntityPresence(){ 
@@ -256,8 +243,8 @@ public class GameController {
         if (((Giocatore)partita.getEntita().getFirst()).getLife() == 0){   
             partita.getLivello().changeLevel(104);
             partita.svuotaEntita();
+            partita.end(false);
             view.getPanel().repaint();
-            
         }
     }
 
@@ -276,11 +263,9 @@ public class GameController {
             if (e instanceof Nemico){
                 if (e.isDead() == true){
                     PointItem drop = ((Nemico)e).dying();
-                    
                     if (drop != null){
                         partita.addEntita(drop);
                         drop.addObserver(view.getPanel());
-                        
                     }
                 }
             }
@@ -315,7 +300,6 @@ public class GameController {
 
         checkGameOver();
         checkPlayerMovement();
-
     }
 
 }

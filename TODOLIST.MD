@@ -21,7 +21,8 @@ TODOLIST
 - [x] schermata di GAMEOVER
 - [x] sprite del giocatore prende un calmante 
 - [x] sprite dei nemici tornano a muoversi
-
+- [ ] abbellire un po' il menu dai
+- [ ] far tornare il pannello statistiche
 
 I BIG 4
 - [ ] implementazione completa di tutti e 6 i nemici (comportamento e sprite)

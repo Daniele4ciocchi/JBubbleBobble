@@ -10,26 +10,26 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Profilo implements Serializable{
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L; 
+    private static Profilo profilo; // istanza singleton del profilo;
 
     private String nickname; // nome utente, immutabile e deciso nel costruttore
     private Image avatar; // immagine profilo, decisa nel costruttore
-    private ArrayList<Partita> partite = new ArrayList<Partita>(); // storico partite
-    private static Profilo instance;
+    private ArrayList<Partita> partite = new ArrayList<Partita>(); // cronologia partite
+    
 
 
-    private int livello; // livello del profilo, 
+    private int livelloProfilo; // livello del profilo, 
 
 
     // COSTRUTTORE
-    private Profilo(){
-    }
+    private Profilo(){}
 
-    public static Profilo getInstance() {
-        if (instance == null) {
-            instance = new Profilo();
+    public static Profilo getProfilo() {
+        if (profilo == null) {
+            profilo = new Profilo();
         }
-        return instance;
+        return profilo;
     }
 
     // GETTERS
@@ -59,8 +59,8 @@ public class Profilo implements Serializable{
     }
 
     // Restituisce il livello del profilo
-    public int getLivello() {
-        return livello;
+    public int getLivelloProfilo() {
+        return livelloProfilo;
     }
 
 
@@ -76,13 +76,13 @@ public class Profilo implements Serializable{
 
     // Incrementa di 1 il livello del profilo
     public void levelUp() {
-        livello++;
+        livelloProfilo++;
     }
 
     // Aggiunge una nuova partita allo storico del profilo + controlla la somma dei punteggi dell'utente per eventuale level-up
     public void addPartita(Partita p) {
         partite.add(p);
-        if (p.getScore() > 1000 * livello) levelUp();
+        if (p.getScore() > 1000 * livelloProfilo) levelUp();
     }
 
     public String getPuntiTotali() {

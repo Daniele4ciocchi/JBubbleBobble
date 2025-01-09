@@ -1,0 +1,11 @@
+{
+    "editor.showDeprecated": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "never"
+    },
+    "javascript.validate.enable": false,
+    "typescript.validate.enable": false,
+    "python.linting.enabled": false,
+    "java.validate.enable": false,
+    "java.debug.settings.onBuildFailureProceed": true
+}

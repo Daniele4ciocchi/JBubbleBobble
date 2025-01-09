@@ -11,7 +11,7 @@ public class ProfiloView extends JPanel {
         this.profilo = profilo;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(new JLabel("Nickname: " + profilo.getNickname()));
-        add(new JLabel("Livello: " + profilo.getLivello()));
+        add(new JLabel("Livello: " + profilo.getLivelloProfilo()));
         add(new JLabel("Partite giocate: " + profilo.getPartite().size()));
         add(new JLabel("Punti totali: " + profilo.getPuntiTotali()));
         add(new JLabel("Vittorie: " + profilo.getVinte()));
@@ -21,7 +21,7 @@ public class ProfiloView extends JPanel {
     public void createProfiloFrame(){
         JFrame frame = new JFrame("Profilo Panel");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        Profilo profilo = Profilo.getInstance();
+        Profilo profilo = Profilo.getProfilo();
         ProfiloView panel = new ProfiloView(profilo);
         frame.getContentPane().add(panel);
         frame.pack();

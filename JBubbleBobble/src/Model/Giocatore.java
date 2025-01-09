@@ -33,7 +33,7 @@ public class Giocatore extends Personaggio{
     public Giocatore(){
         super(5, 1, 10, 20, -7, 18);
     }
-              
+
     public int getLife(){return this.life;}
     public void addLife(){this.life++;}
     public void removeLife(){this.life--;}
