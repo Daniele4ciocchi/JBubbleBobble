@@ -207,7 +207,7 @@ public class PartitaView extends JPanel implements Observer {
         Font f = GameView.getFont().deriveFont(30f);
         g2d.setFont(f);
         g2d.setColor(Color.YELLOW);
-        g2d.drawString("" + partita.getLivello().getLevelNum(), 10, 2*partita.getLivello().getTilesize());
+        if (partita.getLivello().getLevelNum() != 104)g2d.drawString("" + partita.getLivello().getLevelNum(), 10, 2*partita.getLivello().getTilesize());
 
         for (int i = 0; i < ((Giocatore)partita.getEntita().getFirst()).getLife(); i++) {
             try {
