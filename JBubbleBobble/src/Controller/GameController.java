@@ -109,7 +109,7 @@ public class GameController {
         if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaAcqua).count() < 3){
             for (int i = 0; i < partita.getLivello().getGrid().length; i++){
                 for (int j = 0; j < partita.getLivello().getGrid()[0].length; j++){
-                    if (partita.getLivello().getGrid()[i][j].getType() == Model.Tile.TileType.WATER_SPAWN){
+                    if (partita.getLivello().getGrid()[i][j].getType() == Model.Tile.TileType.WATER){
                         BollaAcqua b = new BollaAcqua(j*16, i*16);
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
@@ -196,9 +196,13 @@ public class GameController {
                     }
                 }
             }else if (e instanceof BollaAcqua){
-                ((Bolla)e).move(partita.getLivello());
+                ((BollaAcqua)e).move(partita.getLivello());
             }else if (e instanceof Acqua){
                 ((Acqua)e).move(partita.getLivello());
+                if (partita.getLivello().isTPEntry(e.getX(), e.getY())){
+                    System.out.println("acqua in TPEntry");
+                    EntitaDaRimuovere.add(e);
+                }
             } 
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);

@@ -35,17 +35,22 @@ public class Acqua extends Entita{
     public void move(Livello l) {
         Goccia testa = gocce.get(0);
         
-        if (l.isEmpty(testa.getX(), testa.getY() - 5)) {
-            testa.setPosizione(testa.getX(), testa.getY() - 5);
+        if (!l.isTPEntry(testa.getX(), testa.getY())){
+            if (l.isEmpty(testa.getX(), testa.getY() - 5)) {
+                testa.setPosizione(testa.getX(), testa.getY() - 5);
 
-        }else if (l.isEmpty(testa.getX() + testa.getMovimentoX(), testa.getY()) && goingRight) {
-            testa.setPosizione(testa.getX() + testa.getMovimentoX(), testa.getY());
-            
+            }else if (goingRight) {
+                if (l.isEmpty(testa.getX() + testa.getMovimentoX(), testa.getY())){
+                    testa.setPosizione(testa.getX() + testa.getMovimentoX(), testa.getY());
+                }else {goingRight = false;}
 
-        }else if (l.isEmpty(testa.getX() - testa.getMovimentoX(), testa.getY()) && !goingRight) { 
-            testa.setPosizione(testa.getX() - testa.getMovimentoX(), testa.getY());
-            goingRight = false;
+            }else if (!goingRight) {
+                if (l.isEmpty(testa.getX() - testa.getMovimentoX(), testa.getY())){ 
+                    testa.setPosizione(testa.getX() - testa.getMovimentoX(), testa.getY());
+                }else {goingRight = false;}
+            }
         }
+        setPosizione(gocce.get(lunghezza-1).getX(), gocce.get(lunghezza-1).getY());
         moveBody();
     }
 
