@@ -26,9 +26,10 @@ public class Giocatore extends Personaggio{
         baseSpritePath + "bubblun" + File.separator + "image_65.png",
     };
 
-    private boolean falling;
-    private boolean shooting;
     
+    private boolean falling;  // per lo sprite di caduta
+    private boolean shooting; // per sprite con bocca aperta
+
     public Giocatore(){
         super(5, 1, 10, 20, -7, 18);
     }

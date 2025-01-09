@@ -37,8 +37,9 @@ public class GameController {
     private int bubbleCounter = 0;
     private int morteGiocatoreCounter = 0;
     private int invincibilitaGiocatoreCounter = 0;
+    private int spriteBoccaApertaCounter = 5; // numero di frame in cui la bocca del giocatore rimane aperta
     
-    public GameController(Partita partita, GameView view) {
+    public GameController(Partita partita, GameView view){
         this.partita = partita;
         this.view = view;
         
@@ -55,7 +56,7 @@ public class GameController {
         
     }
 
-    private void setupKeyBindings() {
+    private void setupKeyBindings(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
         view.addKeyListener(new KeyAdapter() {
             @Override
@@ -104,7 +105,9 @@ public class GameController {
         
     }
 
-    public void counter(){ counter = (counter == 1000000000) ? 0 : ++counter; }
+    public void counter(){ 
+        counter = (counter == 1000000000) ? 0 : ++counter; 
+    }
 
     public void spawnBubbles(){
         if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaAcqua).count() < 3){
@@ -120,7 +123,9 @@ public class GameController {
         }
     }
 
-    public void applyGravity(){ partita.getEntita().forEach(e -> partita.gravita(e)); }
+    public void applyGravity(){ 
+        partita.getEntita().forEach(e -> partita.gravita(e)); 
+    }
 
     public void checkPlayerCollision(){
         Entita collision = partita.checkCollision(partita.getEntita().getFirst());
@@ -171,9 +176,7 @@ public class GameController {
             if (morteGiocatoreCounter == 100){
                 ((Giocatore)partita.getEntita().getFirst()).respawn();
                 morteGiocatoreCounter = 0;
-
             }
-
         }
     }
 
@@ -181,7 +184,6 @@ public class GameController {
         ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
         ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
         for (Entita e : partita.getEntita()){
-        
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
             }
@@ -226,9 +228,11 @@ public class GameController {
 
     }
 
-    public boolean checkEntityPresence() { return partita.getEntita().stream().filter(e ->( e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0;}
+    public boolean checkEntityPresence(){ 
+        return partita.getEntita().stream().filter(e ->( e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0;
+    }
         
-    public void goToNextLevel() {
+    public void goToNextLevel(){
         nextLevelCounter--;
             if (nextLevelCounter == 0){
                 if (partita.getLivello().getLevelNum() == 104){
@@ -256,7 +260,17 @@ public class GameController {
             
         }
     }
-        
+
+    private void checkBoccaAperta(){
+        if (((Giocatore) partita.getEntita().getFirst()).isShooting()){
+            spriteBoccaApertaCounter--;
+            if (spriteBoccaApertaCounter == 0){
+                ((Giocatore)partita.getEntita().getFirst()).setShooting(false);
+                spriteBoccaApertaCounter = 5;
+            }
+        }
+    }
+
     public void checkDyingEnemies(){
         for (Entita e : partita.getEntitaMorte()){
             if (e instanceof Nemico){
@@ -273,7 +287,7 @@ public class GameController {
         }
     }
 
-    private void startGameLoop() {
+    private void startGameLoop(){
         timer = new Timer(32, e -> {gameLoop();});
         //AudioManager.getInstance();
         
@@ -282,7 +296,6 @@ public class GameController {
 
         timer.start();
     }
-
     
     private void gameLoop(){
 
@@ -292,6 +305,7 @@ public class GameController {
         applyGravity();
         checkPlayerCollision();
         checkEntityCollision();
+        checkBoccaAperta();
         checkPlayerDead();
         moveEnemies();
         moveBubbles();
