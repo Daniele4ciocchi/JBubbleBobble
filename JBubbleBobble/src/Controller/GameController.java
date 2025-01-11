@@ -26,6 +26,9 @@ public class GameController {
     private int morteGiocatoreCounter = 0;
     private int invincibilitaGiocatoreCounter = 0;
     private int spriteBoccaApertaCounter = 5; // numero di frame in cui la bocca del giocatore rimane aperta
+
+    ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
+    ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
     
     public GameController(Partita partita, GameView view){
         this.partita = partita;
@@ -145,17 +148,20 @@ public class GameController {
 
     public void checkEntityCollision(){
         //water
+        
         for (Entita e : partita.getEntita()){
             if (e instanceof Acqua){
                 for (Goccia g : ((Acqua)e).getGocce()){
                     Entita collision = partita.checkCollision(g);
                     if (collision instanceof Nemico){
                         ((Nemico)collision).move(g);
-                        partita.removeEntita(collision);
+                        EntitaDaRimuovere.add(collision);
                     }
                 }
             }
         }
+        for(Entita e : EntitaDaRimuovere) partita.removeEntita(e);
+        EntitaDaRimuovere.clear();
     }
 
     public void checkPlayerDead(){
@@ -169,8 +175,7 @@ public class GameController {
     }
 
     public void moveEnemies(){
-        ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
-        ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
+        
         for (Entita e : partita.getEntita()){
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
@@ -178,11 +183,12 @@ public class GameController {
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
+        EntitaDaRimuovere.clear();
+        EntitaDaAggiungere.clear();
     }
 
     public void moveBubbles(){
-        ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
-        ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
+        
         for (Entita e : partita.getEntita()){
             
             if (e instanceof BollaSemplice){
@@ -213,6 +219,8 @@ public class GameController {
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
+        EntitaDaRimuovere.clear();
+        EntitaDaAggiungere.clear();
     }
 
     public boolean checkEntityPresence(){ 

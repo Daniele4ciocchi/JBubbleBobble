@@ -43,10 +43,5 @@ public class ZenChan extends Nemico{
         }
     }
 
-    public void move(Goccia g) {
-        water = true;
-        setPosizione(g.getX(), g.getY());
-        if (deathCounter == 0) die();
-            
-    }
+    
 }
