@@ -47,7 +47,7 @@ public class Acqua extends Entita{
             }else if (!goingRight) {
                 if (l.isEmpty(testa.getX() - testa.getMovimentoX(), testa.getY())){ 
                     testa.setPosizione(testa.getX() - testa.getMovimentoX(), testa.getY());
-                }else {goingRight = false;}
+                }else {goingRight = true;}
             }
         }
         setPosizione(gocce.get(lunghezza-1).getX(), gocce.get(lunghezza-1).getY());
