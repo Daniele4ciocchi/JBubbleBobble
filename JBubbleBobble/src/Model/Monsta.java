@@ -21,8 +21,7 @@ public class Monsta extends Nemico {
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
-    // movimento unico di Monsta, TODO: da fare!
-    // IDEA: Monsta si muove sempre in diagonale, e quando incontra tile non walkable, cambia direzione orizzontale/verticale
+    // si muove sempre in diagonale, e quando incontra tile non-walkable, cambia direzione orizzontale/verticale
     public void move(int gx, int gy, Livello l) {
         moveOrizzontale(l);
         moveVerticale(l);

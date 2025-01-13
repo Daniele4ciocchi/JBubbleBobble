@@ -20,7 +20,7 @@ public class Mighta extends Nemico{
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
-    // movimento unico di Mighta, TODO: da fare!
+    // TODO: da fare!
     // 
     public void move(int gx, int gy, Livello l) {
         

@@ -19,7 +19,7 @@ public class Banebou extends Nemico{
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
-    // movimento unico di Banebou, TODO: da fare!
+    // si muove come Zen-Chan, ma salta 'n botto
     public void move(int gx, int gy, Livello l) {
         if (!water){
             if (this.getX() < gx) {

@@ -12,7 +12,6 @@ public class Livello {
     private int tilesize = 16;
     private Tile[][] grid;
 
-
     public Livello(int livello){
             this.levelNum = livello;
             costruisciGrid();
@@ -24,7 +23,6 @@ public class Livello {
     public Tile[][] getGrid() {
         return grid;
     }
-
 
     public String getTilePath() {
         return "JBubbleBobble" + File.separator + "src" 
@@ -39,7 +37,6 @@ public class Livello {
         return tilesize;
     }
 
-
     public void changeLevel() {
         this.levelNum++;
         costruisciGrid();
@@ -50,7 +47,6 @@ public class Livello {
         costruisciGrid();
     }
 
-    //TODO: da rivedere
     public void costruisciGrid() {
         grid = new Tile[26][36];
         int i = 0;
@@ -63,7 +59,6 @@ public class Livello {
                     break;
                 }
                 for (int j = 0; j < 36; j++) {
-                    
                     grid[25-i][j] = new Tile(switch (nextToken.charAt(j)) {
                         case '0' -> Tile.TileType.EMPTY;
                         case '1' -> Tile.TileType.WALL;
@@ -89,7 +84,6 @@ public class Livello {
         }
     }
 
-
     public boolean isWalkable(int x, int y) {
         int tileX = x / tilesize;
         int tileY = y / tilesize;
@@ -97,7 +91,6 @@ public class Livello {
     }
 
     public boolean isSolid(int x, int y) {
-
         int tileX = x / tilesize;
         int tileY = y / tilesize;
         return grid[tileY][tileX].getType().isSolid();
@@ -120,7 +113,6 @@ public class Livello {
         return grid[tileY][tileX].getType() == Tile.TileType.TP_EXIT;
     }
 
-
     @Override
     public String toString() {
         String s = "";
@@ -133,5 +125,4 @@ public class Livello {
         }
         return s;
     }
-
 }
