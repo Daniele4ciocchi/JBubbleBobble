@@ -10,16 +10,28 @@ public class Hidegon extends Nemico{
     }
     
     public void setSprites(){
-        walkingSpritesPath[0] += "hidegons"+File.separator+"image_40.png";
-        walkingSpritesPath[1] += "banebou"+File.separator+"image_41.png";
+        walkingSpritesPath[0] += "hidegons"+File.separator+"image_41.png";
+        walkingSpritesPath[1] += "hidegons"+File.separator+"image_42.png";
 
-        bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png"; //
-        bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png"; // mettere quelli giusti
-        bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png"; //
+        bubbledSpritesPath[0] += "hidegons"+File.separator+"image_12.png";
+        bubbledSpritesPath[1] += "hidegons"+File.separator+"image_13.png";
+        bubbledSpritesPath[2] += "hidegons"+File.separator+"image_14.png";
+        
+        deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
     // movimento unico di Hidegon, TODO: da fare!
+    // essenzialmente si muove come ZenChan (.move() uguale)
+    // se il giocatore è sul suo stesso asse orizzontale, spara fireball
     public void move(int gx, int gy, Livello l) {
-        
+        // movimento come Zenchan
+        super.move(gx, gy, l);
+
+        // controllo posizione giocatore, caso spara!
+        if (this.getX() == gx) shoot();
+    }
+
+    public Bolla shoot(){
+        return new Fireball(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 6, 1, getGoingRight(), 20);
     }
 }

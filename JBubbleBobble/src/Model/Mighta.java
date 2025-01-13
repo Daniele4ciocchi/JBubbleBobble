@@ -21,6 +21,7 @@ public class Mighta extends Nemico{
     }
 
     // movimento unico di Mighta, TODO: da fare!
+    // 
     public void move(int gx, int gy, Livello l) {
         
     }

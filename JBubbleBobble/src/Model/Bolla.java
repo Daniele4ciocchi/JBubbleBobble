@@ -45,7 +45,6 @@ abstract public class Bolla extends Entita {
         if(!floating){
             this.nemico = nemico;
             this.nemico.setBubbled(true);
-
         }
     }
 
