@@ -23,15 +23,16 @@ TODOLIST
 - [x] sprite dei nemici tornano a muoversi
 - [ ] abbellire un po' il menu dai
 - [ ] far tornare il pannello statistiche
+- [ ] sta cosa che le bolle sul lato DX dello schermo si buggano deve finire >:( (più che altro non posso ammazzare i nemici cioè è gravissima questa cosa quei bastardi devono morire)
 
 I BIG 4
 - [ ] implementazione completa di tutti e 6 i nemici (comportamento e sprite)
     - [x] ZenChan
     - [x] Banebou
-    - [ ] Monsta: manca la .move() fatta bene
-    - [ ] Mighta
-    - [ ] Hidegon
-    - [ ] Pulpul
+    - [x] Monsta
+    - [ ] Hidegon: movimento OK, manca una .shoot() di Fireball funzionante
+    - [x] Pulpul
+    - [ ] Mighta: da internet leggo che dovrebbe lanciare massi, capiamo
 - [ ] implementazione completa di tutti e 12 i powerup e i 6 point items
 - [ ] SFX (audio)
 - [ ] score system
