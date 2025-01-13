@@ -24,23 +24,7 @@ public class ZenChan extends Nemico{
 
     // movimento unico di Zen-Chan
     public void move(int gx, int gy, Livello l) {
-        if (!water){
-            if (this.getX() < gx) {
-                if (currentWaitTime == 0){
-                    goingRight = true;
-                    moveRight(l);
-                    currentWaitTime = waitTime;
-                } else currentWaitTime--;
-            }
-            if (this.getX() > gx) {
-                if (currentWaitTime == 0){
-                    goingRight = false;
-                    moveLeft(l);
-                    currentWaitTime = waitTime;
-                } else currentWaitTime--;
-            }
-            if (this.getY() < gy && l.isWalkable(this.getX(), this.getY()-1)) jump();
-        }
+        super.move(gx, gy, l);
     }
 
     

@@ -26,6 +26,12 @@ TODOLIST
 
 I BIG 4
 - [ ] implementazione completa di tutti e 6 i nemici (comportamento e sprite)
+    - [x] ZenChan
+    - [x] Banebou
+    - [ ] Monsta: manca la .move() fatta bene
+    - [ ] Mighta
+    - [ ] Hidegon
+    - [ ] Pulpul
 - [ ] implementazione completa di tutti e 12 i powerup e i 6 point items
 - [ ] SFX (audio)
 - [ ] score system

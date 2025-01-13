@@ -43,7 +43,25 @@ public abstract class Nemico extends Personaggio implements Runnable{
         super.notifyObservers();
     }
 
-    public abstract void move(int gx, int gy, Livello l);
+    public void move(int gx, int gy, Livello l){
+        if (!water){
+            if (this.getX() < gx) {
+                if (currentWaitTime == 0){
+                    goingRight = true;
+                    moveRight(l);
+                    currentWaitTime = waitTime;
+                } else currentWaitTime--;
+            }
+            if (this.getX() > gx) {
+                if (currentWaitTime == 0){
+                    goingRight = false;
+                    moveLeft(l);
+                    currentWaitTime = waitTime;
+                } else currentWaitTime--;
+            }
+            if (this.getY() < gy && l.isWalkable(this.getX(), this.getY()-1)) jump();
+        }
+    }
 
     public void move(Goccia g) {
         water = true;

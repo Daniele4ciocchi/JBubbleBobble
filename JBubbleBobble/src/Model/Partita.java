@@ -129,11 +129,11 @@ public class Partita implements Serializable{
                 if (grid[i][j].getType().toString().contains("_SPAWN")){
                     this.addEntita(switch (grid[i][j].getType().toString().replace("_SPAWN", "")){
                         case "ZENCHAN" -> new ZenChan(j, i);
-                        case "BANEBOU" -> new Banebou(i, j);
-                        case "MIGHTA" -> new Mighta(i, j);
-                        case "HIDEGON" -> new Hidegon(i, j);
-                        case "PULPUL" -> new Pulpul(i, j);
-                        case "MONSTA" -> new Monsta(i, j);
+                        case "BANEBOU" -> new Banebou(j, i);
+                        case "MIGHTA" -> new Mighta(j, i);
+                        case "HIDEGON" -> new Hidegon(j, i);
+                        case "PULPUL" -> new Pulpul(j, i);
+                        case "MONSTA" -> new Monsta(j, i);
                         default -> null;
                     });
                 }
@@ -192,7 +192,9 @@ public class Partita implements Serializable{
         }
     }
 
-    public void gravita(Entita e) {        
+    public void gravita(Entita e) {    
+        if (e instanceof Monsta) return; // non applico mai la gravita a Monsta
+
         if (livello.isTPEntry(e.getX(),e.getY())){
             e.setPosizione(e.getX(),24*Entita.getEntitysize());
         }
