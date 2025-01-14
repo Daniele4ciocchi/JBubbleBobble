@@ -81,9 +81,7 @@ public class MenuView {
     }
 
 
-    public void addNuovaPartitaListener(ActionListener listener) {
-        nuovaPartitaButton.addActionListener(listener);
-    }
+    public void addNuovaPartitaListener(ActionListener listener) {nuovaPartitaButton.addActionListener(listener);}
     public void addContinuaPartitaListener(ActionListener listener) {continuaPartitaButton.addActionListener(listener);}
     public void addVisualizzaProfiloListener(ActionListener listener) {visualizzaProfiloButton.addActionListener(listener);}
 

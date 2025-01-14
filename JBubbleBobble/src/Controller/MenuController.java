@@ -1,9 +1,11 @@
 package Controller;
 
 import Model.Partita;
+import Model.Profilo;
 import View.GameView;
 import View.MenuView;
 import View.PartitaView;
+import View.ProfiloView;
 
 import java.util.ArrayList;
 
@@ -49,7 +51,10 @@ public class MenuController {
      * Questa scelta del menu permette al giocatore di visualizzare le statistiche del proprio profilo.
      */
     public void getProfiloStats() {
-        // Logica per visualizzare le statistiche del profilo
+        //per ora ok, ma sta roba va cambiata
+        Profilo profiloView = Profilo.getProfilo();
+        ProfiloView view = new ProfiloView(profiloView);
+        view.createProfiloFrame();
     }
 
     public MenuView getView() {
