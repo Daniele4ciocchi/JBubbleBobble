@@ -44,7 +44,7 @@ public class PartitaView extends JPanel implements Observer {
         Graphics2D g2d = (Graphics2D) g;
         int gridHeight = partita.getLivello().getGrid().length;
         int gridWidth = partita.getLivello().getGrid()[0].length;
-         // Raddoppia il tileSize
+
 
         try {
             image = ImageIO.read(new File(partita.getLivello().getTilePath()));
@@ -52,18 +52,28 @@ public class PartitaView extends JPanel implements Observer {
             e.printStackTrace();
             System.err.println("Errore nel caricamento delle immagini!");
         }
-
-        for (int row = 0; row < gridHeight; row++) {
+        g2d.setBackground(Color.BLACK);
+        for (int row = gridHeight -1; row >= 0; row--) {
             for (int col = 0; col < gridWidth; col++) {
                 int x = col * partita.getLivello().getTilesize() ;
                 int y = (gridHeight - 1 - row) * partita.getLivello().getTilesize() ;
 
+                g2d.setColor(Color.BLACK);
+                g2d.fillRect(x, y, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() );
+
+            }
+        }
+        for (int row = gridHeight -1; row >= 0; row--) {
+            for (int col = 0; col < gridWidth; col++) {
+                int x = col * partita.getLivello().getTilesize() ;
+                int y = (gridHeight - 1 - row) * partita.getLivello().getTilesize() ;
+
+                
                 if (partita.getLivello().getGrid()[row][col].getType() == Tile.TileType.WALL || partita.getLivello().getGrid()[row][col].getType() == Tile.TileType.PLATFORM) {
+                    g2d.setColor(Color.GRAY);
+                    g2d.fillRect(x+5, y+5, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() );
                     g2d.drawImage(image, x, y, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() , null);
-                } else {
-                    g2d.setColor(Color.BLACK);
-                    g2d.fillRect(x, y, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() );
-                }
+                } 
             }
         }
     }

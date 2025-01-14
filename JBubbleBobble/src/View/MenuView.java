@@ -1,8 +1,15 @@
 package View;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import Model.Bolla;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class MenuView {
     private JPanel panel;
@@ -15,18 +22,44 @@ public class MenuView {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setFont(GameView.getFont());
+        panel.setBackground(Color.BLACK);
 
-        JLabel label = new JLabel("Menu");
+        Font font = GameView.getFont();
+
+
+        BufferedImage icon = null;
+
+        panel.setFont(font);
+
+        try {
+            icon = ImageIO.read(new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites"+ File.separator + "misc" + File.separator + "image_21.png"));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        JLabel label = new JLabel(new ImageIcon(icon));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         nuovaPartitaButton = new JButton("Nuova Partita");
         continuaPartitaButton = new JButton("Continua Partita");
         visualizzaProfiloButton = new JButton("Visualizza Profilo");
-        passwordField = new JTextField(20);
+
+        passwordField = new JTextField(2);
+        //passwordField.setHorizontalAlignment(JTextField.CENTER);
+        passwordField.setPreferredSize(new Dimension(20,20));
+        passwordField.setMaximumSize(new Dimension(250,20));
+        passwordField.setMinimumSize(new Dimension(250,20));
+        passwordField.setFont(font);
+        passwordField.setBackground(Color.GRAY);
 
         nuovaPartitaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nuovaPartitaButton.setFont(font);
+
         continuaPartitaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        continuaPartitaButton.setFont(font);
+
         visualizzaProfiloButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        visualizzaProfiloButton.setFont(font);
+
         passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         nuovaPartitaButton.setBackground(Color.GREEN);

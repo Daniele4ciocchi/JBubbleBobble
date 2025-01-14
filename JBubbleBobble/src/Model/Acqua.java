@@ -52,6 +52,9 @@ public class Acqua extends Entita{
         }
         setPosizione(gocce.get(lunghezza-1).getX(), gocce.get(lunghezza-1).getY());
         moveBody();
+
+        setChanged();
+        notifyObservers();
     }
 
     public ArrayList<Goccia> getGocce() {
