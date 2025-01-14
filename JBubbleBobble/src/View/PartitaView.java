@@ -70,8 +70,11 @@ public class PartitaView extends JPanel implements Observer {
 
                 
                 if (partita.getLivello().getGrid()[row][col].getType() == Tile.TileType.WALL || partita.getLivello().getGrid()[row][col].getType() == Tile.TileType.PLATFORM) {
-                    g2d.setColor(Color.GRAY);
-                    g2d.fillRect(x+5, y+5, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() );
+                    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+                    g2d.drawImage(image, x+5, y+5, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() , null);
+                    //g2d.setColor(Color.GRAY);
+                    //g2d.fillRect(x+5, y+5, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() );
+                    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
                     g2d.drawImage(image, x, y, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() , null);
                 } 
             }
