@@ -16,7 +16,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
 
     protected int deathCounter = 50;
 
-    private boolean bubbled;
+    protected boolean bubbled;
     protected boolean water;
     protected String[] bubbledSpritesPath = {baseSpritePath, baseSpritePath, baseSpritePath }; // 3 sprite
 

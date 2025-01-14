@@ -11,7 +11,6 @@ public class BollaAcqua extends Bolla {
         baseSpritePath + "misc" + File.separator + "image_238.png",
         baseSpritePath + "misc" + File.separator + "image_239.png",
         baseSpritePath + "misc" + File.separator + "image_240.png",
-    
     };
 
     public BollaAcqua(int x, int y) {
@@ -20,13 +19,11 @@ public class BollaAcqua extends Bolla {
 
     @Override
     public void move(Livello l) {
-        
-        
         if (counterDirection <= 0){
             direction = (int) (Math.random() * 3);
             counterDirection = (int) (Math.random() * 20);
-            
         }
+        
         switch (direction) {
             case 0:
                 if (l.isEmpty(this.getX(), this.getY() + getMovimentoY()) && l.isEmpty(this.getX(), this.getY() + 1)) {

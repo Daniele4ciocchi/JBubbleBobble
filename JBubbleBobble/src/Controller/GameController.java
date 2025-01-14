@@ -309,5 +309,4 @@ public class GameController {
         checkGameOver();
         checkPlayerMovement();
     }
-
 }

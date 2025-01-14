@@ -15,7 +15,7 @@ public class Monsta extends Nemico {
         walkingSpritesPath[1] += "monsta"+File.separator+"image_444.png";
 
         bubbledSpritesPath[0] += "monsta"+File.separator+"image_432.png"; 
-        bubbledSpritesPath[1] += "monsta"+File.separator+"image_433.png"; 
+        bubbledSpritesPath[1] += "monsta"+File.separator+"image_433.png";
         bubbledSpritesPath[2] += "monsta"+File.separator+"image_434.png";
 
         deathSpritePath += "zen-chan"+File.separator+"500.png";

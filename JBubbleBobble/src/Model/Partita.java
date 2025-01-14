@@ -193,7 +193,7 @@ public class Partita implements Serializable{
     }
 
     public void gravita(Entita e) {    
-        if (e instanceof Monsta) return; // non applico mai la gravita a Monsta
+        if (e instanceof Monsta || e instanceof Pulpul) return; // non applico mai la gravita a Monsta e Pulpul
 
         if (livello.isTPEntry(e.getX(),e.getY())){
             e.setPosizione(e.getX(),24*Entita.getEntitysize());
@@ -203,19 +203,17 @@ public class Partita implements Serializable{
             if(!livello.isWalkable(e.getX(), e.getY() + e.getGravita()))e.setPosizione(e.getX(),e.getY() + e.getGravita());
             else e.setPosizione(e.getX(),e.getY() - 1 );
         }
+
         if (e.getMovimentoY()>0){
             if (e instanceof Giocatore) ((Giocatore)e).setFalling(true); // per lo sprite
             e.setPosizione(e.getX(),e.getY() + e.getMovimentoY());
             e.setMovimentoY(e.getMovimentoY()-1);
             if (livello.isSolid(e.getX(),e.getY() + e.getMovimentoY())) e.setMovimentoY(0);
             if (livello.isTPExit(e.getX(),e.getY() + e.getMovimentoY())) e.setMovimentoY(0);
-
-
-            
         }
+
         if (e instanceof Giocatore && (livello.isSolid(e.getX(), e.getY()-1)||livello.isWalkable(e.getX(), e.getY()-1))) ((Giocatore)e).setFalling(false); // per lo sprite
     }
-
 
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
     public void usePowerUp(Entita p){

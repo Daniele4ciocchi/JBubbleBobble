@@ -67,14 +67,13 @@ public class Giocatore extends Personaggio{
             return walkingSpritesPath[spriteIndex];
         }
     }
-    // TODO: implementare override di .die() che decrementa vite e resetta posizione, e se life == 0, game over
 
     @Override
     public void moveLeft(Livello l){
-         if(!isDead()) {
-            super.moveLeft(l);
-            setShooting(false);
-         }
+        if(!isDead()) {
+        super.moveLeft(l);
+        setShooting(false);
+        }
     }
 
     @Override

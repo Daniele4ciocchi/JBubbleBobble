@@ -71,7 +71,7 @@ public class Livello {
                         case 'B' -> Tile.TileType.BANEBOU_SPAWN;
                         case 'M' -> Tile.TileType.MIGHTA_SPAWN;
                         case 'H' -> Tile.TileType.HIDEGON_SPAWN;
-                        case 'P' -> Tile.TileType.PULPULSPAWN;
+                        case 'P' -> Tile.TileType.PULPUL_SPAWN;
                         case 'O' -> Tile.TileType.MONSTA_SPAWN;
 
                         default -> throw new IllegalArgumentException("Token non valido: " + nextToken);

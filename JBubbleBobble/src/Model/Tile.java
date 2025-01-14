@@ -20,7 +20,7 @@ public class Tile {
         BANEBOU_SPAWN(false, false),
         MIGHTA_SPAWN(false, false),
         HIDEGON_SPAWN(false, false),
-        PULPULSPAWN(false, false),
+        PULPUL_SPAWN(false, false),
         MONSTA_SPAWN(false, false);
 
         private boolean solid;
