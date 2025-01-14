@@ -24,7 +24,6 @@ public class GameController {
     private int counter = 0;
     private int bubbleCounter = 0;
     private int morteGiocatoreCounter = 0;
-    private int invincibilitaGiocatoreCounter = 0;
     private int spriteBoccaApertaCounter = 5; // numero di frame in cui la bocca del giocatore rimane aperta
 
     ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
@@ -121,9 +120,10 @@ public class GameController {
     public void checkPlayerCollision(){
         Entita collision = partita.checkCollision(partita.getEntita().getFirst());
 
-        if (collision instanceof Nemico){
+        if (collision instanceof Nemico &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0){
             ((Giocatore) (partita.getEntita().getFirst())).die();
             partita.addNemiciUccisi();
+            ((Giocatore) (partita.getEntita().getFirst())).setInvincibilita(20);
         }
         if (collision instanceof BollaSemplice){
             partita.addBollaScoppiata();

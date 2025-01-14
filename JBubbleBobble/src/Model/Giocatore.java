@@ -29,12 +29,18 @@ public class Giocatore extends Personaggio{
     
     private boolean falling;  // per lo sprite di caduta
     private boolean shooting; // per sprite con bocca aperta
+    private int invincibilita = 0;
 
     public Giocatore(){
         super(5, 1, 10, 20, -7, 18);
     }
 
     public int getLife(){return this.life;}
+    public int getInvincibilita(){
+        if (this.invincibilita > 0) this.invincibilita--;
+        return this.invincibilita;
+    }
+    public void setInvincibilita(int i){this.invincibilita = i;}
     public void addLife(){this.life++;}
     public void removeLife(){this.life--;}
     public void resetPosizione(){super.setPosizione(5*getEntitysize(), 1*getEntitysize());}
