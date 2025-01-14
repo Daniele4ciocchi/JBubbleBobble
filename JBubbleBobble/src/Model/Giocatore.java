@@ -36,10 +36,8 @@ public class Giocatore extends Personaggio{
     }
 
     public int getLife(){return this.life;}
-    public int getInvincibilita(){
-        if (this.invincibilita > 0) this.invincibilita--;
-        return this.invincibilita;
-    }
+    public int getInvincibilita(){return this.invincibilita;}
+    
     public void setInvincibilita(int i){this.invincibilita = i;}
     public void addLife(){this.life++;}
     public void removeLife(){this.life--;}

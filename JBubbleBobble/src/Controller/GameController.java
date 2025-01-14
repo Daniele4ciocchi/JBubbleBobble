@@ -97,6 +97,8 @@ public class GameController {
 
     public void counter(){ 
         counter = (counter == 1000000000) ? 0 : ++counter; 
+        int invincibilita = ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita();
+        if (invincibilita > 0) ((Giocatore) (partita.getEntita().getFirst())).setInvincibilita(invincibilita - 1);
     }
 
     public void spawnBubbles(){
@@ -123,7 +125,6 @@ public class GameController {
         if (collision instanceof Nemico &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0){
             ((Giocatore) (partita.getEntita().getFirst())).die();
             partita.addNemiciUccisi();
-            ((Giocatore) (partita.getEntita().getFirst())).setInvincibilita(20);
         }
         if (collision instanceof BollaSemplice){
             partita.addBollaScoppiata();
@@ -170,6 +171,7 @@ public class GameController {
             if (morteGiocatoreCounter == 100){
                 ((Giocatore)partita.getEntita().getFirst()).respawn();
                 morteGiocatoreCounter = 0;
+                ((Giocatore) (partita.getEntita().getFirst())).setInvincibilita(50);
             }
         }
     }
