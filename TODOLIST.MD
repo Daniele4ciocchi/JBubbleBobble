@@ -25,6 +25,9 @@ TODOLIST
 - [ ] far tornare il pannello statistiche
 - [ ] sta cosa che le bolle sul lato DX dello schermo si buggano deve finire >:( (più che altro non posso ammazzare i nemici cioè è gravissima questa cosa quei bastardi devono morire)
 
+BUG da fixare:
+- [ ] i nemici bubbled che si liberano in alto a DX o SX del livello sono out of bounds (bisogna dare limiti più severi alle bolle che si spostano lungo le pareti)
+
 I BIG 4
 - [ ] implementazione completa di tutti e 6 i nemici (comportamento e sprite)
     - [x] ZenChan

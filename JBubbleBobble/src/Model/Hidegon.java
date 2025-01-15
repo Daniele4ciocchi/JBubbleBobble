@@ -4,9 +4,8 @@ import java.io.File;
 
 public class Hidegon extends Nemico{
     public Hidegon(int x, int y){
-        super(x, y, 3, 1);
+        super(x, y, 4, 15);
         setSprites();
-        
     }
     
     public void setSprites(){
@@ -22,13 +21,10 @@ public class Hidegon extends Nemico{
 
     // movimento unico di Hidegon, TODO: da fare!
     // essenzialmente si muove come ZenChan (.move() uguale)
-    // se il giocatore è sul suo stesso asse orizzontale, spara fireball
+    // se il giocatore è sul suo stesso asse orizzontale, spara una Fireball
     public void move(int gx, int gy, Livello l) {
-        // movimento come Zenchan
         super.move(gx, gy, l);
-
-        // controllo posizione giocatore, caso spara!
-        if (this.getX() == gx) shoot();
+        if (this.getY() == gy) shoot();
     }
 
     public Bolla shoot(){

@@ -5,6 +5,7 @@ import Model.Bolla;
 import Model.BollaAcqua;
 import Model.BollaSemplice;
 import Model.Entita;
+import Model.Fireball;
 import Model.Giocatore;
 import Model.Item;
 import Model.Nemico;
@@ -45,7 +46,6 @@ public class PartitaView extends JPanel implements Observer {
         int gridHeight = partita.getLivello().getGrid().length;
         int gridWidth = partita.getLivello().getGrid()[0].length;
 
-
         try {
             image = ImageIO.read(new File(partita.getLivello().getTilePath()));
         } catch (IOException e) {
@@ -60,7 +60,6 @@ public class PartitaView extends JPanel implements Observer {
 
                 g2d.setColor(Color.BLACK);
                 g2d.fillRect(x, y, partita.getLivello().getTilesize() , partita.getLivello().getTilesize() );
-
             }
         }
         for (int row = gridHeight -1; row >= 0; row--) {
@@ -90,8 +89,7 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage nemico;
         BufferedImage drop;
         BufferedImage acqua;
-
-        
+        BufferedImage fireball;
 
         for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() ) + 3;
@@ -154,7 +152,13 @@ public class PartitaView extends JPanel implements Observer {
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
-                   
+                } else if (e instanceof Fireball){
+                    try {
+                        fireball = ImageIO.read(new File(((Fireball)(e)).getSpritePath()));
+                        g2d.drawImage(fireball, x, y, doubleEntitySize, doubleEntitySize, null);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }
                 //g2d.setColor(Color.GREEN);
                 //g2d.fillOval(x, y,doubleEntitySize, doubleEntitySize);

@@ -25,7 +25,7 @@ public class BollaSemplice extends Bolla {
 
     @Override 
     public void move(Livello l) {
-        if (range !=0){
+        if (range != 0){
             if (getGoingRight()) {
                 if (l.isEmpty(getX() + getMovimentoX(), getY())) {
                     setPosizione(getX() + getMovimentoX(), getY());
@@ -38,9 +38,9 @@ public class BollaSemplice extends Bolla {
             range--;
         }else if (range == 0){
             popTime--;
-            if (l.isTPExit(getX(),getY() + getEntitysize() ))popTime = 0;
+            if (l.isTPExit(getX(),getY() + getEntitysize() )) popTime = 0;
             if (!l.isEmpty(getX(), getY() + getEntitysize())) {
-                if (getGoingRight() && l.isEmpty(getX() + getMovimentoX() + 10, getY())) {
+                if (getGoingRight() && l.isEmpty(getX() + getMovimentoX(), getY())) {
                     setPosizione(getX() + getMovimentoX(), getY());
                 } else if (!getGoingRight() && l.isEmpty(getX() - getMovimentoX(), getY())) {
                     setPosizione(getX() - getMovimentoX(), getY());
@@ -60,7 +60,6 @@ public class BollaSemplice extends Bolla {
         spriteCounter++;
         if (spriteCounter == spriteChangeRate) {
             spriteCounter = 0;
-            // spriteIndex = (spriteIndex+1) % 9;
             if ((spriteIndex+1) % 9 == 8) {
                 spriteIndex = 6;
             } else {

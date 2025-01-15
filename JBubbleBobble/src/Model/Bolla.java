@@ -55,6 +55,4 @@ abstract public class Bolla extends Entita {
         return nemico;
     }
 
-
-
 }

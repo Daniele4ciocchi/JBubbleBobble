@@ -21,7 +21,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
     protected String[] bubbledSpritesPath = {baseSpritePath, baseSpritePath, baseSpritePath }; // 3 sprite
 
     public Nemico(int x, int y, int velocita, int salto){
-        super(x, y, velocita, salto, -7, 10);
+        super(x, y, velocita, salto, -7, salto);
 
         // generazione random del carattere del nemico
         Random rand = new Random();
@@ -59,7 +59,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
                     currentWaitTime = waitTime;
                 } else currentWaitTime--;
             }
-            if (this.getY() < gy && l.isWalkable(this.getX(), this.getY()-1)) jump();
+            if (this.getY()+32 < gy && l.isWalkable(this.getX(), this.getY()-1)) jump();
         }
     }
 

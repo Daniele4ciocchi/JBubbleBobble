@@ -13,26 +13,22 @@ public class Giocatore extends Personaggio{
     private final String fallingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_84.png";      // caduta
     private final String jumpingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_70.png";      // salto
     private final String shootingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_79.png";    // sparo
-    private  String[] walkingSpritesPath = {
+    private  String[] walkingSpritesPath = {                                                                // camminata
         baseSpritePath + "bubblun" + File.separator + "image_87.png",
         baseSpritePath + "bubblun" + File.separator + "image_89.png"
-    };                                                                                                          // camminata
-    
-    //TODO: scegliere i 4 sprite di morte (rotolamento)
+    };                                      
     private final String[] deathSpritesPaths = {
         baseSpritePath + "bubblun" + File.separator + "image_58.png",
         baseSpritePath + "bubblun" + File.separator + "image_57.png",
         baseSpritePath + "bubblun" + File.separator + "image_64.png",
-        baseSpritePath + "bubblun" + File.separator + "image_65.png",
+        baseSpritePath + "bubblun" + File.separator + "image_65.png"
     };
-
-    
     private boolean falling;  // per lo sprite di caduta
     private boolean shooting; // per sprite con bocca aperta
     private int invincibilita = 0;
 
     public Giocatore(){
-        super(5, 1, 10, 20, -7, 18);
+        super(5, 1, 10, 20, -7, 20);
     }
 
     public int getLife(){return this.life;}

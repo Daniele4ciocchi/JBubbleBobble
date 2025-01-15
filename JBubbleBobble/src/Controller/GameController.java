@@ -144,6 +144,11 @@ public class GameController {
             partita.addScore(((PointItem)collision).getTipologia().getPunti());
             partita.removeEntita(collision);
         }
+
+        if (collision instanceof Fireball &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0){
+            ((Giocatore) (partita.getEntita().getFirst())).die();
+            partita.addNemiciUccisi();
+        }
         view.getTopPanel().updateScore(partita.getScore());
     }
 
@@ -177,10 +182,17 @@ public class GameController {
     }
 
     public void moveEnemies(){
-        
         for (Entita e : partita.getEntita()){
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
+            }
+            if (e instanceof Hidegon){
+                if (((Hidegon)e).getY() == partita.getEntita().getFirst().getY()){
+                    Bolla f = ((Hidegon)e).shoot();
+                    // partita.addEntita(f);
+                    EntitaDaAggiungere.add(f);
+                    f.addObserver(view.getPanel());
+                }
             }
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
@@ -190,9 +202,7 @@ public class GameController {
     }
 
     public void moveBubbles(){
-        
         for (Entita e : partita.getEntita()){
-            
             if (e instanceof BollaSemplice){
                 Entita e2 = partita.checkCollision(e);
                 ((Bolla)e).move(partita.getLivello());
@@ -213,10 +223,7 @@ public class GameController {
                 ((BollaAcqua)e).move(partita.getLivello());
             }else if (e instanceof Acqua){
                 ((Acqua)e).move(partita.getLivello());
-                if (partita.getLivello().isTPEntry(e.getX(), e.getY())){
-                    
-                    EntitaDaRimuovere.add(e);
-                }
+                if (partita.getLivello().isTPEntry(e.getX(), e.getY()))EntitaDaRimuovere.add(e);
             } 
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
@@ -226,7 +233,7 @@ public class GameController {
     }
 
     public boolean checkEntityPresence(){ 
-        return partita.getEntita().stream().filter(e ->( e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0;
+        return partita.getEntita().stream().filter(e ->(e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0;
     }
         
     public void goToNextLevel(){
@@ -283,7 +290,7 @@ public class GameController {
     }
 
     private void startGameLoop(){
-        timer = new Timer(32, e -> {gameLoop();});
+        timer = new Timer(40, e -> {gameLoop();});
         //AudioManager.getInstance();
         
         partita.posizionaEntita();

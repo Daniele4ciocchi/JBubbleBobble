@@ -1,6 +1,13 @@
 package Model;
 
+import java.io.File;
+
 public class Fireball extends Bolla {
+
+    private String[] sprites = {
+        baseSpritePath + "hidegons" + File.separator + "image_1.png",
+        baseSpritePath + "hidegons" + File.separator + "image_2.png"
+    };
 
     public Fireball(int posx, int posy, int velocitax, int velocitay, boolean goingRight, int range) {
         super(posx, posy, velocitax, velocitay, goingRight);
@@ -13,7 +20,7 @@ public class Fireball extends Bolla {
             if (getGoingRight()) {
                 if (l.isEmpty(getX() + getMovimentoX(), getY())) {
                     setPosizione(getX() + getMovimentoX(), getY());
-                } 
+                }
             } else {
                 if (l.isEmpty(getX() - getMovimentoX(), getY())) {
                     setPosizione(getX() - getMovimentoX(), getY());
@@ -22,7 +29,7 @@ public class Fireball extends Bolla {
             range--;
         }else if (range == 0){
             popTime--;
-            if (l.isTPExit(getX(),getY() + getEntitysize() ))popTime = 0;
+            if (l.isTPExit(getX(),getY() + getEntitysize() )) popTime = 0;
             if (!l.isEmpty(getX(), getY() + getEntitysize())) {
                 if (getGoingRight() && l.isEmpty(getX() + getMovimentoX(), getY())) {
                     setPosizione(getX() + getMovimentoX(), getY());
@@ -40,4 +47,16 @@ public class Fireball extends Bolla {
         notifyObservers();
     }
     
+    public String getSpritePath(){
+        spriteCounter++;
+        if (spriteCounter == spriteChangeRate) {
+            spriteCounter = 0;
+            if ((spriteIndex+1) % 2 == 1) {
+                spriteIndex = 1;
+            } else {
+                spriteIndex = (spriteIndex+1) % 2;
+            }
+        }
+        return sprites[spriteIndex];
+    }
 }

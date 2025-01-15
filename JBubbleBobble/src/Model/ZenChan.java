@@ -6,7 +6,7 @@ import Model.Acqua.Goccia;
 
 public class ZenChan extends Nemico{
     public ZenChan(int x, int y){
-        super(x, y, 5, 5);
+        super(x, y, 5, 16);
         setSprites();
         
     }
