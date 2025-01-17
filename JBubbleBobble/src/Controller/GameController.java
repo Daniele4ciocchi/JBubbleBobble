@@ -224,7 +224,9 @@ public class GameController {
             }else if (e instanceof Acqua){
                 ((Acqua)e).move(partita.getLivello());
                 if (partita.getLivello().isTPEntry(e.getX(), e.getY()))EntitaDaRimuovere.add(e);
-            } 
+            }else if (e instanceof Fireball){
+                ((Fireball)e).move(partita.getLivello());
+            }
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
