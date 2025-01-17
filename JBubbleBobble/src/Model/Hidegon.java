@@ -24,7 +24,6 @@ public class Hidegon extends Nemico{
     // se il giocatore è sul suo stesso asse orizzontale, spara una Fireball
     public void move(int gx, int gy, Livello l) {
         super.move(gx, gy, l);
-        if (this.getY() == gy) shoot();
     }
 
     public Bolla shoot(){

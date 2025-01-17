@@ -28,18 +28,7 @@ public class Fireball extends Bolla {
             }
             range--;
         }else if (range == 0){
-            popTime--;
-            if (l.isTPExit(getX(),getY() + getEntitysize() )) popTime = 0;
-            if (!l.isEmpty(getX(), getY() + getEntitysize())) {
-                if (getGoingRight() && l.isEmpty(getX() + getMovimentoX(), getY())) {
-                    setPosizione(getX() + getMovimentoX(), getY());
-                } else if (!getGoingRight() && l.isEmpty(getX() - getMovimentoX(), getY())) {
-                    setPosizione(getX() - getMovimentoX(), getY());
-                }
-            }
-            if (l.isEmpty(getX(), getY() + getEntitysize())) {
-                setPosizione(getX(), getY() + 1);
-            }
+           popTime = 0;
         }
         if (getNemico() != null) { getNemico().setPosizione(getX(), getY()); }
         

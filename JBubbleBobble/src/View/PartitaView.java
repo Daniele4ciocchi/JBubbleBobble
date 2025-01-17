@@ -99,9 +99,21 @@ public class PartitaView extends JPanel implements Observer {
                 try {
                     giocatore = ImageIO.read(new File(((Giocatore) (e)).getSpritePath()));
                     if (!((Giocatore) (e)).getGoingRight()) {
-                        g2d.drawImage(giocatore, x, y, doubleEntitySize, doubleEntitySize, null);
+                        if (((Giocatore) (e)).getInvincibilita() % 2 == 1) {
+                            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+                            g2d.drawImage(giocatore, x, y, doubleEntitySize, doubleEntitySize, null);
+                            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+                        }else {
+                            g2d.drawImage(giocatore, x, y, doubleEntitySize, doubleEntitySize, null);
+                        }
                     } else {
-                        g2d.drawImage(giocatore, x + doubleEntitySize, y, - doubleEntitySize, doubleEntitySize, null);
+                        if (((Giocatore) (e)).getInvincibilita() % 2 == 1) {
+                            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+                            g2d.drawImage(giocatore, x + doubleEntitySize, y, - doubleEntitySize, doubleEntitySize, null);
+                            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+                        }else {
+                            g2d.drawImage(giocatore, x + doubleEntitySize, y, - doubleEntitySize, doubleEntitySize, null);
+                        }
                     }
                 } catch (IOException ioException) {
                     ioException.printStackTrace();

@@ -23,6 +23,7 @@ public class GameController {
     private int nextLevelCounter = 250;
     private int counter = 0;
     private int bubbleCounter = 0;
+    private int FireballCounter = 0;
     private int morteGiocatoreCounter = 0;
     private int spriteBoccaApertaCounter = 5; // numero di frame in cui la bocca del giocatore rimane aperta
 
@@ -187,11 +188,12 @@ public class GameController {
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
             }
             if (e instanceof Hidegon){
-                if (((Hidegon)e).getY() == partita.getEntita().getFirst().getY()){
+                if (((Hidegon)e).getY() == partita.getEntita().getFirst().getY() && Math.abs(FireballCounter - counter) >= 100){
                     Bolla f = ((Hidegon)e).shoot();
                     // partita.addEntita(f);
                     EntitaDaAggiungere.add(f);
                     f.addObserver(view.getPanel());
+                    FireballCounter = counter;
                 }
             }
         }
@@ -226,6 +228,9 @@ public class GameController {
                 if (partita.getLivello().isTPEntry(e.getX(), e.getY()))EntitaDaRimuovere.add(e);
             }else if (e instanceof Fireball){
                 ((Fireball)e).move(partita.getLivello());
+                if (((Fireball)e).getPopTime() == 0){
+                    EntitaDaRimuovere.add(e);
+                }
             }
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
