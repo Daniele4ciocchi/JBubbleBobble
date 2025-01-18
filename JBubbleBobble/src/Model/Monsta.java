@@ -47,7 +47,7 @@ public class Monsta extends Nemico {
     
     public void moveVerticale(Livello l) {
         if (goingUp) {
-            if (!l.isWalkable(posx, posy+32)){
+            if (!l.isWalkable(posx, posy+getMovimentoY()) && !l.isTPExit(posx, posy+getMovimentoY())) {
                 posy+=movimentoX;
             } else {
                 goingUp = false;
