@@ -51,10 +51,10 @@ public class MenuController {
      * Questa scelta del menu permette al giocatore di visualizzare le statistiche del proprio profilo.
      */
     public void getProfiloStats() {
-        //per ora ok, ma sta roba va cambiata
-        Profilo profiloView = Profilo.getProfilo();
-        ProfiloView view = new ProfiloView(profiloView);
-        view.createProfiloFrame();
+
+        Profilo profilo = Profilo.getProfilo();
+        ProfiloView view = new ProfiloView(profilo);
+        
     }
 
     public MenuView getView() {

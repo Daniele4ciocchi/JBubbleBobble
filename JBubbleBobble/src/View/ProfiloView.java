@@ -9,8 +9,14 @@ public class ProfiloView {
     private JFrame frame;
 
     public ProfiloView(Profilo profilo) {
+        this.profilo = profilo;
         frame = new JFrame("Profilo Panel");
+        
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(300, 300);
+        frame.setFocusable(true);
+        frame.requestFocusInWindow();
+        frame.setLocationRelativeTo(null);
         
         this.profilo = profilo;
         JPanel panel = new JPanel();
@@ -21,8 +27,8 @@ public class ProfiloView {
         panel.add(new JLabel("Punti totali: " + profilo.getPuntiTotali()));
         panel.add(new JLabel("Vittorie: " + profilo.getVinte()));
         panel.add(new JLabel("Perdite: " + profilo.getPerse()));
+        
+        frame.add(panel);
+        frame.setVisible(true);
     }
-
-
-    
 }
