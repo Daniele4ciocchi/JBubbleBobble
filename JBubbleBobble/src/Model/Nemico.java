@@ -17,7 +17,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
     protected int deathCounter = 50;
 
     protected boolean bubbled;
-    protected boolean water;
+
     protected String[] bubbledSpritesPath = {baseSpritePath, baseSpritePath, baseSpritePath }; // 3 sprite
 
     public Nemico(int x, int y, int velocita, int salto){
@@ -63,12 +63,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         }
     }
 
-    public void move(Goccia g) {
-        water = true;
-        setPosizione(g.getX(), g.getY());
-        if (deathCounter == 0) die();
-            
-    }
+    
 
     // ritorna lo sprite adatto relativamente allo stato di questo nemico
     public String getSpritePath(){

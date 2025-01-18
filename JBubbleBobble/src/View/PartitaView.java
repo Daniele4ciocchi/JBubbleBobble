@@ -200,7 +200,7 @@ public class PartitaView extends JPanel implements Observer {
                     acqua = ImageIO.read(new File(((Acqua)e).getSpritePath()));
                     for (Acqua.Goccia goccia : ((Acqua)(e)).getGocce()){
                         y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - goccia.getY() - partita.getLivello().getTilesize() );
-                        g2d.drawImage(acqua, goccia.getX(), y+20, 10, 10, null);
+                        g2d.drawImage(acqua, goccia.getX(), y+25, 10, 10, null);
                     }
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block

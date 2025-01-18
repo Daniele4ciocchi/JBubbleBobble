@@ -138,7 +138,9 @@ public class GameController {
         if (collision instanceof BollaAcqua){
             partita.addBollaAcquaScoppiata();
             partita.removeEntita(collision);
-            partita.addEntita(new Acqua(collision.getX(), collision.getY()));
+            Acqua a = new Acqua(collision.getX(), collision.getY());
+            partita.addEntita(a);
+            a.addObserver(view.getPanel());
         }
         
         if (collision instanceof PointItem){
@@ -160,10 +162,8 @@ public class GameController {
             if (e instanceof Acqua){
                 for (Goccia g : ((Acqua)e).getGocce()){
                     Entita collision = partita.checkCollision(g);
-                    if (collision instanceof Nemico){
-                        ((Nemico)collision).move(g);
-                        EntitaDaRimuovere.add(collision);
-                    }
+                    if (collision instanceof Personaggio)((Personaggio)collision).move(g);
+                    if (collision instanceof Nemico)EntitaDaRimuovere.add(collision);
                 }
             }
         }
