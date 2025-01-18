@@ -316,6 +316,11 @@ public class GameController {
         checkEntityCollision();
         checkBoccaAperta();
         checkPlayerDead();
+        SpecialItem specialItem = partita.checkSpawnSpecialItem();
+        if (specialItem != null){
+            partita.addEntita(specialItem);
+            specialItem.addObserver(view.getPanel());
+        }
         moveEnemies();
         moveBubbles();
         checkDyingEnemies();

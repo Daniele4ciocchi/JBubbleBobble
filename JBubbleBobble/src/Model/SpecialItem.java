@@ -57,8 +57,8 @@ public class SpecialItem extends Item {
     private Colore colore;
     private Effetto effetto;
 
-    public SpecialItem(int posx, int posy, int velocitaX, int velocitaY, int gravita, Tipologia tipologia, Colore colore){
-        super(posx, posy, velocitaX, velocitaY, gravita);
+    public SpecialItem(int posx, int posy, Tipologia tipologia, Colore colore){
+        super(posx, posy, 0, 0, -3);
         this.tipologia = tipologia;
         this.colore = colore; //NB: EMPTY se voglio sneaker!
 
@@ -109,6 +109,8 @@ public class SpecialItem extends Item {
             };
 
             this.points = tipologia.PUNTI;
+
+            System.out.println("SpecialItem created: " + this.tipologia + " " + this.getX() + " " + this.getY());
     }
     
     public Tipologia getTipologia(){
@@ -121,5 +123,10 @@ public class SpecialItem extends Item {
 
     public Effetto getEffetto(){
         return this.effetto;
+    }
+
+    @Override
+    public String getSpritePath(){
+        return this.idleSpritePath;
     }
 }

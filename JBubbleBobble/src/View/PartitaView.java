@@ -90,6 +90,7 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage drop;
         BufferedImage acqua;
         BufferedImage fireball;
+        BufferedImage specialItem;
 
         for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() ) + 3;
@@ -186,7 +187,7 @@ public class PartitaView extends JPanel implements Observer {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-            } else if(e instanceof Model.PointItem){
+            } else if(e instanceof Model.Item){
                 try {
                     //System.out.println(((PointItem)(e)).getSpritePath());
                     drop = ImageIO.read(new File(((Item)(e)).getSpritePath()));
@@ -206,8 +207,6 @@ public class PartitaView extends JPanel implements Observer {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-                
-                
             }
         }
         for (Entita e : partita.getEntitaMorte()){

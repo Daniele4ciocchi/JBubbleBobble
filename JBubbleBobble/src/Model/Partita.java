@@ -4,8 +4,10 @@ package Model;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Partita implements Serializable{
+    private Random random = new Random();
     private static final long serialVersionUID = 1L; // serve per il Serializable
 
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
@@ -144,47 +146,58 @@ public class Partita implements Serializable{
     // ======================= SPECIALITEMS (powerups) =======================
     // qui controllo i requisiti di spawn
     // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
-    private SpecialItem spawnSpecialItem(int sx, int sy){
+    public SpecialItem checkSpawnSpecialItem(){
+
+        int sx = 0;
+        int sy = 0;
+
+        while(!livello.isEmpty(sx*16,sy*16)){
+            sx = random.nextInt(34);
+            sy = random.nextInt(24);
+
+            System.out.println("sx: " + sx + " sy: " + sy + "gx" + entitaAttive.getFirst().getX() + "gy" + entitaAttive.getFirst().getY());
+        }
+
         // UMBRELLA
-         if (bolleAcquaScoppiate == 15){
-            nemiciUccisi++;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
+        if (bolleAcquaScoppiate == 15){
+            bolleAcquaScoppiate++;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
         }
         else if (bolleAcquaScoppiate == 21){
-            nemiciUccisi++;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.RED);
+            bolleAcquaScoppiate++;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.RED);
         }
         else if (bolleAcquaScoppiate == 36){
-            nemiciUccisi = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
+            bolleAcquaScoppiate = 0;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
             }
 
         // CANDY
         if (saltiEffettuati == 35){
-            bolleSparate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.PINK);
-        }
-        else if (bolleSparate == 35){
             saltiEffettuati = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.YELLOW);
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.PINK);
+        }
+        else if (bolleSparate == 1){
+            bolleSparate = 0;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.YELLOW);
         }
         else if (bolleScoppiate == 35){
             bolleScoppiate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.BLUE);
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.BLUE);
         }
 
         // RING
         else if (caramelleRosaMangiate == 3){
             caramelleRosaMangiate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.RING,SpecialItem.Colore.PINK);
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.PINK);
         }
         else if (caramelleRosseMangiate == 3){
             caramelleRosseMangiate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.RING,SpecialItem.Colore.RED);
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.RED);
         }
         else if (caramelleBluMangiate == 3){
             caramelleBluMangiate = 0;
-            return new SpecialItem(sx,sy,0,0,0,SpecialItem.Tipologia.RING,SpecialItem.Colore.BLUE);
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.BLUE);
         }
 
         else{
@@ -216,9 +229,8 @@ public class Partita implements Serializable{
     }
 
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
-    public void usePowerUp(Entita p){
+    public void useSpecialItem(Entita p){
         if (!(p instanceof SpecialItem || p instanceof PointItem)) return;
-        else if (p instanceof PointItem) addScore(((PointItem) p).getPoints());
         else if (p instanceof SpecialItem) {
             switch (((SpecialItem) p).getEffetto()){
                 case BOLLE_RANGE_UP -> BOLLE_RANGE_UP = true;
