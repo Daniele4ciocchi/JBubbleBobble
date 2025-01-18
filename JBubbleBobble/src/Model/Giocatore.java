@@ -7,6 +7,7 @@ import java.util.Observer;
 //da fare singleton
 public class Giocatore extends Personaggio{
     private int life = 3;
+    private int passi = 0;
 
     // sprites
     private final String idleSpritePath = baseSpritePath + "bubblun" + File.separator + "image_90.png";         // fermo
@@ -27,12 +28,26 @@ public class Giocatore extends Personaggio{
     private boolean shooting; // per sprite con bocca aperta
     private int invincibilita = 0;
 
+    // booleani buff specialitem
+    private boolean BOLLE_RANGE_UP;
+    private boolean BOLLE_VEL_UP;
+    private boolean BOLLE_FIRERATE_UP; // va fatto nel game controller
+    private boolean BONUS_MOV; //
+    private boolean BONUS_SALTO;
+    private boolean BONUS_SPARO;
+    private boolean SNEAKER_BUFF;
+
     public Giocatore(){
         super(5, 1, 10, 20, -7, 20);
     }
 
     public int getLife(){return this.life;}
+    public int getPassi(){return this.passi;}
     public int getInvincibilita(){return this.invincibilita;}
+    public boolean getBolleFirerate(){return BOLLE_FIRERATE_UP;}
+    public boolean getBonusMov(){return BONUS_MOV;}
+    public boolean getBonusSalto(){return BONUS_SALTO;}
+    public boolean getBonusSparo(){return BONUS_SPARO;}
     
     public void setInvincibilita(int i){this.invincibilita = i;}
     public void addLife(){this.life++;}
@@ -71,8 +86,9 @@ public class Giocatore extends Personaggio{
     @Override
     public void moveLeft(Livello l){
         if(!isDead()) {
-        super.moveLeft(l);
-        setShooting(false);
+            super.moveLeft(l);
+            setShooting(false);
+            passi+=movimentoX;
         }
     }
 
@@ -81,6 +97,7 @@ public class Giocatore extends Personaggio{
         if(!isDead()) {
             super.moveRight(l);
             setShooting(false);
+            passi+=movimentoX;
         }
     }
 
@@ -94,11 +111,26 @@ public class Giocatore extends Personaggio{
 
     public Bolla shoot(){
         this.setShooting(true);
-        return new BollaSemplice(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 6, 1, getGoingRight(), 20);
+        return new BollaSemplice(
+            getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5,
+            this.getY(), 
+            BOLLE_VEL_UP?12:6, 
+            1, 
+            getGoingRight(), 
+            BOLLE_RANGE_UP?30:20
+        );
     }
 
 
     public void die(){
+        BOLLE_RANGE_UP = false;
+        BOLLE_VEL_UP = false;
+        BOLLE_FIRERATE_UP = false;
+        BONUS_MOV = false;
+        BONUS_SALTO = false;
+        BONUS_SPARO = false;
+        SNEAKER_BUFF = false;
+        
         setShooting(false);
         this.dead = true;
         setChanged();
@@ -114,5 +146,17 @@ public class Giocatore extends Personaggio{
         
         setChanged();
         notifyObservers();
+    }
+
+    public void applyEffetto(SpecialItem.Effetto e){
+        switch(e){
+            case BOLLE_RANGE_UP -> BOLLE_RANGE_UP = true;
+            case BOLLE_VEL_UP -> BOLLE_VEL_UP = true;
+            case BOLLE_FIRERATE_UP -> BOLLE_FIRERATE_UP = true;
+            case BONUS_MOV -> BONUS_MOV = true;
+            case BONUS_SALTO -> BONUS_SALTO = true;
+            case BONUS_SPARO -> BONUS_SPARO = true;
+            case SNEAKER_BUFF -> SNEAKER_BUFF = true;
+        }
     }
 }

@@ -28,13 +28,7 @@ public class Partita implements Serializable{
     private int caramelleBluMangiate;
 
     // campi dei buff dei powerup, per info guarda in PowerUp.java
-    private boolean BOLLE_RANGE_UP;
-    private boolean BOLLE_VEL_UP;
-    private boolean BOLLE_FIRERATE_UP;
-    private boolean BONUS_MOV;
-    private boolean BONUS_SALTO;
-    private boolean BONUS_SPARO;
-    private boolean SNEAKER_BUFF;
+    
 
     /**
      * Costruttore 1 della classe Partita,
@@ -130,12 +124,12 @@ public class Partita implements Serializable{
             for (int j = 0;j<36;j++){
                 if (grid[i][j].getType().toString().contains("_SPAWN")){
                     this.addEntita(switch (grid[i][j].getType().toString().replace("_SPAWN", "")){
-                        case "ZENCHAN" -> new ZenChan(j, i);
-                        case "BANEBOU" -> new Banebou(j, i);
-                        case "MIGHTA" -> new Mighta(j, i);
-                        case "HIDEGON" -> new Hidegon(j, i);
-                        case "PULPUL" -> new Pulpul(j, i);
-                        case "MONSTA" -> new Monsta(j, i);
+                        case "ZENCHAN"  -> new ZenChan(j, i);
+                        case "BANEBOU"  -> new Banebou(j, i);
+                        case "MIGHTA"   -> new Mighta(j, i);
+                        case "HIDEGON"  -> new Hidegon(j, i);
+                        case "PULPUL"   -> new Pulpul(j, i);
+                        case "MONSTA"   -> new Monsta(j, i);
                         default -> null;
                     });
                 }
@@ -177,7 +171,7 @@ public class Partita implements Serializable{
             saltiEffettuati = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.PINK);
         }
-        else if (bolleSparate == 1){
+        else if (bolleSparate == 35){
             bolleSparate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.YELLOW);
         }
@@ -199,7 +193,6 @@ public class Partita implements Serializable{
             caramelleBluMangiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.BLUE);
         }
-
         else{
             return null;
         }
@@ -229,22 +222,13 @@ public class Partita implements Serializable{
     }
 
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
-    public void useSpecialItem(Entita p){
-        if (!(p instanceof SpecialItem || p instanceof PointItem)) return;
-        else if (p instanceof SpecialItem) {
-            switch (((SpecialItem) p).getEffetto()){
-                case BOLLE_RANGE_UP -> BOLLE_RANGE_UP = true;
-                case BOLLE_VEL_UP -> BOLLE_VEL_UP = true;
-                case BOLLE_FIRERATE_UP -> BOLLE_FIRERATE_UP = true;
-                case BONUS_MOV -> BONUS_MOV = true;
-                case BONUS_SALTO -> BONUS_SALTO = true;
-                case BONUS_SPARO -> BONUS_SPARO = true;
-                case SNEAKER_BUFF -> SNEAKER_BUFF = true;
-                case SKIP_LVL3 -> livello.changeLevel(livello.getLevelNum()+3); //
-                case SKIP_LVL5 -> livello.changeLevel(livello.getLevelNum()+5); // TODO: controllare che vada bene perchè non lo so :)
-                case SKIP_LVL7 -> livello.changeLevel(livello.getLevelNum()+7); // 
-                case NULL -> System.out.println("ERRORE: Effetto SpecialItem non trovato!");
-            }
+    public void useSpecialItem(SpecialItem p){
+        switch (p.getEffetto()){
+            case SKIP_LVL3 -> livello.changeLevel(livello.getLevelNum()+3); //
+            case SKIP_LVL5 -> livello.changeLevel(livello.getLevelNum()+5); // TODO: controllare che vada bene perchè non lo so :)
+            case SKIP_LVL7 -> livello.changeLevel(livello.getLevelNum()+7); // 
+            case NULL -> System.out.println("ERRORE: Effetto SpecialItem non trovato!");
+            default -> ((Giocatore)entitaAttive.getFirst()).applyEffetto(p.getEffetto());
         }
     }
 

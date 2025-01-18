@@ -50,7 +50,7 @@ public class Profilo implements Serializable{
 
     // Restituisce il numero di partite vinte
     public int getVinte() {
-        return (int) partite.stream().filter(Partita::isVinta).count();
+        return (int) partite.stream().filter(x -> x.isVinta()).count();
     }
 
     // Restituisce il numero di partite perse

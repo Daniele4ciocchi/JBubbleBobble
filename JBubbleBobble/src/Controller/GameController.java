@@ -26,6 +26,8 @@ public class GameController {
     private int FireballCounter = 0;
     private int morteGiocatoreCounter = 0;
     private int spriteBoccaApertaCounter = 5; // numero di frame in cui la bocca del giocatore rimane aperta
+    private int passiCounter = 0;
+
 
     ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
     ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
@@ -56,14 +58,16 @@ public class GameController {
                     if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
                         giocatore.jump();
                         partita.addSaltoEffettuato();
+                        if (giocatore.getBonusSalto())partita.addScore(500);
                     }
                 } else if (e.getKeyChar() == 'j' || e.getKeyChar() == 'J') {
-                    if(Math.abs(counter - bubbleCounter) > 10 && !giocatore.isDead()){
+                    if(Math.abs(counter - bubbleCounter) > (giocatore.getBolleFirerate() ? 5 : 10) && !giocatore.isDead()){
                         Bolla b = giocatore.shoot();
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
                         bubbleCounter = counter;
                         partita.addBollaSparata();
+                        if (giocatore.getBonusSparo())partita.addScore(100);
                     }
                 }
             }
@@ -93,7 +97,16 @@ public class GameController {
 
         if (leftPressed) giocatore.moveLeft(partita.getLivello());
         else if (rightPressed) giocatore.moveRight(partita.getLivello());
-        
+
+        if (giocatore.getBonusMov()){
+            if (passiCounter == 0){
+                passiCounter = giocatore.getPassi();
+            }
+            partita.addScore(10*Math.abs(giocatore.getPassi() - passiCounter));
+        }else {
+            passiCounter = 0;
+        }
+            
     }
 
     public void counter(){ 
@@ -145,6 +158,11 @@ public class GameController {
         
         if (collision instanceof PointItem){
             partita.addScore(((PointItem)collision).getTipologia().getPunti());
+            partita.removeEntita(collision);
+        }
+
+        if (collision instanceof SpecialItem){
+            partita.useSpecialItem((SpecialItem)collision);
             partita.removeEntita(collision);
         }
 
@@ -254,7 +272,7 @@ public class GameController {
                 partita.getLivello().changeLevel();
                 partita.posizionaEntita();
                 ((Giocatore)partita.getEntita().getFirst()).resetPosizione();
-                nextLevelCounter = 250;
+                nextLevelCounter = 255;
                 for (Entita e : partita.getEntita()){
                     e.addObserver(view.getPanel());
                 }
