@@ -66,6 +66,7 @@ public class Livello {
                         case '3' -> Tile.TileType.TP_ENTRY;
                         case '4' -> Tile.TileType.TP_EXIT;
                         case '5' -> Tile.TileType.WATER;
+                        case '6' -> Tile.TileType.THUNDER;
 
                         case 'Z' -> Tile.TileType.ZENCHAN_SPAWN;
                         case 'B' -> Tile.TileType.BANEBOU_SPAWN;

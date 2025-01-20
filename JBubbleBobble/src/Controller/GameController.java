@@ -125,9 +125,23 @@ public class GameController {
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
                     }
+                    
                 }
             }
         }
+        if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaFulmine).count() < 3){
+            for (int i = 0; i < partita.getLivello().getGrid().length; i++){
+                for (int j = 0; j < partita.getLivello().getGrid()[0].length; j++){
+                    if (partita.getLivello().getGrid()[i][j].getType() == Model.Tile.TileType.THUNDER){
+                        BollaFulmine b = new BollaFulmine(j*16, i*16);
+                        partita.addEntita(b);
+                        b.addObserver(view.getPanel());
+                    }
+                    
+                }
+            }
+        }
+        
     }
 
     public void applyGravity(){ 
@@ -155,6 +169,13 @@ public class GameController {
             Acqua a = new Acqua(collision.getX(), collision.getY());
             partita.addEntita(a);
             a.addObserver(view.getPanel());
+        }
+        if (collision instanceof BollaFulmine){
+            partita.addBollaFulmineScoppiata();
+            partita.removeEntita(collision);
+            Fulmine f = new Fulmine(collision.getX(), collision.getY());
+            partita.addEntita(f);
+            f.addObserver(view.getPanel());
         }
         
         if (collision instanceof PointItem){
@@ -189,6 +210,11 @@ public class GameController {
                     if (collision instanceof Personaggio)((Personaggio)collision).move(g);
                     if (collision instanceof Nemico)EntitaDaRimuovere.add(collision);
                 }
+            }
+            if (e instanceof Fulmine){
+                Entita collision = partita.checkCollision(e);
+                if (collision instanceof Nemico)EntitaDaRimuovere.add(collision);
+                
             }
         }
         for(Entita e : EntitaDaRimuovere) partita.removeEntita(e);
@@ -259,6 +285,11 @@ public class GameController {
             }else if (e instanceof Acqua){
                 ((Acqua)e).move(partita.getLivello());
                 if (partita.getLivello().isTPEntry(e.getX(), e.getY()))EntitaDaRimuovere.add(e);
+            }else if (e instanceof BollaFulmine){
+                ((BollaFulmine)e).move(partita.getLivello());
+            }else if (e instanceof Fulmine){
+                ((Fulmine)e).move(partita.getLivello());
+                if (e.getX()/16 == 1 || e.getX()/16 == 34)EntitaDaRimuovere.add(e);
             }else if (e instanceof Fireball){
                 ((Fireball)e).move(partita.getLivello());
                 if (((Fireball)e).getPopTime() == 0){

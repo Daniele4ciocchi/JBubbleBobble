@@ -12,6 +12,7 @@ public class Tile {
         //riguardanti spawn del player
         PLAYER_SPAWN(false, false),
         WATER(false, false),
+        THUNDER(false, false),
         //riguardanti spawn dei powerup
         POWERUP_SPAWN(false, false),
 

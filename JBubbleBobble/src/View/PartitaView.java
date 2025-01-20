@@ -3,10 +3,12 @@ package View;
 import Model.Acqua;
 import Model.Bolla;
 import Model.BollaAcqua;
+import Model.BollaFulmine;
 import Model.BollaSemplice;
 import Model.Boulder;
 import Model.Entita;
 import Model.Fireball;
+import Model.Fulmine;
 import Model.Giocatore;
 import Model.Item;
 import Model.Nemico;
@@ -90,6 +92,7 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage nemico;
         BufferedImage drop;
         BufferedImage acqua;
+        BufferedImage fulmine;
         BufferedImage fireball;
         BufferedImage specialItem;
 
@@ -166,6 +169,13 @@ public class PartitaView extends JPanel implements Observer {
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
+                }else if( e instanceof Model.BollaFulmine){
+                    try {
+                        bolla = ImageIO.read(new File(((BollaFulmine)(e)).getSpritePath()));
+                        g2d.drawImage(bolla, x, y, doubleEntitySize, doubleEntitySize, null);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 } else if (e instanceof Fireball){
                     try {
                         fireball = ImageIO.read(new File(((Fireball)(e)).getSpritePath()));
@@ -212,6 +222,15 @@ public class PartitaView extends JPanel implements Observer {
                         y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - goccia.getY() - partita.getLivello().getTilesize() );
                         g2d.drawImage(acqua, goccia.getX(), y+25, 10, 10, null);
                     }
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            } else if(e instanceof Model.Fulmine){
+                try {
+                    fulmine = ImageIO.read(new File(((Fulmine)e).getSpritePath()));
+                    y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
+                        g2d.drawImage(fulmine, e.getX(), y+25, 10, 10, null);
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
