@@ -24,6 +24,7 @@ public class GameController {
     private int counter = 0;
     private int bubbleCounter = 0;
     private int FireballCounter = 0;
+    private int BoulderCounter = 0;
     private int morteGiocatoreCounter = 0;
     private int spriteBoccaApertaCounter = 5; // numero di frame in cui la bocca del giocatore rimane aperta
     private int passiCounter = 0;
@@ -170,6 +171,11 @@ public class GameController {
             ((Giocatore) (partita.getEntita().getFirst())).die();
             partita.addNemiciUccisi();
         }
+
+        if (collision instanceof Boulder &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0){
+            ((Giocatore) (partita.getEntita().getFirst())).die();
+            partita.addNemiciUccisi();
+        }
         view.getTopPanel().updateScore(partita.getScore());
     }
 
@@ -214,6 +220,15 @@ public class GameController {
                     FireballCounter = counter;
                 }
             }
+            if (e instanceof Mighta){
+                if (((Mighta)e).getY() == partita.getEntita().getFirst().getY() && Math.abs(BoulderCounter - counter) >= 100){
+                    Bolla f = ((Mighta)e).shoot();
+                    // partita.addEntita(f);
+                    EntitaDaAggiungere.add(f);
+                    f.addObserver(view.getPanel());
+                    BoulderCounter = counter;
+                }
+            }
         }
         for (Entita e : EntitaDaRimuovere)partita.removeEntita(e);
         for (Entita e : EntitaDaAggiungere)partita.addEntita(e);
@@ -247,6 +262,11 @@ public class GameController {
             }else if (e instanceof Fireball){
                 ((Fireball)e).move(partita.getLivello());
                 if (((Fireball)e).getPopTime() == 0){
+                    EntitaDaRimuovere.add(e);
+                }
+            }else if (e instanceof Boulder){
+                ((Boulder)e).move(partita.getLivello());
+                if (((Boulder)e).getPopTime() == 0){
                     EntitaDaRimuovere.add(e);
                 }
             }

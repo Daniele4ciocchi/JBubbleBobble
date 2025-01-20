@@ -5,10 +5,10 @@ import java.io.File;
 public class Boulder extends Bolla {
 
     private String[] sprites = {
-        baseSpritePath + "hidegons" + File.separator + "image_16.png",
-        baseSpritePath + "hidegons" + File.separator + "image_17.png",
-        baseSpritePath + "hidegons" + File.separator + "image_18.png",
-        baseSpritePath + "hidegons" + File.separator + "image_19.png"
+        baseSpritePath + "mighta" + File.separator + "image_16.png",
+        baseSpritePath + "mighta" + File.separator + "image_17.png",
+        baseSpritePath + "mighta" + File.separator + "image_18.png",
+        baseSpritePath + "mighta" + File.separator + "image_19.png"
     };
 
     public Boulder(int posx, int posy, int velocitax, int velocitay, boolean goingRight, int range) {

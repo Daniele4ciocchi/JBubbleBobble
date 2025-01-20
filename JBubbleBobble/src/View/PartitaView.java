@@ -4,6 +4,7 @@ import Model.Acqua;
 import Model.Bolla;
 import Model.BollaAcqua;
 import Model.BollaSemplice;
+import Model.Boulder;
 import Model.Entita;
 import Model.Fireball;
 import Model.Giocatore;
@@ -168,6 +169,14 @@ public class PartitaView extends JPanel implements Observer {
                 } else if (e instanceof Fireball){
                     try {
                         fireball = ImageIO.read(new File(((Fireball)(e)).getSpritePath()));
+                        g2d.drawImage(fireball, x, y, doubleEntitySize, doubleEntitySize, null);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }
+                else if (e instanceof Boulder){
+                    try {
+                        fireball = ImageIO.read(new File(((Boulder)(e)).getSpritePath()));
                         g2d.drawImage(fireball, x, y, doubleEntitySize, doubleEntitySize, null);
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
