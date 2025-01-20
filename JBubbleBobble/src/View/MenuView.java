@@ -26,7 +26,6 @@ public class MenuView {
 
         Font font = GameView.getFont();
 
-
         BufferedImage icon = null;
 
         panel.setFont(font);
@@ -45,24 +44,32 @@ public class MenuView {
 
         passwordField = new JTextField(2);
         //passwordField.setHorizontalAlignment(JTextField.CENTER);
-        passwordField.setPreferredSize(new Dimension(20,20));
-        passwordField.setMaximumSize(new Dimension(250,20));
-        passwordField.setMinimumSize(new Dimension(250,20));
+        passwordField.setPreferredSize(new Dimension(100,20));
+        passwordField.setMaximumSize(new Dimension(100,20));
+        passwordField.setMinimumSize(new Dimension(100,20));
         passwordField.setFont(font);
-        passwordField.setBackground(Color.GRAY);
+        passwordField.setBackground(Color.BLACK);
+        passwordField.setForeground(Color.YELLOW);
 
         nuovaPartitaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         nuovaPartitaButton.setFont(font);
+        nuovaPartitaButton.setBackground(Color.YELLOW);
+        nuovaPartitaButton.setForeground(Color.BLACK);
 
         continuaPartitaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         continuaPartitaButton.setFont(font);
+        continuaPartitaButton.setBackground(Color.YELLOW);
+        continuaPartitaButton.setForeground(Color.BLACK);
 
         visualizzaProfiloButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         visualizzaProfiloButton.setFont(font);
+        visualizzaProfiloButton.setBackground(Color.YELLOW);
+        visualizzaProfiloButton.setForeground(Color.BLACK);
 
         passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passwordField.setFont(font);
 
-        nuovaPartitaButton.setBackground(Color.GREEN);
+        //nuovaPartitaButton.setBackground(Color.GREEN);
 
         panel.add(Box.createVerticalStrut(20));
         panel.add(label);
@@ -74,6 +81,7 @@ public class MenuView {
         panel.add(passwordField);
         panel.add(Box.createVerticalStrut(20));
         panel.add(visualizzaProfiloButton);
+
     }
 
     public JPanel getPanel() {

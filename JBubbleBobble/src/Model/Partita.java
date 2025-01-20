@@ -23,6 +23,7 @@ public class Partita implements Serializable{
     private int bolleSparate;
     private int bolleScoppiate;
     private int bolleAcquaScoppiate;
+    private int bolleFulmineScoppiate;
     private int caramelleRosaMangiate;
     private int caramelleRosseMangiate;
     private int caramelleBluMangiate;
@@ -90,6 +91,7 @@ public class Partita implements Serializable{
     public void addNemiciUccisi(){this.nemiciUccisi++;}
     public void addBollaSparata(){this.bolleSparate++;}
     public void addBollaScoppiata(){this.bolleScoppiate++;}
+    public void addBollaFulmineScoppiata(){this.bolleFulmineScoppiate++;}
     public void addBollaAcquaScoppiata(){this.bolleAcquaScoppiate++;}
 
     public void setVinta() {vinta = true;}

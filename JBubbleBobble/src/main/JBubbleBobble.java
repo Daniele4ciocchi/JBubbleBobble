@@ -16,6 +16,7 @@ public class JBubbleBobble {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
         frame.setLocationRelativeTo(null);
+        frame.setUndecorated(true);
 
         // Creazione del controller del menu
         MenuView menuView = new MenuView();

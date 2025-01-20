@@ -19,9 +19,6 @@ public class Hidegon extends Nemico{
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
-    // movimento unico di Hidegon, TODO: da fare!
-    // essenzialmente si muove come ZenChan (.move() uguale)
-    // se il giocatore è sul suo stesso asse orizzontale, spara una Fireball
     public void move(int gx, int gy, Livello l) {
         super.move(gx, gy, l);
     }

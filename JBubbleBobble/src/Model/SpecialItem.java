@@ -88,9 +88,9 @@ public class SpecialItem extends Item {
         super.idleSpritePath = baseSpritePath + "items" + File.separator 
             + switch (tipologia) {
                 case CANDY     -> switch(colore){
-                    case PINK   -> "image_68.png";      // PINK CANDY
-                    case BLUE    -> "image_71.png";     // BLUE CANDY
-                    case YELLOW -> "image_59.png";      // YELLOW CANDY
+                    case PINK   -> "pink_candy.png";      // PINK CANDY
+                    case BLUE    -> "blue_candy.png";     // BLUE CANDY
+                    case YELLOW -> "yellow_candy.png";      // YELLOW CANDY
                     default     -> "";
                 };
                 case RING  -> switch(colore){
@@ -99,13 +99,15 @@ public class SpecialItem extends Item {
                     case BLUE    -> "image_59.png";     // BLUE RING
                     default     -> "";
                 };
-                case SNEAKER      -> "sneaker.png";    // SNEAKER
                 case UMBRELLA     -> switch(colore){
                     case ORANGE -> "image_48.png";      // ORANGE UMBRELLA
                     case RED     -> "image_47.png";     // RED UMBRELLA
                     case PINK      -> "image_46.png";   // PINK UMBRELLA
                     default     -> "";
                 };
+                case SNEAKER      -> "sneaker.png";    // SNEAKER
+                // case CLOCK
+                // case 
             };
             this.points = tipologia.PUNTI;
             
