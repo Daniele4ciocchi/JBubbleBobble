@@ -10,12 +10,12 @@ public class Mighta extends Nemico{
     }
     
     public void setSprites(){
-        walkingSpritesPath[0] += "mighta"+File.separator+"image_39.png";
-        walkingSpritesPath[1] += "banebou"+File.separator+"image_40.png";
+        walkingSpritesPath[0] += "mighta"+File.separator+"image_29.png";
+        walkingSpritesPath[1] += "mighta"+File.separator+"image_30.png";
 
-        bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png"; //
-        bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png"; // mettere quelli giusti
-        bubbledSpritesPath[2] += "zen-chan"+File.separator+"image_500.png"; //
+        bubbledSpritesPath[0] += "mighta"+File.separator+"image_11.png";
+        bubbledSpritesPath[1] += "mighta"+File.separator+"image_12.png";
+        bubbledSpritesPath[2] += "mighta"+File.separator+"image_13.png";
 
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
@@ -23,6 +23,10 @@ public class Mighta extends Nemico{
     // TODO: da fare! e soprattutto capire se fare Mighta o meno
     // 
     public void move(int gx, int gy, Livello l) {
-        
+        super.move(gx, gy, l);
+    }
+
+    public Bolla shoot(){
+        return new Boulder(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 6, 1, getGoingRight(), 20);
     }
 }
