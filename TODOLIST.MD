@@ -39,5 +39,18 @@ I BIG 4
     - [x] Pulpul
     - [ ] Mighta
 - [ ] implementazione completa di tutti e 12 i powerup e i 6 point items
+    - [x] Candy (PINK)
+    - [x] Candy (BLUE)
+    - [x] Candy (YELLOW)
+    - [x] Ring (PINK)
+    - [x] Ring (RED)
+    - [x] Ring (BLUE)
+    - [ ] Umbrella (ORANGE):DA TESTARE
+    - [ ] Umbrella (RED):   DA TESTARE
+    - [ ] Umbrella (PINK):  DA TESTARE
+    - [ ] Sneaker
+    - [x] Clock
+    - [ ] Chack'n Heart
+
 - [ ] SFX (audio)
 - [ ] score system + salvataggio e caricamento profilo su disco
