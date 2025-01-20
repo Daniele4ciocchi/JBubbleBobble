@@ -230,7 +230,7 @@ public class PartitaView extends JPanel implements Observer {
                 try {
                     fulmine = ImageIO.read(new File(((Fulmine)e).getSpritePath()));
                     y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
-                        g2d.drawImage(fulmine, e.getX(), y+25, 10, 10, null);
+                        g2d.drawImage(fulmine, e.getX(), y+25, Entita.getEntitysize(), Entita.getEntitysize(), null);
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();

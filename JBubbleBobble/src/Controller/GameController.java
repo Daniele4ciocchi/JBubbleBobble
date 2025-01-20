@@ -173,9 +173,12 @@ public class GameController {
         if (collision instanceof BollaFulmine){
             partita.addBollaFulmineScoppiata();
             partita.removeEntita(collision);
-            Fulmine f = new Fulmine(collision.getX(), collision.getY());
-            partita.addEntita(f);
-            f.addObserver(view.getPanel());
+            Fulmine f1 = new Fulmine(collision.getX(), collision.getY(), true);
+            Fulmine f2 = new Fulmine(collision.getX(), collision.getY(), false);
+            partita.addEntita(f1);
+            partita.addEntita(f2);
+            f1.addObserver(view.getPanel());
+            f2.addObserver(view.getPanel());
         }
         
         if (collision instanceof PointItem){
