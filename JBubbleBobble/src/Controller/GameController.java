@@ -114,6 +114,7 @@ public class GameController {
         counter = (counter == 1000000000) ? 0 : ++counter; 
         int invincibilita = ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita();
         if (invincibilita > 0) ((Giocatore) (partita.getEntita().getFirst())).setInvincibilita(invincibilita - 1);
+        if (partita.getFreeze() > 0) partita.setFreeze(partita.getFreeze() - 1);;
     }
 
     public void spawnBubbles(){
@@ -187,6 +188,15 @@ public class GameController {
         }
 
         if (collision instanceof SpecialItem){
+            if (((SpecialItem)collision).getTipologia()==SpecialItem.Tipologia.CANDY){
+                switch (((SpecialItem)collision).getColore()){
+                    case SpecialItem.Colore.PINK -> partita.addCaramellaRosaMangiata();
+                    case SpecialItem.Colore.BLUE -> partita.addCaramellaBluMangiata();
+                    case SpecialItem.Colore.YELLOW -> partita.addCaramellaGialleMangiata();
+                    
+                }
+            }
+            
             partita.useSpecialItem((SpecialItem)collision);
             partita.removeEntita(collision);
         }
@@ -204,8 +214,8 @@ public class GameController {
     }
 
     public void checkEntityCollision(){
+
         //water
-        
         for (Entita e : partita.getEntita()){
             if (e instanceof Acqua){
                 for (Goccia g : ((Acqua)e).getGocce()){
@@ -216,8 +226,12 @@ public class GameController {
             }
             if (e instanceof Fulmine){
                 Entita collision = partita.checkCollision(e);
-                if (collision instanceof Nemico)EntitaDaRimuovere.add(collision);
-                
+                if (collision instanceof Nemico){
+                    partita.addScore(500);
+                    EntitaDaRimuovere.add(collision);
+                    ((Nemico)collision).die();
+                    
+                }
             }
         }
         for(Entita e : EntitaDaRimuovere) partita.removeEntita(e);
@@ -230,13 +244,14 @@ public class GameController {
             if (morteGiocatoreCounter == 100){
                 ((Giocatore)partita.getEntita().getFirst()).respawn();
                 morteGiocatoreCounter = 0;
-                ((Giocatore) (partita.getEntita().getFirst())).setInvincibilita(50);
+                ((Giocatore) (partita.getEntita().getFirst())).setInvincibilita(100);
             }
         }
     }
 
     public void moveEnemies(){
         for (Entita e : partita.getEntita()){
+            if (partita.getFreeze()>0) continue;
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
             }

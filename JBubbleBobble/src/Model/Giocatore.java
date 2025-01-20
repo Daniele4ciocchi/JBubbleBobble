@@ -121,7 +121,6 @@ public class Giocatore extends Personaggio{
         );
     }
 
-
     public void die(){
         BOLLE_RANGE_UP = false;
         BOLLE_VEL_UP = false;

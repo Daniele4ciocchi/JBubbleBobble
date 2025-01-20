@@ -25,11 +25,11 @@ public class Partita implements Serializable{
     private int bolleAcquaScoppiate;
     private int bolleFulmineScoppiate;
     private int caramelleRosaMangiate;
-    private int caramelleRosseMangiate;
+    private int caramelleGialleMangiate;
     private int caramelleBluMangiate;
 
     // campi dei buff dei powerup, per info guarda in PowerUp.java
-    
+    private int FREEZE;
 
     /**
      * Costruttore 1 della classe Partita,
@@ -85,6 +85,7 @@ public class Partita implements Serializable{
     public int getScore(){return this.score;}
     public Livello getLivello(){return this.livello;}
     public boolean isVinta(){return this.vinta;}
+    public int getFreeze(){return FREEZE;}
 
     // metodi per le variabili di statistica per gli specialItem
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
@@ -93,8 +94,12 @@ public class Partita implements Serializable{
     public void addBollaScoppiata(){this.bolleScoppiate++;}
     public void addBollaFulmineScoppiata(){this.bolleFulmineScoppiate++;}
     public void addBollaAcquaScoppiata(){this.bolleAcquaScoppiate++;}
+    public void addCaramellaRosaMangiata(){this.caramelleRosaMangiate++;}
+    public void addCaramellaGialleMangiata(){this.caramelleGialleMangiate++;}
+    public void addCaramellaBluMangiata(){this.caramelleBluMangiate++;}
 
     public void setVinta() {vinta = true;}
+    public void setFreeze(int b){FREEZE = b;}
 
     public void addEntita(Entita entita){this.entitaAttive.add(entita);}
     public void removeEntita(Entita entita) {
@@ -185,20 +190,27 @@ public class Partita implements Serializable{
             caramelleRosaMangiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.PINK);
         }
-        else if (caramelleRosseMangiate == 3){
-            caramelleRosseMangiate = 0;
+        else if (caramelleGialleMangiate == 3){
+            caramelleGialleMangiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.RED);
         }
         else if (caramelleBluMangiate == 3){
             caramelleBluMangiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.BLUE);
         }
+        else if (bolleFulmineScoppiate == 1){
+            bolleFulmineScoppiate = 0;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.CLOCK,SpecialItem.Colore.EMPTY);
+        }
+
+
         else{
             return null;
         }
     }
 
     public void gravita(Entita e) {    
+        if (FREEZE>0 && e instanceof Nemico) return; 
         if (e instanceof Monsta || e instanceof Pulpul) return; // non applico mai la gravita a Monsta e Pulpul
 
         if (livello.isTPEntry(e.getX(),e.getY())){
@@ -223,10 +235,12 @@ public class Partita implements Serializable{
 
     // powerup raccolto! metodo che si occupa di applicarne gli effetti
     public void useSpecialItem(SpecialItem p){
+        addScore(p.getPoints());
         switch (p.getEffetto()){
             case SKIP_LVL3 -> livello.changeLevel(livello.getLevelNum()+3); //
             case SKIP_LVL5 -> livello.changeLevel(livello.getLevelNum()+5); // TODO: controllare che vada bene perchè non lo so :)
             case SKIP_LVL7 -> livello.changeLevel(livello.getLevelNum()+7); // 
+            case FREEZE    -> FREEZE = 200;
             case NULL -> System.out.println("ERRORE: Effetto SpecialItem non trovato!");
             default -> ((Giocatore)entitaAttive.getFirst()).applyEffetto(p.getEffetto());
         }

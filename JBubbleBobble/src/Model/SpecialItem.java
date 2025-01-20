@@ -22,7 +22,8 @@ public class SpecialItem extends Item {
         CANDY(1000),
         RING(1000), 
         SNEAKER(100),
-        UMBRELLA(200);
+        UMBRELLA(200),
+        CLOCK(200);
 
         private final int PUNTI;
 
@@ -49,6 +50,8 @@ public class SpecialItem extends Item {
         SKIP_LVL3,          // skippa 3 livelli
         SKIP_LVL5,          // skippa 5 livelli
         SKIP_LVL7,          // skippa 7 livelli
+
+        FREEZE,             // blocca i nemici per un po' di tempo
 
         NULL
     }
@@ -82,6 +85,7 @@ public class SpecialItem extends Item {
                 case PINK    -> Effetto.SKIP_LVL7;          // 10
                 default -> Effetto.NULL;
             };
+            case CLOCK -> Effetto.FREEZE;                   // 11
             default -> Effetto.NULL;
         };
 
@@ -106,7 +110,7 @@ public class SpecialItem extends Item {
                     default     -> "";
                 };
                 case SNEAKER      -> "sneaker.png";    // SNEAKER
-                // case CLOCK
+                case CLOCK      -> "clock.png";        // CLOCK
                 // case 
             };
             this.points = tipologia.PUNTI;
