@@ -24,11 +24,10 @@ TODOLIST
 - [x] abbellire un po' il menu dai
 - [x] far tornare il pannello statistiche
 - [ ] schermata WIN
-- 
 
 BUG da fixare:
 - [x] i nemici bubbled che si liberano in alto a DX o SX del livello sono out of bounds (bisogna dare limiti più severi alle bolle che si spostano lungo le pareti)
-- [ ] sta cosa che le bolle sul lato DX dello schermo si buggano deve finire >:( (più che altro non posso ammazzare i nemici cioè è gravissima questa cosa quei bastardi devono morire)
+- [x] sta cosa che le bolle sul lato DX dello schermo si buggano deve finire >:( (più che altro non posso ammazzare i nemici cioè è gravissima questa cosa quei bastardi devono morire)
 
 I BIG 4
 - [x] implementazione completa di tutti e 6 i nemici (comportamento e sprite)
