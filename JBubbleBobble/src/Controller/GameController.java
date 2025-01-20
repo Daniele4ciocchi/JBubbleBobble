@@ -151,8 +151,13 @@ public class GameController {
         Entita collision = partita.checkCollision(partita.getEntita().getFirst());
 
         if (collision instanceof Nemico &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0){
-            ((Giocatore) (partita.getEntita().getFirst())).die();
-            partita.addNemiciUccisi();
+            if (partita.getChacknHeart()){
+                partita.addScore(500);
+                ((Entita)collision).die();
+            }else{
+                ((Giocatore) (partita.getEntita().getFirst())).die();
+                partita.addNemiciUccisi();
+            }
         }
         if (collision instanceof BollaSemplice){
             partita.addBollaScoppiata();
@@ -182,6 +187,7 @@ public class GameController {
         
         if (collision instanceof PointItem){
             partita.addScore(((PointItem)collision).getTipologia().getPunti());
+            partita.addItemRaccolto();
             partita.removeEntita(collision);
         }
 
@@ -191,11 +197,10 @@ public class GameController {
                     case SpecialItem.Colore.PINK -> partita.addCaramellaRosaMangiata();
                     case SpecialItem.Colore.BLUE -> partita.addCaramellaBluMangiata();
                     case SpecialItem.Colore.YELLOW -> partita.addCaramellaGialleMangiata();
-                    
                 }
             }
-            
             partita.useSpecialItem((SpecialItem)collision);
+            partita.addItemRaccolto();
             partita.removeEntita(collision);
         }
 
@@ -249,7 +254,7 @@ public class GameController {
 
     public void moveEnemies(){
         for (Entita e : partita.getEntita()){
-            if (partita.getFreeze()>0) continue;
+            if (partita.getFreeze()>0 || partita.getChacknHeart()) continue;
             if (e instanceof Nemico){
                 ((Nemico)e).move(partita.getEntita().getFirst().getX(), partita.getEntita().getFirst().getY(), partita.getLivello());
             }
@@ -355,7 +360,7 @@ public class GameController {
                     e.addObserver(view.getPanel());
                 }
                 counter = 0;
-                
+                partita.setChacknHeart(false);
             }
     }
 

@@ -27,13 +27,14 @@ public class Partita implements Serializable{
     private int caramelleRosaMangiate;
     private int caramelleGialleMangiate;
     private int caramelleBluMangiate;
+    private int itemRaccolti;
 
     // campi dei buff dei powerup, per info guarda in PowerUp.java
     private int FREEZE;
     private boolean SKIP3;
     private boolean SKIP5;
     private boolean SKIP7;
-
+    private boolean chacknheart;
 
     /**
      * Costruttore 1 della classe Partita,
@@ -93,6 +94,8 @@ public class Partita implements Serializable{
     public boolean getSkip3(){return SKIP3;}
     public boolean getSkip5(){return SKIP5;}
     public boolean getSkip7(){return SKIP7;}
+    public int getItemRaccolti(){return itemRaccolti;}
+    public boolean getChacknHeart(){return chacknheart;}
 
     // metodi per le variabili di statistica per gli specialItem
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
@@ -104,12 +107,14 @@ public class Partita implements Serializable{
     public void addCaramellaRosaMangiata(){this.caramelleRosaMangiate++;}
     public void addCaramellaGialleMangiata(){this.caramelleGialleMangiate++;}
     public void addCaramellaBluMangiata(){this.caramelleBluMangiate++;}
+    public void addItemRaccolto(){this.itemRaccolti++;}
 
     public void setVinta() {vinta = true;}
     public void setFreeze(int b){FREEZE = b;}
     public void setSkip3(boolean b){SKIP3 = b;}
     public void setSkip5(boolean b){SKIP5 = b;}
     public void setSkip7(boolean b){SKIP7 = b;}
+    public void setChacknHeart(boolean b){chacknheart = b;}
 
     public void addEntita(Entita entita){this.entitaAttive.add(entita);}
     public void removeEntita(Entita entita) {
@@ -208,6 +213,8 @@ public class Partita implements Serializable{
             caramelleBluMangiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.BLUE);
         }
+
+        // CLOCK
         else if (bolleFulmineScoppiate == 1){
             bolleFulmineScoppiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CLOCK,SpecialItem.Colore.EMPTY);
@@ -226,12 +233,18 @@ public class Partita implements Serializable{
             bolleAcquaScoppiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
         }
-//32*16*15
+        
+        // SNEAKER
         else if (((Giocatore)entitaAttive.getFirst()).getPassi() == 32*16*15){
             ((Giocatore)entitaAttive.getFirst()).setPassi(0);
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.SNEAKER,SpecialItem.Colore.EMPTY);
         }
             
+        // CHACKNHEART
+        else if (itemRaccolti == 2){
+            itemRaccolti = 0;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.CHACKNHEART,SpecialItem.Colore.EMPTY);
+        }
 
         else{
             return null;
@@ -239,7 +252,7 @@ public class Partita implements Serializable{
     }
 
     public void gravita(Entita e) {    
-        if (FREEZE>0 && e instanceof Nemico) return; 
+        if ((getChacknHeart()||FREEZE>0) && e instanceof Nemico) return; 
         if (e instanceof Monsta || e instanceof Pulpul) return; // non applico mai la gravita a Monsta e Pulpul
 
         if (livello.isTPEntry(e.getX(),e.getY())){
@@ -266,9 +279,10 @@ public class Partita implements Serializable{
     public void useSpecialItem(SpecialItem p){
         addScore(p.getPoints());
         switch (p.getEffetto()){
-            case SKIP_LVL3 -> setSkip3(true); //
-            case SKIP_LVL5 -> setSkip5(true); // TODO: controllare che vada bene perchè non lo so :)
-            case SKIP_LVL7 -> setSkip7(true); // 
+            case SKIP_LVL3 -> setSkip3(true);
+            case SKIP_LVL5 -> setSkip5(true);
+            case SKIP_LVL7 -> setSkip7(true);
+            case CHACKNHEART -> setChacknHeart(true);
             case FREEZE    -> FREEZE = 200;
             case NULL -> System.out.println("ERRORE: Effetto SpecialItem non trovato!");
             default -> ((Giocatore)entitaAttive.getFirst()).applyEffetto(p.getEffetto());

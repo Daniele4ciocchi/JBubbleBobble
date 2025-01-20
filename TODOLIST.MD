@@ -7,11 +7,11 @@ TODOLIST
 - [x] fare una grafica decente (the big one)
 - [x] aggiungere un cooldown agli spari delle bolle
 - [x] implementazione buff powerup: es. modificatori bolle
-- [ ] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
+- [x] decisione dei 12 powerup da implementare E che siano fattibili e fedeli
 - [x] AudioManager.java: importazione dal PDF del prof
 - [x] AudioManager.java: fixare i problemi con la libreria sun
 - [ ] scelta+importazione sound effects (SFX)
-- [ ] implementare almeno 2 tipi di bolle
+- [x] implementare almeno 2 tipi di bolle
 - [ ] livelli profilo, implementare 
 - [x] importazione e/o creazione di 16 livelli "testuali"
 - [x] attribuire i diversi tipi di sprite per ognuno dei 16 livelli
@@ -31,14 +31,14 @@ BUG da fixare:
 - [ ] sta cosa che le bolle sul lato DX dello schermo si buggano deve finire >:( (più che altro non posso ammazzare i nemici cioè è gravissima questa cosa quei bastardi devono morire)
 
 I BIG 4
-- [ ] implementazione completa di tutti e 6 i nemici (comportamento e sprite)
+- [x] implementazione completa di tutti e 6 i nemici (comportamento e sprite)
     - [x] ZenChan
     - [x] Banebou
     - [x] Monsta
     - [x] Hidegon
     - [x] Pulpul
-    - [ ] Mighta
-- [ ] implementazione completa di tutti e 12 i powerup e i 6 point items
+    - [x] Mighta
+- [x] implementazione completa di tutti e 12 i powerup e i 6 point items
     - [x] Candy (PINK)
     - [x] Candy (BLUE)
     - [x] Candy (YELLOW)
@@ -50,6 +50,6 @@ I BIG 4
     - [x] Umbrella (PINK):  DA TESTARE
     - [x] Sneaker
     - [x] Clock
-    - [ ] Chack'n Heart: manca tutto
+    - [x] Chack'n Heart
 - [ ] SFX (audio)
 - [ ] score system + salvataggio e caricamento profilo su disco
