@@ -23,7 +23,8 @@ public class SpecialItem extends Item {
         RING(1000), 
         SNEAKER(100),
         UMBRELLA(200),
-        CLOCK(200);
+        CLOCK(200),
+        CHACKNHEART(3000);
 
         private final int PUNTI;
 
@@ -52,6 +53,8 @@ public class SpecialItem extends Item {
         SKIP_LVL7,          // skippa 7 livelli
 
         FREEZE,             // blocca i nemici per un po' di tempo
+
+        CHACKNHEART,        // giocatore invincibile(?) + nemici freezati + kill al contatto
 
         NULL
     }
@@ -86,6 +89,7 @@ public class SpecialItem extends Item {
                 default -> Effetto.NULL;
             };
             case CLOCK -> Effetto.FREEZE;                   // 11
+            case CHACKNHEART -> Effetto.CHACKNHEART;
             default -> Effetto.NULL;
         };
 
@@ -109,9 +113,9 @@ public class SpecialItem extends Item {
                     case PINK       -> "image_46.png";    // PINK UMBRELLA
                     default     -> "";
                 };
-                case SNEAKER      -> "sneaker.png";       // SNEAKER
-                case CLOCK      -> "clock.png";           // CLOCK
-                // case 
+                case SNEAKER      -> "sneaker.png";         // SNEAKER
+                case CLOCK        -> "clock.png";           // CLOCK
+                case CHACKNHEART  -> "chacknheart.png";     // CHACKNHEART
             };
             this.points = tipologia.PUNTI;
             

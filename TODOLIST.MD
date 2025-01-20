@@ -45,12 +45,11 @@ I BIG 4
     - [x] Ring (PINK)
     - [x] Ring (RED)
     - [x] Ring (BLUE)
-    - [ ] Umbrella (ORANGE):DA TESTARE
-    - [ ] Umbrella (RED):   DA TESTARE
-    - [ ] Umbrella (PINK):  DA TESTARE
-    - [ ] Sneaker
+    - [x] Umbrella (ORANGE):DA TESTARE
+    - [x] Umbrella (RED):   DA TESTARE
+    - [x] Umbrella (PINK):  DA TESTARE
+    - [x] Sneaker
     - [x] Clock
-    - [ ] Chack'n Heart
-
+    - [ ] Chack'n Heart: manca tutto
 - [ ] SFX (audio)
 - [ ] score system + salvataggio e caricamento profilo su disco
