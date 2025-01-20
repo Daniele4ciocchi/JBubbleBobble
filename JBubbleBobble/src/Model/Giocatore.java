@@ -49,6 +49,7 @@ public class Giocatore extends Personaggio{
     public boolean getBonusSalto(){return BONUS_SALTO;}
     public boolean getBonusSparo(){return BONUS_SPARO;}
     
+    public void setPassi(int p){this.passi = p;}
     public void setInvincibilita(int i){this.invincibilita = i;}
     public void addLife(){this.life++;}
     public void removeLife(){this.life--;}
@@ -129,6 +130,7 @@ public class Giocatore extends Personaggio{
         BONUS_SALTO = false;
         BONUS_SPARO = false;
         SNEAKER_BUFF = false;
+        this.movimentoX = 10;
         
         setShooting(false);
         this.dead = true;
@@ -155,7 +157,10 @@ public class Giocatore extends Personaggio{
             case BONUS_MOV -> BONUS_MOV = true;
             case BONUS_SALTO -> BONUS_SALTO = true;
             case BONUS_SPARO -> BONUS_SPARO = true;
-            case SNEAKER_BUFF -> SNEAKER_BUFF = true;
+            case SNEAKER_BUFF -> {
+                SNEAKER_BUFF = true;
+                this.movimentoX = 15;
+            }
         }
     }
 }

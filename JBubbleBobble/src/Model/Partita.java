@@ -226,6 +226,12 @@ public class Partita implements Serializable{
             bolleAcquaScoppiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
         }
+//32*16*15
+        else if (((Giocatore)entitaAttive.getFirst()).getPassi() == 32*16*15){
+            ((Giocatore)entitaAttive.getFirst()).setPassi(0);
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.SNEAKER,SpecialItem.Colore.EMPTY);
+        }
+            
 
         else{
             return null;
