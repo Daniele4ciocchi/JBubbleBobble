@@ -30,6 +30,10 @@ public class Partita implements Serializable{
 
     // campi dei buff dei powerup, per info guarda in PowerUp.java
     private int FREEZE;
+    private boolean SKIP3;
+    private boolean SKIP5;
+    private boolean SKIP7;
+
 
     /**
      * Costruttore 1 della classe Partita,
@@ -86,6 +90,9 @@ public class Partita implements Serializable{
     public Livello getLivello(){return this.livello;}
     public boolean isVinta(){return this.vinta;}
     public int getFreeze(){return FREEZE;}
+    public boolean getSkip3(){return SKIP3;}
+    public boolean getSkip5(){return SKIP5;}
+    public boolean getSkip7(){return SKIP7;}
 
     // metodi per le variabili di statistica per gli specialItem
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
@@ -100,6 +107,9 @@ public class Partita implements Serializable{
 
     public void setVinta() {vinta = true;}
     public void setFreeze(int b){FREEZE = b;}
+    public void setSkip3(boolean b){SKIP3 = b;}
+    public void setSkip5(boolean b){SKIP5 = b;}
+    public void setSkip7(boolean b){SKIP7 = b;}
 
     public void addEntita(Entita entita){this.entitaAttive.add(entita);}
     public void removeEntita(Entita entita) {
@@ -250,9 +260,9 @@ public class Partita implements Serializable{
     public void useSpecialItem(SpecialItem p){
         addScore(p.getPoints());
         switch (p.getEffetto()){
-            case SKIP_LVL3 -> livello.changeLevel(livello.getLevelNum()+3); //
-            case SKIP_LVL5 -> livello.changeLevel(livello.getLevelNum()+5); // TODO: controllare che vada bene perchè non lo so :)
-            case SKIP_LVL7 -> livello.changeLevel(livello.getLevelNum()+7); // 
+            case SKIP_LVL3 -> setSkip3(true); //
+            case SKIP_LVL5 -> setSkip5(true); // TODO: controllare che vada bene perchè non lo so :)
+            case SKIP_LVL7 -> setSkip7(true); // 
             case FREEZE    -> FREEZE = 200;
             case NULL -> System.out.println("ERRORE: Effetto SpecialItem non trovato!");
             default -> ((Giocatore)entitaAttive.getFirst()).applyEffetto(p.getEffetto());

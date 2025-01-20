@@ -336,7 +336,18 @@ public class GameController {
                     timer.stop();
                 }
                 partita.svuotaEntita();
-                partita.getLivello().changeLevel();
+                if (partita.getSkip3()){
+                    partita.getLivello().changeLevel(partita.getLivello().getLevelNum() + 3);
+                    partita.setSkip3(false);
+                }else if (partita.getSkip5()){
+                    partita.getLivello().changeLevel(partita.getLivello().getLevelNum() + 5);
+                    partita.setSkip5(false);
+                }else if (partita.getSkip7()){
+                    partita.getLivello().changeLevel(partita.getLivello().getLevelNum() + 7);
+                    partita.setSkip7(false);
+                }else {
+                    partita.getLivello().changeLevel();
+                }
                 partita.posizionaEntita();
                 ((Giocatore)partita.getEntita().getFirst()).resetPosizione();
                 nextLevelCounter = 255;
