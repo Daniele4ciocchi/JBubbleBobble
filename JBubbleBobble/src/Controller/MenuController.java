@@ -54,7 +54,7 @@ public class MenuController {
         //per ora ok, ma sta roba va cambiata
         Profilo profiloView = Profilo.getProfilo();
         ProfiloView view = new ProfiloView(profiloView);
-        view.createProfiloFrame();
+        
     }
 
     public MenuView getView() {
