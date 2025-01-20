@@ -108,7 +108,7 @@ public class SpecialItem extends Item {
                 };
             };
             this.points = tipologia.PUNTI;
-            System.out.println("SpecialItem created: " + this.tipologia + " " + this.getX() + " " + this.getY());
+            
     }
     
     public Tipologia getTipologia(){

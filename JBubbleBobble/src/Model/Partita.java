@@ -148,8 +148,6 @@ public class Partita implements Serializable{
         while(!livello.isEmpty(sx*16,sy*16)){
             sx = random.nextInt(34);
             sy = random.nextInt(24);
-
-            System.out.println("sx: " + sx + " sy: " + sy + "gx" + entitaAttive.getFirst().getX() + "gy" + entitaAttive.getFirst().getY());
         }
 
         // UMBRELLA
