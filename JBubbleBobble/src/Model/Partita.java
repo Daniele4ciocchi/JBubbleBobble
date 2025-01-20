@@ -203,6 +203,19 @@ public class Partita implements Serializable{
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CLOCK,SpecialItem.Colore.EMPTY);
         }
 
+        // UMBRELLA
+        else if (bolleAcquaScoppiate == 1){ //DOVREBBE ESSERE 5, ma 1 per debug facile
+            bolleAcquaScoppiate++;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
+        }
+        else if (bolleAcquaScoppiate == 11){
+            bolleAcquaScoppiate++;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.RED);
+        }
+        else if (bolleAcquaScoppiate == 16){
+            bolleAcquaScoppiate = 0;
+            return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
+        }
 
         else{
             return null;
