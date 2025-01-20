@@ -46,18 +46,23 @@ public class Monsta extends Nemico {
     }
     
     public void moveVerticale(Livello l) {
-        if (goingUp) {
-            if (!l.isWalkable(posx, posy+getMovimentoY()) && !l.isTPExit(posx, posy+getMovimentoY())) {
-                posy+=movimentoX;
+        try {
+            if (goingUp) {
+                if (!l.isWalkable(posx, posy+getMovimentoY()) && !l.isTPExit(posx, posy+getMovimentoY())) {
+                    posy+=movimentoX;
+                } else {
+                    goingUp = false;
+                }
             } else {
-                goingUp = false;
+                if (!l.isWalkable(posx, posy-(getEntitysize()/2))){
+                    posy-=movimentoX;
+                } else {
+                    goingUp = true;
+                }
             }
-        } else {
-            if (!l.isWalkable(posx, posy-(getEntitysize()/2))){
-                posy-=movimentoX;
-            } else {
-                goingUp = true;
-            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Monsta out of bounds");
+            setPosizione(posx, -posy);
         }
     }
 }
