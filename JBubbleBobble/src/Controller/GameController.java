@@ -100,10 +100,8 @@ public class GameController {
         else if (rightPressed) giocatore.moveRight(partita.getLivello());
 
         if (giocatore.getBonusMov()){
-            if (passiCounter == 0){
-                passiCounter = giocatore.getPassi();
-            }
             partita.addScore(10*Math.abs(giocatore.getPassi() - passiCounter));
+            passiCounter = giocatore.getPassi();
         }else {
             passiCounter = 0;
         }
