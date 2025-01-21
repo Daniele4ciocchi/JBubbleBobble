@@ -101,6 +101,7 @@ public class Partita implements Serializable{
     public int getItemRaccolti(){return itemRaccolti;}
     public boolean getChacknHeart(){return chacknheart;}
     public Stato getStato(){return this.stato;}
+    public Stato getStato(){return this.stato;}
 
     // metodi per le variabili di statistica per gli specialItem
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
@@ -118,6 +119,7 @@ public class Partita implements Serializable{
     public void setSkip5(boolean b){SKIP5 = b;}
     public void setSkip7(boolean b){SKIP7 = b;}
     public void setChacknHeart(boolean b){chacknheart = b;}
+    public void setStato(Stato s){this.stato = s;}
     public void setStato(Stato s){this.stato = s;}
 
     public void addEntita(Entita entita){this.entitaAttive.add(entita);}
