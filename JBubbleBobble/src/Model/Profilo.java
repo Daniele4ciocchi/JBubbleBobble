@@ -17,9 +17,7 @@ public class Profilo implements Serializable{
     private Image avatar; // immagine profilo, decisa nel costruttore
     private ArrayList<Partita> partite = new ArrayList<Partita>(); // cronologia partite
     
-
-
-    private int livelloProfilo; // livello del profilo, 
+    private int livelloProfilo; // livello del profilo
 
 
     // COSTRUTTORE

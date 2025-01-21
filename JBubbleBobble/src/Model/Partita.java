@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Controller.AudioManager;
+
 public class Partita implements Serializable{
     public enum Stato{
         IN_CORSO, PERSA, VINTA
@@ -81,6 +83,7 @@ public class Partita implements Serializable{
             case "LIVELLO15" -> 15;
             case "LIVELLO16" -> 16;
             case "GAMEOVER"  -> 104;
+            case "WIN!!!"    -> 105;
             default -> 1;
         });
 
@@ -296,6 +299,7 @@ public class Partita implements Serializable{
     // aggiunge questa partita allo storico partite del giocatore
     public void end(){
         Profilo.getProfilo().addPartita(this);
+        AudioManager.getInstance().setVolume(0);
         //Profilo.getProfilo().saveProfilo("JBubbleBobble");
     }
 }

@@ -13,29 +13,13 @@ import javax.sound.sampled.*;
  */
 public class AudioManager {
 
-    /**
-     * Istanza della classe
-     */
+
     private static AudioManager instance;
-
-    /**
-     * Clip audio
-     */
     private Clip clip;
-    FloatControl gainControl;
-    /**
-     * Nome del file audio per distinguere i vari effetti
-     */
+    private Clip mainsong;
+    private FloatControl gainControl;
     private String sound;
-
-    /**
-     * Percorso della cartella contenente i file audio
-     */
-    private final String path = "JBubbleBobble" + File.separator + "src" + File.separator + "Model" + File.separator + "data" + File.separator + "songs" + File.separator;
-
-    /**
-     * Percorso del file audio per la musica di sottofondo
-     */
+    private final String path = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "songs" + File.separator;
     private final String music = path + "MainTheme.wav";
 
     /**
@@ -63,34 +47,45 @@ public class AudioManager {
      * @param filename Percorso del file audio
      */
     public void playMusic(String filename) {
-
         try {
             InputStream in = new BufferedInputStream(new FileInputStream(filename));
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(in);
-            clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.addLineListener(event -> {
+            mainsong = AudioSystem.getClip();
+            mainsong.open(audioIn);
+            mainsong.addLineListener(event -> {
                 if (event.getType() == LineEvent.Type.STOP) {
                     playMusic(filename);
                 }
             });
             
+            mainsong.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
+            e1.printStackTrace();
+        }
+        gainControl = (FloatControl) mainsong.getControl(FloatControl.Type.MASTER_GAIN);
+    }
+
+    public void play(){
+        mainsong.start();
+    }
+
+    public void playSound(String s){
+        try {
+            InputStream in = new BufferedInputStream(new FileInputStream(path + s + ".wav"));
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(in);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
             clip.start();
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
             e1.printStackTrace();
         }
-        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-    }
-
-    public void play(){
-        clip.start();
     }
 
     /**
      * Metodo che ferma la musica di sottofondo
      */
     public void stop() {
-        clip.stop();
+        mainsong.stop();
     }
 
     public void setVolume(float volume){
@@ -100,27 +95,4 @@ public class AudioManager {
     public double getVolume(){
         return gainControl.getValue();
     }
-
-//     /**
-//      * Metodo che riproduce gli effetti sonori
-//      *
-//      * @param effect effetto da riprodurre
-//      */
-//     public void playCardEffect(String effect) {
-//         if (effect.equals("carta"))
-//             sound = "card.wav";
-//         else if (effect.equals("vittoria"))
-//             sound = "winner.wav";
-//         else
-//             sound = "loser.wav";
-//         try {
-//             InputStream in = new BufferedInputStream(new FileInputStream(path + sound));
-//             AudioInputStream audioIn = AudioSystem.getAudioInputStream(in);
-//             clip = AudioSystem.getClip();
-//             clip.open(audioIn);
-//             clip.start();
-//         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
-//             e1.printStackTrace();
-//         }
-//     }
 }
