@@ -336,7 +336,7 @@ public class GameController {
     public void goToNextLevel(){
         nextLevelCounter--;
             if (nextLevelCounter == 0){
-                if (partita.getLivello().getLevelNum() == 104){
+                if (partita.getLivello().getLevelNum() == 104 || partita.getLivello().getLevelNum() == 105){
                     view.getFrame().dispose();
                     timer.stop();
                 }
@@ -370,6 +370,15 @@ public class GameController {
             partita.svuotaEntita();
             partita.setFinita();
             partita.end(false);
+            view.getPanel().repaint();
+        }
+    }
+
+    public void checkWin(){
+        if (partita.getLivello().getLevelNum() == 16 && partita.getEntita().stream().filter(e -> e instanceof Nemico).count() == 0){
+            partita.getLivello().changeLevel(105);
+            partita.setFinita();
+            partita.end(true);
             view.getPanel().repaint();
         }
     }
@@ -430,6 +439,7 @@ public class GameController {
         if (checkEntityPresence())goToNextLevel();
 
         checkGameOver();
+        checkWin();
         checkPlayerMovement();
     }
 }
