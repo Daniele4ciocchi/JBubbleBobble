@@ -8,15 +8,18 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Partita implements Serializable{
+    public enum Stato{
+        IN_CORSO, PERSA, VINTA
+    }
+
+    private Stato stato;
+
     private Random random = new Random();
     private static final long serialVersionUID = 1L; // serve per il Serializable
 
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
     private ArrayList<Entita> entitaMorte;
 
-
-    private boolean vinta; // di default inizializzata a false (partita persa)
-    private boolean finita;
     private Livello livello;
 
     private int score;
@@ -49,7 +52,7 @@ public class Partita implements Serializable{
         entitaAttive.add(new Giocatore());
 
         this.saltiEffettuati = 0;
-        this.vinta = false;
+        this.stato = Stato.IN_CORSO;
     }
 
     /**
@@ -81,8 +84,9 @@ public class Partita implements Serializable{
             case "GAMEOVER"  -> 104;
             default -> 1;
         });
+
         this.saltiEffettuati = 0; 
-        this.vinta = false;
+        this.stato = Stato.IN_CORSO;
     }
 
     // getters
