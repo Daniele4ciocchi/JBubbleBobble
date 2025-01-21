@@ -245,7 +245,7 @@ public class Partita implements Serializable{
         }
             
         // CHACKNHEART
-        else if (itemRaccolti == 2){
+        else if (itemRaccolti == 22){
             itemRaccolti = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CHACKNHEART,SpecialItem.Colore.EMPTY);
         }
