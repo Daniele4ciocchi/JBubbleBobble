@@ -58,12 +58,14 @@ public class GameController {
                 if (e.getKeyChar() == KeyEvent.VK_SPACE) {
                     if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
                         giocatore.jump();
+                        AudioManager.getInstance().playSound("jump");
                         partita.addSaltoEffettuato();
                         if (giocatore.getBonusSalto())partita.addScore(500);
                     }
                 } else if (e.getKeyChar() == 'j' || e.getKeyChar() == 'J') {
                     if(Math.abs(counter - bubbleCounter) > (giocatore.getBolleFirerate() ? 5 : 10) && !giocatore.isDead()){
                         Bolla b = giocatore.shoot();
+                        AudioManager.getInstance().playSound("shoot");
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
                         bubbleCounter = counter;
@@ -154,7 +156,10 @@ public class GameController {
             if (partita.getChacknHeart()){
                 partita.addScore(500);
                 ((Entita)collision).die();
-            } else ((Giocatore)(partita.getEntita().getFirst())).die();
+            } else {
+                ((Giocatore)(partita.getEntita().getFirst())).die();
+                if (morteGiocatoreCounter == 0) AudioManager.getInstance().playSound("death");
+            }
         }
         if (collision instanceof BollaSemplice){
             partita.addBollaScoppiata();
@@ -184,6 +189,7 @@ public class GameController {
         
         if (collision instanceof PointItem){
             partita.addScore(((PointItem)collision).getTipologia().getPunti());
+            AudioManager.getInstance().playSound("pickup");
             partita.addItemRaccolto();
             partita.removeEntita(collision);
         }
@@ -197,6 +203,7 @@ public class GameController {
                 }
             }
             partita.useSpecialItem((SpecialItem)collision);
+            AudioManager.getInstance().playSound("pickup");
             partita.addItemRaccolto();
             partita.removeEntita(collision);
         }
@@ -362,6 +369,8 @@ public class GameController {
             partita.getLivello().changeLevel(104);
             partita.svuotaEntita();
             partita.setStato(Partita.Stato.PERSA);
+            AudioManager.getInstance().stop();
+            AudioManager.getInstance().playSound("gameover");
             partita.end();
             view.getPanel().repaint();
         }
@@ -371,6 +380,7 @@ public class GameController {
         if (partita.getLivello().getLevelNum() == 16 && partita.getEntita().stream().filter(e -> e instanceof Nemico).count() == 0){
             partita.getLivello().changeLevel(105);
             partita.setStato(Partita.Stato.VINTA);
+            AudioManager.getInstance().playSound("win");
             partita.end();
             view.getPanel().repaint();
         }
@@ -402,7 +412,7 @@ public class GameController {
 
     private void startGameLoop(){
         timer = new Timer(40, e -> {gameLoop();});
-        //AudioManager.getInstance();
+        AudioManager.getInstance();
         
         partita.posizionaEntita();
         view.getPanel().repaint();

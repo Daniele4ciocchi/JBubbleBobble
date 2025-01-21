@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Observer;
 
+import Controller.AudioManager;
+
 //da fare singleton
 public class Giocatore extends Personaggio{
     private int life = 3;
@@ -131,7 +133,8 @@ public class Giocatore extends Personaggio{
         BONUS_SPARO = false;
         SNEAKER_BUFF = false;
         this.movimentoX = 10;
-        
+        // AudioManager.getInstance().playDeathSound();
+
         setShooting(false);
         this.dead = true;
         setChanged();
@@ -143,7 +146,7 @@ public class Giocatore extends Personaggio{
             this.dead = false;
             this.removeLife();
             this.resetPosizione();
-        } else return; // TODO: GAME OVER (idea: lvl17?)
+        } else return;
         
         setChanged();
         notifyObservers();

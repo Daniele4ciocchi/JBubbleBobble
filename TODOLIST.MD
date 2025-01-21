@@ -50,8 +50,11 @@ I BIG 4
     - [x] Clock
     - [x] Chack'n Heart
 - [ ] SFX (audio)
-    - [ ] background music
-    - [ ] .useItem()
-    - [ ] .jump()
-    - [ ] .shoot()
+    - [x] background music
+    - [x] .useItem()
+    - [x] .jump()
+    - [x] .shoot()
+    - [ ] GAME OVER
+    - [ ] WIN
+    - [ ] stop della background music quando finisce la partita (WIN/GAMEOVER)
 - [ ] score system + salvataggio e caricamento profilo su disco
