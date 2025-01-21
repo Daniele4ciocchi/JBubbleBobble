@@ -40,7 +40,7 @@ public class GameController {
         view.addTopPanel(new TopPanel());
         view.addPartitaPanel(new PartitaView());
         view.getPanel().setPartita(partita);
-
+        
         startGameLoop();
         setupKeyBindings();
         

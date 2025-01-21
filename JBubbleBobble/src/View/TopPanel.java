@@ -1,6 +1,9 @@
 package View;
 
 import javax.swing.*;
+
+import Model.Profilo;
+
 import java.awt.*;
 
 
@@ -47,7 +50,7 @@ public class TopPanel extends JPanel {
         scorePanel.setLayout(new BorderLayout());
 
         scoreLabel = new JLabel("0");
-        highScoreLabel = new JLabel("0");
+        highScoreLabel = new JLabel(Profilo.getProfilo().getHighScore() + "");
 
         scoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
         highScoreLabel.setHorizontalAlignment(SwingConstants.RIGHT);

@@ -20,6 +20,7 @@ public class Profilo implements Serializable{
 
 
     private int livelloProfilo; // livello del profilo, 
+    private static int highScore = 0;
 
 
     // COSTRUTTORE
@@ -58,6 +59,10 @@ public class Profilo implements Serializable{
         return (int) partite.stream().filter(x -> x.getStato() == Partita.Stato.PERSA).count();
     }
 
+    public int getHighScore() {
+        return highScore;
+    }
+
     // Restituisce il livello del profilo
     public int getLivelloProfilo() {
         return livelloProfilo;
@@ -72,6 +77,10 @@ public class Profilo implements Serializable{
 
     public void setNickname(String n) {
         nickname = n;
+    }
+
+    public static void setHighScore(int hs) {
+        if (hs > highScore)highScore = hs;
     }
 
     // Incrementa di 1 il livello del profilo
@@ -102,4 +111,5 @@ public class Profilo implements Serializable{
             return (Profilo) ois.readObject();
         }
     }
+
 }

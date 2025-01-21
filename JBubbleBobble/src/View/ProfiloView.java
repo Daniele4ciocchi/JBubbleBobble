@@ -21,12 +21,14 @@ public class ProfiloView {
         this.profilo = profilo;
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(new JLabel("Nickname: " + profilo.getNickname()));
         panel.add(new JLabel("Livello: " + profilo.getLivelloProfilo()));
         panel.add(new JLabel("Partite giocate: " + profilo.getPartite().size()));
         panel.add(new JLabel("Punti totali: " + profilo.getPuntiTotali()));
         panel.add(new JLabel("Vittorie: " + profilo.getVinte()));
         panel.add(new JLabel("Perdite: " + profilo.getPerse()));
+        
         
         frame.add(panel);
         frame.setVisible(true);
