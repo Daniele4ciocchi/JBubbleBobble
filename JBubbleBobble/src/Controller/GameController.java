@@ -154,10 +154,7 @@ public class GameController {
             if (partita.getChacknHeart()){
                 partita.addScore(500);
                 ((Entita)collision).die();
-            }else{
-                ((Giocatore) (partita.getEntita().getFirst())).die();
-                partita.addNemiciUccisi();
-            }
+            } else ((Giocatore)(partita.getEntita().getFirst())).die();
         }
         if (collision instanceof BollaSemplice){
             partita.addBollaScoppiata();
@@ -206,12 +203,10 @@ public class GameController {
 
         if (collision instanceof Fireball &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0){
             ((Giocatore) (partita.getEntita().getFirst())).die();
-            partita.addNemiciUccisi();
         }
 
         if (collision instanceof Boulder &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0){
             ((Giocatore) (partita.getEntita().getFirst())).die();
-            partita.addNemiciUccisi();
         }
         view.getTopPanel().updateScore(partita.getScore());
     }
@@ -356,20 +351,18 @@ public class GameController {
                 partita.posizionaEntita();
                 ((Giocatore)partita.getEntita().getFirst()).resetPosizione();
                 nextLevelCounter = 200;
-                for (Entita e : partita.getEntita()){
-                    e.addObserver(view.getPanel());
-                }
+                for (Entita e : partita.getEntita()) e.addObserver(view.getPanel());
                 counter = 0;
                 partita.setChacknHeart(false);
             }
     }
 
     public void checkGameOver(){
-        if (((Giocatore)partita.getEntita().getFirst()).getLife() == 0 && !partita.isFinita()){   
+        if (((Giocatore)partita.getEntita().getFirst()).getLife() == 0 && partita.getStato()==Partita.Stato.IN_CORSO){   
             partita.getLivello().changeLevel(104);
             partita.svuotaEntita();
-            partita.setFinita();
-            partita.end(false);
+            partita.setStato(Partita.Stato.PERSA);
+            partita.end();
             view.getPanel().repaint();
         }
     }
@@ -377,8 +370,8 @@ public class GameController {
     public void checkWin(){
         if (partita.getLivello().getLevelNum() == 16 && partita.getEntita().stream().filter(e -> e instanceof Nemico).count() == 0){
             partita.getLivello().changeLevel(105);
-            partita.setFinita();
-            partita.end(true);
+            partita.setStato(Partita.Stato.VINTA);
+            partita.end();
             view.getPanel().repaint();
         }
     }

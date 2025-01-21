@@ -23,7 +23,6 @@ public class Partita implements Serializable{
     private Livello livello;
 
     private int score;
-    private int nemiciUccisi;
     private int saltiEffettuati;
     private int bolleSparate;
     private int bolleScoppiate;
@@ -95,18 +94,16 @@ public class Partita implements Serializable{
     public int getSaltiEffettuati(){return this.saltiEffettuati;}
     public int getScore(){return this.score;}
     public Livello getLivello(){return this.livello;}
-    public boolean isVinta(){return this.vinta;}
-    public boolean isFinita(){return this.finita;}
     public int getFreeze(){return FREEZE;}
     public boolean getSkip3(){return SKIP3;}
     public boolean getSkip5(){return SKIP5;}
     public boolean getSkip7(){return SKIP7;}
     public int getItemRaccolti(){return itemRaccolti;}
     public boolean getChacknHeart(){return chacknheart;}
+    public Stato getStato(){return this.stato;}
 
     // metodi per le variabili di statistica per gli specialItem
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
-    public void addNemiciUccisi(){this.nemiciUccisi++;}
     public void addBollaSparata(){this.bolleSparate++;}
     public void addBollaScoppiata(){this.bolleScoppiate++;}
     public void addBollaFulmineScoppiata(){this.bolleFulmineScoppiate++;}
@@ -116,13 +113,12 @@ public class Partita implements Serializable{
     public void addCaramellaBluMangiata(){this.caramelleBluMangiate++;}
     public void addItemRaccolto(){this.itemRaccolti++;}
 
-    public void setVinta() {vinta = true;}
     public void setFreeze(int b){FREEZE = b;}
     public void setSkip3(boolean b){SKIP3 = b;}
     public void setSkip5(boolean b){SKIP5 = b;}
     public void setSkip7(boolean b){SKIP7 = b;}
     public void setChacknHeart(boolean b){chacknheart = b;}
-    public void setFinita(){finita = true;}
+    public void setStato(Stato s){this.stato = s;}
 
     public void addEntita(Entita entita){this.entitaAttive.add(entita);}
     public void removeEntita(Entita entita) {
@@ -229,7 +225,7 @@ public class Partita implements Serializable{
         }
 
         // UMBRELLA
-        else if (bolleAcquaScoppiate == 1){ //DOVREBBE ESSERE 5, ma 1 per debug facile
+        else if (bolleAcquaScoppiate == 5){ //DOVREBBE ESSERE 5, ma 1 per debug facile
             bolleAcquaScoppiate++;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
         }
@@ -237,7 +233,7 @@ public class Partita implements Serializable{
             bolleAcquaScoppiate++;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.RED);
         }
-        else if (bolleAcquaScoppiate == 16){
+        else if (bolleAcquaScoppiate == 17){
             bolleAcquaScoppiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
         }
@@ -298,8 +294,7 @@ public class Partita implements Serializable{
     }
 
     // aggiunge questa partita allo storico partite del giocatore
-    public void end(boolean vinta){
-        if (vinta) this.setVinta();
+    public void end(){
         Profilo.getProfilo().addPartita(this);
         //Profilo.getProfilo().saveProfilo("JBubbleBobble");
     }
