@@ -27,7 +27,6 @@ public class Profilo implements Serializable{
 
     public static Profilo getProfilo() {
         if (profilo == null) {
-            //profilo = loadProfilo("JBubbleBobble");
             profilo = new Profilo();
         }
         return profilo;
