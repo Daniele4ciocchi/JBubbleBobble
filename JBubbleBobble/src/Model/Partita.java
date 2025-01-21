@@ -2,6 +2,7 @@ package Model;
 
 
 import java.awt.*;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,6 +16,7 @@ public class Partita implements Serializable{
 
 
     private boolean vinta; // di default inizializzata a false (partita persa)
+    private boolean finita;
     private Livello livello;
 
     private int score;
@@ -89,6 +91,7 @@ public class Partita implements Serializable{
     public int getScore(){return this.score;}
     public Livello getLivello(){return this.livello;}
     public boolean isVinta(){return this.vinta;}
+    public boolean isFinita(){return this.finita;}
     public int getFreeze(){return FREEZE;}
     public boolean getSkip3(){return SKIP3;}
     public boolean getSkip5(){return SKIP5;}
@@ -110,6 +113,7 @@ public class Partita implements Serializable{
     public void setSkip3(boolean b){SKIP3 = b;}
     public void setSkip5(boolean b){SKIP5 = b;}
     public void setSkip7(boolean b){SKIP7 = b;}
+    public void setFinita(){finita = true;}
 
     public void addEntita(Entita entita){this.entitaAttive.add(entita);}
     public void removeEntita(Entita entita) {
@@ -279,5 +283,6 @@ public class Partita implements Serializable{
     public void end(boolean vinta){
         if (vinta) this.setVinta();
         Profilo.getProfilo().addPartita(this);
+        //Profilo.getProfilo().saveProfilo("JBubbleBobble");
     }
 }

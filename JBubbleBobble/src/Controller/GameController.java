@@ -350,7 +350,7 @@ public class GameController {
                 }
                 partita.posizionaEntita();
                 ((Giocatore)partita.getEntita().getFirst()).resetPosizione();
-                nextLevelCounter = 255;
+                nextLevelCounter = 200;
                 for (Entita e : partita.getEntita()){
                     e.addObserver(view.getPanel());
                 }
@@ -360,9 +360,10 @@ public class GameController {
     }
 
     public void checkGameOver(){
-        if (((Giocatore)partita.getEntita().getFirst()).getLife() == 0){   
+        if (((Giocatore)partita.getEntita().getFirst()).getLife() == 0 && !partita.isFinita()){   
             partita.getLivello().changeLevel(104);
             partita.svuotaEntita();
+            partita.setFinita();
             partita.end(false);
             view.getPanel().repaint();
         }
