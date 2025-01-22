@@ -7,6 +7,8 @@ import View.*;
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -36,6 +38,17 @@ public class GameController {
     public GameController(Partita partita, GameView view){
         this.partita = partita;
         this.view = view;
+
+        WindowAdapter windowAdapter = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                AudioManager.getInstance().stop();
+                timer.stop();
+                partita.setStato(Partita.Stato.PERSA);
+                partita.end();
+            }
+        };
+        view.addWindowListener(windowAdapter);
         
         view.addTopPanel(new TopPanel());
         view.addPartitaPanel(new PartitaView());

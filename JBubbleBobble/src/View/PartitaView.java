@@ -29,7 +29,7 @@ public class PartitaView extends JPanel implements Observer {
 
     private Partita partita;
     private BufferedImage image;
-
+    private double scala = 2.0;
     
 
     public PartitaView() {
@@ -281,6 +281,8 @@ public class PartitaView extends JPanel implements Observer {
 
     @Override
     protected void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.scale(scala, scala);
         super.paintComponent(g);
         paintLivello(g);
         paintEntita(g);

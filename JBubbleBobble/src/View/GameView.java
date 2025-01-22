@@ -12,6 +12,8 @@ import Controller.AudioManager;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,11 +37,12 @@ public class GameView  {
     public GameView() {
         // Create frame
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(586, 500);
+        frame.setSize(1152, 920);
         frame.setVisible(true);
         frame.setFocusable(true);
         frame.requestFocusInWindow();
         frame.setLocationRelativeTo(null);
+        
         
         
         try {
@@ -87,5 +90,9 @@ public class GameView  {
     
     public void updateScore(int score) {
         scoreLabel.setText("Score: " + score);
+    }
+
+    public void addWindowListener(WindowAdapter windowAdapter) {
+        frame.addWindowListener(windowAdapter);
     }
 }
