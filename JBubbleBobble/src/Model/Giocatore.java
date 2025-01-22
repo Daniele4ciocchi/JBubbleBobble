@@ -50,6 +50,7 @@ public class Giocatore extends Personaggio{
     public boolean getBonusMov(){return BONUS_MOV;}
     public boolean getBonusSalto(){return BONUS_SALTO;}
     public boolean getBonusSparo(){return BONUS_SPARO;}
+    public boolean getSneakerBuff(){return SNEAKER_BUFF;}
     
     public void setPassi(int p){this.passi = p;}
     public void setInvincibilita(int i){this.invincibilita = i;}
