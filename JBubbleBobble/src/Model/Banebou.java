@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Banebou extends Nemico{
     public Banebou(int x, int y){
-        super(x, y, 5, 25);
+        super(x, y, 5, 17);
         setSprites();
     }
     

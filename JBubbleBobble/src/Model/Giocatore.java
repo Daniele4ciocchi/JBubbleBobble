@@ -65,6 +65,14 @@ public class Giocatore extends Personaggio{
     // ritorna il PATH dello sprite, in base allo stato del giocatore
     public String getSpritePath(){
         if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
+        else if (this.isDead()) {
+            spriteCounter++;
+            if (spriteCounter == spriteChangeRate) {
+                spriteCounter = 0; 
+                spriteIndex = (spriteIndex+1) % 4;
+            }
+            return deathSpritesPaths[spriteIndex];
+        }
         else if (this.isFalling()) return fallingSpritePath; // CADENDO
         else if (super.getMovimentoY() > 0) return jumpingSpritePath; // SALTANDO
         else if (this.isShooting()) return shootingSpritePath; // SPARANDO
@@ -82,7 +90,7 @@ public class Giocatore extends Personaggio{
                 spriteCounter = 0; 
                 spriteIndex = (spriteIndex+1) % 2;
             }
-            return walkingSpritesPath[spriteIndex];
+            return walkingSpritesPath[spriteIndex%2];
         }
     }
 

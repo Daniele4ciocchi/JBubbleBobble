@@ -61,8 +61,7 @@ public class Monsta extends Nemico {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Monsta out of bounds");
-            setPosizione(posx, -posy);
+            setPosizione(posx, 24*16);
         }
     }
 }

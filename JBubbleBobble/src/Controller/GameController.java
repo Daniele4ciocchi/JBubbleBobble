@@ -42,10 +42,10 @@ public class GameController {
         WindowAdapter windowAdapter = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                AudioManager.getInstance().stop();
                 timer.stop();
                 partita.setStato(Partita.Stato.PERSA);
                 partita.end();
+                AudioManager.getInstance().stop();
             }
         };
         view.addWindowListener(windowAdapter);
@@ -69,7 +69,7 @@ public class GameController {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_SPACE) {
-                    if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1)){
+                    if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1) && !giocatore.isDead()){
                         giocatore.jump();
                         AudioManager.getInstance().playSound("jump");
                         partita.addSaltoEffettuato();
@@ -123,7 +123,7 @@ public class GameController {
             
     }
 
-    public void counter(){ 
+    public void counter(){
         counter = (counter == 1000000000) ? 0 : ++counter; 
         int invincibilita = ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita();
         if (invincibilita > 0) ((Giocatore) (partita.getEntita().getFirst())).setInvincibilita(invincibilita - 1);
@@ -393,6 +393,7 @@ public class GameController {
         if (partita.getLivello().getLevelNum() == 16 && partita.getEntita().stream().filter(e -> e instanceof Nemico).count() == 0){
             partita.getLivello().changeLevel(105);
             partita.setStato(Partita.Stato.VINTA);
+            AudioManager.getInstance().stop();
             AudioManager.getInstance().playSound("win");
             partita.end();
             view.getPanel().repaint();

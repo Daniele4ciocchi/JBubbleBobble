@@ -48,42 +48,22 @@ public class Pulpul extends Nemico{
     }
     
     public void moveVerticale(Livello l) {
-        if (goingUp) {
-            if (!l.isWalkable(posx, posy+32)){
-                posy+=movimentoX;
+        try {
+            if (goingUp) {
+                if (!l.isWalkable(posx, posy+getMovimentoY()) && !l.isTPExit(posx, posy+getMovimentoY())) {
+                    posy+=movimentoX;
+                } else {
+                    goingUp = false;
+                }
             } else {
-                // setMovimentoX(movimentoX==7? ++movimentoX : movimentoX);
-                goingUp = false;
+                if (!l.isWalkable(posx, posy-(getEntitysize()/2))){
+                    posy-=movimentoX;
+                } else {
+                    goingUp = true;
+                }
             }
-        } else {
-            if (!l.isWalkable(posx, posy-(getEntitysize()/2))){
-                posy-=movimentoX;
-            } else {
-                // setMovimentoX(movimentoX==7? ++movimentoX : movimentoX);
-                goingUp = true;
-            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            setPosizione(posx, 24*16);
         }
     }
-
-    // @Override // perchè ha 3 walking sprites...
-    // public String getSpritePath(){
-    //     if (dead) return deathSpritePath; // MORTE (score ottenuto, es: 500!)
-    //     if (bubbled) {                    // BUBBLED
-    //         spriteCounter++;
-    //         if (spriteCounter == spriteChangeRate) {
-    //             spriteCounter = 0;
-    //             spriteIndex = (spriteIndex+1) % 3;
-    //         }
-    //         return bubbledSpritesPath[spriteIndex];
-    //     }
-    //     if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
-    //     else {                                     // WALKING
-    //         spriteCounter++;
-    //         if (spriteCounter == spriteChangeRate) {
-    //             spriteCounter = 0; 
-    //             spriteIndex = (spriteIndex+1) % 2;
-    //         }
-    //         return walkingSpritesPath[spriteIndex];
-    //     }
-    // }
 }
