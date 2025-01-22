@@ -289,7 +289,10 @@ public class Partita implements Serializable{
             case SKIP_LVL3 -> setSkip3(true);
             case SKIP_LVL5 -> setSkip5(true);
             case SKIP_LVL7 -> setSkip7(true);
-            case CHACKNHEART -> setChacknHeart(true);
+            case CHACKNHEART -> {
+                setChacknHeart(true);
+                ((Giocatore)entitaAttive.getFirst()).addLife();
+            }
             case FREEZE    -> FREEZE = 200;
             case NULL -> System.out.println("ERRORE: Effetto SpecialItem non trovato!");
             default -> ((Giocatore)entitaAttive.getFirst()).applyEffetto(p.getEffetto());
