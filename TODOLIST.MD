@@ -54,7 +54,7 @@ I BIG 4
     - [x] .useItem()
     - [x] .jump()
     - [x] .shoot()
-    - [ ] GAME OVER
+    - [x] GAME OVER
     - [ ] WIN
     - [ ] stop della background music quando finisce la partita (WIN/GAMEOVER)
 - [ ] score system + salvataggio e caricamento profilo su disco

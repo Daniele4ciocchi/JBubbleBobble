@@ -93,6 +93,16 @@ public class AudioManager {
         }
     }
 
+    // public void stop(String s){
+    //     if (s != null && s.isRunning()) {
+    //         s.stop();
+    //         s.close();
+    //         System.out.println("Riproduzione interrotta.");
+    //     } else {
+    //         System.out.println("Nessuna riproduzione in corso.");
+    //     }
+    // }
+
     public void setVolume(float volume){
         gainControl.setValue(volume);
     }

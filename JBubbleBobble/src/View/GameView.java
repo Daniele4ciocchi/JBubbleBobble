@@ -44,7 +44,6 @@ public class GameView  {
         frame.setLocationRelativeTo(null);
         
         
-        
         try {
             customFont = Font.createFont(Font.PLAIN, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "ARCADECLASSIC.TTF"));
         } catch (FontFormatException | IOException e) {

@@ -63,8 +63,6 @@ public abstract class Nemico extends Personaggio implements Runnable{
         }
     }
 
-    
-
     // ritorna lo sprite adatto relativamente allo stato di questo nemico
     public String getSpritePath(){
         if (dead) return deathSpritePath; // MORTE (score ottenuto, es: 500!)
@@ -74,7 +72,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
                 spriteCounter = 0;
                 spriteIndex = (spriteIndex+1) % 3;
             }
-            return bubbledSpritesPath[spriteIndex];
+            return bubbledSpritesPath[spriteIndex%3];
         }
         if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
         else {                                     // WALKING
@@ -83,7 +81,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
                 spriteCounter = 0; 
                 spriteIndex = (spriteIndex+1) % 2;
             }
-            return walkingSpritesPath[spriteIndex];
+            return walkingSpritesPath[spriteIndex%2];
         }
     }
 
@@ -92,6 +90,5 @@ public abstract class Nemico extends Personaggio implements Runnable{
         dead = true;
         return deathCounter == 0?  new PointItem(posx/16,posy/16):null;
     }
-
 }
 
