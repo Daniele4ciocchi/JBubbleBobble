@@ -412,7 +412,7 @@ public class GameController {
 
     private void startGameLoop(){
         timer = new Timer(40, e -> {gameLoop();});
-        AudioManager.getInstance();
+        AudioManager.getInstance().playMainTheme();;
         
         partita.posizionaEntita();
         view.getPanel().repaint();

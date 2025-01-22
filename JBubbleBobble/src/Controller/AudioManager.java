@@ -38,31 +38,33 @@ public class AudioManager {
      */
     private AudioManager() {
         //gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        playMusic(music);
+
     }
 
-    /**
-     * Metodo che riproduce la musica di sottofondo
-     *
-     * @param filename Percorso del file audio
-     */
-    public void playMusic(String filename) {
+    public void playMainTheme(){playMusic(music);}
+
+    public void playMusic(String filePath) {
         try {
-            InputStream in = new BufferedInputStream(new FileInputStream(filename));
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(in);
-            mainsong = AudioSystem.getClip();
-            mainsong.open(audioIn);
-            mainsong.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    playMusic(filename);
-                }
-            });
-            
-            mainsong.start();
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
-            e1.printStackTrace();
+            // Carica il file audio
+            File audioFile = new File(filePath);
+            if (!audioFile.exists()) {
+                System.out.println("Il file audio non esiste: " + filePath);
+                return;
+            }
+
+            // Ottieni il clip
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+
+            // Imposta il loop continuo e avvia
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.start();
+            System.out.println("Riproduzione in loop avviata...");
+        } catch (Exception e) {
+            System.out.println("Errore durante la riproduzione: " + e.getMessage());
+            e.printStackTrace();
         }
-        gainControl = (FloatControl) mainsong.getControl(FloatControl.Type.MASTER_GAIN);
     }
 
     public void play(){
@@ -81,11 +83,14 @@ public class AudioManager {
         }
     }
 
-    /**
-     * Metodo che ferma la musica di sottofondo
-     */
     public void stop() {
-        mainsong.stop();
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+            clip.close();
+            System.out.println("Riproduzione interrotta.");
+        } else {
+            System.out.println("Nessuna riproduzione in corso.");
+        }
     }
 
     public void setVolume(float volume){
