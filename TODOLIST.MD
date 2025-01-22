@@ -21,7 +21,7 @@ TODOLIST
 - [x] sprite dei nemici tornano a muoversi
 - [x] abbellire un po' il menu dai
 - [x] far tornare il pannello statistiche
-- [ ] schermata WIN
+- [x] schermata WIN
 - 
 
 BUG da fixare:
@@ -49,12 +49,12 @@ I BIG 4
     - [x] Sneaker
     - [x] Clock
     - [x] Chack'n Heart
-- [ ] SFX (audio)
+- [x] SFX (audio)
     - [x] background music
     - [x] .useItem()
     - [x] .jump()
     - [x] .shoot()
     - [x] GAME OVER
-    - [ ] WIN
-    - [ ] stop della background music quando finisce la partita (WIN/GAMEOVER)
+    - [x] WIN
+    - [x] stop della background music quando finisce la partita (WIN/GAMEOVER)
 - [ ] score system + salvataggio e caricamento profilo su disco
