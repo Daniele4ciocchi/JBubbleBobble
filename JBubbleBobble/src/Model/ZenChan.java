@@ -6,14 +6,14 @@ import Model.Acqua.Goccia;
 
 public class ZenChan extends Nemico{
     public ZenChan(int x, int y){
-        super(x, y, 5, 16);
+        super(x, y, 7, 16);
         setSprites();
         
     }
     
     public void setSprites(){
         walkingSpritesPath[0] += "zen-chan"+File.separator+"image_507.png";
-        walkingSpritesPath[1] += "zen-chan"+File.separator+"image_508.png";
+        walkingSpritesPath[1] += "zen-chan"+File.separator+"image_487.png";
 
         bubbledSpritesPath[0] += "zen-chan"+File.separator+"image_498.png";
         bubbledSpritesPath[1] += "zen-chan"+File.separator+"image_499.png";

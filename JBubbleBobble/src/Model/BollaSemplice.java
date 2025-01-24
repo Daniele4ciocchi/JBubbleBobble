@@ -41,9 +41,9 @@ public class BollaSemplice extends Bolla {
             if (l.isTPExit(getX(),getY() + getEntitysize() )) popTime = 0;
             if (!l.isEmpty(getX(), getY() + getEntitysize())) {
                 if (getGoingRight() && l.isEmpty(getX() + getMovimentoX(), getY())) {
-                    setPosizione(getX() + getMovimentoX(), getY());
+                    setPosizione(getX() + getMovimentoX()/2, getY());
                 } else if (!getGoingRight() && l.isEmpty(getX() - getMovimentoX(), getY())) {
-                    setPosizione(getX() - getMovimentoX(), getY());
+                    setPosizione(getX() - getMovimentoX()/2, getY());
                 }
             }
             if (l.isEmpty(getX(), getY() + getEntitysize())) {
