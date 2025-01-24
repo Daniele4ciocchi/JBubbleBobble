@@ -222,7 +222,7 @@ public class Partita implements Serializable{
         }
 
         // CLOCK
-        else if (bolleFulmineScoppiate == 1){
+        else if (bolleFulmineScoppiate == 6){
             bolleFulmineScoppiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CLOCK,SpecialItem.Colore.EMPTY);
         }
