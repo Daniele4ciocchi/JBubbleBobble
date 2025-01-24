@@ -17,6 +17,8 @@ public abstract class Personaggio extends Entita{
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
     //      allora può fare il jump
 
+    public boolean getWater() { return water; }
+    
     public void move(Goccia g) {
         water = true;
         setPosizione(g.getX(), g.getY());
