@@ -303,7 +303,7 @@ public class Partita implements Serializable{
     // aggiunge questa partita allo storico partite del giocatore
     public void end(){
         Profilo.getInstance().addPartita(this);
-        AudioManager.getInstance().stop();
+        AudioManager.getInstance().stopMusic();
         Profilo.setHighScore(score);
         try {
             Profilo.getInstance().saveProfilo("JBubbleBobble" + File.separator + "src" + File.separator + "profilo.ser");

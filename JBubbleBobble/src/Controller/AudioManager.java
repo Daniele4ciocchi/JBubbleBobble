@@ -1,113 +1,85 @@
 package Controller;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.sound.sampled.*;
 
-/**
- * Classe che gestisce l'audio del gioco
- */
-public class AudioManager {
-
+public class AudioManager implements Runnable {
 
     private static AudioManager instance;
-    private Clip clip;
     private Clip mainsong;
     private FloatControl gainControl;
-    private String sound;
     private final String path = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "songs" + File.separator;
     private final String music = path + "MainTheme.wav";
+    private final ExecutorService executorService;
 
-    /**
-     * Metodo che restituisce l'istanza della classe
-     *
-     * @return Istanza della classe
-     */
-    public static AudioManager getInstance() {
-        if (instance == null)
+    private AudioManager() {
+        executorService = Executors.newCachedThreadPool();
+    }
+
+    public static synchronized AudioManager getInstance() {
+        if (instance == null) {
             instance = new AudioManager();
+        }
         return instance;
     }
 
-    /**
-     * Costruttore privato
-     */
-    private AudioManager() {
-        //gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-
+    public static void startInstance() {
+        getInstance().executorService.submit(getInstance());
     }
 
-    public void playMainTheme(){playMusic(music);}
+    @Override
+    public void run() {
+        playMusic();
+    }
 
-    public void playMusic(String filePath) {
-        try {
-            // Carica il file audio
-            File audioFile = new File(filePath);
-            if (!audioFile.exists()) {
-                System.out.println("Il file audio non esiste: " + filePath);
-                return;
+    public void playMainTheme() {
+        playMusic();
+    }
+
+    public void playMusic() {
+        executorService.submit(() -> {
+            try {
+                File musicFile = new File(music);
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(musicFile);
+                mainsong = AudioSystem.getClip();
+                mainsong.open(audioStream);
+                gainControl = (FloatControl) mainsong.getControl(FloatControl.Type.MASTER_GAIN);
+                mainsong.start();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+        });
+    }
 
-            // Ottieni il clip
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-            clip = AudioSystem.getClip();
-            clip.open(audioStream);
+    public void playSound(String soundFile) {
+        executorService.submit(() -> {
+            try {
+                File sound = new File(path + soundFile + ".wav");
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(sound);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioStream);
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-            // Imposta il loop continuo e avvia
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-            clip.start();
-            System.out.println("Riproduzione in loop avviata...");
-        } catch (Exception e) {
-            System.out.println("Errore durante la riproduzione: " + e.getMessage());
-            e.printStackTrace();
+    public void stopMusic() {
+        if (mainsong != null && mainsong.isRunning()) {
+            mainsong.stop();
         }
     }
 
-    public void play(){
-        mainsong.start();
-    }
-
-    public void playSound(String s){
-        try {
-            InputStream in = new BufferedInputStream(new FileInputStream(path + s + ".wav"));
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(in);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.start();
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
-            e1.printStackTrace();
+    public void setVolume(float volume) {
+        if (gainControl != null) {
+            gainControl.setValue(volume);
         }
     }
 
-    public void stop() {
-        if (clip != null && clip.isRunning()) {
-            clip.stop();
-            clip.close();
-            System.out.println("Riproduzione interrotta.");
-        } else {
-            System.out.println("Nessuna riproduzione in corso.");
-        }
-    }
-
-    // public void stop(String s){
-    //     if (s != null && s.isRunning()) {
-    //         s.stop();
-    //         s.close();
-    //         System.out.println("Riproduzione interrotta.");
-    //     } else {
-    //         System.out.println("Nessuna riproduzione in corso.");
-    //     }
-    // }
-
-    public void setVolume(float volume){
-        gainControl.setValue(volume);
-    }
-
-    public double getVolume(){
-        return gainControl.getValue();
+    public double getVolume() {
+        return gainControl != null ? gainControl.getValue() : 0;
     }
 }
