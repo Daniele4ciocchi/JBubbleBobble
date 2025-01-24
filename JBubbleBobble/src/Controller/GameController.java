@@ -69,6 +69,7 @@ public class GameController {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_SPACE) {
+                    ((Giocatore) partita.getEntita().getFirst()).setWatered(false, null);;
                     if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1) && !giocatore.isDead()){
                         giocatore.jump();
                         AudioManager.getInstance().playSound("jump");
@@ -110,6 +111,8 @@ public class GameController {
 
     public void checkPlayerMovement(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
+
+        if (giocatore.getWatered()) giocatore.move();
 
         if (leftPressed) giocatore.moveLeft(partita.getLivello());
         else if (rightPressed) giocatore.moveRight(partita.getLivello());
@@ -165,7 +168,7 @@ public class GameController {
     public void checkPlayerCollision(){
         Entita collision = partita.checkCollision(partita.getEntita().getFirst());
 
-        if (collision instanceof Nemico &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0){
+        if (collision instanceof Nemico &&  ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita() == 0 && !((Giocatore) (partita.getEntita().getFirst())).getWatered()){
             if (partita.getChacknHeart()){
                 partita.addScore(500);
                 ((Entita)collision).die();
@@ -235,10 +238,10 @@ public class GameController {
 
         //water
         for (Entita e : partita.getEntita()){
-            if (e instanceof Acqua){
+            if (e instanceof Acqua ){
                 for (Goccia g : ((Acqua)e).getGocce()){
                     Entita collision = partita.checkCollision(g);
-                    if (collision instanceof Personaggio)((Personaggio)collision).move(g);
+                    if (collision instanceof Personaggio && !((Personaggio)collision).getWatered() )((Personaggio)collision).setWatered(true, g);
                     if (collision instanceof Nemico)EntitaDaRimuovere.add(collision);
                 }
             }
@@ -320,7 +323,10 @@ public class GameController {
                 ((BollaAcqua)e).move(partita.getLivello());
             }else if (e instanceof Acqua){
                 ((Acqua)e).move(partita.getLivello());
-                if (partita.getLivello().isTPEntry(e.getX(), e.getY()))EntitaDaRimuovere.add(e);
+                if (partita.getLivello().isTPEntry(e.getX(), e.getY())){
+                    EntitaDaRimuovere.add(e);
+                    ((Giocatore)(partita.getEntita().getFirst())).setWatered(false, null);
+                }
             }else if (e instanceof BollaFulmine){
                 ((BollaFulmine)e).move(partita.getLivello());
             }else if (e instanceof Fulmine){

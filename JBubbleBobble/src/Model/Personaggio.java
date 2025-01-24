@@ -4,7 +4,8 @@ import Model.Acqua.Goccia;
 
 public abstract class Personaggio extends Entita{
     protected String[] walkingSpritesPath = { baseSpritePath, baseSpritePath };
-    protected boolean water;
+    protected boolean watered = false;
+    private Goccia g;
     protected int jumpForce;
     protected int spriteIndex; // serve ad alternare i due sprite di camminata
 
@@ -17,23 +18,26 @@ public abstract class Personaggio extends Entita{
     //TODO: controllo da fare nel controller dove se un'entità is on the floor
     //      allora può fare il jump
 
-    public boolean getWater() { return water; }
-    
-    public void move(Goccia g) {
-        water = true;
-        setPosizione(g.getX(), g.getY());
-       //if ( == 0) die();
-            
+    public boolean getWatered() { return watered; }
+    public void setWatered(boolean w, Goccia g) { 
+        watered = w;
+        this.g = g;
     }
+
+    public void move(){
+        this.setPosizione(g.getX(), g.getY());
+    }
+
 
     public void jump() {
         this.movimentoY = this.jumpForce;
+        
         setChanged();
         notifyObservers();
     }
     
     public void moveLeft(Livello l) {
-        if (l.isEmpty(posx-movimentoX, posy)){
+        if (l.isEmpty(posx-movimentoX, posy) && !watered){
             posx-=movimentoX;
             setChanged();
             notifyObservers();
@@ -42,11 +46,12 @@ public abstract class Personaggio extends Entita{
     }
 
     public void moveRight(Livello l) {
-        if (l.isEmpty(posx+movimentoX+5, posy)){
-            posx += movimentoX;
-            setChanged();
-            notifyObservers();
-            goingRight = true;
+        if (l.isEmpty(posx+movimentoX+5, posy) && !watered){
+                posx += movimentoX;
+                setChanged();
+                notifyObservers();
+                goingRight = true;
         }
+        
     }
 }

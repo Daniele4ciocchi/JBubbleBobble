@@ -44,7 +44,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
     }
 
     public void move(int gx, int gy, Livello l){
-        if (!water){
+        if (!watered){
             if (this.getX() < gx) {
                 if (currentWaitTime == 0){
                     goingRight = true;

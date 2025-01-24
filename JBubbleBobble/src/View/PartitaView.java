@@ -272,43 +272,7 @@ public class PartitaView extends JPanel implements Observer {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-        }
-
-        BufferedImage pink_candy;
-        BufferedImage yellow_candy;
-        BufferedImage blue_candy;
-        BufferedImage pink_ring;
-        BufferedImage yellow_ring;
-        BufferedImage blue_ring;
-        BufferedImage sneaker;
-
-        String baseSpritePath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator + "items" + File.separator;
-
-        try {
-            pink_candy = ImageIO.read(new File(( baseSpritePath + "pink_candy.png")));
-            yellow_candy = ImageIO.read(new File(( baseSpritePath + "yellow_candy.png")));
-            blue_candy = ImageIO.read(new File(( baseSpritePath + "blue_candy.png")));
-            pink_ring = ImageIO.read(new File(( baseSpritePath + "pink_ring.png")));
-            yellow_ring = ImageIO.read(new File(( baseSpritePath + "blue_ring.png")));
-            blue_ring = ImageIO.read(new File(( baseSpritePath + "red_ring.png")));
-            sneaker = ImageIO.read(new File(( baseSpritePath + "sneaker.png")));
-
-            for (int i = 28; i< 35; i++){ 
-                g2d.setColor(Color.BLACK);
-                g2d.fillOval(i * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), 17, 17);
-                
-            }
-            g2d.drawImage(pink_candy, 28 * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
-            g2d.drawImage(yellow_candy, 29 * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
-            g2d.drawImage(blue_candy, 30 * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
-            g2d.drawImage(pink_ring, 31 * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
-            g2d.drawImage(yellow_ring, 32 * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
-            g2d.drawImage(blue_ring, 33 * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
-            g2d.drawImage(sneaker, 34 * Entita.getEntitysize(), 25*partita.getLivello().getTilesize(), Entita.getEntitysize(), Entita.getEntitysize(), null);
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-        
+        }        
     }
 
     public void setPartita(Partita partita) {
