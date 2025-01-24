@@ -9,7 +9,7 @@ public class Acqua extends Entita{
     public class Goccia extends Entita{
         private Personaggio personaggio;
         public Goccia(int x, int y) {
-            super(x, y, 10, 0, 0);
+            super(x, y, 10, 0, -4);
         }
         public void setPersonaggio(Personaggio p) { personaggio = p;}
         public Personaggio getPersonaggio() { return personaggio; }

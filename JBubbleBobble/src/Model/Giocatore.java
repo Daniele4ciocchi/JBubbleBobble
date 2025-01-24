@@ -57,7 +57,10 @@ public class Giocatore extends Personaggio implements Serializable{
     public void setInvincibilita(int i){this.invincibilita = i;}
     public void addLife(){this.life++;}
     public void removeLife(){this.life--;}
-    public void resetPosizione(){super.setPosizione(5*getEntitysize(), 1*getEntitysize());}
+    public void resetPosizione(){
+        super.setPosizione(5*getEntitysize(), 1*getEntitysize());
+        this.watered = false;
+    }
 
     public void setFalling(boolean b){this.falling = b;}
     public boolean isFalling(){return this.falling;}
