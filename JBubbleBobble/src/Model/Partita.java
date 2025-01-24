@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Controller.AudioManager;
+import controller.AudioManager;
 
 public class Partita implements Serializable{
     public enum Stato{

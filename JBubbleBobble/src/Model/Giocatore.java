@@ -1,11 +1,11 @@
-package Model;
+package model;
 
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observer;
 
-import Controller.AudioManager;
+import controller.AudioManager;
 
 //da fare singleton
 public class Giocatore extends Personaggio implements Serializable{

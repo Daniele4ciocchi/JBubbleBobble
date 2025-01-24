@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.awt.Point;
 import java.io.File;
@@ -7,7 +7,7 @@ import java.util.Observer;
 import java.util.Random;
 import java.util.Timer;
 
-import Model.Acqua.Goccia;
+import model.Acqua.Goccia;
 
 public abstract class Nemico extends Personaggio implements Runnable{
     // campi per movimento diversificato dei nemici

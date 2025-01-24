@@ -1,23 +1,24 @@
-package View;
-
-import Model.Acqua;
-import Model.Bolla;
-import Model.BollaAcqua;
-import Model.BollaFulmine;
-import Model.BollaSemplice;
-import Model.Boulder;
-import Model.Entita;
-import Model.Fireball;
-import Model.Fulmine;
-import Model.Giocatore;
-import Model.Item;
-import Model.Nemico;
-import Model.Partita;
-import Model.Tile;
-import Model.PointItem;
+package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import model.Acqua;
+import model.Bolla;
+import model.BollaAcqua;
+import model.BollaFulmine;
+import model.BollaSemplice;
+import model.Boulder;
+import model.Entita;
+import model.Fireball;
+import model.Fulmine;
+import model.Giocatore;
+import model.Item;
+import model.Nemico;
+import model.Partita;
+import model.PointItem;
+import model.Tile;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -100,7 +101,7 @@ public class PartitaView extends JPanel implements Observer {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() ) + 3;
             int x = e.getX()-13;
 
-            if (e instanceof Model.Giocatore) {
+            if (e instanceof model.Giocatore) {
                 try {
                     giocatore = ImageIO.read(new File(((Giocatore) (e)).getSpritePath()));
                     if (!((Giocatore) (e)).getGoingRight()) {
@@ -123,7 +124,7 @@ public class PartitaView extends JPanel implements Observer {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-            } else if(e instanceof Model.Bolla){
+            } else if(e instanceof model.Bolla){
                 // try {
                 //     bolla = ImageIO.read(new File(((Bolla)(e)).getSpritePath()));
                 //     if (!((Bolla)(e)).getGoingRight()) {
@@ -162,14 +163,14 @@ public class PartitaView extends JPanel implements Observer {
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
-                } else if( e instanceof Model.BollaAcqua){
+                } else if( e instanceof model.BollaAcqua){
                     try {
                         bolla = ImageIO.read(new File(((BollaAcqua)(e)).getSpritePath()));
                         g2d.drawImage(bolla, x, y, doubleEntitySize, doubleEntitySize, null);
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
-                }else if( e instanceof Model.BollaFulmine){
+                }else if( e instanceof model.BollaFulmine){
                     try {
                         bolla = ImageIO.read(new File(((BollaFulmine)(e)).getSpritePath()));
                         g2d.drawImage(bolla, x, y, doubleEntitySize, doubleEntitySize, null);
@@ -194,7 +195,7 @@ public class PartitaView extends JPanel implements Observer {
                 }
                 //g2d.setColor(Color.GREEN);
                 //g2d.fillOval(x, y,doubleEntitySize, doubleEntitySize);
-            } else if(e instanceof Model.Nemico){
+            } else if(e instanceof model.Nemico){
                 try {
                     nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
                     if (!((Nemico)(e)).getGoingRight()) {
@@ -206,7 +207,7 @@ public class PartitaView extends JPanel implements Observer {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-            } else if(e instanceof Model.Item){
+            } else if(e instanceof model.Item){
                 try {
                     //System.out.println(((PointItem)(e)).getSpritePath());
                     drop = ImageIO.read(new File(((Item)(e)).getSpritePath()));
@@ -215,7 +216,7 @@ public class PartitaView extends JPanel implements Observer {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-            } else if(e instanceof Model.Acqua){
+            } else if(e instanceof model.Acqua){
                 try {
                     acqua = ImageIO.read(new File(((Acqua)e).getSpritePath()));
                     for (Acqua.Goccia goccia : ((Acqua)(e)).getGocce()){
@@ -226,7 +227,7 @@ public class PartitaView extends JPanel implements Observer {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-            } else if(e instanceof Model.Fulmine){
+            } else if(e instanceof model.Fulmine){
                 try {
                     fulmine = ImageIO.read(new File(((Fulmine)e).getSpritePath()));
                     y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
@@ -240,7 +241,7 @@ public class PartitaView extends JPanel implements Observer {
         for (Entita e : partita.getEntitaMorte()){
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() );
             int x = e.getX()-10;
-            if (e instanceof Model.Bolla && ((Bolla)(e)).getNemico() != null){
+            if (e instanceof model.Bolla && ((Bolla)(e)).getNemico() != null){
                 if (((Bolla)(e)).getNemico().isDead() && ((Bolla)(e)).getNemico().getDeathCounter() > 0){
                     try {
                         nemico = ImageIO.read(new File(((Bolla)(e)).getNemico().getSpritePath()));

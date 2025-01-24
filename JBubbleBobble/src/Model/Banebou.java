@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.io.File;
 
@@ -21,7 +21,7 @@ public class Banebou extends Nemico{
 
     // si muove come Zen-Chan, ma salta 'n botto
     public void move(int gx, int gy, Livello l) {
-        if (!water){
+        if (!watered){
             if (this.getX() < gx) {
                 if (currentWaitTime == 0){
                     if (l.isWalkable(this.getX(), this.getY()-1)) jump();

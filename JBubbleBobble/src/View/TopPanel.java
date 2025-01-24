@@ -1,8 +1,8 @@
-package View;
+package view;
 
 import javax.swing.*;
 
-import Model.Profilo;
+import model.Profilo;
 
 import java.awt.*;
 

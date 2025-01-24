@@ -1,9 +1,9 @@
-package View;
+package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Model.Bolla;
+import model.Bolla;
 
 import java.awt.*;
 import java.awt.event.ActionListener;

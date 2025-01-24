@@ -1,14 +1,13 @@
 package main;
 
-import Model.*;
-import View.MenuView;
+import controller.MenuController;
+import model.*;
+import view.MenuView;
 
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.*;
-
-import Controller.MenuController;
 
 public class JBubbleBobble {
     public static JFrame frame;

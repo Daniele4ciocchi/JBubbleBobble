@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-import Model.Acqua.Goccia;
+import model.Acqua.Goccia;
 
 public abstract class Personaggio extends Entita{
     protected String[] walkingSpritesPath = { baseSpritePath, baseSpritePath };

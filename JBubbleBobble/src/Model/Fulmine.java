@@ -1,9 +1,9 @@
-package Model;
+package model;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import Model.Livello;
+import model.Livello;
 
 public class Fulmine extends Entita{
 

@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
-import Model.*;
-import Model.Acqua.Goccia;
-import View.*;
+import model.*;
+import model.Acqua.Goccia;
+import view.*;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -138,7 +138,7 @@ public class GameController {
         if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaAcqua).count() < 3){
             for (int i = 0; i < partita.getLivello().getGrid().length; i++){
                 for (int j = 0; j < partita.getLivello().getGrid()[0].length; j++){
-                    if (partita.getLivello().getGrid()[i][j].getType() == Model.Tile.TileType.WATER){
+                    if (partita.getLivello().getGrid()[i][j].getType() == model.Tile.TileType.WATER){
                         BollaAcqua b = new BollaAcqua(j*16, i*16);
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
@@ -150,7 +150,7 @@ public class GameController {
         if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaFulmine).count() < 3){
             for (int i = 0; i < partita.getLivello().getGrid().length; i++){
                 for (int j = 0; j < partita.getLivello().getGrid()[0].length; j++){
-                    if (partita.getLivello().getGrid()[i][j].getType() == Model.Tile.TileType.THUNDER){
+                    if (partita.getLivello().getGrid()[i][j].getType() == model.Tile.TileType.THUNDER){
                         BollaFulmine b = new BollaFulmine(j*16, i*16);
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
@@ -432,7 +432,7 @@ public class GameController {
     }
 
     private void startGameLoop(){
-        timer = new Timer(40, e -> {gameLoop();});
+        timer = new Timer(16, e -> {gameLoop();});
         AudioManager.getInstance().playMainTheme();;
         
         partita.posizionaEntita();

@@ -1,8 +1,8 @@
-package Model;
+package model;
 
 import java.io.File;
 
-import Model.Acqua.Goccia;
+import model.Acqua.Goccia;
 
 public class ZenChan extends Nemico{
     public ZenChan(int x, int y){

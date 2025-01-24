@@ -1,11 +1,11 @@
-package Controller;
+package controller;
 
-import Model.Partita;
-import Model.Profilo;
-import View.GameView;
-import View.MenuView;
-import View.PartitaView;
-import View.ProfiloView;
+import model.Partita;
+import model.Profilo;
+import view.GameView;
+import view.MenuView;
+import view.PartitaView;
+import view.ProfiloView;
 
 import java.util.ArrayList;
 

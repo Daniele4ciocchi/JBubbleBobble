@@ -1,8 +1,10 @@
-package View;
+package view;
 
 import javax.swing.*;
+
+import model.Profilo;
+
 import java.awt.*;
-import Model.Profilo;
 
 public class ProfiloView {
     private Profilo profilo;
