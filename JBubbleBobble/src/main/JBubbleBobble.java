@@ -3,6 +3,9 @@ package main;
 import Model.*;
 import View.MenuView;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.*;
 
 import Controller.MenuController;
@@ -11,6 +14,18 @@ public class JBubbleBobble {
     public static JFrame frame;
 
     public static void main(String[] args) {
+        // Gestione del profilo
+        Profilo.getInstance();
+        try {
+            Profilo.loadProfilo("JBubbleBobble" + File.separator + "src" + File.separator + "profilo.ser");
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         // Creazione del frame
         frame = new JFrame("Esempio di JPanel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

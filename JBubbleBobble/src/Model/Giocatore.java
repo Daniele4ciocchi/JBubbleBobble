@@ -1,13 +1,14 @@
 package Model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observer;
 
 import Controller.AudioManager;
 
 //da fare singleton
-public class Giocatore extends Personaggio{
+public class Giocatore extends Personaggio implements Serializable{
     private int life = 3;
     private int passi = 0;
 

@@ -52,7 +52,7 @@ public class MenuController {
      */
     public void getProfiloStats() {
         //per ora ok, ma sta roba va cambiata
-        Profilo profiloView = Profilo.getProfilo();
+        Profilo profiloView = Profilo.getInstance();
         ProfiloView view = new ProfiloView(profiloView);
         
     }
