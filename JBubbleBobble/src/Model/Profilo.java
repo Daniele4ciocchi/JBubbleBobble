@@ -24,7 +24,7 @@ public class Profilo implements Serializable{
     // COSTRUTTORE
     private Profilo(){}
 
-    public static Profilo getProfilo() {
+    public static Profilo getInstance() {
         if (profilo == null) {
             profilo = new Profilo();
         }

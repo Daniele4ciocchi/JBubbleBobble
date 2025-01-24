@@ -2,6 +2,7 @@ package Model;
 
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -301,9 +302,15 @@ public class Partita implements Serializable{
 
     // aggiunge questa partita allo storico partite del giocatore
     public void end(){
-        Profilo.getProfilo().addPartita(this);
+        Profilo.getInstance().addPartita(this);
         AudioManager.getInstance().stop();
         Profilo.setHighScore(score);
-        //Profilo.getProfilo().saveProfilo("JBubbleBobble");
+        try {
+            Profilo.getInstance().saveProfilo("JBubbleBobble" + File.separator + "src" + File.separator + "profilo.ser");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    
     }
 }

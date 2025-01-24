@@ -50,7 +50,7 @@ public class TopPanel extends JPanel {
         scorePanel.setLayout(new BorderLayout());
 
         scoreLabel = new JLabel("0");
-        highScoreLabel = new JLabel(Profilo.getProfilo().getHighScore() + "");
+        highScoreLabel = new JLabel(Profilo.getInstance().getHighScore() + "");
 
         scoreLabel.setHorizontalAlignment(SwingConstants.LEFT);
         highScoreLabel.setHorizontalAlignment(SwingConstants.RIGHT);

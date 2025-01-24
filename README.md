@@ -1,5 +1,5 @@
 # JBubbleBubble
-progetto di metodologie del farallon
+Progetto per l'esame di Metodologie di Programmazione del prof. Faralli
 
 #### todo list: 
 - gestione del profilo utente, nickname, avatar, partite giocate, vinte e perse, livello …
@@ -10,11 +10,8 @@ progetto di metodologie del farallon
 - riproduzione di audio sample (si veda appendice AudioManager.Java)
 - animazioni ed effetti speciali 
 
-#### struttura del progetto
-idk, comunque credo che useremo MVC e Observe Observble che il faralln ha fatto due scatole tante
 
-
-#### todo list (ordinata, per l'amor di DIO): 
+#### todo list: 
 - GESTIONE PROFILO:
   - profilo utente
   - nickname
