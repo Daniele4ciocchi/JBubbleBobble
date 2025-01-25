@@ -46,7 +46,7 @@ public class GameController {
                 timer.stop();
                 partita.setStato(Partita.Stato.PERSA);
                 partita.end();
-                AudioManager.getInstance().stop();
+                AudioManager.getInstance().stopMusic();
             }
         };
         view.addWindowListener(windowAdapter);
@@ -389,7 +389,7 @@ public class GameController {
             partita.getLivello().changeLevel(104);
             partita.svuotaEntita();
             partita.setStato(Partita.Stato.PERSA);
-            AudioManager.getInstance().stop();
+            AudioManager.getInstance().stopMusic();
             AudioManager.getInstance().playSound("gameover");
             partita.end();
             view.getPanel().repaint();
@@ -400,7 +400,7 @@ public class GameController {
         if (partita.getLivello().getLevelNum() == 16 && partita.getEntita().stream().filter(e -> e instanceof Nemico).count() == 0){
             partita.getLivello().changeLevel(105);
             partita.setStato(Partita.Stato.VINTA);
-            AudioManager.getInstance().stop();
+            AudioManager.getInstance().stopMusic();
             AudioManager.getInstance().playSound("win");
             partita.end();
             view.getPanel().repaint();
