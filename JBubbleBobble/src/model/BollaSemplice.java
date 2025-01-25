@@ -4,7 +4,7 @@ import java.io.File;
 
 public class BollaSemplice extends Bolla {
 
-    private int spriteChangeRate = 2;
+    private int spriteChangeRate = 5;
     private String[] sprites = {
         baseSpritePath + "bubbles" + File.separator + "b1.png",
         baseSpritePath + "bubbles" + File.separator + "b2.png",

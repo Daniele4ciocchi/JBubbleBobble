@@ -432,7 +432,7 @@ public class GameController {
     }
 
     private void startGameLoop(){
-        timer = new Timer(16, e -> {gameLoop();});
+        timer = new Timer(20, e -> {gameLoop();});
         AudioManager.getInstance().playMainTheme();;
         
         partita.posizionaEntita();

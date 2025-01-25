@@ -305,12 +305,13 @@ public class Partita implements Serializable{
         Profilo.getInstance().addPartita(this);
         AudioManager.getInstance().stopMusic();
         Profilo.setHighScore(score);
-        try {
-            Profilo.getInstance().saveProfilo("JBubbleBobble" + File.separator + "src" + File.separator + "profilo.ser");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        
+        // try {
+        //     Profilo.getInstance().saveProfilo("JBubbleBobble" + File.separator + "src" + File.separator + "profilo.ser");
+        // } catch (IOException e) {
+        //     // TODO Auto-generated catch block
+        //     e.printStackTrace();
+        // }
     
     }
 }

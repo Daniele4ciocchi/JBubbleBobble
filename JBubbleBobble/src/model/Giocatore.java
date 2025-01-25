@@ -41,7 +41,7 @@ public class Giocatore extends Personaggio implements Serializable{
     private boolean SNEAKER_BUFF;
 
     public Giocatore(){
-        super(5, 1, 10, 20, -7, 20);
+        super(5, 1, 4, 15, -3, 15);
     }
 
     public int getLife(){return this.life;}
@@ -130,10 +130,10 @@ public class Giocatore extends Personaggio implements Serializable{
         return new BollaSemplice(
             getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5,
             this.getY(), 
-            BOLLE_VEL_UP?12:6, 
+            BOLLE_VEL_UP?5:2, 
             1, 
             getGoingRight(), 
-            BOLLE_RANGE_UP?30:20
+            BOLLE_RANGE_UP?75:50
         );
     }
 
@@ -145,7 +145,7 @@ public class Giocatore extends Personaggio implements Serializable{
         BONUS_SALTO = false;
         BONUS_SPARO = false;
         SNEAKER_BUFF = false;
-        this.movimentoX = 10;
+        this.movimentoX = 4;
         // AudioManager.getInstance().playDeathSound();
 
         setShooting(false);
@@ -175,7 +175,7 @@ public class Giocatore extends Personaggio implements Serializable{
             case BONUS_SPARO -> BONUS_SPARO = true;
             case SNEAKER_BUFF -> {
                 SNEAKER_BUFF = true;
-                this.movimentoX = 15;
+                this.movimentoX = 6;
             }
         }
     }
