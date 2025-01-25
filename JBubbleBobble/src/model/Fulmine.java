@@ -8,7 +8,7 @@ import model.Livello;
 public class Fulmine extends Entita{
 
     public Fulmine(int x, int y, boolean direction) {
-        super(x/16, y/16, 14, 0, 0);
+        super(x/16, y/16, 7, 0, 0);
         setGoingRight(direction);
     }
 

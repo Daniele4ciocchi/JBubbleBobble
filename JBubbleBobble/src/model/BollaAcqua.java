@@ -21,7 +21,7 @@ public class BollaAcqua extends Bolla {
     public void move(Livello l) {
         if (counterDirection <= 0){
             direction = (int) (Math.random() * 3);
-            counterDirection = (int) (Math.random() * 20);
+            counterDirection = (int) (Math.random() * 50);
         }
         
         switch (direction) {

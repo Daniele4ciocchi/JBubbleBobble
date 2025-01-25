@@ -23,7 +23,7 @@ public class GameController {
     private boolean leftPressed = false;
     private boolean rightPressed = false;
     private boolean jump = false;
-    private int nextLevelCounter = 250;
+    private int nextLevelCounter = 500;
     private int counter = 0;
     private int bubbleCounter = 0;
     private int FireballCounter = 0;
@@ -78,7 +78,7 @@ public class GameController {
                         if (giocatore.getBonusSalto())partita.addScore(500);
                     }
                 } else if (e.getKeyChar() == 'j' || e.getKeyChar() == 'J') {
-                    if(Math.abs(counter - bubbleCounter) > (giocatore.getBolleFirerate() ? 5 : 10) && !giocatore.isDead()){
+                    if(Math.abs(counter - bubbleCounter) > (giocatore.getBolleFirerate() ? 12 : 25) && !giocatore.isDead()){
                         Bolla b = giocatore.shoot();
                         AudioManager.getInstance().playSound("shoot");
                         partita.addEntita(b);
@@ -377,7 +377,7 @@ public class GameController {
                 }
                 partita.posizionaEntita();
                 ((Giocatore)partita.getEntita().getFirst()).resetPosizione();
-                nextLevelCounter = 200;
+                nextLevelCounter = 500;
                 for (Entita e : partita.getEntita()) e.addObserver(view.getPanel());
                 counter = 0;
                 partita.setChacknHeart(false);
