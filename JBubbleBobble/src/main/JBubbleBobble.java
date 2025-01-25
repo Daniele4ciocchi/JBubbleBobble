@@ -1,6 +1,5 @@
 package main;
 
-import controller.MenuController;
 import model.*;
 import view.MenuView;
 
@@ -8,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.*;
+
+import controller.MenuController;
 
 public class JBubbleBobble {
     public static JFrame frame;
@@ -33,9 +34,9 @@ public class JBubbleBobble {
         frame.setUndecorated(true);
 
         // Creazione del controller del menu
-        MenuView menuView = new MenuView();
-        MenuController menuController = new MenuController(menuView);
-        frame.setContentPane(menuController.getView().getPanel());
+        MenuView menuview = new MenuView();
+        MenuController menucontroller = new MenuController(menuview);
+        frame.setContentPane(menucontroller.getview().getPanel());
 
         // Visualizzazione del frame
         frame.setVisible(true);
@@ -50,8 +51,8 @@ public class JBubbleBobble {
 //
 //
 //        // Creazione del controller del menu
-//        MenuController menuController = new MenuController();
-//        frame.setContentPane(menuController.getView().getPanel());
+//        Menucontroller menucontroller = new Menucontroller();
+//        frame.setContentPane(menucontroller.getview().getPanel());
 //
 //        // Visualizzazione del frame
 //        frame.setVisible(true);

@@ -16,10 +16,10 @@ public class MenuController {
 
     public MenuController(MenuView view) {
         this.view = view;
-        initView();
+        initview();
     }
 
-    private void initView() {
+    private void initview() {
         view.addNuovaPartitaListener(e -> nuovaPartita());
         view.addContinuaPartitaListener(e -> continuaPartita());
         view.addVisualizzaProfiloListener(e -> getProfiloStats());
@@ -29,9 +29,9 @@ public class MenuController {
      * Questa scelta del menu permette al giocatore di iniziare una nuova partita da zero.
      */
     public void nuovaPartita() {
-        GameView  gameView = new GameView();
+        GameView  gameview = new GameView();
         Partita partita = new Partita();
-        GameController controller = new GameController(partita, gameView);
+        GameController controller = new GameController(partita, gameview);
         // Logica per iniziare una nuova partita
     }
 
@@ -41,9 +41,9 @@ public class MenuController {
      */
     public void continuaPartita() {
         String password = view.getPasswordInput(); // Assumendo che ci sia un metodo per ottenere la password dalla vista
-        GameView  gameView = new GameView();
+        GameView  gameview = new GameView();
         Partita partita = new Partita(password);
-        GameController controller = new GameController(partita, gameView);
+        GameController controller = new GameController(partita, gameview);
         // Logica per continuare la partita con la password
     }
 
@@ -52,12 +52,12 @@ public class MenuController {
      */
     public void getProfiloStats() {
         //per ora ok, ma sta roba va cambiata
-        Profilo profiloView = Profilo.getInstance();
-        ProfiloView view = new ProfiloView(profiloView);
+        Profilo profiloview = Profilo.getInstance();
+        ProfiloView view = new ProfiloView(profiloview);
         
     }
 
-    public MenuView getView() {
+    public MenuView getview() {
         return view;
     }
 

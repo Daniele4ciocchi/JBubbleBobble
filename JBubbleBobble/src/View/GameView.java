@@ -1,12 +1,13 @@
 package view;
 
-import controller.AudioManager;
 import model.Tile;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+
+import controller.AudioManager;
 
 import java.awt.*;
 import java.awt.event.ActionListener;

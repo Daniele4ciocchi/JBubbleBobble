@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javax.sound.sampled.*;
-
+ 
 public class AudioManager implements Runnable {
 
     private static AudioManager instance;

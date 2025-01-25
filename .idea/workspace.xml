@@ -34,23 +34,23 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/JBubbleBobble/src/Model/Partita.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/JBubbleBobble/src/model/Partita.java" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="ProblemsViewState">
+  <component name="ProblemsviewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2ksn27SgOTRtrwxOQWc5GouZXSr" />
-  <component name="ProjectViewState">
+  <component name="ProjectviewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.JBubbleBobble.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ProfiloView.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Profiloview.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
@@ -71,7 +71,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.ProfiloView">
+  <component name="RunManager" selected="Application.Profiloview">
     <configuration name="JBubbleBobble" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.JBubbleBobble" />
       <module name="JBubbleBobble" />
@@ -85,12 +85,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProfiloView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="View.ProfiloView" />
+    <configuration name="Profiloview" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.Profiloview" />
       <module name="JBubbleBobble" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="View.*" />
+          <option name="PATTERN" value="view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,7 +100,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ProfiloView" />
+        <item itemvalue="Application.Profiloview" />
         <item itemvalue="Application.JBubbleBobble" />
       </list>
     </recent_temporary>
