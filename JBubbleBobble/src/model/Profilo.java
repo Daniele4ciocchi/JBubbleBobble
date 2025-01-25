@@ -8,8 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class Profilo implements Serializable{
+public class Profilo{
     private static final long serialVersionUID = 1L; 
     private static Profilo profilo; // istanza singleton del profilo;
 
@@ -97,17 +102,40 @@ public class Profilo implements Serializable{
     }
 
     // Salva il profilo in un file
-    public void saveProfilo(String filePath) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
-            oos.writeObject(this);
-        }
-    }
+    // public void saveProfilo(String filePath) throws IOException {
+    //     // try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+    //     //     oos.writeObject(this);
+    //     // }
+    // }
 
     // Carica un profilo da un file
-    public static Profilo loadProfilo(String filePath) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
-            return (Profilo) ois.readObject();
+    // public void loadProfilo(String filePath){
+    //     // try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+    //     //     return (Profilo) ois.readObject();
+    //     // }
+        
+    // }
+
+    public ArrayList<String> getBestScores(){
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("global_scores.txt"));
+            return lines.stream()
+                        .map(line -> line.split(" "))
+                        .sorted((a, b) -> Integer.compare(Integer.parseInt(b[1]), Integer.parseInt(a[1])))
+                        .limit(10)
+                        .map(arr -> arr[0] + " " + arr[1])
+                        .collect(Collectors.toCollection(ArrayList::new));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
+    public void clearGlobalScores() {
+        try {
+            Files.write(Paths.get("global_scores.txt"), new ArrayList<String>());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -2,7 +2,9 @@ package model;
 
 
 import java.awt.*;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -131,7 +133,6 @@ public class Partita implements Serializable{
     }
     public void svuotaEntita(){
         this.entitaAttive.removeIf(x -> !x.equals(entitaAttive.getFirst()));
-
     }
 
     public void addScore(int n){score += n;}
@@ -305,12 +306,25 @@ public class Partita implements Serializable{
         Profilo.getInstance().addPartita(this);
         AudioManager.getInstance().stopMusic();
         Profilo.setHighScore(score);
+        
         try {
-            Profilo.getInstance().saveProfilo("JBubbleBobble" + File.separator + "src" + File.separator + "profilo.ser");
+            File file = new File("global_scores.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(Profilo.getInstance().getNickname() + " " + score + "\n");
+            bw.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    
+
+        // try {
+        //     Profilo.getInstance().saveProfilo("JBubbleBobble" + File.separator + "src" + File.separator + "profiles.txt");
+        // } catch (IOException e) {
+        //     // TODO Auto-generated catch block
+        //     e.printStackTrace();
+        // }
     }
 }
