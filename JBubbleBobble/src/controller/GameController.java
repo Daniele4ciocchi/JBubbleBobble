@@ -432,8 +432,8 @@ public class GameController {
     }
 
     private void startGameLoop(){
-        timer = new Timer(20, e -> {gameLoop();});
-        AudioManager.getInstance().playMainTheme();;
+        timer = new Timer(16, e -> {gameLoop();});
+        AudioManager.getInstance().playMainTheme();
         
         partita.posizionaEntita();
         view.getPanel().repaint();
@@ -460,10 +460,11 @@ public class GameController {
         moveBubbles();
         checkDyingEnemies();
         
-        if (checkEntityPresence())goToNextLevel();
-
+        if (checkEntityPresence()){
+            goToNextLevel();
+            checkWin();
+        }
         checkGameOver();
-        checkWin();
         checkPlayerMovement();
     }
 }
