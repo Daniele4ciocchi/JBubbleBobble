@@ -14,20 +14,24 @@ public class BollaFulmine extends Bolla {
     };
 
     public BollaFulmine(int x, int y) {
-        super(x, y, 1, 0, -1);
+        super(x, y, 1, 2, 0);
     }
 
     @Override
     public void move(Livello l) {
         if (counterDirection <= 0){
-            direction = (int) (Math.random() * 3);
+            direction = (int) (Math.random() * 4);
             counterDirection = (int) (Math.random() * 50);
         }
-        
+        if (counterDirection%2 == 0) {
+            counterDirection--;
+            return;
+        } 
         switch (direction) {
             case 0:
-                if (l.isEmpty(this.getX(), this.getY() + getMovimentoY()) && l.isEmpty(this.getX(), this.getY() + 1)) {
-                    this.setMovimentoY(1);
+                if (l.isEmpty(this.getX(), this.getY() + 1) 
+                    && !l.isTPExit(this.getX(),this.getY() +1 )) {
+                    this.movimentoY = 1;
                     this.setPosizione(this.getX(),this.getY() + this.getMovimentoY());
                 }else {
                     counterDirection = 0;
@@ -43,10 +47,19 @@ public class BollaFulmine extends Bolla {
                     this.setPosizione(this.getX() - getMovimentoX(), this.getY());
                 }
                 break;
+            case 3:
+
+                if (l.isEmpty(this.getX(), this.getY() - 1) 
+                    && !l.isTPEntry(this.getX(),this.getY() -1 )) {
+                    System.out.println("BollaAcqua si muove in basso");
+                    this.movimentoY = 3;
+                    this.setPosizione(this.getX(),this.getY() - this.getMovimentoY());
+                }else {
+                    counterDirection = 0;
+                }
+                break;
         }
-        if (l.isWalkable(getX(), getY() -1)) {
-            this.setPosizione(this.getX(), this.getY() + getMovimentoY());
-        }
+        
         counterDirection--;
         setChanged();
         notifyObservers();
