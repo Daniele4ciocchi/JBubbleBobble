@@ -52,8 +52,7 @@ public class BollaAcqua extends Bolla {
                 if (l.isEmpty(this.getX(), this.getY() - 1) 
                     && !l.isTPEntry(this.getX(),this.getY() -1 )) {
                     
-                    this.movimentoY = 3;
-                    this.setPosizione(this.getX(),this.getY() - this.getMovimentoY());
+                    this.setPosizione(this.getX(),this.getY() - 1);
                 }else {
                     counterDirection = 0;
                 }

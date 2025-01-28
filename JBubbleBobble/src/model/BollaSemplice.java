@@ -25,6 +25,7 @@ public class BollaSemplice extends Bolla {
 
     @Override 
     public void move(Livello l) {
+        
         if (range != 0){
             if (getGoingRight()) {
                 if (l.isEmpty(getX() + getMovimentoX(), getY())) {
@@ -37,6 +38,10 @@ public class BollaSemplice extends Bolla {
             }
             range--;
         }else if (range == 0){
+            if (popTime%2 == 0) {
+                popTime--;
+                return;
+            }
             popTime--;
             if (l.isTPExit(getX(),getY() + getEntitysize() )) popTime = 0;
             if (!l.isEmpty(getX(), getY() + getEntitysize())) {
