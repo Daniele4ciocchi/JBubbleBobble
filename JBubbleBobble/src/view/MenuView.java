@@ -82,7 +82,19 @@ public class MenuView {
         panel.add(Box.createVerticalStrut(20));
         panel.add(visualizzaProfiloButton);
 
-    }
+
+        // simpatika gif :)
+        ImageIcon gifIcon = new ImageIcon("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator + "misc" + File.separator + "animated.gif");
+        JLabel gifLabel = new JLabel(gifIcon);
+        gifLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        gifLabel.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        panel.add(Box.createVerticalGlue());
+        panel.add(gifLabel);
+        gifLabel.setPreferredSize(new Dimension(100, 100));
+        gifLabel.setMaximumSize(new Dimension(100, 100));
+        gifLabel.setMinimumSize(new Dimension(100, 100));
+        gifLabel.setIcon(new ImageIcon(gifIcon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+    }   
 
     public JPanel getPanel() {
         return panel;
