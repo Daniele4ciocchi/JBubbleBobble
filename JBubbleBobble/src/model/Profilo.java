@@ -120,7 +120,7 @@ public class Profilo{
         try {
             List<String> lines = Files.readAllLines(Paths.get("global_scores.txt"));
             return lines.stream()
-                        .map(line -> line.split(" "))
+                        .map(line -> line.split(":"))
                         .sorted((a, b) -> Integer.compare(Integer.parseInt(b[1]), Integer.parseInt(a[1])))
                         .limit(10)
                         .map(arr -> arr[0] + " " + arr[1])

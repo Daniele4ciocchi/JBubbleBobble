@@ -8,7 +8,9 @@ import model.Bolla;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class MenuView {
@@ -53,8 +55,16 @@ public class MenuView {
         usernameLabel.setBackground(Color.BLACK);
         usernameLabel.setForeground(Color.YELLOW);
 
-
-        usernameField = new JTextField(2);
+        String lastNickname = "";
+        try (BufferedReader br = new BufferedReader(new FileReader("global_scores.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+            lastNickname = line.split(":")[0];
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        usernameField = new JTextField(lastNickname,2);
 
         usernameField.setPreferredSize(new Dimension(150,20));
         usernameField.setMaximumSize(new Dimension(150,20));
@@ -63,6 +73,7 @@ public class MenuView {
         usernameField.setBackground(Color.BLACK);
         usernameField.setForeground(Color.YELLOW);
         usernameField.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+        
 
         passwordField = new JTextField(2);
         //passwordField.setHorizontalAlignment(JTextField.CENTER);

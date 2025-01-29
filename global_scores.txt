@@ -1,26 +1,10 @@
-null 20500
-null 20500
-null 11500
-null 11000
-null 0
-null 0
-null 0
-null 41500
-null 0
-null 16500
-null 0
-null 0
-null 14500
-null 0
-null 0
-null 0
-null 0
-null 8500
-null 7000
-null 82800
-null 117000
-null 117000
-null 0
-null 5000
-null 25500
-daniele4ciocchi 29000
+player1:1500
+player2:3000
+player3:2500
+player4:4000
+player5:3500
+player6:2000
+player7:4500
+player8:1000
+player9:5000
+player10:5500
