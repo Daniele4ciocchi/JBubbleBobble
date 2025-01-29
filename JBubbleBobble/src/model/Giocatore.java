@@ -130,10 +130,10 @@ public class Giocatore extends Personaggio implements Serializable{
         return new BollaSemplice(
             getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5,
             this.getY(), 
-            BOLLE_VEL_UP?5:2, 
+            BOLLE_VEL_UP?7:2, 
             1, 
             getGoingRight(), 
-            BOLLE_RANGE_UP?75:50
+            BOLLE_RANGE_UP?100:50
         );
     }
 
