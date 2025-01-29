@@ -1,15 +1,12 @@
-
 package model;
 
 import java.io.File;
 
-import model.Acqua.Goccia;
+public class ZenChan extends Nemico {
 
-public class ZenChan extends Nemico{
     public ZenChan(int x, int y){
         super(x, y, 3, 14);
         setSprites();
-        
     }
     
     public void setSprites(){
@@ -23,10 +20,7 @@ public class ZenChan extends Nemico{
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
-    // movimento unico di Zen-Chan
     public void move(int gx, int gy, Livello l) {
         super.move(gx, gy, l);
     }
-
-    
 }

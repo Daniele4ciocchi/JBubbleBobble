@@ -2,17 +2,11 @@ package model;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Observer;
 
-import controller.AudioManager;
-
-//da fare singleton
 public class Giocatore extends Personaggio implements Serializable{
     private int life = 3;
     private int passi = 0;
 
-    // sprites
     private final String idleSpritePath = baseSpritePath + "bubblun" + File.separator + "image_90.png";         // fermo
     private final String fallingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_84.png";      // caduta
     private final String jumpingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_70.png";      // salto
@@ -146,7 +140,6 @@ public class Giocatore extends Personaggio implements Serializable{
         BONUS_SPARO = false;
         SNEAKER_BUFF = false;
         this.movimentoX = 4;
-        // AudioManager.getInstance().playDeathSound();
 
         setShooting(false);
         this.dead = true;
@@ -160,7 +153,6 @@ public class Giocatore extends Personaggio implements Serializable{
             this.removeLife();
             this.resetPosizione();
         } else return;
-        
         setChanged();
         notifyObservers();
     }

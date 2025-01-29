@@ -7,16 +7,12 @@ public abstract class Personaggio extends Entita{
     protected boolean watered = false;
     private Goccia g;
     protected int jumpForce;
-    protected int spriteIndex; // serve ad alternare i due sprite di camminata
-
+    protected int spriteIndex;
 
     public Personaggio(int posx, int posy, int velocitaX, int velocitaY, int gravita, int jumpforce) {
         super(posx, posy, velocitaX, velocitaY, gravita);
         this.jumpForce = jumpforce;
     }
-
-    //TODO: controllo da fare nel controller dove se un'entità is on the floor
-    //      allora può fare il jump
 
     public boolean getWatered() { return watered; }
     public void setWatered(boolean w, Goccia g) { 
@@ -27,7 +23,6 @@ public abstract class Personaggio extends Entita{
     public void move(){
         this.setPosizione(g.getX(), g.getY());
     }
-
 
     public void jump() {
         this.movimentoY = this.jumpForce;
@@ -52,6 +47,5 @@ public abstract class Personaggio extends Entita{
                 notifyObservers();
                 goingRight = true;
         }
-        
     }
 }

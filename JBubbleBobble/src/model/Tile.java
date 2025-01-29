@@ -56,11 +56,8 @@ public class Tile {
         return y;
     }
 
-
     //setters
     public void setType(TileType t){
         type = t;
     }
-
-
 }

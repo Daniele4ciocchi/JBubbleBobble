@@ -3,8 +3,6 @@ package model;
 import java.io.File;
 import java.util.ArrayList;
 
-import model.Livello;
-
 public class Acqua extends Entita{
     public class Goccia extends Entita{
         private Personaggio personaggio;

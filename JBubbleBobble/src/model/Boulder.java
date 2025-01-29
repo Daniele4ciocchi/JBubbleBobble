@@ -29,10 +29,7 @@ public class Boulder extends Bolla {
                 }
             }
             range--;
-        }else if (range == 0){
-           popTime = 0;
-        }
-        
+        } else if (range == 0) popTime = 0;
         setChanged();
         notifyObservers();
     }
@@ -43,9 +40,7 @@ public class Boulder extends Bolla {
             spriteCounter = 0;
             if ((spriteIndex+1) % 2 == 1) {
                 spriteIndex = 1;
-            } else {
-                spriteIndex = (spriteIndex+1) % 2;
-            }
+            } else spriteIndex = (spriteIndex+1) % 2;
         }
         return sprites[spriteIndex];
     }

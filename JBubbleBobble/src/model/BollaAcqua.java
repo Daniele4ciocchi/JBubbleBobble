@@ -68,7 +68,6 @@ public class BollaAcqua extends Bolla {
         spriteCounter++;
         if (spriteCounter == spriteChangeRate) {
             spriteCounter = 0;
-            // spriteIndex = (spriteIndex+1) % 9;
             if ((spriteIndex+1) % 3 == 8) {
                 spriteIndex = 6;
             } else {

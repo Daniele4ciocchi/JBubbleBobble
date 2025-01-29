@@ -13,7 +13,6 @@ public class Pulpul extends Nemico{
     public void setSprites(){
         walkingSpritesPath[0] += "pulpul"+File.separator+"image_407.png";
         walkingSpritesPath[1] += "pulpul"+File.separator+"image_408.png";
-        // walkingSpritesPath[2] += "pulpul"+File.separator+"image_409.png";
 
         bubbledSpritesPath[0] += "pulpul"+File.separator+"image_417.png"; 
         bubbledSpritesPath[1] += "pulpul"+File.separator+"image_418.png"; 
@@ -33,17 +32,11 @@ public class Pulpul extends Nemico{
         if (goingRight) {
             if (!l.isWalkable(posx+getEntitysize(), posy)) {
                 posx+=movimentoX;
-            } else {
-                // setMovimentoX(movimentoX==7? ++movimentoX : movimentoX);
-                goingRight = false;
-            }
+            } else goingRight = false;
         } else {
             if (!l.isWalkable(posx-getEntitysize(), posy)) {
                 posx-=movimentoX;
-            } else {
-                // setMovimentoX(movimentoX==7? ++movimentoX : movimentoX);
-                goingRight = true;
-            }
+            } else goingRight = true;
         }
     }
     

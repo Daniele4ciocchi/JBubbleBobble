@@ -1,24 +1,12 @@
 package view;
 
-import model.Tile;
-
-import javax.imageio.ImageIO;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
-
-import controller.AudioManager;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 
 //TODO: questa in teoria è la view del gioco di per se
 //FIXME: tutta da rifare
@@ -30,10 +18,8 @@ public class GameView  {
     private JLabel scoreLabel;
     private JButton pauseButton;
     private JButton exitButton;
-    //AudioManager audioManager = new AudioManager();
 
     private static Font customFont;
-
 
     public GameView() {
         // Create frame
@@ -44,17 +30,12 @@ public class GameView  {
         frame.requestFocusInWindow();
         frame.setLocationRelativeTo(null);
         
-
-        
-        
         try {
             customFont = Font.createFont(Font.PLAIN, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "ARCADECLASSIC.TTF"));
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
             customFont = new Font("Serif", Font.PLAIN, 24); // Fallback font
         }
-        
-
     }
     public void addPartitaPanel(PartitaView partita) {
         this.partita = partita;

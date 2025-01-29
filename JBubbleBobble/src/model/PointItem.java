@@ -1,7 +1,5 @@
 package model;
 
-import java.io.File;
-import java.util.Observer;
 import java.util.Random;
 
 public class PointItem extends Item {
@@ -27,7 +25,6 @@ public class PointItem extends Item {
     }
 
     private Tipologia tipologia;
-
     
     public PointItem(int posx, int posy) {
         super(posx, posy, 0, 0, -7);
@@ -65,6 +62,4 @@ public class PointItem extends Item {
     public String getSpritePath(){
         return this.idleSpritePath;
     }
-
-    // TODO: vogliamo implementare anche qui il dying() come per le entita, per mostrare il punteggio? (+500)
 }
