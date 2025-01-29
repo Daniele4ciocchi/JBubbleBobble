@@ -86,35 +86,33 @@ public class Profilo{
         if (hs > highScore)highScore = hs;
     }
 
-    // Incrementa di 1 il livello del profilo
-    public void levelUp() {
-        livelloProfilo++;
+    public void setLivelloProfilo(){
+        
+        try {
+            final int[] totScore = {0};
+            List<String> lines = Files.readAllLines(Paths.get("global_scores.txt"));
+            lines.stream()
+                .map(line -> line.split(":"))
+                .filter(x -> x[0].equals(nickname))
+                .forEach(x -> totScore[0] += Integer.parseInt(x[1]));
+                livelloProfilo = totScore[0] / 10000;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     // Aggiunge una nuova partita allo storico del profilo + controlla la somma dei punteggi dell'utente per eventuale level-up
     public void addPartita(Partita p) {
         partite.add(p);
-        if (p.getScore() > 10000 * livelloProfilo) levelUp();
+        //if (p.getScore() > 10000 * livelloProfilo) levelUp();
     }
 
     public String getPuntiTotali() {
         return Integer.toString(partite.stream().mapToInt(Partita::getScore).sum());
     }
 
-    // Salva il profilo in un file
-    // public void saveProfilo(String filePath) throws IOException {
-    //     // try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
-    //     //     oos.writeObject(this);
-    //     // }
-    // }
-
-    // Carica un profilo da un file
-    // public void loadProfilo(String filePath){
-    //     // try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
-    //     //     return (Profilo) ois.readObject();
-    //     // }
-        
-    // }
 
     public ArrayList<String> getBestScores(){
         try {
@@ -123,7 +121,7 @@ public class Profilo{
                         .map(line -> line.split(":"))
                         .sorted((a, b) -> Integer.compare(Integer.parseInt(b[1]), Integer.parseInt(a[1])))
                         .limit(10)
-                        .map(arr -> arr[0] + " " + arr[1])
+                        .map(arr -> arr[0] + ":" + arr[1])
                         .collect(Collectors.toCollection(ArrayList::new));
         } catch (IOException e) {
             e.printStackTrace();

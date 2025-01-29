@@ -315,7 +315,7 @@ public class Partita implements Serializable{
             
             FileWriter fw = new FileWriter(file, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(Profilo.getInstance().getNickname() + " " + score + "\n");
+            bw.write(Profilo.getInstance().getNickname() + ":" + score + "\n");
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();

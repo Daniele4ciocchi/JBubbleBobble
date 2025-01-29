@@ -48,9 +48,9 @@ public class MenuView {
 
         usernameLabel = new JLabel("username");
         usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        usernameLabel.setPreferredSize(new Dimension(150,20));
-        usernameLabel.setMaximumSize(new Dimension(150,20));
-        usernameLabel.setMinimumSize(new Dimension(150,20));
+        usernameLabel.setPreferredSize(new Dimension(200,20));
+        usernameLabel.setMaximumSize(new Dimension(200,20));
+        usernameLabel.setMinimumSize(new Dimension(200,20));
         usernameLabel.setFont(font);
         usernameLabel.setBackground(Color.BLACK);
         usernameLabel.setForeground(Color.YELLOW);
@@ -66,9 +66,9 @@ public class MenuView {
         }
         usernameField = new JTextField(lastNickname,2);
 
-        usernameField.setPreferredSize(new Dimension(150,20));
-        usernameField.setMaximumSize(new Dimension(150,20));
-        usernameField.setMinimumSize(new Dimension(150,20));
+        usernameField.setPreferredSize(new Dimension(200,20));
+        usernameField.setMaximumSize(new Dimension(200,20));
+        usernameField.setMinimumSize(new Dimension(200,20));
         usernameField.setFont(font);
         usernameField.setBackground(Color.BLACK);
         usernameField.setForeground(Color.YELLOW);
@@ -77,9 +77,9 @@ public class MenuView {
 
         passwordField = new JTextField(2);
         //passwordField.setHorizontalAlignment(JTextField.CENTER);
-        passwordField.setPreferredSize(new Dimension(150,20));
-        passwordField.setMaximumSize(new Dimension(150,20));
-        passwordField.setMinimumSize(new Dimension(150,20));
+        passwordField.setPreferredSize(new Dimension(200,20));
+        passwordField.setMaximumSize(new Dimension(200,20));
+        passwordField.setMinimumSize(new Dimension(200,20));
         passwordField.setFont(font);
         passwordField.setBackground(Color.BLACK);
         passwordField.setForeground(Color.YELLOW);
@@ -89,25 +89,25 @@ public class MenuView {
         nuovaPartitaButton.setFont(font);
         nuovaPartitaButton.setBackground(Color.YELLOW);
         nuovaPartitaButton.setForeground(Color.BLACK);
-        nuovaPartitaButton.setPreferredSize(new Dimension(150, 20));
-        nuovaPartitaButton.setMaximumSize(new Dimension(150, 20));
-        nuovaPartitaButton.setMinimumSize(new Dimension(150, 20));
+        nuovaPartitaButton.setPreferredSize(new Dimension(200, 20));
+        nuovaPartitaButton.setMaximumSize(new Dimension(200, 20));
+        nuovaPartitaButton.setMinimumSize(new Dimension(200, 20));
 
         continuaPartitaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         continuaPartitaButton.setFont(font);
         continuaPartitaButton.setBackground(Color.YELLOW);
         continuaPartitaButton.setForeground(Color.BLACK);
-        continuaPartitaButton.setPreferredSize(new Dimension(150, 20));
-        continuaPartitaButton.setMaximumSize(new Dimension(150, 20));
-        continuaPartitaButton.setMinimumSize(new Dimension(150, 20));
+        continuaPartitaButton.setPreferredSize(new Dimension(200, 20));
+        continuaPartitaButton.setMaximumSize(new Dimension(200, 20));
+        continuaPartitaButton.setMinimumSize(new Dimension(200, 20));
 
         visualizzaProfiloButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         visualizzaProfiloButton.setFont(font);
         visualizzaProfiloButton.setBackground(Color.YELLOW);
         visualizzaProfiloButton.setForeground(Color.BLACK);
-        visualizzaProfiloButton.setPreferredSize(new Dimension(150, 20));
-        visualizzaProfiloButton.setMaximumSize(new Dimension(150, 20));
-        visualizzaProfiloButton.setMinimumSize(new Dimension(150, 20));
+        visualizzaProfiloButton.setPreferredSize(new Dimension(200, 20));
+        visualizzaProfiloButton.setMaximumSize(new Dimension(200, 20));
+        visualizzaProfiloButton.setMinimumSize(new Dimension(200, 20));
 
         passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
         passwordField.setFont(font);
