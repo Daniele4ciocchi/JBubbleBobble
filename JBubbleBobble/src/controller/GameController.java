@@ -49,8 +49,8 @@ public class GameController {
                 AudioManager.getInstance().stopMusic();
             }
         };
+
         view.addWindowListener(windowAdapter);
-        
         view.addTopPanel(new TopPanel());
         view.addPartitaPanel(new PartitaView());
         view.getPanel().setPartita(partita);
@@ -58,10 +58,7 @@ public class GameController {
         startGameLoop();
         setupKeyBindings();
         
-        for (Entita e : partita.getEntita()) {
-            e.addObserver(view.getPanel());
-        }
-        
+        for (Entita e : partita.getEntita()) e.addObserver(view.getPanel());
     }
 
     private void setupKeyBindings(){
@@ -143,7 +140,6 @@ public class GameController {
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
                     }
-                    
                 }
             }
         }
@@ -155,7 +151,6 @@ public class GameController {
                         partita.addEntita(b);
                         b.addObserver(view.getPanel());
                     }
-                    
                 }
             }
         }
@@ -236,8 +231,6 @@ public class GameController {
     }
 
     public void checkEntityCollision(){
-
-        //water
         for (Entita e : partita.getEntita()){
             if (e instanceof Acqua ){
                 for (Goccia g : ((Acqua)e).getGocce()){
@@ -252,7 +245,6 @@ public class GameController {
                     partita.addScore(500);
                     EntitaDaRimuovere.add(collision);
                     ((Nemico)collision).die();
-                    
                 }
             }
         }
@@ -280,7 +272,6 @@ public class GameController {
             if (e instanceof Hidegon){
                 if (((Hidegon)e).getY() == partita.getEntita().getFirst().getY() && Math.abs(FireballCounter - counter) >= 100){
                     Bolla f = ((Hidegon)e).shoot();
-                    // partita.addEntita(f);
                     EntitaDaAggiungere.add(f);
                     f.addObserver(view.getPanel());
                     FireballCounter = counter;
@@ -443,8 +434,6 @@ public class GameController {
     }
     
     private void gameLoop(){
-
-        //lista funzioni 
         counter();
         spawnBubbles();
         applyGravity();
@@ -460,7 +449,6 @@ public class GameController {
         moveEnemies();
         moveBubbles();
         checkDyingEnemies();
-        
         if (checkEntityPresence()){
             goToNextLevel();
             checkWin();

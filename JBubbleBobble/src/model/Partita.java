@@ -230,7 +230,7 @@ public class Partita implements Serializable{
         }
 
         // UMBRELLA
-        else if (bolleAcquaScoppiate == 5){ //DOVREBBE ESSERE 5, ma 1 per debug facile
+        else if (bolleAcquaScoppiate == 5){
             bolleAcquaScoppiate++;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
         }
@@ -312,7 +312,6 @@ public class Partita implements Serializable{
             if (!file.exists()) {
                 file.createNewFile();
             }
-            
             FileWriter fw = new FileWriter(file, true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(Profilo.getInstance().getNickname() + ":" + score + ":" + this.stato + "\n");
@@ -320,8 +319,5 @@ public class Partita implements Serializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-
-       
     }
 }

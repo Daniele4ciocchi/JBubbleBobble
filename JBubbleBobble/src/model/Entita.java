@@ -1,40 +1,7 @@
 package model;
 
-
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
-
-/*
- ======================= GUIDA SPRITE =======================
-  ENTITA
-	Giocatore
-		idleSprite
-		fallingSprite
-		jumpingSprite
-		shootingSprite
-		walkingSprites[]
-		deathSprite
-		
-	Nemico
-		idleSprite
-		walkingSprites[]
-		bubbledSprites[]
-		deathSprite (punti)
-		
-	SpecialItem
-		idleSprite
-		deathSprite? (punti)
-		
-	PointItem
-		idleSprite
-		deathSprite? (punti)
-		
-	Bolla
-		idleSprites[] (da bolla piccola a bolla grande)
-		[ DA DECIDERE GLI ALTRI ]
- */
 
 abstract public class Entita extends Observable {
 
@@ -58,9 +25,6 @@ abstract public class Entita extends Observable {
     protected int spriteIndex;
     protected int spriteCounter;
     protected final int spriteChangeRate = 8;
-
-    private int animationTimer = 10;
-    private int currentAnimationTimer;
 
     public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
         this.posx = posx*entitysize;

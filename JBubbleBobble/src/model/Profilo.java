@@ -1,21 +1,14 @@
 package model;
 
 import java.awt.Image;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Profilo{
-    private static final long serialVersionUID = 1L; 
+public class Profilo {
     private static Profilo profilo; // istanza singleton del profilo;
 
     private String nickname; // nome utente, immutabile e deciso nel costruttore
@@ -130,7 +123,6 @@ public class Profilo{
         return Integer.toString(livelloProfilo);
     }
 
-
     // Aggiunge una nuova partita allo storico del profilo + controlla la somma dei punteggi dell'utente per eventuale level-up
     public void addPartita(Partita p) {
         partite.add(p);
@@ -150,7 +142,6 @@ public class Profilo{
             return "0";
         }
     }
-
 
     public ArrayList<String> getBestScores(){
         try {

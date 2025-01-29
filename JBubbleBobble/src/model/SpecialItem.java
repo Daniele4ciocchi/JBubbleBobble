@@ -1,22 +1,7 @@
 package model;
 
 import java.io.File;
-import java.util.Observer;
 
-/*  INFO: https://strategywiki.org/wiki/Bubble_Bobble/Special_items
-        - caramelle(CANDY)(1000punti): modificano le bolle o il lancio delle bolle
-            1 - rosa: giocatore spara 35 bolle      ->  le bolle vanno più lontano
-            2 - blu:  giocatore scoppia 35 bolle    ->  le bolle vanno più veloci
-            3 - gialle: il giocatore salta 35 volte ->  le bolle vengono lanciate più velocemente
-        - anelli(RING)(1000punti): danno punti
-            7 - rosa: giocatore mangia 3 caramelle rosa   -> i salti danno 500 punti
-            8 - rosso: giocatore mangia 3 caramelle rosse -> le bolle sparate danno 100 punti
-            9 - blu: giocatore mangia 3 caramelle blu     -> spostarsi di un pixel da 10 punti
-        - croci(CROSS)(3000):
-            4 - blu: Collect 15 special items -> skip 3 lvl
-            5 - gialla: Collect 25 point items -> skip 5 lvl
-        - 6, scarpa(SNEAKER)(100): Run across the full length of the screen 15 times. -> +velocita, salto, gravita
-*/
 public class SpecialItem extends Item {
     public enum Tipologia{
         CANDY(1000),
@@ -66,7 +51,7 @@ public class SpecialItem extends Item {
     public SpecialItem(int posx, int posy, Tipologia tipologia, Colore colore){
         super(posx, posy, 0, 0, -3);
         this.tipologia = tipologia;
-        this.colore = colore; //NB: EMPTY se voglio sneaker!
+        this.colore = colore; //NB: EMPTY se voglio sneaker
 
         this.effetto = switch (this.tipologia) {
             case CANDY -> switch (this.colore) {
@@ -118,7 +103,6 @@ public class SpecialItem extends Item {
                 case CHACKNHEART  -> "chacknheart.png";     // CHACKNHEART
             };
             this.points = tipologia.PUNTI;
-            
     }
     
     public Tipologia getTipologia(){

@@ -33,7 +33,6 @@ public class MenuController {
         GameView  gameview = new GameView();
         Partita partita = new Partita();
         GameController controller = new GameController(partita, gameview);
-        // Logica per iniziare una nuova partita
     }
 
     /**

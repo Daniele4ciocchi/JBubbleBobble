@@ -48,7 +48,6 @@ public class BollaFulmine extends Bolla {
                 }
                 break;
             case 3:
-
                 if (l.isEmpty(this.getX(), this.getY() - 1) 
                     && !l.isTPEntry(this.getX(),this.getY() -1 )) {
                     
@@ -68,7 +67,6 @@ public class BollaFulmine extends Bolla {
         spriteCounter++;
         if (spriteCounter == spriteChangeRate) {
             spriteCounter = 0;
-            // spriteIndex = (spriteIndex+1) % 9;
             if ((spriteIndex+1) % 3 == 8) {
                 spriteIndex = 6;
             } else {

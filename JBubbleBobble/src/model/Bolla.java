@@ -1,13 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Observer;
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.Timer;
-
 abstract public class Bolla extends Entita {
-
 
     private boolean floating = false;
     private Nemico nemico;
