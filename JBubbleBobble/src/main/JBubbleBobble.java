@@ -3,6 +3,7 @@ package main;
 import model.*;
 import view.MenuView;
 
+import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
 
@@ -32,6 +33,7 @@ public class JBubbleBobble {
         frame.setSize(500, 500);
         frame.setLocationRelativeTo(null);
         frame.setUndecorated(true);
+        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 100, 100)); // Set rounded corners
 
         // Creazione del controller del menu
         MenuView menuview = new MenuView();

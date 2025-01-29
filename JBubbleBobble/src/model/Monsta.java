@@ -6,7 +6,7 @@ public class Monsta extends Nemico {
     private boolean goingUp = true;
 
     public Monsta(int x, int y){
-        super(x, y, 3, 2);
+        super(x, y, 2, 2);
         setSprites();
     }
     
