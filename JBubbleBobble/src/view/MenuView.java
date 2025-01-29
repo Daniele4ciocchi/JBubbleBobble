@@ -2,10 +2,6 @@ package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import controller.MenuController;
-import model.Bolla;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
@@ -45,11 +41,8 @@ public class MenuView {
         frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 50, 50)); // Set rounded corners
         frame.setFont(arcadeFont); // 
 
-
         // Visualizzazione del frame
         frame.setVisible(true);
-
-        
 
         // Creazione del pulsante "Esci"
         JButton esciButton = createStyledButton("Esci");
@@ -57,7 +50,6 @@ public class MenuView {
         esciButton.setPreferredSize(new Dimension(200,20));
         esciButton.setMaximumSize(new Dimension(200,20));
         esciButton.setMinimumSize(new Dimension(200,20));
-        
         
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -109,7 +101,6 @@ public class MenuView {
         usernameField.setBackground(Color.BLACK);
         usernameField.setForeground(Color.YELLOW);
         usernameField.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
-        
 
         passwordField = new JTextField(2);
         //passwordField.setHorizontalAlignment(JTextField.CENTER);
@@ -206,7 +197,7 @@ public class MenuView {
         button.setForeground(Color.BLACK);
         button.setFocusPainted(false);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setFont(arcadeFont); // Apply arcade font
+        button.setFont(arcadeFont);
         return button;
     }
 }
