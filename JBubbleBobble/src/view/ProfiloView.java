@@ -1,7 +1,7 @@
 package view;
 
-import javax.swing.*;
 import model.Profilo;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,7 +25,7 @@ public class ProfiloView {
         frame = new JFrame("Profilo Panel");
         
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(300, 300);
+        frame.setSize(300, 500);
         frame.setUndecorated(true); // Remove window decorations
         frame.setFocusable(true);
         frame.requestFocusInWindow();
@@ -51,24 +51,35 @@ public class ProfiloView {
         profiloPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         profiloPanel.add(createCenteredLabel("Nickname: " + profilo.getNickname()));
         profiloPanel.add(createCenteredLabel("Livello: " + profilo.getLivelloProfilo()));
-        profiloPanel.add(createCenteredLabel("Partite giocate: " + profilo.getNumeroPartite()));
+        profiloPanel.add(createCenteredLabel("Partite giocate: " + profilo.getPartite().size()));
         profiloPanel.add(createCenteredLabel("Punti totali: " + profilo.getPuntiTotali()));
         profiloPanel.add(createCenteredLabel("Vittorie: " + profilo.getVinte()));
         profiloPanel.add(createCenteredLabel("Perdite: " + profilo.getPerse()));
 
-        // Classifica Panel
-        JPanel classificaPanel = new JPanel();
-        classificaPanel.setLayout(new BoxLayout(classificaPanel, BoxLayout.Y_AXIS));
-        classificaPanel.setBackground(Color.BLACK);
-        classificaPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        classificaPanel.add(createCenteredLabel("Classifica:"));
-        for (String p : classifica) {
-            classificaPanel.add(createCenteredLabel(p));
-        }
+        // Avatar Selection Panel
+        JPanel avatarPanel = new JPanel();
+        avatarPanel.setLayout(new BoxLayout(avatarPanel, BoxLayout.X_AXIS));
+        avatarPanel.setBackground(Color.BLACK);
+        avatarPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        avatarPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW), "Seleziona Avatar", 0, 0, arcadeFont, Color.YELLOW));
+
+        ButtonGroup avatarGroup = new ButtonGroup();
+        JRadioButton avatar1 = createStyledRadioButtonWithImage("Avatar 1", "path/to/avatar1.png");
+        JRadioButton avatar2 = createStyledRadioButtonWithImage("Avatar 2", "path/to/avatar2.png");
+        JRadioButton avatar3 = createStyledRadioButtonWithImage("Avatar 3", "path/to/avatar3.png");
+
+        avatarGroup.add(avatar1);
+        avatarGroup.add(avatar2);
+        avatarGroup.add(avatar3);
+
+        avatarPanel.add(avatar1);
+        avatarPanel.add(avatar2);
+        avatarPanel.add(avatar3);
+
+        profiloPanel.add(avatarPanel);
 
         // Add panels to card layout
         cardPanel.add(profiloPanel, "Profilo");
-        cardPanel.add(classificaPanel, "Classifica");
 
         // Title Panel
         JPanel titlePanel = new JPanel();
@@ -119,7 +130,7 @@ public class ProfiloView {
         panel.add(closePanel);
 
         frame.add(panel);
-        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 50, 50));
+        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 100, 100));
 
         // Add mouse listeners for dragging the window
         frame.addMouseListener(new MouseAdapter() {
@@ -168,6 +179,20 @@ public class ProfiloView {
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setFont(arcadeFont); // Apply arcade font
         return button;
+    }
+
+    private JRadioButton createStyledRadioButtonWithImage(String text, String imagePath) {
+        ImageIcon icon = new ImageIcon(imagePath);
+        JRadioButton radioButton = new JRadioButton(icon);
+        radioButton.setBackground(Color.BLACK);
+        radioButton.setForeground(Color.YELLOW);
+        radioButton.setFocusPainted(false);
+        radioButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        radioButton.setFont(arcadeFont); // Apply arcade font
+        radioButton.setText(text); // Set text for accessibility
+        radioButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        radioButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+        return radioButton;
     }
 
     private void resetGlobalScores() {
