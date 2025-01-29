@@ -3,10 +3,12 @@ package view;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import controller.MenuController;
 import model.Bolla;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class MenuView {
+    public static JFrame frame;
     private JPanel panel;
     private JButton nuovaPartitaButton;
     private JButton continuaPartitaButton;
@@ -21,8 +24,41 @@ public class MenuView {
     private JTextField passwordField;
     private JLabel usernameLabel;
     private JTextField usernameField;
+    private static Font arcadeFont;
 
     public MenuView() {
+        try {
+            arcadeFont = Font.createFont(Font.TRUETYPE_FONT, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "ARCADECLASSIC.TTF")).deriveFont(20f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(arcadeFont);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+            arcadeFont = new Font("Arial", Font.PLAIN, 24); // Fallback font
+        }
+
+        // Creazione del frame
+        frame = new JFrame("Esempio di JPanel");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 500);
+        frame.setLocationRelativeTo(null);
+        frame.setUndecorated(true);
+        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 50, 50)); // Set rounded corners
+        frame.setFont(arcadeFont); // 
+
+
+        // Visualizzazione del frame
+        frame.setVisible(true);
+
+        
+
+        // Creazione del pulsante "Esci"
+        JButton esciButton = createStyledButton("Esci");
+        esciButton.addActionListener(e -> System.exit(0));
+        esciButton.setPreferredSize(new Dimension(200,20));
+        esciButton.setMaximumSize(new Dimension(200,20));
+        esciButton.setMinimumSize(new Dimension(200,20));
+        
+        
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setFont(GameView.getFont());
@@ -127,6 +163,8 @@ public class MenuView {
         panel.add(Box.createVerticalStrut(20));
         panel.add(usernameLabel);
         panel.add(usernameField);
+        panel.add(Box.createVerticalGlue()); // Add vertical glue to push the button to the bottom
+         // Add some space below the button
 
 
         // simpatika gif :)
@@ -140,6 +178,10 @@ public class MenuView {
         gifLabel.setMaximumSize(new Dimension(100, 100));
         gifLabel.setMinimumSize(new Dimension(100, 100));
         gifLabel.setIcon(new ImageIcon(gifIcon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+        
+        panel.add(esciButton);
+        
+        frame.add(panel);
     }   
 
     public JPanel getPanel() {
@@ -156,5 +198,15 @@ public class MenuView {
     }
     public String getPasswordInput() {
         return passwordField.getText();
+    }
+
+    private static JButton createStyledButton(String text) {
+        JButton button = new JButton(text);
+        button.setBackground(Color.YELLOW);
+        button.setForeground(Color.BLACK);
+        button.setFocusPainted(false);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setFont(arcadeFont); // Apply arcade font
+        return button;
     }
 }

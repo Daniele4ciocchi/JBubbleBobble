@@ -52,23 +52,53 @@ public class Profilo{
         return partite;
     }
 
+    public int getNumeroPartite() {
+        try {
+            return (int) Files.readAllLines(Paths.get("global_scores.txt")).stream()
+                .map(line -> line.split(":"))
+                .filter(arr -> arr[0].equals(nickname))
+                .count();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        
+    }
+
     // Restituisce il numero di partite vinte
     public int getVinte() {
-        return (int) partite.stream().filter(x -> x.getStato() == Partita.Stato.VINTA).count();
+        try {
+            return (int) Files.readAllLines(Paths.get("global_scores.txt")).stream()
+                .map(line -> line.split(":"))
+                .filter(arr -> arr[0].equals(nickname))
+                .filter(arr -> arr[2].equals("VINTA"))
+                .count();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     // Restituisce il numero di partite perse
     public int getPerse() {
-        return (int) partite.stream().filter(x -> x.getStato() == Partita.Stato.PERSA).count();
+        try {
+            return (int) Files.readAllLines(Paths.get("global_scores.txt")).stream()
+                .map(line -> line.split(":"))
+                .filter(arr -> arr[0].equals(nickname))
+                .filter(arr -> arr[2].equals("PERSA"))
+                .count();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     public int getHighScore() {
-        return highScore;
-    }
-
-    // Restituisce il livello del profilo
-    public int getLivelloProfilo() {
-        return livelloProfilo;
+        return getBestScores().stream()
+            .map(line -> line.split(":"))
+            .mapToInt(arr -> Integer.parseInt(arr[1]))
+            .max()
+            .orElse(0);
     }
 
 
@@ -86,31 +116,39 @@ public class Profilo{
         if (hs > highScore)highScore = hs;
     }
 
-    public void setLivelloProfilo(){
-        
+    public String getLivelloProfilo() {
         try {
-            final int[] totScore = {0};
-            List<String> lines = Files.readAllLines(Paths.get("global_scores.txt"));
-            lines.stream()
+            int totScore = Files.readAllLines(Paths.get("global_scores.txt")).stream()
                 .map(line -> line.split(":"))
-                .filter(x -> x[0].equals(nickname))
-                .forEach(x -> totScore[0] += Integer.parseInt(x[1]));
-                livelloProfilo = totScore[0] / 10000;
-
+                .filter(arr -> arr[0].equals(nickname))
+                .mapToInt(arr -> Integer.parseInt(arr[1]))
+                .sum();
+            livelloProfilo = totScore / 10000; // Example calculation for level
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return Integer.toString(livelloProfilo);
     }
 
 
     // Aggiunge una nuova partita allo storico del profilo + controlla la somma dei punteggi dell'utente per eventuale level-up
     public void addPartita(Partita p) {
         partite.add(p);
-        //if (p.getScore() > 10000 * livelloProfilo) levelUp();
+
     }
 
     public String getPuntiTotali() {
-        return Integer.toString(partite.stream().mapToInt(Partita::getScore).sum());
+        try {
+            int totScore = Files.readAllLines(Paths.get("global_scores.txt")).stream()
+                .map(line -> line.split(":"))
+                .filter(arr -> arr[0].equals(nickname))
+                .mapToInt(arr -> Integer.parseInt(arr[1]))
+                .sum();
+            return Integer.toString(totScore);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "0";
+        }
     }
 
 

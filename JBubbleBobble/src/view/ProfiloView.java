@@ -51,7 +51,7 @@ public class ProfiloView {
         profiloPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         profiloPanel.add(createCenteredLabel("Nickname: " + profilo.getNickname()));
         profiloPanel.add(createCenteredLabel("Livello: " + profilo.getLivelloProfilo()));
-        profiloPanel.add(createCenteredLabel("Partite giocate: " + profilo.getPartite().size()));
+        profiloPanel.add(createCenteredLabel("Partite giocate: " + profilo.getNumeroPartite()));
         profiloPanel.add(createCenteredLabel("Punti totali: " + profilo.getPuntiTotali()));
         profiloPanel.add(createCenteredLabel("Vittorie: " + profilo.getVinte()));
         profiloPanel.add(createCenteredLabel("Perdite: " + profilo.getPerse()));
@@ -119,7 +119,7 @@ public class ProfiloView {
         panel.add(closePanel);
 
         frame.add(panel);
-        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 100, 100));
+        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 50, 50));
 
         // Add mouse listeners for dragging the window
         frame.addMouseListener(new MouseAdapter() {

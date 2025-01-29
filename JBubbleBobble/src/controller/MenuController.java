@@ -54,6 +54,7 @@ public class MenuController {
      */
     public void getProfiloStats() {
         //per ora ok, ma sta roba va cambiata
+        Profilo.getInstance().setNickname(view.getUsernameInput());
         Profilo profiloview = Profilo.getInstance();
         ProfiloView view = new ProfiloView(profiloview, Profilo.getInstance().getBestScores());
         
