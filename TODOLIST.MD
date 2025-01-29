@@ -22,7 +22,6 @@ TODOLIST
 - [x] abbellire un po' il menu dai
 - [x] far tornare il pannello statistiche
 - [x] schermata WIN
-- 
 
 BUG da fixare:
 - [x] i nemici bubbled che si liberano in alto a DX o SX del livello sono out of bounds (bisogna dare limiti più severi alle bolle che si spostano lungo le pareti)
@@ -57,4 +56,8 @@ I BIG 4
     - [x] GAME OVER
     - [x] WIN
     - [x] stop della background music quando finisce la partita (WIN/GAMEOVER)
-- [ ] score system + salvataggio e caricamento profilo su disco
+- [x] score system + salvataggio e caricamento profilo su disco
+
+TODO FINALE
+- [ ] MenuView con text field e pulsante Salva per il nickname
+- [ ] pulsante quit in menuview
