@@ -45,6 +45,7 @@ public class AudioManager implements Runnable {
                 AudioInputStream audioStream = AudioSystem.getAudioInputStream(musicFile);
                 mainsong = AudioSystem.getClip();
                 mainsong.open(audioStream);
+                mainsong.loop(Clip.LOOP_CONTINUOUSLY);
                 gainControl = (FloatControl) mainsong.getControl(FloatControl.Type.MASTER_GAIN);
                 mainsong.loop(Clip.LOOP_CONTINUOUSLY);
             } catch (Exception e) {

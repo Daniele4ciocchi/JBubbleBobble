@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Mighta extends Nemico{
     public Mighta(int x, int y){
-        super(x, y, 2, 2);
+        super(x, y, 1, 2);
         setSprites();
     }
     
@@ -24,6 +24,6 @@ public class Mighta extends Nemico{
     }
 
     public Bolla shoot(){
-        return new Boulder(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 6, 1, getGoingRight(), 20);
+        return new Boulder(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 3, 1, getGoingRight(), 40);
     }
 }

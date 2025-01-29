@@ -21,7 +21,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
     protected String[] bubbledSpritesPath = {baseSpritePath, baseSpritePath, baseSpritePath }; // 3 sprite
 
     public Nemico(int x, int y, int velocita, int salto){
-        super(x, y, velocita, salto, -7, salto);
+        super(x, y, velocita, salto, -3, salto);
 
         // generazione random del carattere del nemico
         Random rand = new Random();

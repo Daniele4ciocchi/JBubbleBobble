@@ -27,12 +27,12 @@
     &quot;assignee&quot;: &quot;Daniele4ciocchi&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Daniele4ciocchi/JBubbleBobble.git&quot;,
-    &quot;accountId&quot;: &quot;5d340845-d855-428d-a6ec-636b5c9db812&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:Daniele4ciocchi/JBubbleBobble.git",
+    "accountId": "de8b09e6-d48e-4449-80e2-1840cd92f94e"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/JBubbleBobble/src/model/Partita.java" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -43,35 +43,39 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2ksn27SgOTRtrwxOQWc5GouZXSr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="ProjectviewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.JBubbleBobble.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Profiloview.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/JBubbleBobble&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.excludes&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.JBubbleBobble.executor": "Run",
+    "Application.Profiloview.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "60-fps-beta",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/danie/JBubbleBobble",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.excludes",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.Profiloview">
+}]]></component>
+  <component name="RunManager" selected="Application.JBubbleBobble">
     <configuration name="JBubbleBobble" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.JBubbleBobble" />
       <module name="JBubbleBobble" />
@@ -100,8 +104,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Profiloview" />
         <item itemvalue="Application.JBubbleBobble" />
+        <item itemvalue="Application.Profiloview" />
       </list>
     </recent_temporary>
   </component>
@@ -140,6 +144,7 @@
       <workItem from="1732548101812" duration="6245000" />
       <workItem from="1734969770954" duration="1204000" />
       <workItem from="1737411264641" duration="89000" />
+      <workItem from="1737802203834" duration="882000" />
     </task>
     <task id="LOCAL-00001" summary="cazzatine">
       <option name="closed" value="true" />
@@ -189,7 +194,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726146667742</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="whitespaces">
+      <option name="closed" value="true" />
+      <created>1737802304293</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737802304293</updated>
+    </task>
+    <task id="LOCAL-00008" summary="whitespaces">
+      <option name="closed" value="true" />
+      <created>1737802426835</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737802426835</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,9 +232,9 @@
     <MESSAGE value="Livello.java :&#10;- rimosso Builder pattern per ora&#10;- finiti metodi per costruzione griglia, ma da collaudare" />
     <MESSAGE value="aggiornati i primi 3 livelli" />
     <MESSAGE value="Menu.java e altre accortezze (PARTITA NON SINGLETON ASDO;FNASKJLDFGNB)" />
-    <MESSAGE value="whitespaces" />
     <MESSAGE value="11 settembre" />
-    <option name="LAST_COMMIT_MESSAGE" value="11 settembre" />
+    <MESSAGE value="whitespaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="whitespaces" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

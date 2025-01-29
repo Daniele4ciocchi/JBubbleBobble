@@ -57,7 +57,7 @@ abstract public class Entita extends Observable {
     
     protected int spriteIndex;
     protected int spriteCounter;
-    protected final int spriteChangeRate = 3;
+    protected final int spriteChangeRate = 8;
 
     private int animationTimer = 10;
     private int currentAnimationTimer;
