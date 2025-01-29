@@ -41,7 +41,7 @@ public class Giocatore extends Personaggio implements Serializable{
     private boolean SNEAKER_BUFF;
 
     public Giocatore(){
-        super(5, 1, 4, 15, -4, 17);
+        super(5, 1, 4, 15, -3, 17);
     }
 
     public int getLife(){return this.life;}
