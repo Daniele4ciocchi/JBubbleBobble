@@ -17,3 +17,10 @@ null 0
 null 0
 null 8500
 null 7000
+null 82800
+null 117000
+null 117000
+null 0
+null 5000
+null 25500
+daniele4ciocchi 29000
