@@ -1,8 +1,11 @@
 package model;
 
 import java.awt.Image;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -19,7 +22,7 @@ public class Profilo{
     private static Profilo profilo; // istanza singleton del profilo;
 
     private String nickname; // nome utente, immutabile e deciso nel costruttore
-    private Image avatar; // immagine profilo, decisa nel costruttore
+    private int avatar; // immagine profilo, decisa nel costruttore
     private ArrayList<Partita> partite = new ArrayList<Partita>(); // cronologia partite
     
     private int livelloProfilo; // livello del profilo
@@ -43,7 +46,7 @@ public class Profilo{
     }
 
     // Restituisce l'avatar del giocatore come variabile Image
-    public Image getAvatar() {
+    public int getAvatar() {
         return avatar;
     }
 
@@ -104,8 +107,33 @@ public class Profilo{
 
     // SETTERS
     // Modifica l'avatar del giocatore, fornendo una nuova immagine in parametro
-    public void setAvatar(Image a) {
+    public void setAvatar(int a) {
         avatar = a;
+        try {
+            File file = new File("profiles.txt");
+            if (!file.exists()) {
+            file.createNewFile();
+            }
+
+            List<String> lines = Files.readAllLines(file.toPath());
+            boolean exists = false;
+            for (int i = 0; i < lines.size(); i++) {
+            String[] parts = lines.get(i).split(":");
+            if (parts[0].equals(this.nickname)) {
+                lines.set(i, this.nickname + ":" + this.avatar);
+                exists = true;
+                break;
+            }
+            }
+
+            if (!exists) {
+            lines.add(this.nickname + ":" + this.avatar);
+            }
+
+            Files.write(file.toPath(), lines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setNickname(String n) {

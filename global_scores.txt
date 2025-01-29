@@ -15,3 +15,10 @@ daniele4ciocchi:0:PERSA
 daniele4ciocchi:0:PERSA
 daniele4ciocchi:0:PERSA
 daniele4ciocchi:500:PERSA
+daniele4ciocchi:0:PERSA:0
+daniele4ciocchi:45500:PERSA:0
+daniele4ciocchi:45500:PERSA:0
+daniele4ciocchi:49100:PERSA:0
+daniele4ciocchi:49100:PERSA:0
+daniele4ciocchi:90000:PERSA:0
+daniele4ciocchi:121800:PERSA:0

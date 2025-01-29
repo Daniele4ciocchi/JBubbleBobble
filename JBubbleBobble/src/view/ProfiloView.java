@@ -3,6 +3,8 @@ package view;
 import model.Profilo;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -19,6 +21,7 @@ public class ProfiloView {
     private CardLayout cardLayout;
     private Point initialClick;
     private Font arcadeFont;
+    private JLabel selectedAvatarLabel;
 
     public ProfiloView(Profilo profilo, List<String> classifica) {
         this.profilo = profilo;
@@ -63,23 +66,68 @@ public class ProfiloView {
         avatarPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         avatarPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW), "Seleziona Avatar", 0, 0, arcadeFont, Color.YELLOW));
 
+        String avatarPath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "avatars" + File.separator;
         ButtonGroup avatarGroup = new ButtonGroup();
-        JRadioButton avatar1 = createStyledRadioButtonWithImage("Avatar 1", "path/to/avatar1.png");
-        JRadioButton avatar2 = createStyledRadioButtonWithImage("Avatar 2", "path/to/avatar2.png");
-        JRadioButton avatar3 = createStyledRadioButtonWithImage("Avatar 3", "path/to/avatar3.png");
+        JRadioButton avatar1 = createStyledRadioButtonWithImage(avatarPath + "avatar1.png", 1);
+        JRadioButton avatar2 = createStyledRadioButtonWithImage(avatarPath + "avatar2.png", 2);
+        JRadioButton avatar3 = createStyledRadioButtonWithImage(avatarPath + "avatar3.png", 3);
+        JRadioButton avatar4 = createStyledRadioButtonWithImage(avatarPath + "avatar4.png", 4);
+        JRadioButton avatar5 = createStyledRadioButtonWithImage(avatarPath + "avatar5.png", 5);
 
         avatarGroup.add(avatar1);
         avatarGroup.add(avatar2);
         avatarGroup.add(avatar3);
+        avatarGroup.add(avatar4);
+        avatarGroup.add(avatar5);
 
         avatarPanel.add(avatar1);
         avatarPanel.add(avatar2);
         avatarPanel.add(avatar3);
+        avatarPanel.add(avatar4);
+        avatarPanel.add(avatar5);
 
         profiloPanel.add(avatarPanel);
 
+        // Label to show selected avatar
+        selectedAvatarLabel = new JLabel();
+        selectedAvatarLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        selectedAvatarLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        selectedAvatarLabel.setPreferredSize(new Dimension(100, 100)); // Set preferred size for the label
+        profiloPanel.add(selectedAvatarLabel);
+
         // Add panels to card layout
         cardPanel.add(profiloPanel, "Profilo");
+
+        // Classifica Panel
+        JPanel classificaPanel = new JPanel();
+        classificaPanel.setLayout(new BoxLayout(classificaPanel, BoxLayout.Y_AXIS));
+        classificaPanel.setBackground(Color.BLACK);
+        classificaPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        classificaPanel.add(createCenteredLabel("Classifica:"));
+        for (String p : classifica) {
+            String[] parts = p.split(":");
+            String nickname = parts[0];
+            String score = parts[1];
+            int avatarIndex = Integer.parseInt(parts[1]); // Assuming the avatar index is stored in the third part
+
+            JPanel entryPanel = new JPanel();
+            entryPanel.setLayout(new BoxLayout(entryPanel, BoxLayout.X_AXIS));
+            entryPanel.setBackground(Color.BLACK);
+
+            JLabel avatarLabel = new JLabel(new ImageIcon(avatarPath + "avatar" + avatarIndex + ".png"));
+            avatarLabel.setPreferredSize(new Dimension(50, 50));
+
+            JLabel nicknameLabel = createCenteredLabel(nickname + ": " + score);
+            nicknameLabel.setHorizontalAlignment(SwingConstants.LEFT);
+
+            entryPanel.add(avatarLabel);
+            entryPanel.add(Box.createHorizontalStrut(10)); // Add some space between avatar and nickname
+            entryPanel.add(nicknameLabel);
+
+            classificaPanel.add(entryPanel);
+        }
+
+        cardPanel.add(classificaPanel, "Classifica");
 
         // Title Panel
         JPanel titlePanel = new JPanel();
@@ -181,7 +229,7 @@ public class ProfiloView {
         return button;
     }
 
-    private JRadioButton createStyledRadioButtonWithImage(String text, String imagePath) {
+    private JRadioButton createStyledRadioButtonWithImage(String imagePath, int avatarIndex) {
         ImageIcon icon = new ImageIcon(imagePath);
         JRadioButton radioButton = new JRadioButton(icon);
         radioButton.setBackground(Color.BLACK);
@@ -189,9 +237,9 @@ public class ProfiloView {
         radioButton.setFocusPainted(false);
         radioButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         radioButton.setFont(arcadeFont); // Apply arcade font
-        radioButton.setText(text); // Set text for accessibility
         radioButton.setHorizontalTextPosition(SwingConstants.CENTER);
         radioButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+        radioButton.addActionListener(new AvatarSelectionListener(avatarIndex, icon));
         return radioButton;
     }
 
@@ -200,6 +248,22 @@ public class ProfiloView {
             fw.write("");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private class AvatarSelectionListener implements ActionListener {
+        private int avatarIndex;
+        private ImageIcon avatarIcon;
+
+        public AvatarSelectionListener(int avatarIndex, ImageIcon avatarIcon) {
+            this.avatarIndex = avatarIndex;
+            this.avatarIcon = avatarIcon;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            profilo.setAvatar(avatarIndex);
+            selectedAvatarLabel.setIcon(avatarIcon); // Update the selected avatar label
         }
     }
 }
