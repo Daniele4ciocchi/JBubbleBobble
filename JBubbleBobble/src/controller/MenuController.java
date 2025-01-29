@@ -29,6 +29,7 @@ public class MenuController {
      * Questa scelta del menu permette al giocatore di iniziare una nuova partita da zero.
      */
     public void nuovaPartita() {
+        Profilo.getInstance().setNickname(view.getUsernameInput());
         GameView  gameview = new GameView();
         Partita partita = new Partita();
         GameController controller = new GameController(partita, gameview);
@@ -40,6 +41,7 @@ public class MenuController {
      * a uno specifico livello facendoci GAME OVER.
      */
     public void continuaPartita() {
+        Profilo.getInstance().setNickname(view.getUsernameInput());
         String password = view.getPasswordInput(); // Assumendo che ci sia un metodo per ottenere la password dalla vista
         GameView  gameview = new GameView();
         Partita partita = new Partita(password);

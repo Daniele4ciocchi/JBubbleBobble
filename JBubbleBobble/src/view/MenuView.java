@@ -17,6 +17,8 @@ public class MenuView {
     private JButton continuaPartitaButton;
     private JButton visualizzaProfiloButton;
     private JTextField passwordField;
+    private JLabel usernameLabel;
+    private JTextField usernameField;
 
     public MenuView() {
         panel = new JPanel();
@@ -42,45 +44,78 @@ public class MenuView {
         continuaPartitaButton = new JButton("Continua Partita");
         visualizzaProfiloButton = new JButton("Visualizza Profilo");
 
+        usernameLabel = new JLabel("username");
+        usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        usernameLabel.setPreferredSize(new Dimension(150,20));
+        usernameLabel.setMaximumSize(new Dimension(150,20));
+        usernameLabel.setMinimumSize(new Dimension(150,20));
+        usernameLabel.setFont(font);
+        usernameLabel.setBackground(Color.BLACK);
+        usernameLabel.setForeground(Color.YELLOW);
+
+
+        usernameField = new JTextField(2);
+
+        usernameField.setPreferredSize(new Dimension(150,20));
+        usernameField.setMaximumSize(new Dimension(150,20));
+        usernameField.setMinimumSize(new Dimension(150,20));
+        usernameField.setFont(font);
+        usernameField.setBackground(Color.BLACK);
+        usernameField.setForeground(Color.YELLOW);
+        usernameField.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+
         passwordField = new JTextField(2);
         //passwordField.setHorizontalAlignment(JTextField.CENTER);
-        passwordField.setPreferredSize(new Dimension(100,20));
-        passwordField.setMaximumSize(new Dimension(100,20));
-        passwordField.setMinimumSize(new Dimension(100,20));
+        passwordField.setPreferredSize(new Dimension(150,20));
+        passwordField.setMaximumSize(new Dimension(150,20));
+        passwordField.setMinimumSize(new Dimension(150,20));
         passwordField.setFont(font);
         passwordField.setBackground(Color.BLACK);
         passwordField.setForeground(Color.YELLOW);
+        passwordField.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 
         nuovaPartitaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         nuovaPartitaButton.setFont(font);
         nuovaPartitaButton.setBackground(Color.YELLOW);
         nuovaPartitaButton.setForeground(Color.BLACK);
+        nuovaPartitaButton.setPreferredSize(new Dimension(150, 20));
+        nuovaPartitaButton.setMaximumSize(new Dimension(150, 20));
+        nuovaPartitaButton.setMinimumSize(new Dimension(150, 20));
 
         continuaPartitaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         continuaPartitaButton.setFont(font);
         continuaPartitaButton.setBackground(Color.YELLOW);
         continuaPartitaButton.setForeground(Color.BLACK);
+        continuaPartitaButton.setPreferredSize(new Dimension(150, 20));
+        continuaPartitaButton.setMaximumSize(new Dimension(150, 20));
+        continuaPartitaButton.setMinimumSize(new Dimension(150, 20));
 
         visualizzaProfiloButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         visualizzaProfiloButton.setFont(font);
         visualizzaProfiloButton.setBackground(Color.YELLOW);
         visualizzaProfiloButton.setForeground(Color.BLACK);
+        visualizzaProfiloButton.setPreferredSize(new Dimension(150, 20));
+        visualizzaProfiloButton.setMaximumSize(new Dimension(150, 20));
+        visualizzaProfiloButton.setMinimumSize(new Dimension(150, 20));
 
         passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
         passwordField.setFont(font);
 
         //nuovaPartitaButton.setBackground(Color.GREEN);
-
+        
         panel.add(Box.createVerticalStrut(20));
         panel.add(label);
         panel.add(Box.createVerticalStrut(20));
         panel.add(nuovaPartitaButton);
         panel.add(Box.createVerticalStrut(20));
         panel.add(continuaPartitaButton);
-        panel.add(Box.createVerticalStrut(20));
         panel.add(passwordField);
+
         panel.add(Box.createVerticalStrut(20));
         panel.add(visualizzaProfiloButton);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(usernameLabel);
+        panel.add(usernameField);
 
 
         // simpatika gif :)
@@ -105,6 +140,9 @@ public class MenuView {
     public void addContinuaPartitaListener(ActionListener listener) {continuaPartitaButton.addActionListener(listener);}
     public void addVisualizzaProfiloListener(ActionListener listener) {visualizzaProfiloButton.addActionListener(listener);}
 
+    public String getUsernameInput() {
+        return usernameField.getText();
+    }
     public String getPasswordInput() {
         return passwordField.getText();
     }
