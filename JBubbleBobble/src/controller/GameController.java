@@ -400,6 +400,7 @@ public class GameController {
         if (partita.getLivello().getLevelNum() == 16 && partita.getEntita().stream().filter(e -> e instanceof Nemico).count() == 0){
             partita.getLivello().changeLevel(105);
             partita.setStato(Partita.Stato.VINTA);
+            partita.svuotaEntita();
             AudioManager.getInstance().stopMusic();
             AudioManager.getInstance().playSound("win");
             partita.end();
