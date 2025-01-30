@@ -23,6 +23,7 @@ public class ProfiloView {
     private Font arcadeFont;
     private JLabel selectedAvatarLabel;
     private JPanel classificaPanel;
+    private JPanel profiloPanel;
     private List<String> classifica;
     private String avatarPath;
 
@@ -39,7 +40,9 @@ public class ProfiloView {
         frame.requestFocusInWindow();
         frame.setLocationRelativeTo(null);
 
-        ImageIcon logoIcon = new ImageIcon("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites"+ File.separator + "misc" + File.separator + "image_21.png");
+    
+
+        ImageIcon logoIcon = new ImageIcon("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator + "misc" + File.separator + "image_21.png");
         frame.setIconImage(logoIcon.getImage());
 
         // Load Arcade Font
@@ -56,16 +59,10 @@ public class ProfiloView {
         cardPanel = new JPanel(cardLayout);
 
         // Profilo Panel
-        JPanel profiloPanel = new JPanel();
+        profiloPanel = new JPanel();
         profiloPanel.setLayout(new BoxLayout(profiloPanel, BoxLayout.Y_AXIS));
         profiloPanel.setBackground(Color.BLACK);
         profiloPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        profiloPanel.add(createCenteredLabel("Nickname: " + profilo.getNickname()));
-        profiloPanel.add(createCenteredLabel("Livello: " + profilo.getLivelloProfilo()));
-        profiloPanel.add(createCenteredLabel("Partite giocate: " + profilo.getPartite().size()));
-        profiloPanel.add(createCenteredLabel("Punti totali: " + profilo.getPuntiTotali()));
-        profiloPanel.add(createCenteredLabel("Vittorie: " + profilo.getVinte()));
-        profiloPanel.add(createCenteredLabel("Perdite: " + profilo.getPerse()));
 
         // Avatar Selection Panel
         JPanel avatarPanel = new JPanel();
@@ -125,7 +122,10 @@ public class ProfiloView {
         JButton profiloButton = createStyledButton("Profilo");
         JButton classificaButton = createStyledButton("Classifica");
 
-        profiloButton.addActionListener(e -> cardLayout.show(cardPanel, "Profilo"));
+        profiloButton.addActionListener(e -> {
+            updateProfiloPanel();
+            cardLayout.show(cardPanel, "Profilo");
+        });
         classificaButton.addActionListener(e -> {
             updateClassificaPanel();
             cardLayout.show(cardPanel, "Classifica");
@@ -192,6 +192,49 @@ public class ProfiloView {
         });
 
         frame.setVisible(true);
+        updateProfiloPanel();
+    }
+
+    private void updateProfiloPanel() {
+        profiloPanel.removeAll();
+        profiloPanel.add(createCenteredLabel("Nickname: " + profilo.getNickname()));
+        profiloPanel.add(createCenteredLabel("Livello: " + profilo.getLivelloProfilo()));
+        profiloPanel.add(createCenteredLabel("Partite giocate: " + (profilo.getVinte() + profilo.getPerse())));
+        profiloPanel.add(createCenteredLabel("Punti totali: " + profilo.getPuntiTotali()));
+        profiloPanel.add(createCenteredLabel("Vittorie: " + profilo.getVinte()));
+        profiloPanel.add(createCenteredLabel("Perdite: " + profilo.getPerse()));
+
+        // Re-add the avatar selection panel and selected avatar label
+        JPanel avatarPanel = new JPanel();
+        avatarPanel.setLayout(new BoxLayout(avatarPanel, BoxLayout.X_AXIS));
+        avatarPanel.setBackground(Color.BLACK);
+        avatarPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        avatarPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW), "Seleziona Avatar", 0, 0, arcadeFont, Color.YELLOW));
+
+        ButtonGroup avatarGroup = new ButtonGroup();
+        JRadioButton avatar1 = createStyledRadioButtonWithImage(avatarPath + "avatar1.png", 1);
+        JRadioButton avatar2 = createStyledRadioButtonWithImage(avatarPath + "avatar2.png", 2);
+        JRadioButton avatar3 = createStyledRadioButtonWithImage(avatarPath + "avatar3.png", 3);
+        JRadioButton avatar4 = createStyledRadioButtonWithImage(avatarPath + "avatar4.png", 4);
+        JRadioButton avatar5 = createStyledRadioButtonWithImage(avatarPath + "avatar5.png", 5);
+
+        avatarGroup.add(avatar1);
+        avatarGroup.add(avatar2);
+        avatarGroup.add(avatar3);
+        avatarGroup.add(avatar4);
+        avatarGroup.add(avatar5);
+
+        avatarPanel.add(avatar1);
+        avatarPanel.add(avatar2);
+        avatarPanel.add(avatar3);
+        avatarPanel.add(avatar4);
+        avatarPanel.add(avatar5);
+
+        profiloPanel.add(avatarPanel);
+        profiloPanel.add(selectedAvatarLabel);
+
+        profiloPanel.revalidate();
+        profiloPanel.repaint();
     }
 
     private void updateClassificaPanel() {

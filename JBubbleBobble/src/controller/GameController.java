@@ -168,6 +168,7 @@ public class GameController {
             if (partita.getChacknHeart()){
                 partita.addScore(500);
                 ((Entita)collision).die();
+                EntitaDaRimuovere.add(collision);   
             } else {
                 ((Giocatore)(partita.getEntita().getFirst())).die();
                 if (morteGiocatoreCounter == 0) AudioManager.getInstance().playSound("death");
