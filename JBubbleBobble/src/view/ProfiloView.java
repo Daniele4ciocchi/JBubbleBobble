@@ -39,6 +39,9 @@ public class ProfiloView {
         frame.requestFocusInWindow();
         frame.setLocationRelativeTo(null);
 
+        ImageIcon logoIcon = new ImageIcon("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites"+ File.separator + "misc" + File.separator + "image_21.png");
+        frame.setIconImage(logoIcon.getImage());
+
         // Load Arcade Font
         try {
             arcadeFont = Font.createFont(Font.TRUETYPE_FONT, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "ARCADECLASSIC.TTF")).deriveFont(24f);

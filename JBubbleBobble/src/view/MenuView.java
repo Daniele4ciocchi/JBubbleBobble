@@ -41,6 +41,9 @@ public class MenuView {
         frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 50, 50)); // Set rounded corners
         frame.setFont(arcadeFont); // 
 
+        ImageIcon logoIcon = new ImageIcon("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites"+ File.separator + "misc" + File.separator + "image_21.png");
+        frame.setIconImage(logoIcon.getImage());
+
         // Visualizzazione del frame
         frame.setVisible(true);
 
