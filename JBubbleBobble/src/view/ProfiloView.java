@@ -22,11 +22,16 @@ public class ProfiloView {
     private Point initialClick;
     private Font arcadeFont;
     private JLabel selectedAvatarLabel;
+    private JPanel classificaPanel;
+    private List<String> classifica;
+    private String avatarPath;
 
     public ProfiloView(Profilo profilo, List<String> classifica) {
         this.profilo = profilo;
+        this.classifica = classifica;
+        this.avatarPath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "avatars" + File.separator;
+
         frame = new JFrame("Profilo Panel");
-        
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(300, 500);
         frame.setUndecorated(true); // Remove window decorations
@@ -66,7 +71,6 @@ public class ProfiloView {
         avatarPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         avatarPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW), "Seleziona Avatar", 0, 0, arcadeFont, Color.YELLOW));
 
-        String avatarPath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "avatars" + File.separator;
         ButtonGroup avatarGroup = new ButtonGroup();
         JRadioButton avatar1 = createStyledRadioButtonWithImage(avatarPath + "avatar1.png", 1);
         JRadioButton avatar2 = createStyledRadioButtonWithImage(avatarPath + "avatar2.png", 2);
@@ -99,34 +103,10 @@ public class ProfiloView {
         cardPanel.add(profiloPanel, "Profilo");
 
         // Classifica Panel
-        JPanel classificaPanel = new JPanel();
+        classificaPanel = new JPanel();
         classificaPanel.setLayout(new BoxLayout(classificaPanel, BoxLayout.Y_AXIS));
         classificaPanel.setBackground(Color.BLACK);
         classificaPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        classificaPanel.add(createCenteredLabel("Classifica:"));
-        for (String p : classifica) {
-            String[] parts = p.split(":");
-            String nickname = parts[0];
-            String score = parts[1];
-            int avatarIndex = Integer.parseInt(parts[1]); // Assuming the avatar index is stored in the third part
-
-            JPanel entryPanel = new JPanel();
-            entryPanel.setLayout(new BoxLayout(entryPanel, BoxLayout.X_AXIS));
-            entryPanel.setBackground(Color.BLACK);
-
-            JLabel avatarLabel = new JLabel(new ImageIcon(avatarPath + "avatar" + avatarIndex + ".png"));
-            avatarLabel.setPreferredSize(new Dimension(50, 50));
-
-            JLabel nicknameLabel = createCenteredLabel(nickname + ": " + score);
-            nicknameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-
-            entryPanel.add(avatarLabel);
-            entryPanel.add(Box.createHorizontalStrut(10)); // Add some space between avatar and nickname
-            entryPanel.add(nicknameLabel);
-
-            classificaPanel.add(entryPanel);
-        }
-
         cardPanel.add(classificaPanel, "Classifica");
 
         // Title Panel
@@ -143,7 +123,10 @@ public class ProfiloView {
         JButton classificaButton = createStyledButton("Classifica");
 
         profiloButton.addActionListener(e -> cardLayout.show(cardPanel, "Profilo"));
-        classificaButton.addActionListener(e -> cardLayout.show(cardPanel, "Classifica"));
+        classificaButton.addActionListener(e -> {
+            updateClassificaPanel();
+            cardLayout.show(cardPanel, "Classifica");
+        });
 
         controlPanel.add(profiloButton);
         controlPanel.add(classificaButton);
@@ -178,7 +161,7 @@ public class ProfiloView {
         panel.add(closePanel);
 
         frame.add(panel);
-        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 100, 100));
+        frame.setShape(new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 50, 50));
 
         // Add mouse listeners for dragging the window
         frame.addMouseListener(new MouseAdapter() {
@@ -206,6 +189,35 @@ public class ProfiloView {
         });
 
         frame.setVisible(true);
+    }
+
+    private void updateClassificaPanel() {
+        classificaPanel.removeAll();
+        classificaPanel.add(createCenteredLabel("Classifica:"));
+        for (String p : classifica) {
+            String[] parts = p.split(":");
+            String nickname = parts[0];
+            String score = parts[1];
+            int avatarIndex = Profilo.getInstance().getAvatar(nickname);
+
+            JPanel entryPanel = new JPanel();
+            entryPanel.setLayout(new BoxLayout(entryPanel, BoxLayout.X_AXIS));
+            entryPanel.setBackground(Color.BLACK);
+
+            JLabel avatarLabel = new JLabel(new ImageIcon(avatarPath + "avatar" + avatarIndex + ".png"));
+            avatarLabel.setPreferredSize(new Dimension(50, 50));
+
+            JLabel nicknameLabel = createCenteredLabel(nickname + ": " + score);
+            nicknameLabel.setHorizontalAlignment(SwingConstants.LEFT);
+
+            entryPanel.add(avatarLabel);
+            entryPanel.add(Box.createHorizontalStrut(10)); // Add some space between avatar and nickname
+            entryPanel.add(nicknameLabel);
+
+            classificaPanel.add(entryPanel);
+        }
+        classificaPanel.revalidate();
+        classificaPanel.repaint();
     }
 
     private JLabel createCenteredLabel(String text) {

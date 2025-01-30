@@ -37,8 +37,25 @@ public class Profilo {
     }
 
     // Restituisce l'avatar del giocatore come variabile Image
-    public int getAvatar() {
+    public int getAvatar(String s) {
+        List<String> lines;
+        try {
+            lines = Files.readAllLines(Paths.get("profiles.txt"));
+
+            for (String line : lines) {
+                String[] parts = line.split(":");
+                if (parts[0].equals(s)) {
+                    return Integer.parseInt(parts[1]);
+                }
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return 0;
+        }
         return avatar;
+        
+        
     }
 
     // Restituisce l'ArrayList di Partite giocate con questo profilo

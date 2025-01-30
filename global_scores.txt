@@ -22,3 +22,6 @@ daniele4ciocchi:49100:PERSA:0
 daniele4ciocchi:49100:PERSA:0
 daniele4ciocchi:90000:PERSA:0
 daniele4ciocchi:121800:PERSA:0
+daniele4ciocchi:130900:PERSA:0
+daniele4ciocchi:140100:PERSA:0
+daniele4ciocchi:207600:PERSA:0
