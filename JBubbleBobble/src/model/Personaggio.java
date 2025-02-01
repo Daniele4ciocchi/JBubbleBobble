@@ -25,27 +25,29 @@ public abstract class Personaggio extends Entita{
     }
 
     public void jump() {
-        this.movimentoY = this.jumpForce;
+        setMovimentoX(this.jumpForce);
         
         setChanged();
         notifyObservers();
     }
     
     public void moveLeft(Livello l) {
-        if (l.isEmpty(posx-movimentoX, posy) && !watered){
-            posx-=movimentoX;
+        if (l.isEmpty(getX()-getMovimentoX(), getY()) && !watered){
+            setPosizione(getX()-getMovimentoX(), getY());
+            setGoingRight(false);
             setChanged();
             notifyObservers();
-            goingRight = false;
         }
     }
 
     public void moveRight(Livello l) {
-        if (l.isEmpty(posx+movimentoX+5, posy) && !watered){
-            posx += movimentoX;
+        if (l.isEmpty(getX()+getMovimentoX()+5, getY()) && !watered){
+            setPosizione(getX()+getMovimentoX(), getY());
+            setGoingRight(true);
+
             setChanged();
             notifyObservers();
-            goingRight = true;
+
         }
     }
 }

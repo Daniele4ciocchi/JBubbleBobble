@@ -98,7 +98,7 @@ public class Giocatore extends Personaggio implements Serializable{
         if(!isDead()) {
             super.moveLeft(l);
             setShooting(false);
-            passi+=movimentoX;
+            passi+=getMovimentoX();
         }
     }
 
@@ -107,7 +107,7 @@ public class Giocatore extends Personaggio implements Serializable{
         if(!isDead()) {
             super.moveRight(l);
             setShooting(false);
-            passi+=movimentoX;
+            passi+=getMovimentoX();
         }
     }
 
@@ -139,17 +139,17 @@ public class Giocatore extends Personaggio implements Serializable{
         BONUS_SALTO = false;
         BONUS_SPARO = false;
         SNEAKER_BUFF = false;
-        this.movimentoX = 4;
+        this.setMovimentoX(4);
 
         setShooting(false);
-        this.dead = true;
+        this.die();
         setChanged();
         notifyObservers();
     }
 
     public void respawn(){
         if (this.life != 0){
-            this.dead = false;
+            this.undie();
             this.removeLife();
             this.resetPosizione();
         } else return;
@@ -167,7 +167,7 @@ public class Giocatore extends Personaggio implements Serializable{
             case BONUS_SPARO -> BONUS_SPARO = true;
             case SNEAKER_BUFF -> {
                 SNEAKER_BUFF = true;
-                this.movimentoX = 6;
+                this.setMovimentoX(6);
             }
         }
     }

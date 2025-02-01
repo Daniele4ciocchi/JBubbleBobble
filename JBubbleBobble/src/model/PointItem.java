@@ -37,7 +37,6 @@ public class PointItem extends Item {
                 tipologia = t;
             }
         }
-        this.dead = false;
         
         // attribuzione punti, in base alla tipologia estratta randomicamente
         this.points = tipologia.getPunti();

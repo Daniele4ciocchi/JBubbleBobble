@@ -40,14 +40,14 @@ public abstract class Nemico extends Personaggio implements Runnable{
         if (!watered){
             if (this.getX() < gx) {
                 if (currentWaitTime == 0){
-                    goingRight = true;
+                    setGoingRight(true);
                     moveRight(l);
                     currentWaitTime = waitTime;
                 } else currentWaitTime--;
             }
             if (this.getX() > gx) {
                 if (currentWaitTime == 0){
-                    goingRight = false;
+                    setGoingRight(false);
                     moveLeft(l);
                     currentWaitTime = waitTime;
                 } else currentWaitTime--;
@@ -58,7 +58,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
 
     // ritorna lo sprite adatto relativamente allo stato di questo nemico
     public String getSpritePath(){
-        if (dead) return deathSpritePath; // MORTE (score ottenuto, es: 500!)
+        if (isDead()) return deathSpritePath; // MORTE (score ottenuto, es: 500!)
         if (bubbled) {                    // BUBBLED
             spriteCounter++;
             if (spriteCounter == spriteChangeRate) {
@@ -80,8 +80,8 @@ public abstract class Nemico extends Personaggio implements Runnable{
 
     public PointItem dying(){
         deathCounter--;
-        dead = true;
-        return deathCounter == 0?  new PointItem(posx/16,posy/16):null;
+        die();
+        return deathCounter == 0?  new PointItem(getX()/16,getY()/16):null;
     }
 }
 
