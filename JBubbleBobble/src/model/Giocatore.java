@@ -122,11 +122,11 @@ public class Giocatore extends Personaggio implements Serializable{
     public Bolla shoot(){
         this.setShooting(true);
         return new BollaSemplice(
-            getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5,
+            isGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5,
             this.getY(), 
             BOLLE_VEL_UP?7:2, 
             1, 
-            getGoingRight(), 
+            isGoingRight(), 
             BOLLE_RANGE_UP?100:50
         );
     }

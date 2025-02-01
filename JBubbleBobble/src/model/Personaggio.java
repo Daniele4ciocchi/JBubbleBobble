@@ -25,7 +25,7 @@ public abstract class Personaggio extends Entita{
     }
 
     public void jump() {
-        setMovimentoX(this.jumpForce);
+        setMovimentoY(this.jumpForce);
         
         setChanged();
         notifyObservers();

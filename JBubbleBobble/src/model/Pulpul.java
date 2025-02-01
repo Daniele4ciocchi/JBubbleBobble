@@ -29,7 +29,7 @@ public class Pulpul extends Nemico{
     }
 
     public void moveOrizzontale(Livello l){
-        if (getGoingRight()) {
+        if (isGoingRight()) {
             if (!l.isWalkable(getX()+getEntitysize(), getY())) setPosizione(getX() + getMovimentoX(),getY());
             else {
                 setGoingRight(false);

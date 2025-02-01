@@ -64,37 +64,124 @@ abstract public class Entita extends Observable {
     }
 
     /**
-     * Metodo che restituisce.
-     * @return
+     * Restituisce la coordinata x dell'entità.
+     * @return coordinata x dell'entità
      */
-    public int getX(){return posx;}
-    public int getY(){return posy;}
-    public boolean isDead(){return dead;}
-    public int getMovimentoX(){return movimentoX;}
-    public int getMovimentoY(){return movimentoY;}
-    public int getGravita(){return gravita;}
-    public static int getEntitysize(){return entitysize;}
-    public boolean getGoingRight(){return goingRight;}
+    public int getX() {
+        return posx;
+    }
 
-    public void setMovimentoY(int i) {this.movimentoY = i;}
-    public void setMovimentoX(int i) {this.movimentoX = i;}
-    public void setGravita(int i) {this.gravita = i;}
-    public void setEntitysize(int i) {this.entitysize = i;}
-    public void setGoingRight(boolean b) {this.goingRight = b;}
+    /**
+     * Restituisce la coordinata y dell'entità.
+     * @return coordinata y dell'entità
+     */
+    public int getY() {
+        return posy;
+    }
+
+    /**
+     * Restituisce il booleano che indica se l'entità è morta o meno.
+     * @return booleano che indica la morte
+     */
+    public boolean isDead() {
+        return dead;
+    }
+
+    /**
+     * Restituisce l'intero che indica la velocità di movimento sull'asse x dell'entità.
+     * @return velocità di movimento sull'asse x dell'entità
+     */
+    public int getMovimentoX() {
+        return movimentoX;
+    }
+
+    /**
+     * Restituisce l'intero che indica la velocità di movimento sull'asse y dell'entità.
+     * @return velocità di movimento sull'asse y dell'entità
+     */
+    public int getMovimentoY() {
+        return movimentoY;
+    }
+
+    /**
+     * Restituisce l'intero che indica la gravità dell'entità.
+     * @return gravità dell'entità
+     */
+    public int getGravita() {
+        return gravita;
+    }
+
+    /**
+     * Restituisce la grandezza dell'entità.
+     * @return grandezza dell'entità
+     */
+    public static int getEntitysize() {
+        return entitysize;
+    }
+
+    /**
+     * Restituisce il booleano che indica se l'entità è rivolta verso destra o meno.
+     * @return booleano che indica se l'entità è rivolta verso destra o meno
+     */
+    public boolean isGoingRight() {
+        return goingRight;
+    }
+
+    /**
+     * Imposta il nuovo valore di movimentoX
+     * @param i nuovo valore di movimentoX
+     */
+    public void setMovimentoX(int i) {
+        this.movimentoX = i;
+    }
+
+    /**
+     * Imposta il nuovo valore di movimentoY
+     * @param i nuovo valore di movimentoY
+     */
+    public void setMovimentoY(int i) {
+        this.movimentoY = i;
+    }
     
-    public void setPosizione(int x, int y){
+    /**
+     * Imposta il nuovo valore di gravità
+     * @param i nuovo valore di gravità
+     */
+    public void setGravita(int i) {
+        this.gravita = i;
+    }
+
+    /**
+     * Imposta il booleano che indica se l'entità è rivolta verso destra o meno.
+     * @param b nuovo booleano che indica se l'entità è rivolta verso destra o meno
+     */
+    public void setGoingRight(boolean b) {
+        this.goingRight = b;
+    }
+
+    /**
+     * Imposta la posizione dell'entità.
+     * @param x nuova coordinata x dell'entità
+     * @param y nuova coordinata y dell'entità
+     */
+    public void setPosizione(int x, int y) {
         this.posx = x;
         this.posy = y;
         setChanged();
         notifyObservers();
     }
 
+    /**
+     * Fa morire l'entità.
+     */
     public void die(){
         this.dead = true;
     }
 
-    @Override
-    public String toString(){
-        return this.getClass() + ": x = " + posx + " y = " + posy;
+    /**
+     * Fa resuscitare l'entità.
+     */
+    public void undie(){
+        this.dead = false;
     }
 }

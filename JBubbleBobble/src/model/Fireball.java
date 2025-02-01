@@ -17,7 +17,7 @@ public class Fireball extends Bolla {
     @Override 
     public void move(Livello l) {
         if (range !=0){
-            if (getGoingRight()) {
+            if (isGoingRight()) {
                 if (l.isEmpty(getX() + getMovimentoX(), getY())) {
                     setPosizione(getX() + getMovimentoX(), getY());
                 }

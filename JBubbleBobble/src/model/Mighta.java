@@ -24,6 +24,6 @@ public class Mighta extends Nemico{
     }
 
     public Bolla shoot(){
-        return new Boulder(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 3, 1, getGoingRight(), 40);
+        return new Boulder(isGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 3, 1, isGoingRight(), 40);
     }
 }

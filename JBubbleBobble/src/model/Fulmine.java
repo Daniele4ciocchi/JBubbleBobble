@@ -10,7 +10,7 @@ public class Fulmine extends Entita{
     }
 
     public void move(Livello l) {
-       if (getGoingRight() == true)setPosizione(getX() + getMovimentoX(), getY());
+       if (isGoingRight() == true)setPosizione(getX() + getMovimentoX(), getY());
        else setPosizione(getX() - getMovimentoX(), getY());
     }
 

@@ -99,7 +99,7 @@ public class PartitaView extends JPanel implements Observer {
             if (e instanceof model.Giocatore) {
                 try {
                     giocatore = ImageIO.read(new File(((Giocatore) (e)).getSpritePath()));
-                    if (!((Giocatore) (e)).getGoingRight()) {
+                    if (!((Giocatore) (e)).isGoingRight()) {
                         if (((Giocatore) (e)).getInvincibilita() % 2 == 1) {
                             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
                             g2d.drawImage(giocatore, x, y, doubleEntitySize, doubleEntitySize, null);
@@ -123,7 +123,7 @@ public class PartitaView extends JPanel implements Observer {
                 if (((Bolla)(e)).getNemico() != null){
                     try {
                         bolla = ImageIO.read(new File(((Bolla)(e)).getNemico().getSpritePath()));
-                        if (!((Bolla)(e)).getGoingRight()) {
+                        if (!((Bolla)(e)).isGoingRight()) {
                             g2d.drawImage(bolla, x, y, e.getEntitysize(), e.getEntitysize(), null);
                         } else {
                             g2d.drawImage(bolla, x + e.getEntitysize(), y, -e.getEntitysize(), e.getEntitysize(), null);
@@ -135,7 +135,7 @@ public class PartitaView extends JPanel implements Observer {
                 } else if (e instanceof BollaSemplice){
                     try {
                         bolla = ImageIO.read(new File(((BollaSemplice)(e)).getSpritePath()));
-                        if (!((Bolla)(e)).getGoingRight()) {
+                        if (!((Bolla)(e)).isGoingRight()) {
                             g2d.drawImage(bolla, x, y, doubleEntitySize, doubleEntitySize, null);
                         } else {
                             g2d.drawImage(bolla, x + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
@@ -177,7 +177,7 @@ public class PartitaView extends JPanel implements Observer {
             } else if(e instanceof model.Nemico){
                 try {
                     nemico = ImageIO.read(new File(((Nemico)(e)).getSpritePath()));
-                    if (!((Nemico)(e)).getGoingRight()) {
+                    if (!((Nemico)(e)).isGoingRight()) {
                         g2d.drawImage(nemico, x, y, doubleEntitySize, doubleEntitySize, null);
                     } else {
                         g2d.drawImage(nemico, x + doubleEntitySize, y, -doubleEntitySize, doubleEntitySize, null);
