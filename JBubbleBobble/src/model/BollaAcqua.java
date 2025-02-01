@@ -2,10 +2,13 @@ package model;
 
 import java.io.File;
 
+/**
+ * Classe che rappresenta una bolla d'acqua.
+ */
 public class BollaAcqua extends Bolla {
 
-    int direction;
-    int counterDirection = 0;
+    private int direction;
+    private int counterDirection = 0;
 
     private String[] sprites = {
         baseSpritePath + "misc" + File.separator + "image_238.png",
@@ -13,10 +16,19 @@ public class BollaAcqua extends Bolla {
         baseSpritePath + "misc" + File.separator + "image_240.png",
     };
 
+    /**
+     * Costruttore della classe BollaAcqua.
+     * @param x posizione x iniziale
+     * @param y posizione y iniziale
+     */
     public BollaAcqua(int x, int y) {
         super(x, y, 1, 2, 0);
     }
 
+    /**
+     * Metodo che fa muovere la bolla d'acqua.
+     * @param l livello in cui si trova la bolla
+     */
     @Override
     public void move(Livello l) {
         if (counterDirection <= 0){
@@ -31,7 +43,7 @@ public class BollaAcqua extends Bolla {
             case 0:
                 if (l.isEmpty(this.getX(), this.getY() + 1) 
                     && !l.isTPExit(this.getX(),this.getY() +1 )) {
-                    this.movimentoY = 1;
+                    this.setMovimentoY(1);
                     this.setPosizione(this.getX(),this.getY() + this.getMovimentoY());
                 }else {
                     counterDirection = 0;
@@ -64,6 +76,10 @@ public class BollaAcqua extends Bolla {
         notifyObservers();
     }
 
+    /**
+     * Metodo che restituisce il percorso dello sprite da visualizzare.
+     * @return percorso dello sprite
+     */
     public String getSpritePath(){
         spriteCounter++;
         if (spriteCounter == spriteChangeRate) {

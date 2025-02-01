@@ -3,29 +3,58 @@ package model;
 import java.io.File;
 import java.util.Observable;
 
+/**
+ * Classe astratta che rappresenta un'entità generica del gioco.
+ */
 abstract public class Entita extends Observable {
 
-    protected int posx;
-    protected int posy;
-    protected boolean dead; // se l'entità è morta
-
-    protected int movimentoX;
-    protected int movimentoY;
-
-    private int gravita; //negativa in quanto verso il basso
-
+    private int posx;
+    private int posy;
+    private boolean dead;
+    private int movimentoX;
+    private int movimentoY;
+    private int gravita; 
     private static int entitysize = 16;
+    private boolean goingRight;
 
-    // campi per gli SPRITE
-    protected boolean goingRight; // "devo flippare lo sprite?"
+    /**
+     * Path base per gli sprite.
+     */
     protected String baseSpritePath = "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator;
-    protected String idleSpritePath = baseSpritePath; // lo sprite da usare da fermo
-    protected String deathSpritePath = baseSpritePath; // lo sprite da usare quando l'entità muore (= animazione di morte)
     
+    /**
+     * Path per lo sprite da usare da fermo.
+     */
+    protected String idleSpritePath = baseSpritePath; 
+    
+    /**
+     * Path per gli sprite da usare mentre l'entità muore.
+     */
+    protected String deathSpritePath = baseSpritePath; 
+    
+    /**
+     * intero utilizzato per gestire il cambiamento degli sprite.
+     */
     protected int spriteIndex;
+
+    /**
+     * intero utilizzato per gestire il tempo di cambiamento degli sprite.
+     */
     protected int spriteCounter;
+
+    /**
+     * intero utilizzato per gestire il rate di cambiamento degli sprite.
+     */
     protected final int spriteChangeRate = 8;
 
+    /**
+     * Costruttore della classe Entita.
+     * @param posx posizione x iniziale dell'entità
+     * @param posy posizione y iniziale dell'entità
+     * @param velocitaX velocità di movimento sull'asse x
+     * @param velocitaY velocità di movimento sull'asse y
+     * @param gravita gravità dell'entità
+     */
     public Entita(int posx, int posy, int velocitaX, int velocitaY, int gravita){
         this.posx = posx*entitysize;
         this.posy = posy*entitysize;
@@ -34,6 +63,10 @@ abstract public class Entita extends Observable {
         this.goingRight = true;
     }
 
+    /**
+     * Metodo che restituisce.
+     * @return
+     */
     public int getX(){return posx;}
     public int getY(){return posy;}
     public boolean isDead(){return dead;}

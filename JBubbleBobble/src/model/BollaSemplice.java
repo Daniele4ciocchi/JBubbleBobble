@@ -2,6 +2,9 @@ package model;
 
 import java.io.File;
 
+/**
+ * Classe che rappresenta una bolla semplice che può essere sparata dal Giocatore.
+ */
 public class BollaSemplice extends Bolla {
 
     private int spriteChangeRate = 5;
@@ -18,11 +21,24 @@ public class BollaSemplice extends Bolla {
         baseSpritePath + "bubbles" + File.separator + "b9.png" // arrivato qui, torno a b7
     };
 
+    /**
+     * Costruttore della classe BollaSemplice.
+     * @param posx posizione iniziale sull'asse x
+     * @param posy posizione iniziale sull'asse y
+     * @param velocitax velocità iniziale sull'asse x
+     * @param velocitay velocità iniziale sull'asse y
+     * @param goingRight direzione iniziale
+     * @param range range di movimento della bolla
+     */
     public BollaSemplice(int posx, int posy, int velocitax, int velocitay, boolean goingRight, int range) {
         super(posx, posy, velocitax, velocitay, goingRight);
         this.setRange(range);
     }
 
+    /**
+     * Metodo che permette alla bolla di muoversi all'interno del livello.
+     * @param l livello in cui la bolla si trova
+     */
     @Override 
     public void move(Livello l) {
         
@@ -61,6 +77,10 @@ public class BollaSemplice extends Bolla {
         notifyObservers();
     }
     
+    /**
+     * Metodo che restituisce il percorso dello sprite da visualizzare.
+     * @return percorso dello sprite
+     */
     public String getSpritePath(){
         spriteCounter++;
         if (spriteCounter == spriteChangeRate) {

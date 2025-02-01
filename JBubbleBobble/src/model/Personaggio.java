@@ -42,10 +42,10 @@ public abstract class Personaggio extends Entita{
 
     public void moveRight(Livello l) {
         if (l.isEmpty(posx+movimentoX+5, posy) && !watered){
-                posx += movimentoX;
-                setChanged();
-                notifyObservers();
-                goingRight = true;
+            posx += movimentoX;
+            setChanged();
+            notifyObservers();
+            goingRight = true;
         }
     }
 }

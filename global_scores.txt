@@ -51,3 +51,7 @@ burno:500:PERSA
 burno:0:PERSA
 burno:34500:PERSA
 burno:5000:PERSA
+burno:23700:PERSA
+burno:39000:PERSA
+burno:352260:PERSA
+burno:72600:PERSA
