@@ -142,7 +142,7 @@ public class Giocatore extends Personaggio implements Serializable{
         this.setMovimentoX(4);
 
         setShooting(false);
-        this.die();
+        super.die();
         setChanged();
         notifyObservers();
     }

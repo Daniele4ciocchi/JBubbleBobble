@@ -48,14 +48,14 @@ public class Monsta extends Nemico {
     public void moveVerticale(Livello l) {
         try {
             if (goingUp) {
-                if (!l.isWalkable(getX(), getY()+getMovimentoY()) && !l.isTPExit(getX(), getY()+getMovimentoY())) {
-                    setPosizione(getX(), getY() + getMovimentoY());
+                if (!l.isWalkable(getX(), getY()+getMovimentoX()) && !l.isTPExit(getX(), getY()+getMovimentoX())) {
+                    setPosizione(getX(), getY() + getMovimentoX());
                 } else {
                     goingUp = false;
                 }
             } else {
                 if (!l.isWalkable(getX(), getY()-(getEntitysize()/2))){
-                    setPosizione(getX(), getY() - getMovimentoY());
+                    setPosizione(getX(), getY() - getMovimentoX());
                 } else {
                     goingUp = true;
                 }
