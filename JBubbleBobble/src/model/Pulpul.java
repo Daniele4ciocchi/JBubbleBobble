@@ -6,7 +6,7 @@ public class Pulpul extends Nemico{
     private boolean goingUp = true;
 
     public Pulpul(int x, int y){
-        super(x, y, 5, 3);
+        super(x, y, 1, 3);
         setSprites();
     }
     
@@ -30,30 +30,28 @@ public class Pulpul extends Nemico{
 
     public void moveOrizzontale(Livello l){
         if (goingRight) {
-            if (!l.isWalkable(posx+getEntitysize(), posy)) {
-                posx+=movimentoX;
-            } else goingRight = false;
+            if (!l.isWalkable(posx+getEntitysize(), posy)) posx+=movimentoX;
+            else {
+                goingRight = false;
+                movimentoX = (movimentoX<=4)? ++movimentoX : 1;
+            }
         } else {
-            if (!l.isWalkable(posx-getEntitysize(), posy)) {
-                posx-=movimentoX;
-            } else goingRight = true;
+            if (!l.isWalkable(posx-getEntitysize(), posy)) posx-=movimentoX;
+            else {
+                goingRight = true;
+                movimentoX = (movimentoX<=4)? ++movimentoX : 1;
+            }
         }
     }
     
     public void moveVerticale(Livello l) {
         try {
             if (goingUp) {
-                if (!l.isWalkable(posx, posy+getMovimentoY()) && !l.isTPExit(posx, posy+getMovimentoY())) {
-                    posy+=movimentoX;
-                } else {
-                    goingUp = false;
-                }
+                if (!l.isWalkable(posx, posy+getMovimentoY()) && !l.isTPExit(posx, posy+getMovimentoY())) posy+=movimentoX;
+                else goingUp = false;
             } else {
-                if (!l.isWalkable(posx, posy-(getEntitysize()/2))){
-                    posy-=movimentoX;
-                } else {
-                    goingUp = true;
-                }
+                if (!l.isWalkable(posx, posy-(getEntitysize()/2))) posy-=movimentoX;
+                else goingUp = true;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             setPosizione(posx, 24*16);

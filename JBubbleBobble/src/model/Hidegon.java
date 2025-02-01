@@ -24,6 +24,6 @@ public class Hidegon extends Nemico{
     }
 
     public Bolla shoot(){
-        return new Fireball(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 6, 1, getGoingRight(), 20);
+        return new Fireball(getGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 3, 1, getGoingRight(), 40);
     }
 }
