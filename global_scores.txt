@@ -34,3 +34,14 @@ daniele4ciocchi:14000:PERSA
 daniele4ciocchi:195500:PERSA
 burno:79400:PERSA
 burno:375160:PERSA
+burno:191700:PERSA
+burno:48200:PERSA
+burno:111300:PERSA
+burno:67500:PERSA
+burno:61500:PERSA
+burno:84200:PERSA
+burno:75900:PERSA
+burno:75900:PERSA
+burno:85000:PERSA
+burno:85000:PERSA
+burno:124900:PERSA

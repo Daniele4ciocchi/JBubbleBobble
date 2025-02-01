@@ -67,8 +67,8 @@ public class GameController {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_SPACE) {
-                    ((Giocatore) partita.getEntita().getFirst()).setWatered(false, null);;
-                    if (partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1) && !giocatore.isDead()){
+                    //((Giocatore) partita.getEntita().getFirst()).setWatered(false, null);
+                    if ((partita.getLivello().isWalkable(giocatore.getX(),giocatore.getY()-1) && !giocatore.isDead()) || giocatore.getWatered()){
                         giocatore.jump();
                         AudioManager.getInstance().playSound("jump");
                         partita.addSaltoEffettuato();
