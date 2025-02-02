@@ -2,7 +2,14 @@ package model;
 
 import java.io.File;
 
+/**
+ * Classe che rappresenta un oggetto speciale del gioco (SpecialItem).
+ */
 public class SpecialItem extends Item {
+
+    /**
+     * Enumerazione che rappresenta le possibili tipologie di oggetti speciali.
+     */
     public enum Tipologia{
         CANDY(1000),
         RING(1000), 
@@ -13,15 +20,25 @@ public class SpecialItem extends Item {
 
         private final int PUNTI;
 
+        /**
+         * Costruttore della classe Tipologia.
+         * @param p il numero di punti associato alla tipologia
+         */
         Tipologia(int p){
             this.PUNTI = p;
         }
     }
 
+    /**
+     * Enumerazione che rappresenta i possibili colori degli oggetti speciali.
+     */
     public enum Colore{
         PINK, BLUE, YELLOW, ORANGE, RED, EMPTY
     }
 
+    /**
+     * Enumerazione che rappresenta i possibili effetti degli oggetti speciali.
+     */
     public enum Effetto{
         BOLLE_RANGE_UP,     // aumento del range delle bolle
         BOLLE_VEL_UP,       // aumento della velocità delle bolle
@@ -48,6 +65,14 @@ public class SpecialItem extends Item {
     private Colore colore;
     private Effetto effetto;
 
+    /**
+     * Costruttore della classe SpecialItem.
+     * Viene generato uno SpecialItem e viene impopstato il suo path in base alla tipologia e al colore.
+     * @param posx la coordinata x dell'oggetto speciale
+     * @param posy la coordinata y dell'oggetto speciale
+     * @param tipologia la tipologia dell'oggetto speciale
+     * @param colore il colore dell'oggetto speciale
+     */
     public SpecialItem(int posx, int posy, Tipologia tipologia, Colore colore){
         super(posx, posy, 0, 0, -3);
         this.tipologia = tipologia;
@@ -55,25 +80,25 @@ public class SpecialItem extends Item {
 
         this.effetto = switch (this.tipologia) {
             case CANDY -> switch (this.colore) {
-                case PINK   -> Effetto.BOLLE_RANGE_UP;      // 1
-                case BLUE    -> Effetto.BOLLE_VEL_UP;       // 2
-                case YELLOW -> Effetto.BOLLE_FIRERATE_UP;   // 3
+                case PINK   -> Effetto.BOLLE_RANGE_UP;      
+                case BLUE    -> Effetto.BOLLE_VEL_UP;       
+                case YELLOW -> Effetto.BOLLE_FIRERATE_UP;   
                 default -> Effetto.NULL;
             };
             case RING -> switch (this.colore) {
-                case PINK   -> Effetto.BONUS_SALTO;         // 4
-                case RED  -> Effetto.BONUS_SPARO;           // 5
-                case BLUE    -> Effetto.BONUS_MOV;          // 6
+                case PINK   -> Effetto.BONUS_SALTO;         
+                case RED  -> Effetto.BONUS_SPARO;           
+                case BLUE    -> Effetto.BONUS_MOV;          
                 default     -> Effetto.NULL;
             };
-            case SNEAKER ->  Effetto.SNEAKER_BUFF;          // 7
+            case SNEAKER ->  Effetto.SNEAKER_BUFF;          
             case UMBRELLA -> switch (this.colore) {
-                case ORANGE -> Effetto.SKIP_LVL3;           // 8
-                case RED     -> Effetto.SKIP_LVL5;          // 9
-                case PINK    -> Effetto.SKIP_LVL7;          // 10
+                case ORANGE -> Effetto.SKIP_LVL3;           
+                case RED     -> Effetto.SKIP_LVL5;          
+                case PINK    -> Effetto.SKIP_LVL7;          
                 default -> Effetto.NULL;
             };
-            case CLOCK -> Effetto.FREEZE;                   // 11
+            case CLOCK -> Effetto.FREEZE;                   
             case CHACKNHEART -> Effetto.CHACKNHEART;
             default -> Effetto.NULL;
         };
@@ -105,18 +130,34 @@ public class SpecialItem extends Item {
             this.points = tipologia.PUNTI;
     }
     
+    /**
+     * Metodo che restituisce la tipologia dell'oggetto speciale.
+     * @return la tipologia dell'oggetto speciale
+     */
     public Tipologia getTipologia(){
         return this.tipologia;
     }
 
+    /**
+     * Metodo che restituisce il colore dell'oggetto speciale.
+     * @return il colore dell'oggetto speciale
+     */
     public Colore getColore(){
         return this.colore;
     }
 
+    /**
+     * Metodo che restituisce l'effetto dell'oggetto speciale.
+     * @return l'effetto dell'oggetto speciale
+     */
     public Effetto getEffetto(){
         return this.effetto;
     }
 
+    /**
+     * Metodo che restituisce il percorso dello sprite dell'oggetto speciale.
+     * @return il percorso dello sprite dell'oggetto speciale
+     */
     @Override
     public String getSpritePath(){
         return this.idleSpritePath;

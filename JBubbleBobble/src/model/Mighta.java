@@ -29,13 +29,6 @@ public class Mighta extends Nemico {
     }
 
     /*
-     * Metodo che si occupa del movimento dell'Mighta, richiamando la .move() della superclasse Nemico.
-     */
-    public void move(int gx, int gy, Livello l) {
-        super.move(gx, gy, l);
-    }
-
-    /*
      * Metodo che permette a Mighta di poter sparare un masso rovente.
      * @return una nuova istanza di Boulder
      */

@@ -98,7 +98,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
      * @param l livello su cui il nemico si sta muovendo
      */
     public void move(int gx, int gy, Livello l){
-        if (!watered){
+        if (!getWatered()){
             if (this.getX() < gx) {
                 if (currentWaitTime == 0){
                     setGoingRight(true);

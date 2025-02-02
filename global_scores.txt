@@ -57,3 +57,5 @@ burno:352260:PERSA
 burno:72600:PERSA
 burno:335380:PERSA
 burno:0:PERSA
+burno:60800:PERSA
+burno:57300:PERSA

@@ -24,7 +24,7 @@ public class Partita {
 
     private Stato stato;
     private Random random = new Random();
-    private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
+    private ArrayList<Entita> entitaAttive; 
     private ArrayList<Entita> entitaMorte;
     private Livello livello;
     private int score;
@@ -37,8 +37,6 @@ public class Partita {
     private int caramelleGialleMangiate;
     private int caramelleBluMangiate;
     private int itemRaccolti;
-
-    // campi dei buff dei powerup, per info guarda in PowerUp.java
     private int FREEZE;
     private boolean SKIP3;
     private boolean SKIP5;
@@ -90,49 +88,191 @@ public class Partita {
         });
     }
 
-    // getters
+    /**
+     * Metodo che ritorna la lista delle entità che al momento si trovano nel livello
+     * @return ArrayList delle entità attive
+     */
     public ArrayList<Entita> getEntita(){return this.entitaAttive;}
+
+    /**
+     * Metodo che ritorna la lista delle entità che sono state eliminate
+     * @return ArrayList delle entità non più attive
+     */
     public ArrayList<Entita> getEntitaMorte(){return this.entitaMorte;}
+
+    /**
+     * Metodo che ritorna il numero di salti effettuati
+     * @return numero di salti effettuati
+     */
     public int getSaltiEffettuati(){return this.saltiEffettuati;}
+
+    /**
+     * Metodo che ritorna lo score atuale della partita in corso 
+     * @return score attuale
+     */
     public int getScore(){return this.score;}
+
+    /**
+     * Metodo che ritorna il livello attuale della partita in corso
+     * @return livello attuale
+     */
     public Livello getLivello(){return this.livello;}
+
+    /**
+     * Metodo per sapere se al momento il giocatore ha il powerup "FREEZE" attivo
+     * @return true se il powerup è attivo, false altrimenti
+     */
     public int getFreeze(){return FREEZE;}
+
+    /**
+     * Metodo per sapere se al prossimo livello bisogna skippare 3 livelli
+     * @return true se il powerup è attivo, false altrimenti
+     */
     public boolean getSkip3(){return SKIP3;}
+
+    /**
+     * Metodo per sapere se al prossimo livello bisogna skippare 5 livelli
+     * @return true se il powerup è attivo, false altrimenti
+     */
     public boolean getSkip5(){return SKIP5;}
+
+    /**
+     * Metodo per sapere se al prossimo livello bisogna skippare 7 livelli
+     * @return true se il powerup è attivo, false altrimenti
+     */
     public boolean getSkip7(){return SKIP7;}
+
+    /**
+     * Metodo che ritorna il numero di item raccolti
+     * @return intero che indica il numero di item raccolti
+     */
     public int getItemRaccolti(){return itemRaccolti;}
+
+    /**
+     * Metodo per sapere se al momento il giocatore ha il powerup "CHACKNHEART" attivo
+     * @return true se il powerup è attivo, false altrimenti
+     */
     public boolean getChacknHeart(){return chacknheart;}
+
+    /**
+     * Metodo che ritorna lo stato attuale della partita (VINTA, PERSA, IN CORSO)
+     * @return stato attuale della partita
+     */
     public Stato getStato(){return this.stato;}
 
-    // metodi per le variabili di statistica per gli specialItem
+    /**
+     * Metodo per incrementare il numero di salti effettuati
+     */
     public void addSaltoEffettuato(){this.saltiEffettuati++;}
+
+    /**
+     * Metodo per incrementare il numero di bolle sparate
+     */
     public void addBollaSparata(){this.bolleSparate++;}
+
+    /**
+     * Metodo per incrementare il numero di bolle scoppiate
+     */
     public void addBollaScoppiata(){this.bolleScoppiate++;}
+
+    /**
+     * Metodo per incrementare il numero di bolle fulmine scoppiate
+     */
     public void addBollaFulmineScoppiata(){this.bolleFulmineScoppiate++;}
+
+    /**
+     * Metodo per incrementare il numero di bolle acqua scoppiate
+     */
     public void addBollaAcquaScoppiata(){this.bolleAcquaScoppiate++;}
+
+    /**
+     * Metodo per incrementare il numero di caramelle rosa mangiate
+     */
     public void addCaramellaRosaMangiata(){this.caramelleRosaMangiate++;}
+
+    /**
+     * Metodo per incrementare il numero di caramelle gialle mangiate
+     */
     public void addCaramellaGialleMangiata(){this.caramelleGialleMangiate++;}
+
+    /**
+     * Metodo per incrementare il numero di caramelle blu mangiate
+     */
     public void addCaramellaBluMangiata(){this.caramelleBluMangiate++;}
+
+    /**
+     * Metodo per incrementare il numero di item raccolti
+     */
     public void addItemRaccolto(){this.itemRaccolti++;}
 
+    /**
+     * Metodo per impostare il powerup "FREEZE"
+     * @param b true per impostare il powerup attivo, altrimenti false
+     */
     public void setFreeze(int b){FREEZE = b;}
+
+    /**
+     * Metodo per impostare il campo "SKIP3" per saltare 3 livelli
+     * @param b true per impostare il powerup attivo, altrimenti false
+     */
     public void setSkip3(boolean b){SKIP3 = b;}
+
+    /**
+     * Metodo per impostare il campo "SKIP5" per saltare 5 livelli
+     * @param b true per impostare il powerup attivo, altrimenti false
+     */
     public void setSkip5(boolean b){SKIP5 = b;}
+
+    /**
+     * Metodo per impostare il campo "SKIP7" per saltare 7 livelli
+     * @param b true per impostare il powerup attivo, altrimenti false
+     */
     public void setSkip7(boolean b){SKIP7 = b;}
+
+    /**
+     * Metodo per impostare il powerup "CHACKNHEART"
+     * @param b true per impostare il powerup attivo, altrimenti false
+     */
     public void setChacknHeart(boolean b){chacknheart = b;}
+
+    /**
+     * Metodo per impostare lo stato della partita (VINTA, PERSa, IN CORSO)
+     * @param s stato della partita
+     */
     public void setStato(Stato s){this.stato = s;}
 
+    /**
+     * Metodo per aggiungere un'entità alla lista delle entità attive
+     * @param entita entità da aggiungere
+     */
     public void addEntita(Entita entita){this.entitaAttive.add(entita);}
+
+    /**
+     * Metodo per rimuovere un'entità dalla lista delle entità attive 
+     * e aggiungerla a quella delle entità non attive
+     * @param entita entità da rimuovere
+     */
     public void removeEntita(Entita entita) {
         this.entitaAttive.remove(entita);
         this.entitaMorte.add(entita);
     }
-    public void svuotaEntita(){
-        this.entitaAttive.removeIf(x -> !x.equals(entitaAttive.getFirst()));
-    }
 
+    /**
+     * Metodo per rimuovere tutte le entità dalla lista delle entità attive eccetto il giocatore
+     */
+    public void svuotaEntita(){ this.entitaAttive.removeIf(x -> !x.equals(entitaAttive.getFirst()));}
+
+    /**
+     * Metodo per aggiungere punti allo score attuale
+     * @param n intero da aggiungere allo score
+     */
     public void addScore(int n){score += n;}
 
+    /**
+     * Metodo per controllare se una determinata Entità collide con un'altra Entità
+     * @param e1 entità da controllare
+     * @return entità con cui collide, null altrimenti
+     */
     public Entita checkCollision(Entita e1) {
         Rectangle rect1 = new Rectangle(e1.getX(), e1.getY(), e1.getEntitysize(), e1.getEntitysize());
         for (Entita e2 : entitaAttive) {
@@ -145,6 +285,9 @@ public class Partita {
         return (Entita)null;
     }
 
+    /**
+     * Metodo per inserire tutti i nemici nella partita in corso al cambio di un nuovo livello
+     */
     public void posizionaEntita(){
         Tile[][] grid = this.livello.getGrid();
         for (int i = 0;i<26;i++){
@@ -164,9 +307,10 @@ public class Partita {
         }
     }
 
-    // ======================= SPECIALITEMS (powerups) =======================
-    // qui controllo i requisiti di spawn
-    // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
+    /**
+     * Metodo che controlla le condizioni di spawn per far apparire un determinato SpecialItem
+     * @return SpecialItem da spawnare, null altrimenti
+     */
     public SpecialItem checkSpawnSpecialItem(){
         int sx = 0;
         int sy = 0;
@@ -176,7 +320,6 @@ public class Partita {
             sy = random.nextInt(24);
         }
 
-        // UMBRELLA
         if (bolleAcquaScoppiate == 15){
             bolleAcquaScoppiate++;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
@@ -190,7 +333,6 @@ public class Partita {
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
         }
 
-        // CANDY
         if (saltiEffettuati == 35){
             saltiEffettuati = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.PINK);
@@ -204,7 +346,6 @@ public class Partita {
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CANDY,SpecialItem.Colore.BLUE);
         }
 
-        // RING
         else if (caramelleRosaMangiate == 3){
             caramelleRosaMangiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.PINK);
@@ -218,13 +359,11 @@ public class Partita {
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.RING,SpecialItem.Colore.BLUE);
         }
 
-        // CLOCK
         else if (bolleFulmineScoppiate == 6){
             bolleFulmineScoppiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CLOCK,SpecialItem.Colore.EMPTY);
         }
 
-        // UMBRELLA
         else if (bolleAcquaScoppiate == 5){
             bolleAcquaScoppiate++;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.ORANGE);
@@ -238,13 +377,11 @@ public class Partita {
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
         }
         
-        // SNEAKER
         else if (((Giocatore)entitaAttive.getFirst()).getPassi() == 32*16*15){
             ((Giocatore)entitaAttive.getFirst()).setPassi(0);
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.SNEAKER,SpecialItem.Colore.EMPTY);
         }
             
-        // CHACKNHEART
         else if (itemRaccolti == 22){
             itemRaccolti = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CHACKNHEART,SpecialItem.Colore.EMPTY);
@@ -253,9 +390,13 @@ public class Partita {
         else return null;
     }
 
+    /**
+     * Metodo che applica la gravità su una determinata entità
+     * @param e entità su cui applicare la gravità
+     */
     public void gravita(Entita e) {    
         if ((getChacknHeart()||FREEZE>0) && e instanceof Nemico) return; 
-        if (e instanceof Monsta || e instanceof Pulpul) return; // non applico mai la gravita a Monsta e Pulpul
+        if (e instanceof Monsta || e instanceof Pulpul) return; 
 
         if (livello.isTPEntry(e.getX(),e.getY())){
             e.setPosizione(e.getX(),24*Entita.getEntitysize());
@@ -267,7 +408,7 @@ public class Partita {
         }
 
         if (e.getMovimentoY()>0){
-            if (e instanceof Giocatore) ((Giocatore)e).setFalling(true); // per lo sprite
+            if (e instanceof Giocatore) ((Giocatore)e).setFalling(true); 
             e.setPosizione(e.getX(),e.getY() + e.getMovimentoY());
             e.setMovimentoY(e.getMovimentoY()-1);
             if (livello.isSolid(e.getX(),e.getY() + e.getMovimentoY())) e.setMovimentoY(0);
@@ -277,7 +418,10 @@ public class Partita {
         if (e instanceof Giocatore && (livello.isSolid(e.getX(), e.getY()-1)||livello.isWalkable(e.getX(), e.getY()-1))) ((Giocatore)e).setFalling(false); // per lo sprite
     }
 
-    // powerup raccolto! metodo che si occupa di applicarne gli effetti
+    /**
+     * Metodo per utilizzare un determinato SpecialItem e applicarne l'effetto nel caso di una collisione
+     * @param p SpecialItem da utilizzare
+     */
     public void useSpecialItem(SpecialItem p){
         addScore(p.getPoints());
         switch (p.getEffetto()){
@@ -294,7 +438,10 @@ public class Partita {
         }
     }
 
-    // aggiunge questa partita allo storico partite del giocatore
+    /**
+     * Metodo che termina la partita in corso e imposta l'esito della partita
+     * inoltre salva lo stato della partita su file txt per salvarne i dati
+     */
     public void end(){
         Profilo.getInstance().addPartita(this);
         AudioManager.getInstance().stopMusic();

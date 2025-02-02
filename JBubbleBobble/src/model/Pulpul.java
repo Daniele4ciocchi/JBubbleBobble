@@ -2,14 +2,25 @@ package model;
 
 import java.io.File;
 
+/**
+ * Classe che rappresenta il nemico Pulpul.
+ */
 public class Pulpul extends Nemico{
     private boolean goingUp = true;
 
+    /**
+     * Costruttore della classe Pulpul.
+     * @param x la coordinata x di Pulpul
+     * @param y la coordinata y di Pulpul
+     */
     public Pulpul(int x, int y){
         super(x, y, 1, 3);
         setSprites();
     }
     
+    /**
+     * Metodo che imposta i path delle immagini per i vari stati di Pulpul.
+     */
     public void setSprites(){
         walkingSpritesPath[0] += "pulpul"+File.separator+"image_407.png";
         walkingSpritesPath[1] += "pulpul"+File.separator+"image_408.png";
@@ -21,6 +32,13 @@ public class Pulpul extends Nemico{
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
+    /**
+     * Metodo che muove Pulpul.
+     * @param gx la coordinata x del giocatore
+     * @param gy la coordinata y del giocatore
+     * @param l il livello in cui si muove Pulpul
+     */
+    @Override
     public void move(int gx, int gy, Livello l) {
         moveOrizzontale(l);
         moveVerticale(l);
@@ -28,6 +46,10 @@ public class Pulpul extends Nemico{
         notifyObservers();
     }
 
+    /**
+     * Metodo che muove Pulpul in orizzontale.
+     * @param l il livello in cui si muove Pulpul
+     */
     public void moveOrizzontale(Livello l){
         if (isGoingRight()) {
             if (!l.isWalkable(getX()+getEntitysize(), getY())) setPosizione(getX() + getMovimentoX(),getY());
@@ -44,6 +66,10 @@ public class Pulpul extends Nemico{
         }
     }
     
+    /**
+     * Metodo che muove Pulpul in verticale.
+     * @param l il livello in cui si muove Pulpul
+     */
     public void moveVerticale(Livello l) {
         try {
             if (goingUp) {

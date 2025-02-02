@@ -35,7 +35,7 @@ public class Banebou extends Nemico{
      * @param l il livello in cui si muove Banebou
      */
     public void move(int gx, int gy, Livello l) {
-        if (!watered){
+        if (!getWatered()){
             if (this.getX() < gx) {
                 if (currentWaitTime == 0){
                     if (l.isWalkable(this.getX(), this.getY()-1)) jump();

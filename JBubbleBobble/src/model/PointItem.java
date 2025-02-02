@@ -2,7 +2,14 @@ package model;
 
 import java.util.Random;
 
+/**
+ * Classe che rappresenta un generico oggetto contenente punti del gioco (PointItem).
+ */
 public class PointItem extends Item {
+
+    /**
+     * Enumerazione che rappresenta le possibili tipologie di oggetti contenenti punti.
+     */
     public enum Tipologia{
         BANANA(500, 50), 
         PERSIMMON(1000, 40), 
@@ -15,17 +22,37 @@ public class PointItem extends Item {
         private final int PUNTI;
         private final int DROP_RATE;
 
+        /**
+         * Costruttore della classe Tipologia.
+         * @param p il numero di punti associato alla tipologia
+         * @param dr il drop rate associato alla tipologia
+         */
         Tipologia(int p, int dr){
             this.PUNTI = p;
             this.DROP_RATE = dr;
         }
 
+        /**
+         * Metodo che ritorna il numero di punti associato alla tipologia.
+         * @return il numero di punti associato alla tipologia
+         */
         public int getPunti(){return this.PUNTI;}
+
+        /**
+         * Metodo che ritorna il drop rate associato alla tipologia.
+         * @return il drop rate associato alla tipologia
+         */
         public int getDropRate(){return this.DROP_RATE;}
     }
 
     private Tipologia tipologia;
     
+    /**
+     * Costruttore della classe PointItem.
+     * il costruttore genera randomicamente un PointItem tramite il drop rate delle tipologie
+     * @param posx la coordinata x dell'oggetto contenente punti
+     * @param posy la coordinata y dell'oggetto contenente punti
+     */
     public PointItem(int posx, int posy) {
         super(posx, posy, 0, 0, -7);
         
@@ -53,10 +80,18 @@ public class PointItem extends Item {
                                 };
     }
 
+    /**
+     * Metodo che ritorna la tipologia dell'oggetto contenente punti.
+     * @return la tipologia dell'oggetto contenente punti
+     */
     public Tipologia getTipologia(){
         return this.tipologia;
     }
 
+    /**
+     * Metodo che ritorna il percorso dello sprite dell'oggetto contenente punti.
+     * @return stringa contenente il percorso dello sprite dell'oggetto contenente punti
+     */
     @Override
     public String getSpritePath(){
         return this.idleSpritePath;

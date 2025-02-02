@@ -141,7 +141,7 @@ public class Giocatore extends Personaggio implements Serializable {
      */
     public void resetPosizione() {
         super.setPosizione(5*getEntitysize(), 1*getEntitysize());
-        this.watered = false;
+        setWatered(false, null);;
     }
 
     /**

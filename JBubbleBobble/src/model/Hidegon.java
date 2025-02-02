@@ -29,13 +29,6 @@ public class Hidegon extends Nemico {
     }
 
     /*
-     * Metodo che si occupa del movimento dell'Hidegon, richiamando la move della superclasse Nemico.
-     */
-    public void move(int gx, int gy, Livello l) {
-        super.move(gx, gy, l);
-    }
-
-    /*
      * Metodo che si occupa del movimento orizzontale dell'Hidegon, richiamando la moveOrizzontale della superclasse Nemico.
      * @return una nuova istanza di Fireball
      */

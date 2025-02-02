@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +8,25 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Classe che rappresenta il profilo di un giocatore, contenente informazioni come 
+ * il nickname, l'avatar, la cronologia delle partite e il livello del profilo.
+ */
 public class Profilo {
-    private static Profilo profilo; // istanza singleton del profilo;
+    private static Profilo profilo; 
 
-    private String nickname; // nome utente, immutabile e deciso nel costruttore
-    private int avatar; // immagine profilo, decisa nel costruttore
-    private ArrayList<Partita> partite = new ArrayList<Partita>(); // cronologia partite
-    
-    private int livelloProfilo; // livello del profilo
+    private String nickname; 
+    private int avatar; 
+    private ArrayList<Partita> partite = new ArrayList<Partita>(); 
+    private int livelloProfilo; 
     private static int highScore = 0;
 
-
-    // COSTRUTTORE
-    private Profilo(){}
-
+    /**
+     * Metodo per il pattern Singleton, restituisce l'istanza del profilo
+     * e se non esiste ne crea una nuova.
+     *
+     * @return l'istanza del profilo
+     */
     public static Profilo getInstance() {
         if (profilo == null) {
             profilo = new Profilo();
@@ -30,13 +34,19 @@ public class Profilo {
         return profilo;
     }
 
-    // GETTERS
-    // Restituisce il nickname del profilo sottoforma di String
+    /**
+     * Metodo che restituisce il nickname
+     * @return
+     */
     public String getNickname() {
         return nickname;
     }
 
-    // Restituisce l'avatar del giocatore come variabile Image
+    /**
+     * Metodo che restituisce l'avatar
+     * @param s il nickname del profilo
+     * @return intero che rappresenta l'avatar del profilo
+     */
     public int getAvatar(String s) {
         List<String> lines;
         try {
@@ -49,20 +59,24 @@ public class Profilo {
                 }
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return 0;
         }
         return avatar;
-        
-        
     }
 
-    // Restituisce l'ArrayList di Partite giocate con questo profilo
+    /**
+     * Metodo che restituisce le partite registrate in questa sessione di gioco
+     * @return ArrayList di partite
+     */
     public ArrayList<Partita> getPartite() {
         return partite;
     }
 
+    /**
+     * Metodo che restituisce il numero di partite giocate dal profilo attuale 
+     * @return intero che rappresenta il numero di partite giocate
+     */
     public int getNumeroPartite() {
         try {
             return (int) Files.readAllLines(Paths.get("global_scores.txt")).stream()
@@ -76,7 +90,10 @@ public class Profilo {
         
     }
 
-    // Restituisce il numero di partite vinte
+    /**
+     * Metodo che restituisce il numero di partite vinte dal profilo attuale
+     * @return intero che rappresenta il numero di partite vinte
+     */
     public int getVinte() {
         try {
             return (int) Files.readAllLines(Paths.get("global_scores.txt")).stream()
@@ -90,7 +107,10 @@ public class Profilo {
         }
     }
 
-    // Restituisce il numero di partite perse
+    /**
+     * Metodo che restituisce il numero di partite perse dal profilo attuale
+     * @return intero che rappresenta il numero di partite perse
+     */
     public int getPerse() {
         try {
             return (int) Files.readAllLines(Paths.get("global_scores.txt")).stream()
@@ -104,6 +124,10 @@ public class Profilo {
         }
     }
 
+    /**
+     * Metodo che restituisce il punteggio più alto generale
+     * @return intero che rappresenta il punteggio più alto
+     */
     public int getHighScore() {
         return getBestScores().stream()
             .map(line -> line.split(":"))
@@ -112,9 +136,10 @@ public class Profilo {
             .orElse(0);
     }
 
-
-    // SETTERS
-    // Modifica l'avatar del giocatore, fornendo una nuova immagine in parametro
+    /**
+     * Metodo che imposta l'avatar del profilo attuale e lo salva nel file profiles.txt
+     * @param a l'avatar da impostare sottoforma di intero
+     */
     public void setAvatar(int a) {
         avatar = a;
         try {
@@ -144,14 +169,26 @@ public class Profilo {
         }
     }
 
+    /**
+     * Metodo che imposta il nickname del profilo attuale
+     * @param n il nickname da impostare
+     */
     public void setNickname(String n) {
         nickname = n;
     }
 
+    /**
+     * Metodo che imposta il punteggio più alto generale
+     * @param hs il punteggio da impostare
+     */
     public static void setHighScore(int hs) {
         if (hs > highScore)highScore = hs;
     }
 
+    /**
+     * Metodo che restituisce il livello del profilo attuale
+     * @return intero che rappresenta il livello del profilo
+     */
     public String getLivelloProfilo() {
         try {
             int totScore = Files.readAllLines(Paths.get("global_scores.txt")).stream()
@@ -166,12 +203,16 @@ public class Profilo {
         return Integer.toString(livelloProfilo);
     }
 
-    // Aggiunge una nuova partita allo storico del profilo + controlla la somma dei punteggi dell'utente per eventuale level-up
-    public void addPartita(Partita p) {
-        partite.add(p);
+    /**
+     * Metodo che aggiunge una partita alla sessione attuale di gioco
+     * @param p la partita da aggiungere
+     */
+    public void addPartita(Partita p) {partite.add(p);}
 
-    }
-
+    /**
+     * Metodo che controlla su global_scores.txt il numero di punti ottenuti dal profilo attuale
+     * @return intero che rappresenta il numero di punti totali
+     */
     public String getPuntiTotali() {
         try {
             int totScore = Files.readAllLines(Paths.get("global_scores.txt")).stream()
@@ -186,6 +227,10 @@ public class Profilo {
         }
     }
 
+    /**
+     * Metodo che restituisce i migliori 10 punteggi globali
+     * @return ArrayList di stringhe contenenti i migliori 10 punteggi
+     */
     public ArrayList<String> getBestScores(){
         try {
             List<String> lines = Files.readAllLines(Paths.get("global_scores.txt"));
@@ -201,6 +246,9 @@ public class Profilo {
         }
     }
 
+    /**
+     * Metodo per eliminare tutti i punteggi dal file global_scores.txt
+     */
     public void clearGlobalScores() {
         try {
             Files.write(Paths.get("global_scores.txt"), new ArrayList<String>());
