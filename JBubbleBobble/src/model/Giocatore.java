@@ -146,13 +146,15 @@ public class Giocatore extends Personaggio  {
 
     /**
      * Serve a impostare il booleano falling, che indica lo stato di "caduta" del giocatore.
+     * @param b true se sta cadendo, false altrimenti
      */
     public void setFalling(boolean b) {
         this.falling = b;
     }
 
-    /* 
+    /**
      * Restituisce true se il giocatore è in caduta, false altrimenti.
+     * @return boolean true se sta cadendo, false altrimenti 
      */
     public boolean isFalling() {
         return this.falling;
@@ -160,6 +162,7 @@ public class Giocatore extends Personaggio  {
 
     /**
      * Serve a impostare il booleano shooting, che indica lo stato di "sparo" del giocatore, utile per la gestione del relativo sprite dedicato.
+     * @param b true se sta sparando, false altrimenti 
      */
     public void setShooting(boolean b) {
         this.shooting = b;
@@ -167,6 +170,7 @@ public class Giocatore extends Personaggio  {
 
     /**
      * Restituisce true se il giocatore sta sparando, false altrimenti.
+     * @return true se sta sparando, false altrimenti 
      */
     public boolean isShooting() {
         return this.shooting;

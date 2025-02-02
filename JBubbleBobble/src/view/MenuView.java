@@ -15,7 +15,8 @@ import java.io.IOException;
  * Classe che rappresenta la vista del menu del gioco.
  */
 public class MenuView {
-    public static JFrame frame;
+	
+    private static JFrame frame;
     private JPanel panel;
     private JButton nuovaPartitaButton;
     private JButton continuaPartitaButton;
@@ -189,19 +190,19 @@ public class MenuView {
 
     /**
      * Metodo che aggiunge un ActionListener al pulsante "Nuova Partita".
-     * @param listener
+     * @param listener il listener per iniziare la partita
      */
     public void addNuovaPartitaListener(ActionListener listener) {nuovaPartitaButton.addActionListener(listener);}
 
     /**
      * Metodo che aggiunge un ActionListener al pulsante "Continua Partita".
-     * @param listener
+     * @param listener, il listener per continuare la partita
      */
     public void addContinuaPartitaListener(ActionListener listener) {continuaPartitaButton.addActionListener(listener);}
 
     /**
      * Metodo che aggiunge un ActionListener al pulsante "Visualizza Profilo".
-     * @param listener
+     * @param listener, il listener per visualizzare il profilo
      */
     public void addVisualizzaProfiloListener(ActionListener listener) {visualizzaProfiloButton.addActionListener(listener);}
 

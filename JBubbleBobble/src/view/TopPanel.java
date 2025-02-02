@@ -71,7 +71,7 @@ public class TopPanel extends JPanel {
 
     /**
      * Metodo che aggiorna il punteggio.
-     * @param score
+     * @param score lo score da aggiungere
      */
     public void updateScore(int score) {
         scoreLabel.setText(Integer.toString(score));

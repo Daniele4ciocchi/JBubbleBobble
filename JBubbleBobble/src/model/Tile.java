@@ -10,26 +10,69 @@ public class Tile {
      * Enumerazione che rappresenta i possibili tipi di Tile con le relative caratteristiche.
      */
     public enum TileType {
-        // riguardanti il terreno
+        /**
+         * Empty - Tile vuoto
+         */
         EMPTY(false, false),
+
+        /**
+         * Platform - Piattaforma dove i personaggi possono camminare
+         */
         PLATFORM(false,true),
+
+        /**
+         * Wall - Muro che delimita i confini
+         */
         WALL(true,true),
-        TP_ENTRY(false, false), // quelle nei buchi
-        TP_EXIT(false, false), // quelle in alto
 
-        //riguardanti spawn del player
-        PLAYER_SPAWN(false, false),
+        /**
+         * TP_Entry - Teleport Entry
+         */
+        TP_ENTRY(false, false),
+
+        /**
+         * TP_Exit - Teleport Exit
+         */
+        TP_EXIT(false, false), 
+
+        /**
+         * Water - Spawn di acqua
+         */
         WATER(false, false),
-        THUNDER(false, false),
-        //riguardanti spawn dei powerup
-        POWERUP_SPAWN(false, false),
 
-        // NEMICI
+        /**
+         * Thunder - Spawn di fulmini
+         */
+        THUNDER(false, false),
+
+        /**
+         * ZENCHAN_SPAWN - Spawn del nemico Zenchan
+         */
         ZENCHAN_SPAWN(false, false),
+
+        /**
+         * BANEBOU_SPAWN - Spawn del nemico Banebou
+         */
         BANEBOU_SPAWN(false, false),
+
+        /**
+         * MIGHTA_SPAWN - Spawn del nemico Mighta
+         */
         MIGHTA_SPAWN(false, false),
+
+        /**
+         * HIDEGON_SPAWN - Spawn del nemico Hidegon
+         */
         HIDEGON_SPAWN(false, false),
+
+        /**
+         * PULPUL_SPAWN - Spawn del nemico Pulpul
+         */
         PULPUL_SPAWN(false, false),
+
+        /**
+         * MONSTA_SPAWN - Spawn del nemico MONSTA
+         */
         MONSTA_SPAWN(false, false);
 
         private boolean solid;

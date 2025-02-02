@@ -15,11 +15,25 @@ import controller.AudioManager;
  */
 public class Partita {
 
-    /*
+    /**
      * Enumerazione Stato, rappresenta lo stato attuale della partita.
      */
     public enum Stato{
-        IN_CORSO, PERSA, VINTA
+
+        /**
+         * Stato in cui la partita è IN CORSO.
+         */
+        IN_CORSO,
+        
+        /**
+         * Stato in cui la partita è stata PERSA.
+         */
+        PERSA, 
+        
+        /**
+         * Stato in cui la partita è stata VINTA.
+         */
+        VINTA
     }
 
     private Stato stato;

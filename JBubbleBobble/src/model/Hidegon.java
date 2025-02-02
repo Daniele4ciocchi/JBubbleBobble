@@ -28,7 +28,7 @@ public class Hidegon extends Nemico {
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
-    /*
+    /**
      * Metodo che si occupa del movimento orizzontale dell'Hidegon, richiamando la moveOrizzontale della superclasse Nemico.
      * @return una nuova istanza di Fireball
      */

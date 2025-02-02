@@ -11,12 +11,40 @@ public class PointItem extends Item {
      * Enumerazione che rappresenta le possibili tipologie di oggetti contenenti punti.
      */
     public enum Tipologia{
+        
+        /**
+         * BANANA - banana, vale 500 punti e ha un drop rate del 50% 
+         */
         BANANA(500, 50), 
+
+        /**
+         * PERSIMMON - cachi, vale 1000 punti e ha un drop rate del 40% 
+         */
         PERSIMMON(1000, 40), 
+
+        /**
+         * PEACH - pesca, vale 2000 punti e ha un drop rate del 30% 
+         */
         PEACH(2000, 30), 
+
+        /**
+         * WATERMELON - anguria, vale 4000 punti e ha un drop rate del 20% 
+         */
         WATERMELON(4000,20), 
+
+        /**
+         * EGGPLANT - melanzana, vale 8000 punti e ha un drop rate del 10% 
+         */
         EGGPLANT(8000,10), 
+
+        /**
+         * TURNIP - rapa, vale 16000 punti e ha un drop rate del 5% 
+         */
         TURNIP(16000,5), 
+
+        /**
+         * DIAMOND - diamante, vale 32000 punti e ha un drop rate del 1% 
+         */
         DIAMOND(32000,1);
 
         private final int PUNTI;

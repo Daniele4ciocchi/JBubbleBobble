@@ -28,7 +28,7 @@ public class Mighta extends Nemico {
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
-    /*
+    /**
      * Metodo che permette a Mighta di poter sparare un masso rovente.
      * @return una nuova istanza di Boulder
      */

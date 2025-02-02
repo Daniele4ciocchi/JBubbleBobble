@@ -36,7 +36,7 @@ public class Profilo {
 
     /**
      * Metodo che restituisce il nickname
-     * @return
+     * @return nickname, una stringa contenente il nickname
      */
     public String getNickname() {
         return nickname;

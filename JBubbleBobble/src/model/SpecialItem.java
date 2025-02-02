@@ -11,11 +11,34 @@ public class SpecialItem extends Item {
      * Enumerazione che rappresenta le possibili tipologie di oggetti speciali.
      */
     public enum Tipologia{
+        /**
+         * CANDY - special item caramella
+         */
         CANDY(1000),
+
+        /**
+         * RING - special item anello
+         */
         RING(1000), 
+
+        /**
+         * SNEAKER - special item scarpa
+         */
         SNEAKER(100),
+
+        /**
+         * UMBRELLA - special item ombrello
+         */
         UMBRELLA(200),
+
+        /**
+         * CLOCK - special item orologio
+         */
         CLOCK(200),
+
+        /**
+         * CHACKNHEART - special item cuore di Chack'n
+         */
         CHACKNHEART(3000);
 
         private final int PUNTI;
@@ -33,31 +56,106 @@ public class SpecialItem extends Item {
      * Enumerazione che rappresenta i possibili colori degli oggetti speciali.
      */
     public enum Colore{
-        PINK, BLUE, YELLOW, ORANGE, RED, EMPTY
+        /**
+         * PINK - colore rosa
+         */
+        PINK, 
+        
+        /**
+         * BLUE - colore blu
+         */
+        BLUE, 
+        
+        /**
+         * YELLOW - colore giallo
+         */
+        YELLOW, 
+        
+        /**
+         * RED - colore rosso
+         */
+        ORANGE, 
+        
+        /**
+         * RED - colore rosso
+         */
+        RED, 
+        
+        /**
+         * EMPTY - nessun colore
+         * al momento solo le sneacker possono essere empty
+         */
+        EMPTY
     }
 
     /**
      * Enumerazione che rappresenta i possibili effetti degli oggetti speciali.
      */
     public enum Effetto{
-        BOLLE_RANGE_UP,     // aumento del range delle bolle
-        BOLLE_VEL_UP,       // aumento della velocità delle bolle
-        BOLLE_FIRERATE_UP,  // aumento della velocità di fuoco del giocatore
 
-        BONUS_MOV,          // 10 punti per ogni pixel di movimento (da capire come implementarla)
-        BONUS_SALTO,        // 500 punti per salto
-        BONUS_SPARO,        // 100 punti per sparo
+        /**
+         * BOLLE-RANGE-UP - aumento del range delle bolle
+         */
+        BOLLE_RANGE_UP,
 
-        SNEAKER_BUFF,       // +velocita, salto, gravita
+        /**
+         * BOLLE-VEL-UP - aumento della velocità delle bolle
+         */
+        BOLLE_VEL_UP,
 
-        SKIP_LVL3,          // skippa 3 livelli
-        SKIP_LVL5,          // skippa 5 livelli
-        SKIP_LVL7,          // skippa 7 livelli
+        /**
+         * BOLLE-FIRERATE-UP - aumento della velocità di fuoco del giocatore
+         */
+        BOLLE_FIRERATE_UP,
 
-        FREEZE,             // blocca i nemici per un po' di tempo
+        /**
+         * BONUS-MOV - 10 punti per ogni pixel di movimento (da capire come implementarla)
+         */
+        BONUS_MOV,
 
-        CHACKNHEART,        // giocatore invincibile(?) + nemici freezati + kill al contatto
+        /**
+         * BONUS-SALTO - 500 punti per salto
+         */
+        BONUS_SALTO,
 
+        /**
+         * BONUS-SPARO - 100 punti per sparo
+         */
+        BONUS_SPARO,
+
+        /**
+         * SNEAKER-BUFF - +velocita, salto, gravita
+         */
+        SNEAKER_BUFF,
+
+        /**
+         * SKIP-LVL3 - skippa 3 livelli
+         */
+        SKIP_LVL3,
+
+        /**
+         * SKIP-LVL5 - skippa 5 livelli
+         */
+        SKIP_LVL5,
+
+        /**
+         * SKIP-LVL7 - skippa 7 livelli
+         */
+        SKIP_LVL7,
+
+        /**
+         * FREEZE - blocca i nemici per un po' di tempo
+         */
+        FREEZE,
+
+        /**
+         * CHACKNHEART - giocatore invincibile(?) + nemici freezati + kill al contatto
+         */
+        CHACKNHEART,
+
+        /**
+         * NULL - nessun effetto
+         */
         NULL
     }
 

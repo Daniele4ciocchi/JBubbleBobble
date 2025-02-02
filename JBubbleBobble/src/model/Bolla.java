@@ -7,7 +7,15 @@ abstract public class Bolla extends Entita {
 
     private boolean floating = false;
     private Nemico nemico;
+    
+    /**
+     * Il range della bolla
+     */
     protected int range;
+    
+    /**
+     * Il tempo di scoppio della bolla
+     */
     protected int popTime = 750;
 
     /**

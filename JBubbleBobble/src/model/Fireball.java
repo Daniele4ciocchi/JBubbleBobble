@@ -12,7 +12,7 @@ public class Fireball extends Bolla {
         baseSpritePath + "hidegons" + File.separator + "image_2.png"
     };
 
-    /*
+    /**
      * Costruttore della classe Fireball.
      * @param posx posizione x iniziale della fireball
      * @param posy posizione y iniziale della fireball

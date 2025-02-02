@@ -102,6 +102,7 @@ public class AudioManager implements Runnable {
 
     /**
      * Metodo che ferma tutti i suoni
+     * @param volume del gioco
      */
     public void setVolume(float volume) {
         if (gainControl != null) {

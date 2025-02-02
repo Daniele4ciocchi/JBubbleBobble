@@ -8,33 +8,37 @@ import java.util.Random;
  */
 public abstract class Nemico extends Personaggio implements Runnable{
 
-    /*
+    /**
      * Intero che indica il tempo di attesa prima di poter cambiare direzione, generato randomicamente nel costruttore e decrementato ad ogni ciclo di gioco.
      */
     protected int waitTime;
 
-    /*
+    /**
      * Intero che indica il tempo di attesa corrente prima di poter cambiare direzione.
      */
     protected int currentWaitTime;
 
-    /*
+    /**
      * Intero che indica il tempo di attesa successivo alla morte e precedente al posizionamento del suo drop.
      */
     protected int deathCounter = 50;
 
-    /*
+    /**
      * Indica se il nemico è stato intrappolato in una bolla del giocatore o meno.
      */
     protected boolean bubbled;
 
-    /*
+    /**
      * Array contenente i percorsi ai tre sprite, su cui ciclare per ottenere l'animazione risultante, del nemico quando è intrappolato in una bolla.
      */
     protected String[] bubbledSpritesPath = {baseSpritePath, baseSpritePath, baseSpritePath }; // 3 sprite
 
-    /*
+    /**
      * Costruttore della classe Nemico.
+     * @param x la posizione iniziale sull'asse x
+     * @param y la posizione iniziale sull'asse y
+     * @param velocita, la velocita iniziale del nemico
+     * @param salto, il salto definito per ogni nemico
      */
     public Nemico(int x, int y, int velocita, int salto){
         super(x, y, velocita, salto, -3, salto);
@@ -44,7 +48,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         waitTime = rand.nextInt(5) + 1;
     }
 
-    /*
+    /**
      * Metodo che imposta lo stato di bubbled (intrappolato in una bolla) del nemico.
      * @param b true se il nemico è intrappolato in una bolla, false altrimenti.
      */
@@ -52,7 +56,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         this.bubbled = b;
     }
 
-    /*
+    /**
      * Metodo che ritorna lo stato di bubbled (intrappolato in una bolla) del nemico.
      * @return true se il nemico è intrappolato in una bolla, false altrimenti.
      */
@@ -60,7 +64,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         return bubbled;
     }
 
-    /*
+    /**
      * Metodo che ritorna il tempo di attesa corrente prima di poter cambiare direzione.
      * @return tempo di attesa corrente
      */
@@ -68,7 +72,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         return this.waitTime;
     }
 
-    /*
+    /**
      * Metodo che ritorna il tempo di attesa corrente prima di poter cambiare direzione.
      * @return tempo di attesa corrente
      */
@@ -76,7 +80,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         return this.deathCounter;
     }
     
-    /*
+    /**
      * Metodo che inizializza il thread dedicato a questo nemico, per poterne gestire la sua logica di comportamento indipendentemente.
      */
     @Override
@@ -89,7 +93,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         super.notifyObservers();
     }
 
-    /*
+    /**
      * Metodo che muove il nemico in base alla posizione del giocatore e al livello in cui si trova.
      * Osserva le coordinate del giocatore, e si muove di conseguenza.
      * In caso in cui il nemico stia venendo travolto in un flusso d'acqua, non si muove. (perché l'acqua lo trascina)
@@ -117,7 +121,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         }
     }
 
-    /*
+    /**
      * Metodo che restituisce il percorso allo sprite relativo allo stato attuale del nemico.
      * @return percorso allo sprite relativo allo stato attuale del nemico, sotto forma di stringa
      */
@@ -142,7 +146,7 @@ public abstract class Nemico extends Personaggio implements Runnable{
         }
     }
 
-    /*
+    /**
      * Metodo che decrementa il contatore di morte del nemico, e lo fa effettivamente morire se il contatore raggiunge lo 0.
      * @return il punto in cui il nemico è morto, null altrimenti
      */
