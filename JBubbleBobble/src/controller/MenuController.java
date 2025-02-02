@@ -4,16 +4,21 @@ import model.Partita;
 import model.Profilo;
 import view.GameView;
 import view.MenuView;
-import view.PartitaView;
 import view.ProfiloView;
-
 import java.util.ArrayList;
 
+/**
+ * Questa classe rappresenta il controller del menu principale del gioco.
+ */
 public class MenuController {
 
     private ArrayList<Partita> partite;
     private MenuView view;
 
+    /**
+     * Costruttore della classe MenuController.
+     * @param view la vista del menu
+     */
     public MenuController(MenuView view) {
         this.view = view;
         initview();
@@ -41,24 +46,27 @@ public class MenuController {
      */
     public void continuaPartita() {
         Profilo.getInstance().setNickname(view.getUsernameInput());
-        String password = view.getPasswordInput(); // Assumendo che ci sia un metodo per ottenere la password dalla vista
+        String password = view.getPasswordInput();
         GameView  gameview = new GameView();
         Partita partita = new Partita(password);
         GameController controller = new GameController(partita, gameview);
-        // Logica per continuare la partita con la password
+
     }
 
     /**
      * Questa scelta del menu permette al giocatore di visualizzare le statistiche del proprio profilo.
      */
     public void getProfiloStats() {
-        //per ora ok, ma sta roba va cambiata
         Profilo.getInstance().setNickname(view.getUsernameInput());
         Profilo profiloview = Profilo.getInstance();
         ProfiloView view = new ProfiloView(profiloview, Profilo.getInstance().getBestScores());
         
     }
 
+    /**
+     * Metodo che restituisce la vista del menu.
+     * @return la vista del menu
+     */
     public MenuView getview() {
         return view;
     }

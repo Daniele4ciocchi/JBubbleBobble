@@ -12,13 +12,13 @@ public abstract class Personaggio extends Entita{
     private Goccia g;
     private int jumpForce;
 
-    /**???
+    /**
      * Array contenente i percorsi ai due sprite, su cui ciclare per ottenere l'animazione risultante, del personaggio quando cammina.
      */
     protected String[] walkingSpritesPath = { baseSpritePath, baseSpritePath };
 
-    /**???
-     * Array contenente i percorsi ai tre sprite, su cui ciclare per ottenere l'animazione risultante, del personaggio quando è intrappolato in una bolla.
+    /**
+     * intero utilizzato come indice per gli sprite.
      */
     protected int spriteIndex;
 

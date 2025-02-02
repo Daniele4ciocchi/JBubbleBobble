@@ -14,6 +14,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Classe che rappresenta la vista del profilo del giocatore.
+ */
 public class ProfiloView {
     private Profilo profilo;
     private JFrame frame;
@@ -27,6 +30,11 @@ public class ProfiloView {
     private List<String> classifica;
     private String avatarPath;
 
+    /**
+     * Costruttore della classe ProfiloView.
+     * @param profilo il profilo del giocatore
+     * @param classifica la classifica globale
+     */
     public ProfiloView(Profilo profilo, List<String> classifica) {
         this.profilo = profilo;
         this.classifica = classifica;

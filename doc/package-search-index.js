@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"main.main.JBubbleBobble","l":"controller"},{"m":"main.main.JBubbleBobble","l":"main"},{"m":"main.main.JBubbleBobble","l":"model"},{"m":"main.main.JBubbleBobble","l":"view"}];updateSearchResults();

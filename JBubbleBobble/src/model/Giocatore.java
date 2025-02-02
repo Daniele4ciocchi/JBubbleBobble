@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * Classe che rappresenta il giocatore.
  */
-public class Giocatore extends Personaggio implements Serializable {
+public class Giocatore extends Personaggio  {
 
     private int life = 3;
     private int passi = 0;

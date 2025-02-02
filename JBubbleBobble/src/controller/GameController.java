@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Classe che rappresenta il controller del gioco.
+ */
 public class GameController {
 
     private Partita partita;
@@ -29,13 +32,16 @@ public class GameController {
     private int FireballCounter = 0;
     private int BoulderCounter = 0;
     private int morteGiocatoreCounter = 0;
-    private int spriteBoccaApertaCounter = 5; // numero di frame in cui la bocca del giocatore rimane aperta
+    private int spriteBoccaApertaCounter = 5; 
     private int passiCounter = 0;
-
-
-    ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
-    ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
+    private ArrayList<Entita> EntitaDaRimuovere = new ArrayList<Entita>();
+    private ArrayList<Entita> EntitaDaAggiungere = new ArrayList<Entita>();
     
+    /**
+     * Costruttore del controller del gioco.
+     * @param partita la partita in corso
+     * @param view la vista del gioco
+     */
     public GameController(Partita partita, GameView view){
         this.partita = partita;
         this.view = view;
@@ -107,6 +113,9 @@ public class GameController {
         });
     }
 
+    /**
+     * Metodo che controlla il movimento del giocatore.
+     */
     public void checkPlayerMovement(){
         Giocatore giocatore = (Giocatore) partita.getEntita().getFirst();
 
@@ -120,10 +129,13 @@ public class GameController {
             passiCounter = giocatore.getPassi();
         }else {
             passiCounter = 0;
-        }
-            
+        }    
     }
 
+    /**
+     * Metodo che incrementa il contatore del gioco per gestire la durata di alcuni effetti
+     * e la generazione di bolle.
+     */
     public void counter(){
         counter = (counter == 1000000000) ? 0 : ++counter; 
         int invincibilita = ((Giocatore) (partita.getEntita().getFirst())).getInvincibilita();
@@ -131,6 +143,11 @@ public class GameController {
         if (partita.getFreeze() > 0) partita.setFreeze(partita.getFreeze() - 1);;
     }
 
+    /**
+     * Metodo che genera le bolle d'acqua e le bolle fulmine in un certo periodo di tempo 
+     * viene eseguito un controllo per cui se le bolle presenti sono maggiori o uguali a tre
+     * non ne vengono generate altre.
+     */
     public void spawnBubbles(){
         if (counter % 200 == 0 && partita.getEntita().stream().filter(e -> e instanceof BollaAcqua).count() < 3){
             for (int i = 0; i < partita.getLivello().getGrid().length; i++){
@@ -154,13 +171,17 @@ public class GameController {
                 }
             }
         }
-        
     }
 
-    public void applyGravity(){ 
-        partita.getEntita().forEach(e -> partita.gravita(e)); 
-    }
+    /**
+     * Metodo che applica la gravità a tutte le entità presenti nel gioco.
+     */
+    public void applyGravity(){ partita.getEntita().forEach(e -> partita.gravita(e)); }
 
+    /**
+     * Metodo che controlla le collisioni del giocatore con le entità presenti nel gioco.
+     * vengono eseguite delle azioni in base al tipo di entità con cui il giocatore può collidere.
+     */
     public void checkPlayerCollision(){
         Entita collision = partita.checkCollision(partita.getEntita().getFirst());
 
@@ -231,6 +252,9 @@ public class GameController {
         view.getTopPanel().updateScore(partita.getScore());
     }
 
+    /**
+     * Metodo che controlla le collisioni delle entità presenti nel gioco.
+     */
     public void checkEntityCollision(){
         for (Entita e : partita.getEntita()){
             if (e instanceof Acqua ){
@@ -253,6 +277,9 @@ public class GameController {
         EntitaDaRimuovere.clear();
     }
 
+    /**
+     * Metodo che controlla se il giocatore è morto e gestisce il respawn.
+     */
     public void checkPlayerDead(){
         if (partita.getEntita().getFirst().isDead()){
             morteGiocatoreCounter++;
@@ -264,6 +291,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Metodo che controlla il movimento dei nemici e la generazione di FireBall e Boulder.
+     */
     public void moveEnemies(){
         for (Entita e : partita.getEntita()){
             if (partita.getFreeze()>0 || partita.getChacknHeart()) continue;
@@ -294,6 +324,10 @@ public class GameController {
         EntitaDaAggiungere.clear();
     }
 
+    /**
+     * Metodo che controlla il movimento delle bolle e delle entità presenti nel gioco 
+     * come l'acqua e il fulmine.
+     */
     public void moveBubbles(){
         for (Entita e : partita.getEntita()){
             if (e instanceof BollaSemplice){
@@ -343,10 +377,15 @@ public class GameController {
         EntitaDaAggiungere.clear();
     }
 
-    public boolean checkEntityPresence(){ 
-        return partita.getEntita().stream().filter(e ->(e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0;
-    }
-        
+    /**
+     * Metodo che controlla la presenza di entità nel livello.
+     * @return true se non ci sono entità nel livello, false altrimenti
+     */
+    public boolean checkEntityPresence(){ return partita.getEntita().stream().filter(e ->(e instanceof Nemico) || (e instanceof Bolla && ((Bolla)e).getNemico() != null)).count() == 0;}
+    
+    /**
+     * Metodo che permette di passare al livello successivo.
+     */
     public void goToNextLevel(){
         nextLevelCounter--;
             if (nextLevelCounter == 0){
@@ -376,6 +415,9 @@ public class GameController {
             }
     }
 
+    /**
+     * Metodo che controlla se il Giocatore ha perso.
+     */
     public void checkGameOver(){
         if (((Giocatore)partita.getEntita().getFirst()).getLife() == 0 && partita.getStato()==Partita.Stato.IN_CORSO){   
             partita.getLivello().changeLevel(104);
@@ -388,6 +430,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Metodo che controlla se il gioco è stato vinto.
+     */
     public void checkWin(){
         if (partita.getLivello().getLevelNum() == 16 && partita.getEntita().stream().filter(e -> e instanceof Nemico).count() == 0){
             partita.getLivello().changeLevel(105);
@@ -400,6 +445,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Metodo che controlla se il giocatore ha la bocca aperta.
+     */
     private void checkBoccaAperta(){
         if (((Giocatore) partita.getEntita().getFirst()).isShooting()){
             spriteBoccaApertaCounter--;
@@ -410,6 +458,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Metodo che controlla se ci sono nemici morti e gestisce il drop di oggetti.
+     */
     public void checkDyingEnemies(){
         for (Entita e : partita.getEntitaMorte()){
             if (e instanceof Nemico){
@@ -424,6 +475,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Metodo che avvia il game loop.
+     */
     private void startGameLoop(){
         timer = new Timer(15, e -> {gameLoop();});
         AudioManager.getInstance().playMainTheme();
@@ -434,6 +488,9 @@ public class GameController {
         timer.start();
     }
     
+    /**
+     * Metodo che gestisce il game loop.
+     */
     private void gameLoop(){
         counter();
         spawnBubbles();

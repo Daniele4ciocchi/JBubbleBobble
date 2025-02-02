@@ -8,9 +8,9 @@ import java.awt.event.WindowAdapter;
 import java.io.File;
 import java.io.IOException;
 
-//TODO: questa in teoria è la view del gioco di per se
-//FIXME: tutta da rifare
-
+/**
+ * Classe che rappresenta la vista del gioco.
+ */
 public class GameView  {
     private JFrame frame = new JFrame("Bubble Bobble MVC Game");
     private PartitaView partita ;
@@ -21,8 +21,10 @@ public class GameView  {
 
     private static Font customFont;
 
+    /**
+     * Costruttore della classe GameView.
+     */
     public GameView() {
-        // Create frame
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1152, 920);
         frame.setVisible(true);
@@ -37,44 +39,65 @@ public class GameView  {
             customFont = new Font("Serif", Font.PLAIN, 24); // Fallback font
         }
     }
+
+    /**
+     * Metodo che aggiunge il pannello della partita alla finestra.
+     * @param partita il pannello della partita
+     */
     public void addPartitaPanel(PartitaView partita) {
         this.partita = partita;
         frame.add(partita, BorderLayout.CENTER);
     }
+
+    /**
+     * Metodo che aggiunge il pannello superiore alla finestra.
+     * @param TopPanel il pannello superiore
+     */
     public void addTopPanel(TopPanel TopPanel) {
         this.topPanel = TopPanel;
         frame.add(TopPanel, BorderLayout.NORTH);
     }
     
-    public void addKeyListener(KeyAdapter keyAdapter) {
-        frame.addKeyListener(keyAdapter);
-    }
-    public void addPauseListener(ActionListener listener) {
-        pauseButton.addActionListener(listener);
-    }
-    public void addExitListener(ActionListener listener) {
-        exitButton.addActionListener(listener);
-    }
+    /**
+     * Metodo che aggiunge un keylistener 
+     * @param  keyAdapter il keyAdapter da aggiungere
+     */
+    public void addKeyListener(KeyAdapter keyAdapter) {frame.addKeyListener(keyAdapter);}
 
-    public PartitaView getPanel() {
-        return partita;
-    }
-    public TopPanel getTopPanel() {
-        return topPanel;
-    }
+    /**
+     * Metodo che ritorna il Panel della partita   
+     * @param partita il pannello della partita
+     */
+    public PartitaView getPanel() { return partita;}
 
-    public JFrame getFrame() {
-        return frame;
-    }
+    /**
+     * metodo che ritorna il topPanel
+     * @return il topPanel
+     */
+    public TopPanel getTopPanel() { return topPanel;}
 
-    public static Font getFont() {
-        return customFont;
-    }
+    /**
+     * Metodo che ritorna il frame
+     * @return il frame
+     */
+    public JFrame getFrame() {return frame;}
+
+    /**
+     * Metodo che ritorna il font personalizzato
+     * @return il font personalizzato
+     */
+    public static Font getFont() {return customFont;}
     
-    public void updateScore(int score) {
-        scoreLabel.setText("Score: " + score);
-    }
+    /**
+     * Metodo che aggiorna lo score nel pannello superiore.
+     * @param score il punteggio da aggiornare
+     */
+    public void updateScore(int score) {scoreLabel.setText("Score: " + score);}
 
+    /**
+     * Metodo che aggiunge un WindowListener alla finestra.
+     * @param windowAdapter il WindowListener da aggiungere
+     */
     public void addWindowListener(WindowAdapter windowAdapter) {
         frame.addWindowListener(windowAdapter);
     }

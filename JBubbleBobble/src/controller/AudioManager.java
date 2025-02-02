@@ -5,6 +5,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javax.sound.sampled.*;
  
+/**
+ * Classe che gestisce l'audio del gioco.
+ */
 public class AudioManager implements Runnable {
 
     private static AudioManager instance;
@@ -18,6 +21,10 @@ public class AudioManager implements Runnable {
         executorService = Executors.newCachedThreadPool();
     }
 
+    /**
+     * Metodo per il pattern Singleton, restituisce l'istanza dell'AudioManager
+     * @return l'istanza dell'AudioManager
+     */
     public static synchronized AudioManager getInstance() {
         if (instance == null) {
             instance = new AudioManager();
@@ -25,19 +32,31 @@ public class AudioManager implements Runnable {
         return instance;
     }
 
+    /**
+     * Metodo che avvia l'istanza dell'AudioManager
+     */
     public static void startInstance() {
         getInstance().executorService.submit(getInstance());
     }
 
+    /**
+     * Metodo che avvia la musica del gioco
+     */
     @Override
     public void run() {
         playMusic();
     }
 
+    /**
+     * Metodo che avvia il tema principale del gioco
+     */
     public void playMainTheme() {
         playMusic();
     }
 
+    /**
+     * Metodo che avvia la musica
+     */
     public void playMusic() {
         executorService.submit(() -> {
             try {
@@ -54,6 +73,10 @@ public class AudioManager implements Runnable {
         });
     }
 
+    /**
+     * Metodo che avvia un suono
+     * @param soundFile il file audio da riprodurre
+     */
     public void playSound(String soundFile) {
         executorService.submit(() -> {
             try {
@@ -68,18 +91,28 @@ public class AudioManager implements Runnable {
         });
     }
 
+    /**
+     * Metodo che ferma la musica
+     */
     public void stopMusic() {
         if (mainsong != null && mainsong.isRunning()) {
             mainsong.stop();
         }
     }
 
+    /**
+     * Metodo che ferma tutti i suoni
+     */
     public void setVolume(float volume) {
         if (gainControl != null) {
             gainControl.setValue(volume);
         }
     }
 
+    /**
+     * Metodo che restituisce il volume
+     * @return il volume
+     */
     public double getVolume() {
         return gainControl != null ? gainControl.getValue() : 0;
     }

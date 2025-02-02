@@ -2,22 +2,7 @@ package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import model.Acqua;
-import model.Bolla;
-import model.BollaAcqua;
-import model.BollaFulmine;
-import model.BollaSemplice;
-import model.Boulder;
-import model.Entita;
-import model.Fireball;
-import model.Fulmine;
-import model.Giocatore;
-import model.Item;
-import model.Nemico;
-import model.Partita;
-import model.Tile;
-
+import model.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,16 +10,23 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Classe che rappresenta la vista della partita.
+ */
 public class PartitaView extends JPanel implements Observer {
 
     private Partita partita;
     private BufferedImage image;
     private double scala = 2.0;
 
-    public PartitaView() {
-        super();
-    }
+    /**
+     * Costruttore della classe PartitaView.
+     */
+    public PartitaView() {super();}
 
+    /**
+     * Metodo che imposta i parametri della vista della partita.
+     */
     public void setParameters() {
         int doubleTileSize = partita.getLivello().getTilesize() * 2; // Raddoppia il tileSize
         setLayout(new BorderLayout());
@@ -43,6 +35,10 @@ public class PartitaView extends JPanel implements Observer {
         setBackground(Color.BLACK);
     }
 
+    /**
+     * Metodo che disegna il livello.
+     * @param g il contesto grafico su cui disegnare il livello
+     */
     public void paintLivello(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         int gridHeight = partita.getLivello().getGrid().length;
@@ -79,6 +75,10 @@ public class PartitaView extends JPanel implements Observer {
         }
     }
 
+    /**
+     * Metodo che disegna le entità.
+     * @param g il contesto grafico su cui disegnare le entità
+     */
     public void paintEntita(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         int gridHeight = partita.getLivello().getGrid().length;
@@ -90,7 +90,6 @@ public class PartitaView extends JPanel implements Observer {
         BufferedImage acqua;
         BufferedImage fulmine;
         BufferedImage fireball;
-        BufferedImage specialItem;
 
         for (Entita e : partita.getEntita().reversed()) {
             int y = (((gridHeight - 1) * partita.getLivello().getTilesize()) - e.getY() - partita.getLivello().getTilesize() ) + 3;
@@ -228,6 +227,10 @@ public class PartitaView extends JPanel implements Observer {
         }
     }
 
+    /**
+     * Metodo che disegna gli elementi.
+     * @param g il contesto grafico su cui disegnare gli elementi
+     */
     public void paintElement(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         BufferedImage vite;
@@ -247,10 +250,15 @@ public class PartitaView extends JPanel implements Observer {
         }        
     }
 
-    public void setPartita(Partita partita) {
-        this.partita = partita;
-    }
+    /**
+     * Metodo che restituisce la partita.
+     * @return la partita
+     */
+    public void setPartita(Partita partita) {this.partita = partita;}
 
+    /**
+     * Metodo che disegna la partita.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -262,6 +270,9 @@ public class PartitaView extends JPanel implements Observer {
 
     }
 
+    /**
+     * Metodo che aggiorna la vista con il pattern Observe Observable
+     */
     @Override
     public void update(Observable o, Object arg) {
         repaint();

@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Classe che rappresenta la vista del menu del gioco.
+ */
 public class MenuView {
     public static JFrame frame;
     private JPanel panel;
@@ -22,6 +25,9 @@ public class MenuView {
     private JTextField usernameField;
     private static Font arcadeFont;
 
+    /**
+     * Costruttore della classe MenuView.
+     */
     public MenuView() {
         try {
             arcadeFont = Font.createFont(Font.TRUETYPE_FONT, new File("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "fonts" + File.separator + "ARCADECLASSIC.TTF")).deriveFont(20f);
@@ -141,8 +147,6 @@ public class MenuView {
 
         passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
         passwordField.setFont(font);
-
-        //nuovaPartitaButton.setBackground(Color.GREEN);
         
         panel.add(Box.createVerticalStrut(20));
         panel.add(label);
@@ -157,11 +161,8 @@ public class MenuView {
         panel.add(Box.createVerticalStrut(20));
         panel.add(usernameLabel);
         panel.add(usernameField);
-        panel.add(Box.createVerticalGlue()); // Add vertical glue to push the button to the bottom
-         // Add some space below the button
-
-
-        // simpatika gif :)
+        panel.add(Box.createVerticalGlue()); 
+         
         ImageIcon gifIcon = new ImageIcon("JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator + "sprites" + File.separator + "misc" + File.separator + "animated.gif");
         JLabel gifLabel = new JLabel(gifIcon);
         gifLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -178,22 +179,49 @@ public class MenuView {
         frame.add(panel);
     }   
 
+    /**
+     * Metodo che restituisce il pannello del menu.
+     * @return il pannello del menu
+     */
     public JPanel getPanel() {
         return panel;
     }
 
-
+    /**
+     * Metodo che aggiunge un ActionListener al pulsante "Nuova Partita".
+     * @param listener
+     */
     public void addNuovaPartitaListener(ActionListener listener) {nuovaPartitaButton.addActionListener(listener);}
+
+    /**
+     * Metodo che aggiunge un ActionListener al pulsante "Continua Partita".
+     * @param listener
+     */
     public void addContinuaPartitaListener(ActionListener listener) {continuaPartitaButton.addActionListener(listener);}
+
+    /**
+     * Metodo che aggiunge un ActionListener al pulsante "Visualizza Profilo".
+     * @param listener
+     */
     public void addVisualizzaProfiloListener(ActionListener listener) {visualizzaProfiloButton.addActionListener(listener);}
 
-    public String getUsernameInput() {
-        return usernameField.getText();
-    }
-    public String getPasswordInput() {
-        return passwordField.getText();
-    }
+    /**
+     * Metodo che restituisce il nickname inserito dall'utente.
+     * @return il nickname inserito dall'utente
+     */
+    public String getUsernameInput() {return usernameField.getText();}
 
+    /**
+     * Metodo che restituisce la password inserita dall'utente.
+     * @return la password inserita dall'utente
+     */
+    public String getPasswordInput() {return passwordField.getText();}
+
+    /**
+     * Metodo che crea un JButton con uno stile personalizzato.
+     * @param text il testo del pulsante
+     * @return il JButton con lo stile personalizzato
+     */
     private static JButton createStyledButton(String text) {
         JButton button = new JButton(text);
         button.setBackground(Color.YELLOW);

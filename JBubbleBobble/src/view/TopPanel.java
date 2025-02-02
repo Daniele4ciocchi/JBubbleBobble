@@ -6,19 +6,21 @@ import model.Profilo;
 
 import java.awt.*;
 
-
+/**
+ * Classe che rappresenta il pannello superiore del gioco.
+ */
 public class TopPanel extends JPanel {
     private JLabel textScoreLabel;
     private JLabel scoreLabel;
     private JLabel textHighScoreLabel;
     private JLabel highScoreLabel;
-
-    private JButton pauseMenuButton;
     private JPanel textPanel;
     private JPanel scorePanel;
 
+    /**
+     * Costruttore della classe TopPanel.
+     */
     public TopPanel() {
-        // Set layout for the panel
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
 
@@ -65,23 +67,14 @@ public class TopPanel extends JPanel {
         scorePanel.add(highScoreLabel, BorderLayout.EAST);
 
         add(scorePanel, BorderLayout.CENTER);
-
-        // Initialize the pause menu button
-        pauseMenuButton = new JButton("||");
-        pauseMenuButton.setFont(font);
-        pauseMenuButton.setBackground(Color.BLACK);
-
-
-        //add(pauseMenuButton, BorderLayout.EAST);
     }
 
-    // Method to update the score
+    /**
+     * Metodo che aggiorna il punteggio.
+     * @param score
+     */
     public void updateScore(int score) {
         scoreLabel.setText(Integer.toString(score));
     }
 
-    // Getter for the pause menu button
-    public JButton getPauseMenuButton() {
-        return pauseMenuButton;
-    }
 }
