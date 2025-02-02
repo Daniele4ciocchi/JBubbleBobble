@@ -66,7 +66,7 @@ public class GameView  {
 
     /**
      * Metodo che ritorna il Panel della partita   
-     * @param partita il pannello della partita
+     * @return il panel della partita
      */
     public PartitaView getPanel() { return partita;}
 

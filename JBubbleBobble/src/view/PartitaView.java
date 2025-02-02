@@ -251,8 +251,7 @@ public class PartitaView extends JPanel implements Observer {
     }
 
     /**
-     * Metodo che restituisce la partita.
-     * @return la partita
+     * Metodo che imposta la partita
      */
     public void setPartita(Partita partita) {this.partita = partita;}
 

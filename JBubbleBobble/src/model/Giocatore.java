@@ -108,7 +108,7 @@ public class Giocatore extends Personaggio  {
     
     /**
      * Serve a impostare il numero di passi del giocatore, aggiornati nel gameloop ad ogni sua iterazione.
-     * @return true se il giocatore ha l'effetto BOLLE_RANGE_UP attivo, false altrimenti
+     * @param p true se il giocatore ha l'effetto BOLLE_RANGE_UP attivo, false altrimenti
      */
     public void setPassi(int p) {
         this.passi = p;
