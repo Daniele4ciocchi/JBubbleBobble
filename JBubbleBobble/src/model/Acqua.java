@@ -109,6 +109,6 @@ public class Acqua extends Entita{
      * @return il percorso dello sprite dell'acqua
      */    
     public String getSpritePath() {
-        return "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator +  "blocks" + File.separator + "super blocks" + File.separator + "block_98.png";
+        return "JBubbleBobble" + File.separator + "src" + File.separator + "resources" + File.separator +  "sprites" + File.separator + "misc" + File.separator + "water.png";
     }
 }

@@ -65,3 +65,7 @@ burno:78300:PERSA
 burno:122600:PERSA
 burno:0:PERSA
 burno:0:PERSA
+burno:134000:PERSA
+burno:13000:PERSA
+burno:0:PERSA
+burno:24000:VINTA
