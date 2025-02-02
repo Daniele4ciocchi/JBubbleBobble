@@ -2,13 +2,22 @@ package model;
 
 import java.io.File;
 
-public class Mighta extends Nemico{
-    public Mighta(int x, int y){
+/**
+ * Classe che rappresenta un nemico Mighta, un nemico del gioco.
+ */
+public class Mighta extends Nemico {
+
+    /**
+     * Costruttore della classe Mighta.
+     * @param x coordinata x iniziale del Mighta
+     * @param y coordinata y iniziale del Mighta
+     */
+    public Mighta(int x, int y) {
         super(x, y, 1, 2);
         setSprites();
     }
     
-    public void setSprites(){
+    private void setSprites(){
         walkingSpritesPath[0] += "mighta"+File.separator+"image_29.png";
         walkingSpritesPath[1] += "mighta"+File.separator+"image_30.png";
 
@@ -19,10 +28,17 @@ public class Mighta extends Nemico{
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
+    /*
+     * Metodo che si occupa del movimento dell'Mighta, richiamando la .move() della superclasse Nemico.
+     */
     public void move(int gx, int gy, Livello l) {
         super.move(gx, gy, l);
     }
 
+    /*
+     * Metodo che permette a Mighta di poter sparare un masso rovente.
+     * @return una nuova istanza di Boulder
+     */
     public Bolla shoot(){
         return new Boulder(isGoingRight()? this.getX()+getEntitysize()+20 : this.getX()-getEntitysize()-5, this.getY(), 3, 1, isGoingRight(), 40);
     }

@@ -2,15 +2,24 @@ package model;
 
 import java.io.File;
 
+/**
+ * Classe che rappresenta un Monsta, un nemico del gioco.
+ */
 public class Monsta extends Nemico {
+
     private boolean goingUp = true;
 
+    /**
+     * Costruttore della classe Monsta.
+     * @param x coordinata x iniziale del Monsta
+     * @param y coordinata y iniziale del Monsta
+     */
     public Monsta(int x, int y){
         super(x, y, 2, 2);
         setSprites();
     }
     
-    public void setSprites(){
+    private void setSprites(){
         walkingSpritesPath[0] += "monsta"+File.separator+"image_443.png";
         walkingSpritesPath[1] += "monsta"+File.separator+"image_444.png";
 
@@ -21,7 +30,12 @@ public class Monsta extends Nemico {
         deathSpritePath += "zen-chan"+File.separator+"500.png";
     }
 
-    // si muove sempre in diagonale, e quando incontra tile non-walkable, cambia direzione orizzontale/verticale
+    /**
+     * Metodo che si occupa del movimento del Monsta.
+     * Questa tipologia di nemico si muove sempre diagonalmente (ossia sia verticalmente che orizzontalmente, simulteanamente),
+     * alternando su/giù e destra/sinistra al momento di un contatto con una parete o una piattaforma.
+     * @param l livello su cui il Monsta si sta muovendo
+     */
     public void move(int gx, int gy, Livello l) {
         moveOrizzontale(l);
         moveVerticale(l);
@@ -29,6 +43,11 @@ public class Monsta extends Nemico {
         notifyObservers();
     }
 
+    /**
+     * Metodo che si occupa del movimento orizzontale del Monsta.
+     * Essenzialmente, Monsta si muove in orizzontale alternando destra/sinistra in base ai rimbalzi contro eventuali ostacoli.
+     * @param l livello su cui il Monsta si sta muovendo
+     */
     public void moveOrizzontale(Livello l){
         if (isGoingRight()) {
             if (!l.isWalkable(getX()+getEntitysize(), getY())) {
@@ -45,6 +64,11 @@ public class Monsta extends Nemico {
         }
     }
     
+    /**
+     * Metodo che si occupa del movimento verticale del Monsta.
+     * Essenzialmente, Monsta si muove in verticale alternando su/giù in base ai rimbalzi contro eventuali ostacoli.
+     * @param l livello su cui il Monsta si sta muovendo
+     */
     public void moveVerticale(Livello l) {
         try {
             if (goingUp) {

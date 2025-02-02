@@ -1,32 +1,32 @@
 package model;
 
-
 import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-
 import controller.AudioManager;
 
-public class Partita implements Serializable{
+/**
+ * Classe Partita, rappresenta una partita in corso
+ * Contiene tutti i metodi per gestire la partita, gli items e le entità
+ */
+public class Partita {
+
+    /*
+     * Enumerazione Stato, rappresenta lo stato attuale della partita.
+     */
     public enum Stato{
         IN_CORSO, PERSA, VINTA
     }
 
     private Stato stato;
-
     private Random random = new Random();
-    private static final long serialVersionUID = 1L; // serve per il Serializable
-
     private ArrayList<Entita> entitaAttive; //lista delle entità presenti nella partita
     private ArrayList<Entita> entitaMorte;
-
     private Livello livello;
-
     private int score;
     private int saltiEffettuati;
     private int bolleSparate;
@@ -54,19 +54,18 @@ public class Partita implements Serializable{
         this.entitaAttive = new ArrayList<>();
         this.entitaMorte = new ArrayList<>();
         entitaAttive.add(new Giocatore());
-
-        this.saltiEffettuati = 0;
         this.stato = Stato.IN_CORSO;
     }
 
     /**
      * Costruttore 2 della classe Partita,
      * associato alla funzione di Continua Partita
-     * @param password password relativa al livello interessato
+     * @param password password relativa al livello da cui si vuole iniziare la partita
      */
     public Partita(String password){
         this.entitaAttive = new ArrayList<>();
         this.entitaMorte = new ArrayList<>();
+        this.stato = Stato.IN_CORSO;
         entitaAttive.add(new Giocatore());
         this.livello = new Livello(switch (password) {
             case "LIVELLO01" -> 1;
@@ -89,9 +88,6 @@ public class Partita implements Serializable{
             case "WIN!!!"    -> 105;
             default -> 1;
         });
-
-        this.saltiEffettuati = 0; 
-        this.stato = Stato.IN_CORSO;
     }
 
     // getters
@@ -172,7 +168,6 @@ public class Partita implements Serializable{
     // qui controllo i requisiti di spawn
     // NOTA: i controlli dei valori sono così per assicurare che venga creato un SOLO powerup
     public SpecialItem checkSpawnSpecialItem(){
-
         int sx = 0;
         int sy = 0;
 
@@ -193,7 +188,7 @@ public class Partita implements Serializable{
         else if (bolleAcquaScoppiate == 36){
             bolleAcquaScoppiate = 0;
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.UMBRELLA,SpecialItem.Colore.PINK);
-            }
+        }
 
         // CANDY
         if (saltiEffettuati == 35){
@@ -255,9 +250,7 @@ public class Partita implements Serializable{
             return new SpecialItem(sx,sy,SpecialItem.Tipologia.CHACKNHEART,SpecialItem.Colore.EMPTY);
         }
 
-        else{
-            return null;
-        }
+        else return null;
     }
 
     public void gravita(Entita e) {    

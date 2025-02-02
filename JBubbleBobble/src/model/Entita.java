@@ -172,14 +172,14 @@ abstract public class Entita extends Observable {
     }
 
     /**
-     * Fa morire l'entità.
+     * Fa morire l'entità, impostando il booleano dead a true.
      */
     public void die(){
         this.dead = true;
     }
 
     /**
-     * Fa resuscitare l'entità.
+     * Fa resuscitare l'entità, impostando il booleano dead a false.
      */
     public void undie(){
         this.dead = false;

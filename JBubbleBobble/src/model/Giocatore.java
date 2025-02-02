@@ -3,15 +3,18 @@ package model;
 import java.io.File;
 import java.io.Serializable;
 
-public class Giocatore extends Personaggio implements Serializable{
+/**
+ * Classe che rappresenta il giocatore.
+ */
+public class Giocatore extends Personaggio implements Serializable {
+
     private int life = 3;
     private int passi = 0;
-
-    private final String idleSpritePath = baseSpritePath + "bubblun" + File.separator + "image_90.png";         // fermo
-    private final String fallingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_84.png";      // caduta
-    private final String jumpingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_70.png";      // salto
-    private final String shootingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_79.png";    // sparo
-    private  String[] walkingSpritesPath = {                                                                // camminata
+    private final String idleSpritePath = baseSpritePath + "bubblun" + File.separator + "image_90.png";
+    private final String fallingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_84.png";
+    private final String jumpingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_70.png";
+    private final String shootingSpritePath = baseSpritePath + "bubblun" + File.separator + "image_79.png";    
+    private  String[] walkingSpritesPath = {
         baseSpritePath + "bubblun" + File.separator + "image_87.png",
         baseSpritePath + "bubblun" + File.separator + "image_89.png"
     };                                      
@@ -21,49 +24,160 @@ public class Giocatore extends Personaggio implements Serializable{
         baseSpritePath + "bubblun" + File.separator + "image_64.png",
         baseSpritePath + "bubblun" + File.separator + "image_65.png"
     };
-    private boolean falling;  // per lo sprite di caduta
-    private boolean shooting; // per sprite con bocca aperta
+    private boolean falling;
+    private boolean shooting;
     private int invincibilita = 0;
-
-    // booleani buff specialitem
     private boolean BOLLE_RANGE_UP;
     private boolean BOLLE_VEL_UP;
-    private boolean BOLLE_FIRERATE_UP; // va fatto nel game controller
-    private boolean BONUS_MOV; //
+    private boolean BOLLE_FIRERATE_UP;
+    private boolean BONUS_MOV;
     private boolean BONUS_SALTO;
     private boolean BONUS_SPARO;
     private boolean SNEAKER_BUFF;
 
-    public Giocatore(){
+    /**
+     * Costruttore della classe Giocatore.
+     */
+    public Giocatore() {
         super(5, 1, 4, 15, -3, 17);
     }
 
-    public int getLife(){return this.life;}
-    public int getPassi(){return this.passi;}
-    public int getInvincibilita(){return this.invincibilita;}
-    public boolean getBolleFirerate(){return BOLLE_FIRERATE_UP;}
-    public boolean getBonusMov(){return BONUS_MOV;}
-    public boolean getBonusSalto(){return BONUS_SALTO;}
-    public boolean getBonusSparo(){return BONUS_SPARO;}
-    public boolean getSneakerBuff(){return SNEAKER_BUFF;}
+    /**
+     * Restituisce il numero di vite rimanenti del giocatore.
+     * @return il numero di vite rimanenti del giocatore
+     */
+    public int getLife() {
+        return this.life;
+    }
+
+    /**
+     * Restituisce il numero di passi fatti dal giocatore.
+     * @return il numero di passi fatti dal giocatore
+     */
+    public int getPassi() {
+        return this.passi;
+    }
+
+    /**
+     * Restituisce il tempo residuo di invincibilità del giocatore.
+     * @return un intero che rappresenta il tempo residuo di invincibilità del giocatore
+     */
+    public int getInvincibilita() {
+        return this.invincibilita;
+    }
+
+    /**
+     * Restituisce true se il giocatore ha l'effetto BOLLE_FIRERATE_UP attivo, false altrimenti.
+     * @return true se il giocatore ha l'effetto BOLLE_FIRERATE_UP attivo, false altrimenti
+     */
+    public boolean getBolleFirerate() {
+        return BOLLE_FIRERATE_UP;
+    }
+
+    /**
+     * Restituisce true se il giocatore ha l'effetto BONUS_MOV attivo, false altrimenti.
+     * @return true se il giocatore ha l'effetto BONUS_MOV attivo, false altrimenti
+     */
+    public boolean getBonusMov() {
+        return BONUS_MOV;
+    }
+
+    /**
+     * Restituisce true se il giocatore ha l'effetto BONUS_SALTO attivo, false altrimenti.
+     * @return true se il giocatore ha l'effetto BONUS_SALTO attivo, false altrimenti
+     */
+    public boolean getBonusSalto() {
+        return BONUS_SALTO;
+    }
+
+    /**
+     * Restituisce true se il giocatore ha l'effetto BONUS_SPARO attivo, false altrimenti.
+     * @return true se il giocatore ha l'effetto BONUS_SPARO attivo, false altrimenti
+     */
+    public boolean getBonusSparo() { 
+        return BONUS_SPARO;
+    }
+
+    /**
+     * Restituisce true se il giocatore ha l'effetto SNEAKER_BUFF attivo, false altrimenti.
+     * @return true se il giocatore ha l'effetto SNEAKER_BUFF attivo, false altrimenti
+     */
+    public boolean getSneakerBuff() {
+        return SNEAKER_BUFF;
+    }
     
-    public void setPassi(int p){this.passi = p;}
-    public void setInvincibilita(int i){this.invincibilita = i;}
-    public void addLife(){this.life++;}
-    public void removeLife(){this.life--;}
-    public void resetPosizione(){
+    /**
+     * Serve a impostare il numero di passi del giocatore, aggiornati nel gameloop ad ogni sua iterazione.
+     * @return true se il giocatore ha l'effetto BOLLE_RANGE_UP attivo, false altrimenti
+     */
+    public void setPassi(int p) {
+        this.passi = p;
+    }
+
+    /**
+     * Serve a impostare il tempo residuo di invincibilità del giocatore.
+     * @param i intero che rappresenta il tempo residuo di invincibilità del giocatore
+     */
+    public void setInvincibilita(int i) {
+        this.invincibilita = i;
+    }
+
+    /**
+     * Serve a incrementare di 1 il numero di vite del giocatore.
+     */
+    public void addLife() {
+        this.life++;
+    }
+
+    /**
+     * Serve a decrementare di 1 il numero di vite del giocatore.
+     */
+    public void removeLife() {
+        this.life--;
+    }
+
+    /**
+     * Serve a resettare la posizione del giocatore.
+     */
+    public void resetPosizione() {
         super.setPosizione(5*getEntitysize(), 1*getEntitysize());
         this.watered = false;
     }
 
-    public void setFalling(boolean b){this.falling = b;}
-    public boolean isFalling(){return this.falling;}
-    public void setShooting(boolean b){this.shooting = b;}
-    public boolean isShooting(){return this.shooting;} 
+    /**
+     * Serve a impostare il booleano falling, che indica lo stato di "caduta" del giocatore.
+     */
+    public void setFalling(boolean b) {
+        this.falling = b;
+    }
 
-    // ritorna il PATH dello sprite, in base allo stato del giocatore
+    /* 
+     * Restituisce true se il giocatore è in caduta, false altrimenti.
+     */
+    public boolean isFalling() {
+        return this.falling;
+    }
+
+    /**
+     * Serve a impostare il booleano shooting, che indica lo stato di "sparo" del giocatore, utile per la gestione del relativo sprite dedicato.
+     */
+    public void setShooting(boolean b) {
+        this.shooting = b;
+    }
+
+    /**
+     * Restituisce true se il giocatore sta sparando, false altrimenti.
+     */
+    public boolean isShooting() {
+        return this.shooting;
+    } 
+
+    /**
+     * Restituisce il percorso dello sprite del giocatore, dipendente dal proprio stato attuale. (ad esempio se sta camminando, saltando, sparando, ecc.)
+     * @return percorso dello sprite del giocatore sottoforma di stringa
+     */
     public String getSpritePath(){
-        if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath; // FERMO
+        if (super.getMovimentoX() == 0 && super.getMovimentoY() == 0) return idleSpritePath;
         else if (this.isDead()) {
             spriteCounter++;
             if (spriteCounter == spriteChangeRate) {
@@ -72,9 +186,9 @@ public class Giocatore extends Personaggio implements Serializable{
             }
             return deathSpritesPaths[spriteIndex];
         }
-        else if (this.isFalling()) return fallingSpritePath; // CADENDO
-        else if (super.getMovimentoY() > 0) return jumpingSpritePath; // SALTANDO
-        else if (this.isShooting()) return shootingSpritePath; // SPARANDO
+        else if (this.isFalling()) return fallingSpritePath;
+        else if (super.getMovimentoY() > 0) return jumpingSpritePath;
+        else if (this.isShooting()) return shootingSpritePath;
         else if (this.isDead()) {
             spriteCounter++;
             if (spriteCounter == spriteChangeRate) {
@@ -83,7 +197,7 @@ public class Giocatore extends Personaggio implements Serializable{
             }
             return deathSpritesPaths[spriteIndex];
         }
-        else { // CAMMINANDO
+        else {
             spriteCounter++;
             if (spriteCounter == spriteChangeRate) {
                 spriteCounter = 0; 
@@ -93,6 +207,10 @@ public class Giocatore extends Personaggio implements Serializable{
         }
     }
 
+    /**
+     * Metodo che fa muovere il giocatore verso sinistra.
+     * @param l livello su cui il giocatore si sta muovendo
+     */
     @Override
     public void moveLeft(Livello l){
         if(!isDead()) {
@@ -102,6 +220,10 @@ public class Giocatore extends Personaggio implements Serializable{
         }
     }
 
+    /**
+     * Metodo che fa muovere il giocatore verso destra.
+     * @param l livello su cui il giocatore si sta muovendo
+     */
     @Override
     public void moveRight(Livello l){ 
         if(!isDead()) {
@@ -111,6 +233,9 @@ public class Giocatore extends Personaggio implements Serializable{
         }
     }
 
+    /**
+     * Metodo per far saltare il giocatore.
+     */
     @Override
     public void jump(){ 
         if(!isDead()) {
@@ -119,6 +244,10 @@ public class Giocatore extends Personaggio implements Serializable{
         }
     }
 
+    /**
+     * Metodo che permette al giocatore di sparare una nuova bolla.
+     * @return una nuova istanza di BollaSemplice
+     */
     public Bolla shoot(){
         this.setShooting(true);
         return new BollaSemplice(
@@ -131,6 +260,9 @@ public class Giocatore extends Personaggio implements Serializable{
         );
     }
 
+    /**
+     * Metodo che inizializza il processo di morte del giocatore, resettando i suoi effetti e impostando la velocità di movimento a 4.
+     */
     public void die(){
         BOLLE_RANGE_UP = false;
         BOLLE_VEL_UP = false;
@@ -147,6 +279,10 @@ public class Giocatore extends Personaggio implements Serializable{
         notifyObservers();
     }
 
+    /**
+     * Metodo che permette al giocatore di "resuscitare" dopo la morte, decrementando il numero di vite e resettando la sua posizione.
+     * In caso non dovesse più avere vite, il metodo non fa nulla.
+     */
     public void respawn(){
         if (this.life != 0){
             this.undie();
@@ -157,6 +293,10 @@ public class Giocatore extends Personaggio implements Serializable{
         notifyObservers();
     }
 
+    /**
+     * Metodo che applica un effetto di uno SpecialItem al giocatore, modificando il relativo booleano che ne indica l'attivazione.
+     * @param e effetto da applicare, ottenuto tramite il metodo getEffetto() di SpecialItem
+     */
     public void applyEffetto(SpecialItem.Effetto e){
         switch(e){
             case BOLLE_RANGE_UP -> BOLLE_RANGE_UP = true;
