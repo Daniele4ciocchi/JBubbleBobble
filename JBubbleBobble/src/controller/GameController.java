@@ -344,6 +344,7 @@ public class GameController {
                     if (e2 instanceof Nemico){
                         ((BollaSemplice)e).catturaNemico(((Nemico)e2));
                         EntitaDaRimuovere.add(e2);
+                        break;
                     }
                 }
             }else if (e instanceof BollaAcqua){
