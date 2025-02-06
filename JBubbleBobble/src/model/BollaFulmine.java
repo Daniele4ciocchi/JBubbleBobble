@@ -44,7 +44,7 @@ public class BollaFulmine extends Bolla {
                 if (l.isEmpty(this.getX(), this.getY() + 1) 
                     && !l.isTPExit(this.getX(),this.getY() +1 )) {
                     this.setMovimentoY(1);
-                    this.setPosizione(this.getX(),this.getY() + this.getMovimentoY());
+                    
                 }else {
                     counterDirection = 0;
                 }
